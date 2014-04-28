@@ -11,12 +11,15 @@
 </head>
 
 <body class = "home">
-  <div id="main-wrapper" class="default">          
-    <?php $this->load->view('partials/header'); ?>
-    <div class="wrapper cf">
-      <div id="main-content">{body_content}</div>
+  <div id="main-wrapper" class="basic">          
+    <div id = "main-header">
+      <?php $this->load->view('partials/header'); ?>
+    </div>
+    <div id="main-content">
+      <div id="body-content">{body_content}</div>
     </div>
   </div>
+
   <?php $this->load->view('partials/footer'); ?>
 </body>
 </html>
