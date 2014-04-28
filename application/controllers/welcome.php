@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$data['page_title'] = "SSCO Module Base Learning";
-		$data['body_content'] = $this->load->view('content_homepage/content_home'); // kevcal
+		$data['body_content'] = $this->load->view('content_homepage/content_home',array(),TRUE); // kevcal
 		$this->parser->parse('layouts/home', $data);
 	}
 }
