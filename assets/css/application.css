@@ -1,0 +1,90 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+p.notification {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  z-index: 10;
+  font: normal 1.4rem "Open Sans", "OpenSansRegular";
+  color: #ffffff;
+  padding: 7px 15px;
+  border: 1px solid;
+  border-radius: 3px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.75);
+  -webkit-transition: top 300ms ease;
+  -moz-transition: top 300ms ease;
+  -o-transition: top 300ms ease;
+  -ms-transition: top 300ms ease;
+  transition: top 300ms ease;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+p.notification.shown {
+  top: 25px;
+}
+
+p.notification.notice {
+  border-color: #226F22;
+  background-color: #258125;
+}
+
+p.notification.alert {
+  border-color: #722523;
+  background-color: #862926;
+}
+
+
+
+/*** PLUGIN OVERRIDES ***/
+.mCSB_scrollTools {
+  width: 6px !important;
+}
+
+.mCSB_container {
+  margin-right: 10px !important;
+}
+
+.redactor_box p {
+  text-indent: 0 !important;
+}
+
+.redactor_box ol {
+  list-style: decimal;
+}
+
+.redactor_box ul {
+  list-style: disc;
+}

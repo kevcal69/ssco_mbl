@@ -1,0 +1,21 @@
+.home #main-content {
+	background: red;
+}
+
+
+
+
+/*content*/
+#body-content {
+	width: 100%;
+	height: 70%;
+	text-align: center;
+}
+
+#body-content .module-box{
+	width:  25%;
+	height: 60%;
+	border: 1px solid black;
+	margin: 10px 10px 10px 10px;
+	display: inline-block;
+}
