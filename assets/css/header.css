@@ -1,0 +1,11 @@
+#header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	background: linear-gradient(to left,#6FBB44,#3B8D42);
+	padding: 0px 20px 0px 20px;
+}
+#ncr {
+	color: white;
+}
