@@ -4,8 +4,19 @@
 	left: 0px;
 	width: 100%;
 	background: linear-gradient(to left,#6FBB44,#3B8D42);
-	padding: 0px 20px 0px 20px;
+}
+#logo-block {
+	margin: 10px 10px 10px 10px;
 }
 #ncr {
 	color: white;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 36px;
+	margin: 0px 0px 0px 0px;
+}
+#ssco_mbl {
+	color: white;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 20px;
+	margin: 0px 0px 0px 0px;
 }

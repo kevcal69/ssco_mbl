@@ -1,24 +1,33 @@
+
 #footer {
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
 	width: 100%;
 	background: linear-gradient(#6FBB44,#3B8D42);
-	padding: 10px 20px 10px 20px;
 }
 #links {
 	position: relative;
 	float: left;
+	margin: 10px 20px 10px 20px;
 }
-#links a:link, a:visited {
+#links a {
 	text-decoration: none;
-	color: black;
+	color: white;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 16px;
 }
 #links a:hover {
 	text-decoration: underline;
 }
 #controls {
 	position: relative;
-	margin-right: 40px; 
 	float:right;
+	margin: 10px 20px 10px 20px;
+}
+#copyright {
+	color: white;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 10px;
+	margin-left: 10px;
 }
