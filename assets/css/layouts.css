@@ -1,0 +1,41 @@
+/*** DEFAULT LAYOUT ***/
+#main-wrapper {
+  min-height: 100%;
+  padding-bottom: 40px;
+  overflow: auto;
+}
+
+#main-wrapper.default #main-sidebar {
+  float: left;
+  width: 20%;
+  padding-right: 25px;
+  position: relative;
+}
+
+#main-wrapper.default #main-content {
+  float: right;
+  width: 80%;
+  padding-bottom: 100px;
+}
+
+
+
+/** FULL-PAGE LAYOUT **/
+#main-wrapper.full #main-header {
+  margin-bottom: 0;
+}
+
+#main-wrapper.full #main-content {
+  padding-bottom: 100px;
+}
+
+
+
+/** PROFILE LAYOUT **/
+#main-wrapper.profile #main-header {
+  margin-bottom: 0;
+}
+
+#main-wrapper.profile #main-content {
+  padding-bottom: 20px;
+}

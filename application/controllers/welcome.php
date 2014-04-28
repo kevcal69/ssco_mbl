@@ -4,10 +4,9 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('partials/header'); // paul
-		$this->load->view('content_homepage/content_home'); // kevcal
-		$this->load->view('partials/footer'); //paul
-		
+		$data['page_title'] = "SSCO Module Base Learning";
+		$data['body_content'] = $this->load->view('content_homepage/content_home'); // kevcal
+		$this->parser->parse('layouts/home', $data);
 	}
 }
 
