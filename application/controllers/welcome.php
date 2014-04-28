@@ -4,12 +4,10 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		// $this->load->view('partials/welcome_message');
-		redirect('welcome/he','192.168.78.135');
-	}
-
-	public function he() {
-		$this->load->view('partials/welcome_message');	
+		$this->load->view('partials/header'); // paul
+		$this->load->view('content_homepage/content_home'); // kevcal
+		$this->load->view('partials/footer'); //paul
+		
 	}
 }
 
