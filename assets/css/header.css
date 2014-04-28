@@ -1,8 +1,46 @@
 #header {
-	background: linear-gradient(to left,#6FBB44,#3B8D42);
-	min-height: 100px;
+	min-height: inherit;
 	width: 100%;
+	background: linear-gradient(to top,#6FBB44,#3B8D42);
 }
-#ncr {
+#logo-block {
+	float: left;
+	margin: 20px 0px 0px 30px;
+	height: 100%;
+}
+#ssco {
 	color: white;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 36px;
+	font-weight: bold;
+}
+#mbl {
+	color: white;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 20px;
+}
+#logo-block a {
+	text-decoration: none;
+	color: white;
+}
+#logo-block a:hover {
+	text-decoration: none;
+}
+#navigation {
+	position: relative;
+	float: right;
+	margin: 20px 20px auto auto;
+	color: white;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 12px;
+}
+#navigation a {
+	text-decoration: none;
+	color: white;
+}
+#navigation a:hover {
+	text-decoration: underline;
+}
+.pipe-separator {
+	letter-spacing: 3px;
 }
