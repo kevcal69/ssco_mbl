@@ -1,12 +1,171 @@
-/*content*/
+
+/*Introduction*/
 #body-content {
+	margin-top: 50px;
 	text-align: center;
 }
 
-#body-content .module-box{
-	width:  25%;
-	height: 60%;
-	border: 1px solid black;
-	margin: 10px 10px 10px 10px;
+#body-content #module-intro {
+	width: 100%;
+	min-height: 250px;
+}
+
+#body-content #module-intro #about {
+	width: 550px;
+	height: 250px;
 	display: inline-block;
+	text-align: left;
+	vertical-align: top;
+	margin-right: 50px;
+}
+
+#body-content #module-intro #about h1 {
+	font-size: 30px;
+	font-family: sans-serif;
+	color: #54b948;
+	font-weight: 900;
+}
+
+#body-content #module-intro #about p {
+	font-size: 15px;
+	line-height: 1.5em;
+	color: gray;
+	margin-left: 20px;
+	margin-right: 50px;
+}
+
+
+#body-content #module-intro #login-container {
+	height: 200px;
+	width: 250px;
+	vertical-align: top;
+	display: inline-block;
+	margin-left: 25px;
+	background: #f4f5f6;
+}
+#body-content #module-intro #login-container h1 {
+	text-align: left;
+	margin: 5px 0px 0px 10px;
+	color: #54b948;
+}
+#body-content #module-intro #login-container .form-login {
+	text-align: left;
+	margin-left: 15px;
+	margin-top: 20px;
+}
+
+#body-content #module-intro #login-container .form-login p {
+	font-size: .45em;
+	color: #336699;
+	margin: 5px 0px 0px 100px;
+}
+
+#body-content #module-intro #login-container .form-login #submit {
+	float: right;
+	margin: 5px 30px 0px 0px;
+	background: #70ce76;
+}
+
+
+/*Module style sheet*/
+#body-content #module-container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#body-content #module-container h1 {
+	text-align: left;
+	font-size: 40px;
+	font-family: sans-serif;
+	color: #54b948;
+	font-weight: 900;
+	width: 550px;
+	margin-left: 100px;
+}
+
+#body-content #module-container #module-liststyle {
+	width: 70px;
+	height: 20px;
+	padding: 0px 5px 5px 5px;
+	margin-left: 120px;
+} 
+
+#body-content #module-container #module-liststyle .liststyles{
+	display: inline-block;
+	font-size: .7em;
+	text-decoration: underline;
+	height: 20px;
+	width: 20px;
+}
+
+#body-content #module-container #module-liststyle .liststyles img {
+	height: 12px;
+	width: 12px;
+}
+
+#body-content #module-container #module-liststyle .liststyles img:hover {
+	box-shadow: 0px 0px 1px black;
+}
+
+#body-content #module-container .module-box {
+	width:  250px;
+	height: 330px;
+	padding: 20px 0;
+	margin: 30px 50px 50px 50px;
+	box-shadow: 0px 10px 25px -5px black;
+	display: inline-block;
+	vertical-align: top;
+	background: #f3f3f3;
+}
+
+#body-content #module-container .module-box .thumb {
+	margin: 0 auto;
+	width: 230px;
+	height: 150px;
+	border: 1px solid black;
+}
+
+#body-content #module-container .module-box .mb-title {
+	font-size: 18px;
+	color: #555555;
+	text-align: left;
+	margin-left: 10px;
+	font-family: sans-serif;
+	width: 230px;
+	height: 20px;
+	margin-top: 5px;
+}
+
+#body-content #module-container .module-box .description{
+	margin: 0 auto;
+	width: 230px;
+	height: 80px;
+	margin-top: 10px;
+	font-size: 14px;
+	text-align: left;
+	color:#666666;
+}
+#body-content #module-container .module-box .mb-more {
+	font-size: 16px;
+	color: #54b948;
+	text-align: left;
+	margin-left: 10px;
+	font-family: sans-serif;
+	width: 230px;
+	height: 20px;
+	margin-top: 18px;
+}
+#body-content #module-container .module-box .mb-more::after {
+	height: 12px;
+	width: 12px;
+	font-size: .9em;
+	color: white;
+	background: green;
+	display: inline-block;
+	border-radius: 50%;
+	content:"+";
+	font-weight: 900;
+	text-align: center;
+	vertical-align: middle;
 }

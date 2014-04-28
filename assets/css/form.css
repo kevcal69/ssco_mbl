@@ -1,0 +1,24 @@
+form .field {
+  padding: 2px 5px 0;
+  display: block;
+  margin: 5px 2px 2px 2px;
+}
+form .static {
+  display: block;
+  font-size: .8em;
+}
+
+input[type='text'],
+input[type='password']
+{
+  width: 200px;
+  height: 28px;
+  outline: .5px solid black;
+}
+input[type='submit'],
+input[type='button']
+{
+  border: none;
+  width: 70px;
+  height: 30px;
+} 
