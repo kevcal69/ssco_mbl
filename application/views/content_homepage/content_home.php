@@ -5,11 +5,15 @@
 	</div>
 	<div id="login-container">
 		<h1>User Login</h1>	
-		<form class = "form-login" action = "" method="POST">
+		<!-- <form class = "form-login" action = "" method="POST"> -->
+		<?php echo form_open('welcome/login', array('class' => 'form-login'));?>
 			<label class = "static">Username</label>
-			<input type = "text" placeholder = "Username" class="field">
-			<label  class = "static">Password</label>
-			<input type = "password" placeholder = "Password" class="field">
+			<input name = "username" value="<?php echo set_value('username'); ?>" type = "text" placeholder = "Username" class="field">
+			<?php echo form_error('username','<p class="error">','</p>'); ?>
+			<label class = "static">Password</label>
+			<input name = "password" value="<?php echo set_value('password'); ?>" type = "password" placeholder = "Password" class="field">
+			<?php echo form_error('password','<p class="error">','</p>'); ?>
+			<?php echo form_error('verify_login','<p class="error">','</p>'); ?>
 			<p>Ask admin for credentials!</p>
 			<input type = "submit" value = "Login" class="field" id = "submit">
 		</form>
@@ -23,6 +27,7 @@
 		</div>
 		<div class="liststyles">
 			<img src="<?=base_url().'assets/images/landing/grid.png'?>" alt ="grid" onclick = "module_listing.toggle_to_grid()">
+
 		</div>
 	</div>
 	<div id="grid-container">
@@ -30,6 +35,7 @@
 			<div class = "module-box">
 				<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);">
 					<img src="">
+
 				</div>
 				<div class = "mb-title">
 					<?=$module->title;?>
@@ -41,7 +47,7 @@
 					More 
 				</div>		
 			</div>
-		<?php endforeach; ?>					
+		<?php endforeach; ?>			
 	</div>
 	<div id="list-container">
 		<?php foreach ($modules as $module): ?>
@@ -53,8 +59,6 @@
 					</span>
 				</li>
 			</ul>	
-				
-			
 		<?php endforeach; ?>
 	</div>
 </div>

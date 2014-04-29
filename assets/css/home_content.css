@@ -36,7 +36,7 @@
 
 
 #body-content #module-intro #login-container {
-	height: 200px;
+	min-height: 200px;
 	width: 250px;
 	vertical-align: top;
 	display: inline-block;
@@ -62,10 +62,15 @@
 
 #body-content #module-intro #login-container .form-login #submit {
 	float: right;
-	margin: 5px 30px 0px 0px;
+	margin: 5px 30px 10px 0px;
 	background: #70ce76;
 }
 
+#body-content #module-intro #login-container .form-login .error {
+	font-size: .45em;
+	color: red;
+	margin: 3px 3px 3px 5px;
+}
 
 /*Module style sheet*/
 #body-content #module-container {
