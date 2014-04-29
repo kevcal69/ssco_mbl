@@ -10,4 +10,8 @@
 		<span class="pipe-separator">|</span>
 		<a href="">RESOURCES</a>
 	</div>
+	<?php if ($username == 'sally'): ?>
+	<div id="user">
+		<span id = "current-user"></span>
+	</div>
 </div>

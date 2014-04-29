@@ -1,9 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends MBL_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('Homepage_model','mModel');
+      $this->load->helper('application_helper');
+
     }	
 
 	public function index() {
@@ -71,7 +73,7 @@ class Welcome extends CI_Controller {
 	function redirect_to_home() {
 		$role = $this->session->userdata('role');
 		if ($role === 'admin') {
-			redirect('admin');
+			redirect('admin_controller/index');
 		} else if ($role === 'trainee') {
 			redirect('trainee');
 		} else if ($role === 'content_manager') {
