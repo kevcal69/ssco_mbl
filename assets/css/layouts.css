@@ -2,6 +2,7 @@
 #main-wrapper.basic {
   min-height: 100%;
   width: 100%;
+  padding-bottom: 45px;
 }
 
 #main-wrapper.basic #main-header{
