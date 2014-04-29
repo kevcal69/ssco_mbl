@@ -2,16 +2,16 @@
 
 	<div id="module-intro">
 		<div id="about">
-			<h1>Module Base Learning</h1>
+			<h1>Module-Based Learning</h1>
 			<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 		</div>
 		<div id="login-container">
 			<h1>User Login</h1>	
 			<form class = "form-login" action = "" method="POST">
 				<label class = "static">Username</label>
-				<input type = "text" placeholder = "username" class="field">
+				<input type = "text" placeholder = "Username" class="field">
 				<label  class = "static">Password</label>
-				<input type = "password" placeholder = "password" class="field">
+				<input type = "password" placeholder = "Password" class="field">
 				<p>Ask admin for credentials!</p>
 				<input type = "submit" value = "Login" class="field" id = "submit">
 			</form>
