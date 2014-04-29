@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2014 at 04:15 AM
+-- Generation Time: Apr 29, 2014 at 09:43 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.27
 
@@ -44,8 +44,18 @@ CREATE TABLE IF NOT EXISTS `enrolled_module` (
 CREATE TABLE IF NOT EXISTS `module` (
   `id` int(225) NOT NULL AUTO_INCREMENT,
   `title` varchar(225) NOT NULL,
+  `cover_picture` varchar(225) NOT NULL DEFAULT 'assets/images/module/module_default/default.png',
+  `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `module`
+--
+
+INSERT INTO `module` (`id`, `title`, `cover_picture`, `description`) VALUES
+(1, 'Java GUI', 'assets/images/module/module_1/cover.png', 'This article is meant for the individual who has little or no experience in Java GUI programming.'),
+(2, 'Code Igniter: Template Class', 'assets/images/module/module_2/cover.png', 'The Template Parser Class enables you to parse pseudo-variables contained within your view files. It can parse simple variables or variable tag pairs. ');
 
 -- --------------------------------------------------------
 

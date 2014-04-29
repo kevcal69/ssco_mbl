@@ -4,7 +4,8 @@ $(document).ready(function() {
 
 var module_listing = {
 	initialize: function() {
-		$("#list-container").hide();
+		$("#list-container").show();
+		$("#grid-container").hide();
 	},
 	toggle_to_grid: function() {
 		$("#list-container").hide();
@@ -13,5 +14,6 @@ var module_listing = {
 	toggle_to_list: function() {
 		$("#list-container").show();
 		$("#grid-container").hide();	
-	} 	
+	},
+		
 };
