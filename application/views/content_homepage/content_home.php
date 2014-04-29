@@ -21,54 +21,48 @@
 		<h1>Modules</h1>
 		<div id = "module-liststyle">
 			<div class="liststyles">
-				<img src="<?=base_url().'assets/images/landing/list.png'?>" alt ="list">
+				<img src="<?=base_url().'assets/images/landing/list.png'?>" alt ="list" onclick = "module_listing.toggle_to_list()">
 			</div>
 			<div class="liststyles">
 				<img src="<?=base_url().'assets/images/landing/grid.png'?>" alt ="grid">
 			</div>
 		</div>
-
-		<div class = "module-box">
-			<div class="thumb">
-			</div>
-			<div class = "mb-title">
-				Java Gui 	
-			</div>
-			<div class="description">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-			</div>
-			<div class = "mb-more">
-				More 
-			</div>		
+		<div id="grid-container">
+			<?php foreach ($modules as $module): ?>
+				<div class = "module-box">
+					<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);">
+						<img src="">
+					</div>
+					<div class = "mb-title">
+						<?=$module->title;?>
+					</div>
+					<div class="description">
+						<?=$module->description;?> 
+					</div>
+					<div class = "mb-more">
+						More 
+					</div>		
+				</div>
+			<?php endforeach; ?>			
 		</div>
-
-		<div class = "module-box">
-			<div class="thumb">
-			</div>
-			<div class = "mb-title">
-				Java Gui 	
-			</div>
-			<div class="description">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-			</div>
-			<div class = "mb-more">
-				More 
-			</div>		
+		<div id="list-container">
+			<?php foreach ($modules as $module): ?>
+				<div class = "module-box">
+					<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);">
+						<img src="">
+					</div>
+					<div class = "mb-title">
+						<?=$module->title;?>
+					</div>
+					<div class="description">
+						<?=$module->description;?> 
+					</div>
+					<div class = "mb-more">
+						More 
+					</div>		
+				</div>
+			<?php endforeach; ?>
 		</div>
-
-		<div class = "module-box">
-			<div class="thumb">
-			</div>
-			<div class = "mb-title">
-				Java Gui 	
-			</div>
-			<div class="description">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-			</div>
-			<div class = "mb-more">
-				More 
-			</div>		
-		</div>											
 	</div>
 
 </div>

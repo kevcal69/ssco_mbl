@@ -69,7 +69,7 @@
 
 /*Module style sheet*/
 #body-content #module-container {
-	width: 100%;
+	min-width: 100%;
 	height: 100%;
 	overflow: hidden;
 }
@@ -108,45 +108,58 @@
 	box-shadow: 0px 0px 1px black;
 }
 
-#body-content #module-container .module-box {
+#body-content #module-container #grid-container {
+	display: inline-block;
+	border: 1px solid black;
+}
+
+#body-content #module-container #grid-container .module-box {
 	width:  250px;
 	height: 330px;
 	padding: 20px 0;
 	margin: 30px 50px 50px 50px;
-	box-shadow: 0px 10px 25px -5px black;
+	box-shadow: 0px 10px 15px -5px black;
 	display: inline-block;
 	vertical-align: top;
 	background: #f3f3f3;
+	-webkit-transition: box-shadow 1s; /* For Safari 3.1 to 6.0 */
+	transition: box-shadow 1s;
+}
+#body-content #module-container #grid-container .module-box:hover {
+	box-shadow: 0px 10px 25px -5px black;
 }
 
-#body-content #module-container .module-box .thumb {
+#body-content #module-container #grid-container .module-box .thumb {
 	margin: 0 auto;
 	width: 230px;
 	height: 150px;
 	border: 1px solid black;
+	background-repeat: no-repeat;
+	background-size: 100%,100%;
 }
 
-#body-content #module-container .module-box .mb-title {
+#body-content #module-container #grid-container .module-box .mb-title {
 	font-size: 18px;
 	color: #555555;
 	text-align: left;
 	margin-left: 10px;
 	font-family: sans-serif;
 	width: 230px;
-	height: 20px;
+	height: 30px;
 	margin-top: 5px;
 }
 
-#body-content #module-container .module-box .description{
+#body-content #module-container #grid-container .module-box .description{
 	margin: 0 auto;
 	width: 230px;
-	height: 80px;
+	height: 70px;
 	margin-top: 10px;
 	font-size: 14px;
 	text-align: left;
 	color:#666666;
+	line-height: 1.5em;
 }
-#body-content #module-container .module-box .mb-more {
+#body-content #module-container #grid-container .module-box .mb-more {
 	font-size: 16px;
 	color: #54b948;
 	text-align: left;
@@ -156,7 +169,7 @@
 	height: 20px;
 	margin-top: 18px;
 }
-#body-content #module-container .module-box .mb-more::after {
+#body-content #module-container #grid-container .module-box .mb-more::after {
 	height: 12px;
 	width: 12px;
 	font-size: .9em;
@@ -168,4 +181,10 @@
 	font-weight: 900;
 	text-align: center;
 	vertical-align: middle;
+}
+
+#body-content #list-container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
