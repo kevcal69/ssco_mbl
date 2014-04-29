@@ -11,6 +11,6 @@
 
 #main-wrapper.basic #main-content{
   width: 100%;
-  height: 500px;
+  min-height: 500px;
 }
 
