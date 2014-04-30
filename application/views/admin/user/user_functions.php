@@ -1,0 +1,1 @@
+<a href="user/create">Create user</a>
