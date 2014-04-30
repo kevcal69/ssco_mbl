@@ -4,8 +4,8 @@
 	    function __construct() {
 	        parent::__construct();
 	        $this->load->model('Homepage_model','mModel');
-	        
-      $this->load->helper('application_helper');
+
+      		$this->load->helper('application_helper');
 	    }	
 
 		public function index() {

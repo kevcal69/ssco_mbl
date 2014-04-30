@@ -213,6 +213,8 @@
 	color: #555555;
 	width: 300px;
 	padding: 5px ;
+	-webkit-transition: background-color 1s; /* For Safari 3.1 to 6.0 */
+	transition: background-color 1s;
 }
 
 #body-content #list-container ul li span:hover {
