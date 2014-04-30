@@ -4,8 +4,8 @@ $(document).ready(function() {
 
 var module_listing = {
 	initialize: function() {
-		$("#list-container").show();
-		$("#grid-container").hide();
+		$("#list-container").hide();
+		$("#grid-container").show();
 	},
 	toggle_to_grid: function() {
 		$("#list-container").hide();

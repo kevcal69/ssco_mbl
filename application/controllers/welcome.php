@@ -1,9 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends MBL_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('Homepage_model','mModel');
+      $this->load->helper('application_helper');
+
     }	
 
 	public function index() {
@@ -12,6 +14,5 @@ class Welcome extends CI_Controller {
 		$this->parser->parse('layouts/home', $data);
 	}
 }
-
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

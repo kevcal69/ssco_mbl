@@ -10,7 +10,7 @@
   <title>{page_title}</title>
 </head>
 
-<body class = "home">
+<body class = "<?=body_classes($controller, $action);?> ">
   <div id="main-wrapper" class="basic">          
     <div id = "main-header">
       <?php $this->load->view('partials/header'); ?>

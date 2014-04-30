@@ -44,3 +44,14 @@
 .pipe-separator {
 	letter-spacing: 3px;
 }
+
+#user {
+	float: right;
+	margin: 70px 0px 0px 0px;
+	
+}
+#current-user {
+	font-family: medium;
+	font-family: "LatoHairline";
+	color: white;
+}

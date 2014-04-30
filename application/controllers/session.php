@@ -68,7 +68,7 @@ class Session extends CI_Controller {
 	private function redirect_to_home() {
 		$role = $this->session->userdata('role');
 		if ($role === 'admin') {
-			redirect('admin');
+			redirect('admin_controller');
 		} else if ($role === 'trainee') {
 			redirect('trainee');
 		} else if ($role === 'content_manager') {
