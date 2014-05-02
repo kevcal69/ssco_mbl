@@ -24,31 +24,33 @@
 	</div>
 </div>
 
-<div id="options-container">
+<div id="options-container">	
 	<div class="options">
-		<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/user.png';?>);" >
-			
-		</div>
-		<div class="action">
-			User
-		</div>
-		<div class="des">
-			Add, View, Edit and Delete Users
-		</div>		
+		<a href = "<?=base_url() . 'admin/user';?>">
+			<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/user.png';?>);" >
+				
+			</div>
+			<div class="action">
+				User
+			</div>
+			<div class="des">
+				Add, View, Edit and Delete Users
+			</div>	
+		</a>	
 	</div>	
-	<a href = "<?=base_url() . 'admin/module';?>">	
 	<div class="options" >
-		<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/modules.png';?>);">
-			
-		</div>
-		<div class="action">
-			Module
-		</div>
-		<div class="des">
-			Create, View, and Edit Modules
-		</div>		
+		<a href = "<?=base_url() . 'admin/module';?>">	
+			<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/modules.png';?>);">
+				
+			</div>
+			<div class="action">
+				Module
+			</div>
+			<div class="des">
+				Create, View, and Edit Modules
+			</div>	
+		</a>	
 	</div>
-	</a>
 	<div class="options" >
 		<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/questions.png';?>);">
 			

@@ -38,6 +38,9 @@
 |
 */
 
+$route['admin/user/(:any)'] = 'admin_functions/user/$1';
+$route['admin/user'] = 'admin_functions/user';
+$route['admin'] = 'admin';
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
