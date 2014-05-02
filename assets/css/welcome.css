@@ -1,10 +1,5 @@
 
 /*Introduction*/
-#body-content {
-	margin-top: 50px;
-	text-align: center;
-}
-
 #body-content #module-intro {
 	width: 100%;
 	min-height: 250px;
@@ -163,6 +158,8 @@
 	text-align: left;
 	color:#666666;
 	line-height: 1.5em;
+	overflow: auto;
+	overflow-x: hidden;
 }
 #body-content #module-container #grid-container .module-box .mb-more {
 	font-size: 16px;
