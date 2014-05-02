@@ -15,3 +15,8 @@
   min-height: 500px;
 }
 
+#main-wrapper.basic #main-content #body-content {
+	margin-top: 50px;
+	text-align: center;
+}
+

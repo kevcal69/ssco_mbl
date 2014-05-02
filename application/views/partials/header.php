@@ -13,7 +13,11 @@
 	<?php if ($this->session->userdata('username')): ?>
 		<div id="user">
 			<span id = "current-user"><?=$this->session->userdata('username')?></span>
-			<!-- <a href="session/logout">Logout</a> -->
+			<a href="<?=base_url()  . 'session/logout'?>">Logout</a>
 		</div>
 	<?php endif; ?>
+
+	<div id="bread-crumbs">
+		<span><?=$bc?></span>
+	</div>
 </div>

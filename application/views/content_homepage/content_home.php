@@ -24,10 +24,10 @@
 	<h1>Modules</h1>
 	<div id = "module-liststyle">
 		<div class="liststyles">
-			<img src="<?=base_url().'assets/images/landing/list.png'?>" alt ="list" onclick = "module_listing.toggle_to_list()">
+			<img src="<?=base_url().'assets/images/landing/list.png'?>" alt ="list" onclick = "modules.toggle_to_list()">
 		</div>
 		<div class="liststyles">
-			<img src="<?=base_url().'assets/images/landing/grid.png'?>" alt ="grid" onclick = "module_listing.toggle_to_grid()">
+			<img src="<?=base_url().'assets/images/landing/grid.png'?>" alt ="grid" onclick = "modules.toggle_to_grid()">
 
 		</div>
 	</div>

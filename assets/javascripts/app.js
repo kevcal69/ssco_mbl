@@ -1,19 +1,40 @@
 $(document).ready(function() {
-  module_listing.initialize();
+  modules.initialize();
+  ckeditor.initialize();
+  // setInterval(function() {refresh_page()}, 100);
+
 });
 
-var module_listing = {
+var modules = {
 	initialize: function() {
 		$("#list-container").hide();
 		$("#grid-container").show();
+
+
 	},
 	toggle_to_grid: function() {
-		$("#list-container").hide();
-		$("#grid-container").show();
+		$("#list-container").fadeOut();
+		$("#grid-container").fadeIn();
 	},
 	toggle_to_list: function() {
-		$("#list-container").show();
-		$("#grid-container").hide();	
+		$("#list-container").fadeIn();
+		$("#grid-container").fadeOut();	
 	},
-		
+	toggle_title: function() {
+		$("#title-create").show();
+	},	
 };
+
+function refresh_page() {
+	location.reload();
+}
+	
+
+var ckeditor = {
+	initialize: function() {
+		CKEDITOR.replace( 'editor1');
+	}
+};		            
+
+            
+		

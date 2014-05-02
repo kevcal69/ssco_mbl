@@ -20,8 +20,9 @@ input[type='submit'],
 input[type='button']
 {
   border: none;
-  width: 70px;
+  width: 90px;
   height: 30px;
+  padding: 2px 2px 2px 2px;
 } 
 .error {
   font-size: .45em;

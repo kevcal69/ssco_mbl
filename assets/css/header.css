@@ -55,3 +55,17 @@
 	font-family: "LatoHairline";
 	color: white;
 }
+#bread-crumbs {
+	min-width: 200px;
+	height: 20px;
+	float: left;
+	margin: 100px 0px 0px -200px;
+	font-size: 12px;
+	padding: 5px;
+	font-family: "OpenSansLight";
+}
+
+#bread-crumbs a {
+	text-decoration: none;
+	color: #aaaaaa;
+}
