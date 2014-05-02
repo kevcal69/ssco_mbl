@@ -2,8 +2,9 @@
 
 class Welcome extends MBL_Controller {
     function __construct() {
-        parent::__construct();
-        $this->load->model('Module_model','mModel');
+      parent::__construct();
+      $this->load->model('Homepage_model','mModel');
+
       $this->load->helper('application_helper');
 
     }	
