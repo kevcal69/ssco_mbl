@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/welcome.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/footer.css'; ?>" />
 
+
+<link rel="stylesheet" href="<?= base_url() . 'assets/css/admin/user.css'; ?>" />
 <!--Scripts-->
 <script src="<?= base_url() . 'assets/javascripts/jquery.js'; ?>"></script>
 <script src="<?= base_url() . 'assets/javascripts/app.js'; ?>"></script>

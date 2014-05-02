@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Session extends CI_Controller {
+class Session extends MBL_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('session_model');

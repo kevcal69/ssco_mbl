@@ -1,0 +1,20 @@
+#form-create {
+	min-height: 200px;
+	width: 350px;
+	vertical-align: top;
+	display: inline-block;
+	margin-left: 25px;
+	background: #f4f5f6;
+}
+
+#form-create h1 {
+	text-align: left;
+	margin: 5px 0px 0px 10px;
+	color: #54b948;
+}
+hr {
+	border: 0;
+  height: 1px;
+  background: black;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+}
