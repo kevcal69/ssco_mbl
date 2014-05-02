@@ -15,4 +15,3 @@
 <script src="<?= base_url() . 'assets/javascripts/app.js'; ?>"></script>
 
 <!--plugins-->
-<script src="<?= base_url() . 'assets/plugins/ckeditor/ckeditor.js'; ?>"></script>

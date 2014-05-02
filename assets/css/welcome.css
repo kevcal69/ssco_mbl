@@ -154,12 +154,10 @@
 	width: 230px;
 	height: 70px;
 	margin-top: 10px;
-	font-size: 14px;
+	font-size: 12px;
 	text-align: left;
 	color:#666666;
 	line-height: 1.5em;
-	overflow: auto;
-	overflow-x: hidden;
 }
 #body-content #module-container #grid-container .module-box .mb-more {
 	font-size: 16px;

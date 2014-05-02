@@ -1,8 +1,6 @@
 $(document).ready(function() {
   modules.initialize();
-  ckeditor.initialize();
   // setInterval(function() {refresh_page()}, 100);
-
 });
 
 var modules = {
@@ -30,11 +28,7 @@ function refresh_page() {
 }
 	
 
-var ckeditor = {
-	initialize: function() {
-		CKEDITOR.replace( 'editor1');
-	}
-};		            
+	            
 
             
 		

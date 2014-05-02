@@ -3,7 +3,7 @@
 class Welcome extends MBL_Controller {
     function __construct() {
         parent::__construct();
-        $this->load->model('Homepage_model','mModel');
+        $this->load->model('Module_model','mModel');
       $this->load->helper('application_helper');
 
     }	

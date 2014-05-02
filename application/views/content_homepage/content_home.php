@@ -42,7 +42,7 @@
 					<?=$module->title;?>
 				</div>
 				<div class="description">
-					<?=$module->description;?> 
+					<?=word_limiter($module->description, 25);?> 
 				</div>
 				<div class = "mb-more">
 					More 

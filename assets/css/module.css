@@ -1,5 +1,6 @@
-.admin.module #module-add {
-	height: 20px;
-	width: 50px;
-	background-color: red;
+.module.view_module #mod-content {
+	text-align: left;
+}
+.module.view_module #mod-content  h1 {
+	font-size: 30px;
 }

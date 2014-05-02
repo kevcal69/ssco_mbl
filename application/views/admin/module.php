@@ -36,9 +36,9 @@
 					<?php if ($this->session->userdata('role') === "admin"): ?>
 						<div class="actions grid ">
 							<ul>
-								<li>View</li>
-								<li>Modify</li>
-								<li>Delete</li>
+								<a href="<?=base_url() . 'module/view_module/'.$module->id?>"><li>View</li></a>
+								<a href="<?=base_url() . 'module/modify_module/'.$module->id?>"><li>Modify</li></a>
+								<a href="<?=base_url() . 'module/modify_module/'.$module->id?>"><li>Delete</li></a>
 							</ul>
 						</div>	
 						<?php elseif ($this->session->userdata('role') === "trainee"): ?>
@@ -67,7 +67,7 @@
 					<?=$module->title;?>
 				</div>
 				<div class="description">
-					<?=$module->description;?> 
+					<?=strip_tags(word_limiter($module->description, 25));?> 
 				</div>
 				<div class = "mb-more">
 					More 
