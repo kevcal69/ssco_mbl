@@ -5,16 +5,13 @@
 	</div>
 	<div id="login-container">
 		<h1>User Login</h1>	
-		<!-- <form class = "form-login" action = "" method="POST"> -->
 		<?php echo form_open('session/login', array('class' => 'form-login'));?>
 			<label class = "static">Username</label>
 			<input name = "username" value="<?php echo $this->session->flashdata('username'); ?>" type = "text" placeholder = "Username" class="field">
-			<!-- <?php echo form_error('username','<p class="error">','</p>'); ?> -->
 			<?php echo $this->session->flashdata('username_error');?>
 			
 			<label class = "static">Password</label>
 			<input name = "password" value="<?php echo $this->session->flashdata('password'); ?>" type = "password" placeholder = "Password" class="field">
-			<!-- <?php echo form_error('password','<p class="error">','</p>'); ?> -->
 			<?php echo $this->session->flashdata('password_error');?>
 
 			<?php echo form_error('verify_login','<p class="error">','</p>'); ?>
