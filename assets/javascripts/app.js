@@ -1,6 +1,7 @@
 $(document).ready(function() {
   modules.initialize();
-  ckeditor.initialize();
+  trainee.toggle();
+  view_all.autoReload();
   // setInterval(function() {refresh_page()}, 100);
 
 });
@@ -28,13 +29,23 @@ var modules = {
 function refresh_page() {
 	location.reload();
 }
-	
 
-var ckeditor = {
-	initialize: function() {
-		CKEDITOR.replace( 'editor1');
+var trainee = {
+	toggle: function() {
+		var value = $("#role").val();
+		if (value === "trainee") {
+			$(".trainee-name").fadeIn();
+		} else {
+			$(".trainee-name").fadeOut();
+		}
 	}
-};		            
+}
 
-            
-		
+var view_all = {
+	autoReload: function(){
+  if (window.name=='autoreload') {
+     location.reload();
+     window.name='';
+  }
+}
+}
