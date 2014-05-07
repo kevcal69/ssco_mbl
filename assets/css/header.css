@@ -1,7 +1,11 @@
 #header {
 	min-height: inherit;
 	width: 100%;
-	background: linear-gradient(to top,#6FBB44,#3B8D42);
+	/*background: linear-gradient(to top,#6FBB44,#3B8D42);*/
+	background-image: url(../images/landing/header-bg.jpg);
+	background-position:  center top;
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
 #logo-block {
 	float: left;
@@ -26,9 +30,16 @@
 #logo-block a:hover {
 	text-decoration: none;
 }
-#navigation {
+
+.pull-right {
 	position: relative;
 	float: right;
+	text-align: right;
+}
+
+#navigation {
+	/*position: relative;*/
+	/*float: right;*/
 	margin: 20px 20px auto auto;
 	color: white;
 	font-family: Helvetica, Arial, Sans-Serif;
@@ -46,8 +57,8 @@
 }
 
 #user {
-	float: right;
-	margin: 70px 0px 0px 0px;
+	/*float: right;*/
+	margin: 40px 20px 0px 0px;
 	
 }
 #current-user {
