@@ -1,10 +1,9 @@
 $(document).ready(function() {
-modules.initialize();
-  // setInterval(function() {refresh_page()}, 1000);
-  setTimeout(function(){hide.notes_tips()},30000);
-  trainee.toggle();
-  view_all.autoReload();
-
+	modules.initialize();
+	// setInterval(function() {refresh_page()}, 1000);
+	setTimeout(function(){hide.notes_tips()},30000);
+	trainee.toggle();
+	view_all.autoReload();
 });
 
 var modules = {

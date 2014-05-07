@@ -40,16 +40,8 @@
 	function create_module()  {
 
 		$str =  $this->input->post('editor1');
-		
-		$title_start = strpos($str, '<h1>');
-		$title_end = strpos($str, '</h1>');
-		
-		$description_end = strpos($str, '<h2>');
-		
-		$module_title = substr($str,$title_start +4, $title_end-$title_start -4).trim();
-		$module_description = strip_tags((substr ($str,$title_end+5, $description_end-$title_end-6)).trim());
-
-		
+		$module_title = $this->input->post('title');
+		$module_description = $this->input->post('description');		
 
 		$data =  array(
 			'title' => addslashes($module_title),
@@ -66,16 +58,8 @@
 
 	function modify_module() {
 		$str =  $this->input->post('editor1');
-		$id =  $this->input->post('id');	
-		
-
-
-		$title_start = strpos($str, '<h1>');
-		$title_end = strpos($str, '</h1>');
-		
-		$description_end = strpos($str, '<h2>');
-		$module_title = trim(substr($str,$title_start +4, $title_end-$title_start -4));
-		$module_description = strip_tags(trim(substr ($str,$title_end+5, $description_end-$title_end-6)));
+		$module_title = $this->input->post('title');
+		$module_description = $this->input->post('description');
 
 		$data =  array(
 			'title' => addslashes($module_title),

@@ -1,28 +1,11 @@
-<div class="title-bar">
-	<div class="title-container">
-		<div class="title">
-			<img src="<?=base_url() . 'assets/images/admin/gear.png';?>">
-			<h1>
-				QuickLinks
-			</h1>			
-		</div>
-		
-	</div>
 
-</div>
+<h1>
+	<img src="<?=base_url() . 'assets/images/admin/gear.png';?>">
+	Actions
+</h1>			
 
-<div id="quick-links">
-	
-</div>
 
-<div class="title-bar">
-	<div class="title-container">
-		<img src="<?=base_url() . 'assets/images/admin/gear.png';?>">
-		<h1>
-			Actions
-		</h1>	
-	</div>
-</div>
+
 
 <div id="options-container">	
 	<div class="options">

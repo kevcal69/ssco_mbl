@@ -20,10 +20,10 @@ class Session extends MBL_Controller {
 
 		if ($this->form_validation->run() == FALSE) {
 			//get username errors
-			$username_error = form_error('username','<p class="err">','</p>');
+			$username_error = form_error('username','<p class="text-error">','</p>');
 			$this->session->set_flashdata('username_error', $username_error);
 			//password errors
-			$password_error = form_error('password','<p class="err">','</p>');
+			$password_error = form_error('password','<p class="text-error">','</p>');
 			$this->session->set_flashdata('password_error', $password_error);
 			//pass username and password for data repopulation
 			$this->session->set_flashdata('username', $this->input->post('username'));

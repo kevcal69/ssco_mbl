@@ -10,8 +10,7 @@
 			<a href="<?=base_url() . 'admin/module/create'?>">
 				<?php if ($this->session->userdata('role') === "admin" or $this->session->userdata('role') === "content_manager"): ?>
 					<div id="module-add">
-						<img src="<?=base_url().'assets/images/admin/add-icon.png'?>">
-						<span>Create Module</span>
+						<button class = "button-warning" id = "module-add">Create Module<img src="<?=base_url().'assets/images/admin/add-icon.png'?>"></button>
 					</div>									
 				<?php endif; ?>
 			</a>

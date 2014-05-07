@@ -3,29 +3,36 @@
 		<h1>Module-Based Learning</h1>
 		<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 		<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-	</div>
-	<div id="login-container">
-		<h1>User Login</h1>	
-		<?php echo form_open('session/login', array('class' => 'form-login'));?>
-			<div class="field-wrapper">
-				<label class = "static">Username</label>
-				<input name = "username" value="<?php echo $this->session->flashdata('username'); ?>" type = "text" placeholder = "Username" class="field">
-				<?php echo $this->session->flashdata('username_error');?>				
+	</div>		
+	<?php echo form_open('session/login', array('class' => 'login-container'));?>
+		<fieldset>
+		<legend><h3>User Login</h3></legend>
+
+			<div class="control-group">
+				<div class="controls">
+					<input id="username" name = "username" type = "text" value="<?php echo $this->session->flashdata('username'); ?>"  placeholder = "Username" class="field">
+					<?php echo $this->session->flashdata('username_error');?>		
+				</div>
 			</div>
 
-			
-			<div class="field-wrapper">
-				<label class = "static">Password</label>
-				<input name = "password" value="<?php echo $this->session->flashdata('password'); ?>" type = "password" placeholder = "Password" class="field">
+			<div class="control-group">
+				<div class="controls">
+					<input id="password" name = "password" type = "password" value="<?php echo $this->session->flashdata('password'); ?>" placeholder = "Password" class="field">
 					<?php echo $this->session->flashdata('password_error');?>
-					<?php echo form_error('verify_login','<p class="err">','</p>'); ?>		
+					<?php echo form_error('verify_login','<p class="text-error">','</p>'); ?>			
+				</div>
 			</div>
-			<div class="field-wrapper" id = "sub">	
-				<p>Ask admin for credentials!</p>		
-				<input type = "submit" value = "Login" class="field" id = "submit">	
+
+			<div class="control-group">
+				<label for = "password"></label>
+				<div class="controls">
+					<input type="submit" value="Log in" class = "button-success">	
+				</div>
 			</div>
-		</form>
-	</div>
+
+		</fieldset>
+
+	</form>
 </div>
 
 <?=$this->load->view('module/module_list');?>
