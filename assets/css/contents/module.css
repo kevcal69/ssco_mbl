@@ -2,32 +2,51 @@
 	min-height: 700px;
 	width: 100%;
 }
-#mod-content div {
+#mod-content {
 	line-height: 2em;
 	margin: 15px 0px 5px 0px;
 	font-family: "OpenSansRegular";
 }
 
-#mod-content h1 {
-	border-bottom: 1px solid #bbbbbb;
-	padding: 0px 0px 15px 0px;
-	color: #54b948;
-	font-family: "OpenSansLight";
-	font-size: 3em;
-}
 
-#mod-content h2 {
-	border-bottom: 1px solid #bbbbbb;
-	padding: 0px 0px 15px 0px;
-	font-family: "OpenSansLight";
-	font-size: 2em;
-}
+
+
 
 #field-container {
 	width: 100%;
-	height: 50px;
-	background-color: #54b948;
+	min-height: 50px;
 	text-align: left;
 	padding: 10px 10px 10px 10px;	
 	margin-bottom: 20px;
+	border: 1px solid #54b948;
+}
+
+#field-container #instruction {
+	margin: 10px 0px 10px 0px ;
+	width: 100%;
+	height: 260px;
+	text-align: left;
+	padding: 2px 50px 0px 50px;
+	background:  #f4f5f6;
+
+}
+#field-container #instruction #hide-btn {
+	cursor: pointer;
+	margin-top: -20px;
+}
+
+#field-container #instruction #hide:hover {
+	color: #003366;
+}
+
+#field-container #instruction h3 {
+	color: red;
+	margin-top: 10px;
+	border-bottom: 1px solid black;
+}
+
+#field-container #instruction ul li {
+	height: 30px;
+	margin-top: 5px;
+	font-size: 12px;
 }

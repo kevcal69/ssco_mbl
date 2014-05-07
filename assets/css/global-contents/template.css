@@ -146,18 +146,18 @@ select {
 	font-size: inherit;
 }
 
-form .control-group {
+.control-group {
 	display:block;
 	width: 100%;
 	text-align: left;
 	margin-bottom: 15px;
 }
 
-form .control-group .controls {
+.control-group .controls {
 	display:block;
-	margin-left:  120px;	
+	margin-left:  120px;
 }
-form .control-group label {
+.control-group label {
 	float: left;
 	text-align: right;
 	width: 100px;
@@ -165,8 +165,8 @@ form .control-group label {
 	padding-top: 7px;
 	margin-bottom: 6px;
 }
-form .control-group label.checkbox, 
-form .control-group label.radio{
+.control-group label.checkbox, 
+.control-group label.radio{
 	float: none;
 	text-align: left;
 	display: inline;
@@ -215,4 +215,13 @@ input[type='button']:hover,
 button:hover, 
 .button:hover {
 	opacity: .85;
+}
+
+textarea {
+	width: 300px;
+	height: 200px;
+	padding: 5px !important;
+	resize: none;
+	border: 1px solid #cccccc;
+	outline: none;
 }

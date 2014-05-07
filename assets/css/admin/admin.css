@@ -70,32 +70,7 @@ body.admin.index {
 
 /*Module*/
 
-.admin.module #module-container {
-	margin-top: 10px;
-}
-
-.admin.module #module-add {
-	padding-left: 5px !important;
-}
-.admin.module #module-add:hover {
-	min-width: 140px;
-	width: 140px;
-}
-.admin.module #module-add img {
-	 transition: opacity .3s ease, visibility 1s ease;	
-	height: 14px;	
-	width: 14px;
-	display: inline-block;
-	opacity: 0;
-}
-.admin.module #module-add:hover img {	
-}
-
-.admin.module .module-box {
-	position: relative !important;
-	background-color: red;
-}
-.admin.module .actions.grid {
+.module.index .actions.grid {
 	width: inherit;
 	height: 0px;
 	background-color: rgba(77,146,77,.8);
@@ -106,14 +81,14 @@ body.admin.index {
 	padding:  5px 5px 5px 5px;
 }
 
-.admin.module .module-box:hover .actions {
+.module.index .module-box:hover .actions {
 	transition: opacity .3s ease .250s, top .5s linear;
 	height: 40px;
 	top: -30px;
 	opacity: 1;
 }
 
-.admin.module .module-box .actions ul li {
+.module.index .module-box .actions ul li {
 	display: inline-block;
 	width: 60px !important;
 	font-family: "OpenSansRegular";	
@@ -126,6 +101,6 @@ body.admin.index {
 	cursor: pointer;
 }
 
-.admin.module .module-box .actions ul li:hover {
+.module.index .module-box .actions ul li:hover {
 	background: #FFD700;	
 }

@@ -20,6 +20,7 @@
 	height: 20px;
 	padding: 0px 5px 5px 5px;
 	margin-left: 20px;
+	margin-top: 20px;
 	text-align: left;
 } 
 
@@ -138,47 +139,19 @@
 }
 
 .module.index #module-add {
-	height: 28px;
-	width: 120px;
-	min-width: 120px;
-	background-color: #EBF8A4;
-	color:  #717171;
-	border: none;
-	border-radius: 2px;
 	cursor: pointer;
 	float: left;
-	font-size: 15px;
-	font-family: "OpenSansRegular";	
-	text-align: right;
+	text-align: left;
 	overflow: hidden;
 	transition: width .2s linear;
 }
-.module.index #module-add:hover {
-	min-width: 140px;
-	width: 140px;
-}
-.module.index #module-add span {
-	width: 120px;
-	height: 28px;
-	display: inline-block;
-	vertical-align: middle;
-	padding: 5px 10px 5px 0px;
-	border
-}
-.module.index #module-add img {
+
+.module.index #module-img {
 	 transition: opacity .3s ease, visibility 1s ease;	
-	margin-left: -20px;
-	height: 14px;	
-	width: 14px;
-	display: inline-block;
+	display: none;
 	vertical-align: middle;
-	opacity: 0;
-}
-.module.index #module-add:hover img {	
-	 opacity: .7;
-	 position: relative;
-	 left: 5px;
-	 visibility: visible;
+	float: left;
+	opacity: 1;
 }
 
 .module.index .module-box {
@@ -232,34 +205,4 @@
 
 .admin.create #editor-container form #c-module-button {
 	margin: 0;
-}
-
-#instruction {
-	margin: 0 auto;
-	width: 100%;
-	height: 230px;
-	text-align: left;
-	padding: 5px 50px 0px 50px;
-	background:  #f4f5f6;
-	margin-bottom: 10px;
-}
-
-#instruction #hide {
-	cursor: pointer;
-	margin-top: -20px;
-}
-
-#instruction #hide:hover {
-	color: #003366;
-}
-
-#instruction h3 {
-	color: red;
-	border-bottom: 1px solid black;
-}
-
-#instruction ul li {
-	height: 30px;
-	margin-top: 5px;
-	font-size: 12px;
 }

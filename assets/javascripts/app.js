@@ -36,7 +36,7 @@ var hide = {
 	notes_tips: function() {
 		 var editor_height =  parseInt(edi.ui.space( 'contents' ).getStyle( 'height' ).replace("px","") )+  parseInt($("#instruction").height());
 		$("#instruction").fadeOut();	
-		edi.resize( '100%', editor_height , true )		
+		edi.resize( '100%', editor_height , true );	
 	}
 }
 
