@@ -10,23 +10,10 @@
 
 		public function index() {
 			$data['page_title'] = "SSCO Module Base Learning";
-			$data['body_content'] = $this->load->view('admin/options',array(),TRUE); // kevcal
-			$this->parser->parse('layouts/home', $data);
+			$data['body_content'] = $this->load->view('admin/home',array(),TRUE); // kevcal
+			$this->parser->parse('layouts/default', $data);
 		}
 
-		public function module() {
-			$this->load->model('Module_model','mModel');
-			$data['page_title'] = "SSCO Module Base Learning";
-			$data['body_content'] = $this->load->view('admin/module',array('modules' => $this->mModel->get_module_entries()),TRUE); // kevcal
-			$this->parser->parse('layouts/home', $data);
-		}
-
-		public function create() {
-			$this->load->model('Module_model','mModel');
-			$data['page_title'] = "SSCO Module Base Learning";
-			$data['body_content'] = $this->load->view('module/create',array(),TRUE); // kevcal
-			$this->parser->parse('layouts/home', $data);
-		}
 }
 
 /* End of file welcome.php */

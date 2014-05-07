@@ -1,0 +1,54 @@
+#header {
+	min-height: inherit;
+	width: 100%;
+	background: linear-gradient(to top,#6FBB44,#3B8D42);
+}
+#logo-block {
+	float: left;
+}
+#ssco {
+	font-size: 60px;
+	height: 60px;
+	margin: 5px 0px 0px 30px;
+	font-family: "ConsolasRegular";
+}
+#mbl {
+	font-size: 15px;
+	margin: 5px 0px 0px 60px;
+	font-family: "OpenSansRegular";
+}
+#logo-block a {
+	text-decoration: none;
+	color: white;
+}
+#logo-block a:hover {
+
+}
+#navigation {
+	float: right;
+	margin: 5px 60px 0px 00px;
+}
+#navigation a {
+	color: white;
+	font-size: 12px;
+}
+#navigation a:hover {
+
+}
+.pipe-separator {
+
+}
+
+#user {
+
+}
+#current-user {
+
+}
+#bread-crumbs {
+
+}
+
+#bread-crumbs a {
+
+}

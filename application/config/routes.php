@@ -37,11 +37,12 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-
+$route['admin'] = 'admin_functions/admin';
+$route['admin/module/(:any)'] = 'admin_functions/module/$1';
+$route['admin/module'] = 'admin_functions/module';
 $route['admin/user/(:any)'] = 'admin_functions/user/$1';
 $route['admin/user'] = 'admin_functions/user';
-$route['admin'] = 'admin';
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "home";
 $route['404_override'] = '';
 
 

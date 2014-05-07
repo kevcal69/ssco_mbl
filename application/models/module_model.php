@@ -25,6 +25,16 @@ class Module_model extends CI_Model {
 		 	return false;
 		 }
 	}
+	function modify_module($data,$id) {
+		$this->db->where('id', $id);
+		$this->db->update('module', $data); 
+
+		if ($this->db->_error_message()) {
+			return FALSE; 
+		} else {
+			return $this->db->affected_rows();
+		}
+	}	
 }
 
 /* End of file session.php */
