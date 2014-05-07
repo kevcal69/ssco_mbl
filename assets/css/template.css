@@ -146,34 +146,6 @@ select {
 	font-size: inherit;
 }
 
-.control-group {
-	display:block;
-	width: 100%;
-	text-align: left;
-	margin-bottom: 15px;
-}
-
-.control-group .controls {
-	display:block;
-	margin-left:  120px;
-}
-.control-group label {
-	float: left;
-	text-align: right;
-	width: 100px;
-	display: block;
-	padding-top: 7px;
-	margin-bottom: 6px;
-}
-.control-group label.checkbox, 
-.control-group label.radio{
-	float: none;
-	text-align: left;
-	display: inline;
-	padding-top: 7px;
-	margin-bottom: 6px;
-}
-
 input[type='submit'],
 input[type='button'],
 button,
@@ -194,25 +166,117 @@ button,
 	transition: background-color 0.2s ease-in-out;
 }
 
-.button-warning {
-	background-color: #F4A725;
-}
-
-.button-danger {
-	background-color: #E14F3C;
-}
-
-.button-info {
-	background-color: #4D99F2;
-}
-
-.button-success {
-	background-color: #54B948;
-}
-
 input[type='submit']:hover,
 input[type='button']:hover,
 button:hover, 
 .button:hover {
 	opacity: .85;
+}
+
+.button-warning {
+	background-color: #F4A725 !important;
+}
+
+.button-danger {
+	background-color: #E14F3C !important;
+}
+
+.button-info {
+	background-color: #4D99F2 !important;
+}
+
+.button-success {
+	background-color: #54B948 !important;
+}
+
+/*Form-default*/
+form .control-group {
+	display:block;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+form .control-group .controls {
+	display:block;
+}
+form .control-group label {
+	text-align: left;
+	display: block;
+	padding-top: 7px;
+	margin-bottom: 6px;
+}
+form .control-group label.checkbox, 
+form .control-group label.radio {
+	float: none;
+	text-align: left;
+	display: inline;
+	padding-top: 7px;
+	margin-bottom: 6px;
+}
+
+/*Form-horizontal*/
+form.form-horizontal .control-group {
+	display:block;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+form.form-horizontal .control-group .controls {
+	display:block;
+	margin-left:  120px;
+}
+form.form-horizontal .control-group label {
+	float: left;
+	text-align: right;
+	width: 100px;
+	display: block;
+	padding-top: 7px;
+	margin-bottom: 6px;
+}
+form.form-horizontal .control-group label.checkbox, 
+form.form-horizontal .control-group label.radio{
+	float: none;
+	text-align: left;
+	display: inline;
+	padding-top: 7px;
+	margin-bottom: 6px;
+}
+
+/*Form-inline*/
+form.form-inline .control-group {
+	display:inline-block;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+form.form-inline .control-group .controls {
+	display:inline;
+	margin-left:  10px;
+}
+form.form-inline .control-group label {
+	float: none;
+	text-align: right;
+	margin-left: 10px;
+	display: inline-block;
+	padding-top: 7px;
+	margin-bottom: 6px;
+}
+form.form-inline .control-group label.checkbox, 
+form.form-inline .control-group label.radio{
+	float: none;
+	text-align: left;
+	display: inline;
+	padding-top: 7px;
+	margin-bottom: 6px;
+}
+form.form-inline input[type='submit'],
+form.form-inline input[type='button'],
+form.form-inline button,
+form.form-inline .button {
+	height: 28px;
+	vertical-align: top;
+	margin-left: 10px;
 }

@@ -1,9 +1,9 @@
 #footer {
 	width: 100%;
-	height: 64px;
-	margin-top: -64px;
+	height: 45px;
+	margin-top: -45px;
 	/*background: linear-gradient(#6FBB44,#3B8D42);*/
-	background-image: url(../images/landing/header-bg.jpg);
+	background-image: url(../../images/landing/header-bg.jpg);
 	background-color: #CCCCCC;
 	background-position:  center top;
 	background-repeat: no-repeat;
@@ -18,8 +18,11 @@
 	display:inline-block;
 	vertical-align:middle;
 }
+#ncr img {
+	height: 25px;
+}
 #copyright {
-	color: #808080;
+	color: white;
 	font-family: Helvetica, Arial, Sans-Serif;
 	font-size: 10px;
 	margin-left: 20px;

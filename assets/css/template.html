@@ -3,77 +3,151 @@
 	<link rel="stylesheet" href="template.css"/>
 </head>
 <body>
-  <div id="type">
-    <h1>Typography</h1>
-    <h2>Headings</h2>
-    <h1>H1</h1>
-    <h2>H2</h2>
-    <h3>H3</h3>
-    <h4>H4</h4>
-    <h5>H5</h5>
-    <h6>H6</h6>
-    <h2>Emphasis classes</h2>
-    <p class="muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
-    <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
-    <p class="text-error">Donec ullamcorper nulla non metus auctor fringilla.</p>
-    <p class="text-info">Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.</p>
-    <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-    <h2>Blockquotes</h2>
-    <blockquote>
-      Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.
-      Etiam porta sem malesuada magna mollis euismod.
-      Donec ullamcorper nulla non metus auctor fringilla.
-      Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-    </blockquote>
-    <h2>Code</h2>
-    <h3>Snippet</h3>
-    <code>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</code>
-    <h3>Block</h3>
-    <pre>
-  blockquote {
-    border-left: 5px solid #CCCCCC;
-    padding: 10px 10px 10px 20px;
-  }
+	<div id="type">
+		<h1>Typography</h1>
+		<h2>Headings</h2>
+		<h1>H1</h1>
+		<h2>H2</h2>
+		<h3>H3</h3>
+		<h4>H4</h4>
+		<h5>H5</h5>
+		<h6>H6</h6>
+		<h2>Emphasis classes</h2>
+		<p class="muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+		<p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+		<p class="text-error">Donec ullamcorper nulla non metus auctor fringilla.</p>
+		<p class="text-info">Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.</p>
+		<p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+		<h2>Blockquotes</h2>
+		<blockquote>
+			Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.
+			Etiam porta sem malesuada magna mollis euismod.
+			Donec ullamcorper nulla non metus auctor fringilla.
+			Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.
+			Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+		</blockquote>
+		<h2>Code</h2>
+		<h3>Snippet</h3>
+		<code>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</code>
+		<h3>Block</h3>
+		<pre>
+	blockquote {
+		border-left: 5px solid #CCCCCC;
+		padding: 10px 10px 10px 20px;
+	}
 
-  blockquote * {
-    margin: 0 auto;
-  }
-    </pre>
-    <h2>Table</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+	blockquote * {
+		margin: 0 auto;
+	}
+		</pre>
+		<h2>Table</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Username</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Jacob</td>
+					<td>Thornton</td>
+					<td>@fat</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td colspan="2">Larry the Bird</td>
+					<td>@twitter</td>
+				</tr>
+			</tbody>
+		</table>
+	</div><div id="form">
+    <h2>Form-default</h2>
+    <form>
+      <fieldset>
+        <legend>Legend</legend>
+        <div class="control-group">
+          <label for = "username">Username</label>
+          <div class="controls">
+            <input id="username" name = "username" value="<?php echo set_value('username',$username); ?>" type = "text" placeholder = "Username" class="field">
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <label for = "password">Password</label>
+          <div class="controls">
+            <input id="password" name = "password" value="<?php echo set_value('password',$password); ?>" type = "password" placeholder = "Password" class="field">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="radio"><input type="radio">Radio</label>
+          </div>
+        </div>
+        <div class="control-group">
+          <label for = "select">Select</label>
+          <div class="controls">
+            <select id="select">
+              <option value="admin">Admin</option>
+              <option value="trainee">Trainee</option>
+              <option value="content_manager">Content Manager</option>
+            </select>
+          </div>
+        </div>        
+        <div class="control-group">
+          <div class="controls">
+            <input type="submit" value="Button">
+          </div>
+        </div>
+      </fieldset>
+    </form>
   </div>
-  <div id="form">
-    <h2>Form</h2>
-  	<form>
+	<div id="form-inline">
+		<h2>Form-inline</h2>
+		<form class="form-inline">
+			<fieldset>
+				<legend>Legend</legend>
+				<div class="control-group">
+					<label for = "username">Username</label>
+					<div class="controls">
+						<input id="username" name = "username" value="<?php echo set_value('username',$username); ?>" type = "text" placeholder = "Username" class="field">
+					</div>
+          <label for = "password">Password</label>
+          <div class="controls">
+            <input id="password" name = "password" value="<?php echo set_value('password',$password); ?>" type = "password" placeholder = "Password" class="field">
+            <input type="submit" value="Button">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="radio"><input type="radio">Radio</label>
+          </div>
+          <label for = "select">Select</label>
+          <div class="controls">
+            <select id="select">
+              <option value="admin">Admin</option>
+              <option value="trainee">Trainee</option>
+              <option value="content_manager">Content Manager</option>
+            </select>
+          </div>          
+				</div>
+			</fieldset>
+		</form>
+	</div>
+  <div id="form-horizontal">
+    <h2>Form-horizontal</h2>
+    <form class="form-horizontal">
       <fieldset>
         <legend>Legend</legend>
         <div class="control-group">
@@ -105,15 +179,23 @@
             </select>
           </div>
         </div>
+        <div class="control-group">
+          <div class="controls">
+            <input type="submit" value="Button">
+          </div>
+        </div>
             
-        <input type="submit" value="Button">
-        <button>Default</button>
-        <button class="button-warning">Warning</button>
-        <button class="button-danger">Danger</button>
-        <button class="button-info">Info</button>
-        <button class="button-success">Success</button>
       </fieldset>
     </form>
+  </div>
+  <div id="buttons">
+    <h2>Buttons</h2>
+    <input type="submit" value="Input Button">
+    <button>Default</button>
+    <button class="button-warning">Warning</button>
+    <button class="button-danger">Danger</button>
+    <button class="button-info">Info</button>
+    <button class="button-success">Success</button>
   </div>
 </body>
 </html>
