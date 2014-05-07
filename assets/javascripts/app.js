@@ -1,7 +1,9 @@
 $(document).ready(function() {
-  modules.initialize();
   // setInterval(function() {refresh_page()}, 1000);
   setTimeout(function(){hide.notes_tips()},30000);
+  trainee.toggle();
+  view_all.autoReload();
+
 });
 
 var modules = {
@@ -36,9 +38,24 @@ var hide = {
 		$("#instruction").fadeOut();	
 		edi.resize( '100%', editor_height , true )		
 	}
-}	
+}
 
-	            
+var trainee = {
+	toggle: function() {
+		var value = $("#role").val();
+		if (value === "trainee") {
+			$(".trainee-name").fadeIn();
+		} else {
+			$(".trainee-name").fadeOut();
+		}
+	}
+}
 
-            
-		
+var view_all = {
+	autoReload: function(){
+  if (window.name=='autoreload') {
+     location.reload();
+     window.name='';
+  }
+}
+}

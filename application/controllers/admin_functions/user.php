@@ -38,6 +38,16 @@ class User extends MBL_Controller {
 				'field' => 'role',
 				'label' => 'Role',
 				'rules' => 'trim|required|xss_clean'
+				),
+			array(
+				'field' => 'first_name',
+				'label' => 'First Name',
+				'rules' => 'trim|xss_clean'
+				),
+			array(
+				'field' => 'last_name',
+				'label' => 'Last Name',
+				'rules' => 'trim|xss_clean'
 				)
 			);
 		$this->form_validation->set_rules($validation_rules);
@@ -52,7 +62,7 @@ class User extends MBL_Controller {
 			$message = '';
 			$error = '';
 			if ($result) {
-				$message = 'User ' . $this->input->post('username') . ' was successfully created.';
+				$message = 'User <a href="'. base_url('admin/user/view/' . $this->input->post('username')) . '">' . $this->input->post('username') . '</a> was successfully created.';
 			} else {
 				$message = 'User creation failed.';
 				$error = $this->db->_error_message();
@@ -70,12 +80,21 @@ class User extends MBL_Controller {
 			$users['users'] = $this->user_model->view();
 
 			$data['body_content'] = $this->load->view('admin/user/user_view_all',$users,TRUE);
-			$data['page_title'] = "View User - Admin - SSCO Module-Based Learning";
-			$this->parser->parse('layouts/home', $data);
 		} else {
-			//TODO view individual user (profile?)
-			echo 'under construction: '.$username.'\'s user profile';
+			$user = $this->user_model->view($username);
+
+			if ($user['role'] === 'trainee' && $this->user_model->trainee_exists($user['id'])) {
+				$trainee = $this->user_model->view_trainee($user['id']);
+				$user['first_name'] = $trainee['first_name'];
+				$user['last_name'] = $trainee['last_name'];
+				//TODO enrolled modules for trainees
+				//     created modules for content managers
+			}
+
+			$data['body_content'] = $this->load->view('admin/user/user_view',$user,TRUE);
 		}
+		$data['page_title'] = "View User - Admin - SSCO Module-Based Learning";
+		$this->parser->parse('layouts/home', $data);
 	}
 
 	public function edit($username = FALSE) {
@@ -83,7 +102,6 @@ class User extends MBL_Controller {
 		if ($username === FALSE) {
 			$users = $this->user_model->view();
 
-			$data['users'] = array('' => 'Select User');
 			foreach ($users as $user) {
 				$data['users'][$user['username']] = $user['username'];
 			}
@@ -99,11 +117,19 @@ class User extends MBL_Controller {
 				echo $this->input->post('user');
 				redirect('admin/user/edit/'. $this->input->post('users'));
 			}
-
-			$data['page_title'] = "View User - Admin - SSCO Module-Based Learning";
-			$this->parser->parse('layouts/home', $data);
+		//$username parameter
 		} else {
 			$user = $this->user_model->view($username);
+			//load first name and last name if trainee
+			if ($user['role'] === 'trainee' OR $this->user_model->trainee_exists($user['id'])) {
+				$trainee = $this->user_model->view_trainee($user['id']);
+				$user['first_name'] = $trainee['first_name'];
+				$user['last_name'] = $trainee['last_name'];
+			} else {
+				$user['first_name'] = '';
+				$user['last_name'] = '';
+			}
+
 			//set validation rules
 			$validation_rules = array(
 				array(
@@ -120,7 +146,17 @@ class User extends MBL_Controller {
 					'field' => 'role',
 					'label' => 'Role',
 					'rules' => 'trim|required|xss_clean'
-					)
+					),
+			array(
+				'field' => 'first_name',
+				'label' => 'First Name',
+				'rules' => 'trim|xss_clean'
+				),
+			array(
+				'field' => 'last_name',
+				'label' => 'Last Name',
+				'rules' => 'trim|xss_clean|callback_required_if_trainee'
+				)
 				);
 			$this->form_validation->set_rules($validation_rules);
 
@@ -134,7 +170,7 @@ class User extends MBL_Controller {
 				$message = '';
 				$error = '';
 				if ($result) {
-					$message = 'User ' . $this->input->post('username') . ' was successfully edited.';
+					$message = 'User <a href="'. base_url('admin/user/view/' . $this->input->post('username')) . '">' . $this->input->post('username') . '</a> was successfully edited.';
 				} else {
 					$message = 'User edit failed.';
 					$error = $this->db->_error_message();
@@ -147,12 +183,46 @@ class User extends MBL_Controller {
 		$this->parser->parse('layouts/home', $data);
 	}
 
+	public function delete($username) {
+		//must go through delete-confirm form
+		$confirm = $this->input->post('confirm');
+
+		if ($confirm !== 'TRUE') {
+			//confirmation dialog
+			$data['body_content'] = $this->load->view('admin/user/delete_confirm',array('username' => $username),TRUE);
+		} else {
+			$result = $this->delete_user($username);
+
+			$message = '';
+			$error = '';
+			if ($result) {
+				$message = 'User '. $username . ' was successfully deleted.';
+			} else {
+				$message = 'User delete failed.';
+				$error = $this->db->_error_message();
+			}
+			$delete_data = array('message' => $message, 'error' => $error);
+			$data['body_content'] = $this->load->view('admin/user/function_result',$delete_data,TRUE);
+		}
+
+		$data['page_title'] = "Delete User - Admin - SSCO Module-Based Learning";
+		$this->parser->parse('layouts/home', $data);
+	}
+
 	private function create_user() {
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$role = $this->input->post('role');
 
-		if ($this->user_model->create($username, $password, $role)) {
+		if ($role === 'trainee') {
+			$name['first_name'] = $this->input->post('first_name');
+			$name['last_name'] = $this->input->post('last_name');
+			$result = $this->user_model->create($username, $password, $role, $name);
+		} else {
+			$result = $this->user_model->create($username, $password, $role);
+		}
+
+		if ($result) {
 			return TRUE;
 		} else {
 			return FALSE;
@@ -160,11 +230,28 @@ class User extends MBL_Controller {
 	}
 
 	private function edit_user($user_id) {
+		$user_id = $user_id;
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$role = $this->input->post('role');
 
-		if ($this->user_model->edit($user_id, $username, $password, $role)) {
+		if ($role === 'trainee') {
+			$name['first_name'] = $this->input->post('first_name');
+			$name['last_name'] = $this->input->post('last_name');
+			$result = $this->user_model->edit($user_id, $username, $password, $role, $name);
+		} else {
+			$result = $this->user_model->edit($user_id, $username, $password, $role);
+		}
+
+		if ($result) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	private function delete_user($username) {
+		if ($this->user_model->delete($username)) {
 			return TRUE;
 		} else {
 			return FALSE;
@@ -207,6 +294,17 @@ class User extends MBL_Controller {
 		} else {
 			return TRUE;
 		}
+	}
+
+	public function required_if_trainee($str) {
+		if ($this->input->post('role') === 'trainee') {
+			if ($this->input->post('first_name') == '' OR $this->input->post('last_name') == '') {
+				$this->form_validation->set_message('required_if_trainee', 'First Name and Last Name are required.');
+				echo form_error('required_if_trainee','<p class="error">','</p>');
+				return FALSE;
+			}
+		}
+		return TRUE;
 	}
 }
 

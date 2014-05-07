@@ -9,8 +9,7 @@ form .static {
 }
 
 input[type='text'],
-input[type='password'],
-select
+input[type='password']
 {
   width: 200px;
   height: 28px;
@@ -23,9 +22,4 @@ input[type='button']
   width: 90px;
   height: 30px;
   padding: 2px 2px 2px 2px;
-} 
-.error {
-  font-size: .45em;
-  color: red;
-  margin: 3px 3px 3px 5px;
 }
