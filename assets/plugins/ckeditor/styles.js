@@ -63,10 +63,20 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: 'Small',			element: 'small' },
 	{ name: 'Typewriter',		element: 'tt' },
 
-	{ name: 'Computer Code',	element: 'code' },
-	{ name: 'Keyboard Phrase',	element: 'kbd' },
-	{ name: 'Sample Text',		element: 'samp' },
-	{ name: 'Variable',			element: 'var' },
+	{ name: 'Computer Code',	
+	element: 'code',
+	styles: {
+		'background-color':'#eeeeee',
+		'padding':'5px 5px 5px 5px',
+		'color':'#284c7e',
+		'font-size':'12px',
+		'color':'#284c7e',
+		'margin':'5px 0px 5px 0px'
+		}
+	 },
+
+		
+	
 
 	{ name: 'Deleted Text',		element: 'del' },
 	{ name: 'Inserted Text',	element: 'ins' },

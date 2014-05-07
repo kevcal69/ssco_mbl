@@ -1,0 +1,75 @@
+
+/*Introduction*/
+.home.index #module-intro {
+	width: 100%;
+	min-height: 250px;
+}
+
+.home.index #module-intro #about {
+	width: 650px;
+	height: 250px;
+	float: left;
+	display: inline-block;
+	text-align: left;
+	margin-right: 50px;
+}
+
+.home.index #module-intro #about h1 {
+	font-size: 30px;
+	font-family: sans-serif;
+	color: #54b948;
+	font-weight: 900;
+}
+
+.home.index #module-intro #about p {
+	font-size: 15px;
+	font-family: "OpenSansRegular";
+	line-height: 1.5em;
+	color: gray;
+	margin: 10px 50px 0px 20px;
+}
+
+
+.home.index #module-intro #login-container {
+	float: right;
+	min-height: 200px;
+	width: 250px;
+	background: #f4f5f6;
+}
+.home.index #module-intro #login-container h1 {
+	text-align: left;
+	margin: 5px 0px 0px 10px;
+	color: #54b948;
+}
+.home.index #module-intro #login-container .form-login {
+	text-align: left;
+	margin-left: 15px;
+	margin-top: 20px;
+}
+
+.home.index #module-intro #login-container .form-login .field-wrapper {
+	height: 60px;
+}
+
+.home.index #module-intro #login-container .form-login p {
+	font-size: .45em;
+	margin: 15px 30px 0px 0px;
+	color: #336699;
+}
+
+.home.index #module-intro #login-container .form-login #submit {
+	margin: 0px 30px 10px 0px;
+	background: #70ce76;
+}
+
+.home.index #module-intro #login-container .form-login .err {
+	font-size: .6em;
+	height: 20px;
+	color: red !important;
+	margin: 3px 3px 3px 5px;
+}
+
+.home.index #module-intro #login-container .form-login .field-wrapper#sub {
+	margin-top: -15px;
+	float: right;
+}

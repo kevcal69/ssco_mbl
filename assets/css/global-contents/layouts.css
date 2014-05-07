@@ -1,0 +1,23 @@
+/*** HOME LAYOUT ***/
+#main-wrapper.basic {
+	min-height: 100%;
+	width: 100%;
+	padding-bottom: 45px;
+}
+
+#main-wrapper.basic #main-header{
+	width: 100%;
+	min-height: 100px;
+}
+
+#main-wrapper.basic #main-content{
+	width: 100%;
+	min-height: 500px;
+}
+
+#main-wrapper.basic #main-content #body-content {
+	margin: 0 auto;
+	margin-top: 40px;
+	text-align: center;
+	max-width: 1000px;
+}

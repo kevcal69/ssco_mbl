@@ -1,0 +1,265 @@
+ #module-container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	padding-bottom: 30px;
+	margin-top: 10px;
+}
+
+ #module-container h1 {
+	text-align: left;
+	font-size: 40px;
+	font-family: sans-serif;
+	color: #54b948;
+	font-weight: 900;
+	width: 550px;
+}
+
+ #module-container #module-liststyle {
+	width: 400px;
+	height: 20px;
+	padding: 0px 5px 5px 5px;
+	margin-left: 20px;
+	text-align: left;
+} 
+
+ #module-container #module-liststyle .liststyles{
+	display: inline-block;
+	font-size: .7em;
+	text-decoration: underline;
+	height: 20px;
+	width: 20px;
+}
+
+ #module-container #module-liststyle .liststyles img {
+	height: 12px;
+	width: 12px;
+}
+
+ #module-container #module-liststyle .liststyles img:hover {
+	box-shadow: 0px 0px 1px black;
+}
+
+ #module-container #grid-container {
+	display: inline-block;
+}
+
+ #module-container #grid-container .module-box {
+	width:  200px;
+	height: 300px;
+	margin: 30px 1px 10px 25px;
+	box-shadow: 0px 5px 15px -5px black;
+	display: inline-block;
+	vertical-align: top;
+	background: #f3f3f3;
+	-webkit-transition: box-shadow 1s; /* For Safari 3.1 to 6.0 */
+	transition: box-shadow 1s;
+}
+ #module-container #grid-container .module-box:hover {
+	box-shadow: 0px 5px 25px -5px black;
+}
+
+ #module-container #grid-container .module-box .thumb {
+	margin: 0 auto;
+	margin-top: 15px;
+	width: 185px;
+	background-color: white;
+	height: 135px;
+	background-repeat: no-repeat;
+	border: 1px solid #aaaaaa;
+	background-size: 100%,100%;
+}
+
+ #module-container #grid-container .module-box .mb-title {
+	font-size: 18px;
+	color: #555555;
+	text-align: left;
+	padding: 5px;
+	font-family: sans-serif;
+	width: 200px;
+	height: 40px;
+	margin-top: 5px;
+}
+
+ #module-container #grid-container .module-box .description{
+	margin: 0 auto;
+	border-top: 1px solid #cccccc;
+	width: 200px;
+	height: 70px;
+	margin-top: 12px;
+	padding: 5px;
+	font-size: 12px;
+	font-family: "OpenSansRegular";
+	text-align: left;
+	color:#666666;
+	line-height: 1.5em;
+}
+
+  #module-container #list-container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+  #module-container #list-container ul {
+	margin-left: 50px;
+	text-align: left;
+}
+
+  #module-container #list-container ul li {
+	min-height: 30px;
+	width: 480px;
+	margin: 0px 5px 0px 5px;
+}
+
+  #module-container #list-container ul li span {
+	font-size: 15px;
+	display: inline-block;
+	cursor: pointer;
+	color: #555555;
+	width: 300px;
+	padding: 5px ;
+	-webkit-transition: background-color 1s; /* For Safari 3.1 to 6.0 */
+	transition: background-color 1s;
+}
+
+  #module-container #list-container ul li span:hover {
+	text-shadow: 0px 5px 8px #888888;
+	border-bottom: 1px solid orange;
+	background-color: #eeeeee;
+}
+
+
+/*Admin Module*/
+
+.module.index #module-container {
+	margin-top: 10px;	
+}
+
+.module.index #module-add {
+	height: 28px;
+	width: 120px;
+	min-width: 120px;
+	background-color: #EBF8A4;
+	color:  #717171;
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+	float: left;
+	font-size: 15px;
+	font-family: "OpenSansRegular";	
+	text-align: right;
+	overflow: hidden;
+	transition: width .2s linear;
+}
+.module.index #module-add:hover {
+	min-width: 140px;
+	width: 140px;
+}
+.module.index #module-add span {
+	width: 120px;
+	height: 28px;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 5px 10px 5px 0px;
+	border
+}
+.module.index #module-add img {
+	 transition: opacity .3s ease, visibility 1s ease;	
+	margin-left: -20px;
+	height: 14px;	
+	width: 14px;
+	display: inline-block;
+	vertical-align: middle;
+	opacity: 0;
+}
+.module.index #module-add:hover img {	
+	 opacity: .7;
+	 position: relative;
+	 left: 5px;
+	 visibility: visible;
+}
+
+.module.index .module-box {
+	position: relative !important;
+	background-color: red;
+}
+.module.index .actions.grid {
+	width: inherit;
+	height: 0px;
+	background-color: rgba(77,146,77,1);
+	position: absolute;
+	left: 0%;
+	top: 0px;
+	opacity: 0;
+	padding:  5px 5px 5px 5px;
+}
+
+.module.index .actions.grid ul {
+	padding: 0px;
+	margin: 0px auto;
+}
+
+.module.index .module-box:hover .actions {
+	transition: opacity .3s ease .250s, top .5s linear;
+	height: 40px;
+	top: -30px;
+	opacity: 1;
+}
+
+.module.index .module-box .actions ul li {
+	display: inline-block;
+	width: 60px !important;
+	font-family: "OpenSansRegular";	
+	height: 30px;
+	padding: 5px 5px 5px 5px;
+	background-color: #EBF8A4;
+	font-size: 15px;
+	color:  #717171;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.module.index .module-box .actions ul li:hover {
+	background: #FFD700;	
+}
+
+.module.create #editor-container  {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.admin.create #editor-container form #c-module-button {
+	margin: 0;
+}
+
+#instruction {
+	margin: 0 auto;
+	width: 100%;
+	height: 230px;
+	text-align: left;
+	padding: 5px 50px 0px 50px;
+	background:  #f4f5f6;
+	margin-bottom: 10px;
+}
+
+#instruction #hide {
+	cursor: pointer;
+	margin-top: -20px;
+}
+
+#instruction #hide:hover {
+	color: #003366;
+}
+
+#instruction h3 {
+	color: red;
+	border-bottom: 1px solid black;
+}
+
+#instruction ul li {
+	height: 30px;
+	margin-top: 5px;
+	font-size: 12px;
+}
