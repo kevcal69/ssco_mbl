@@ -62,6 +62,10 @@ body.admin.index {
 	margin: 5px 0px;
 }
 
+.admin.index  #options-container .options a {
+	text-decoration: none;
+}
+
 
 
 /*Module*/

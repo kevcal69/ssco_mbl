@@ -1,7 +1,11 @@
 #header {
 	min-height: inherit;
 	width: 100%;
-	background: linear-gradient(to top,#6FBB44,#3B8D42);
+	/*background: linear-gradient(to top,#6FBB44,#3B8D42);*/
+	background-image: url(../../images/landing/header-bg.jpg);
+	background-position:  center top;
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
 #logo-block {
 	float: left;
@@ -22,33 +26,51 @@
 	color: white;
 }
 #logo-block a:hover {
+	text-decoration: none;
+}
 
+.pull-right {
+	position: relative;
+	float: right;
+	text-align: right;
 }
 #navigation {
-	float: right;
-	margin: 5px 60px 0px 00px;
+	margin: 20px 20px auto auto;
+	color: white;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 12px;
 }
 #navigation a {
 	color: white;
 	font-size: 12px;
+	text-decoration: none;
 }
 #navigation a:hover {
-
+	text-decoration: underline;
 }
 .pipe-separator {
-
+	letter-spacing: 3px;
 }
 
 #user {
-
+	margin: 30px 20px 0px 0px;
 }
 #current-user {
-
+	font-family: medium;
+	font-family: "LatoHairline";
+	color: white;
 }
 #bread-crumbs {
-
+	min-width: 200px;
+	height: 20px;
+	float: left;
+	margin: 100px 0px 0px -200px;
+	font-size: 12px;
+	padding: 5px;
+	font-family: "OpenSansLight";
 }
 
 #bread-crumbs a {
-
+	text-decoration: none;
+	color: #aaaaaa;
 }
