@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/contents/module.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/contents/animations.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/admin/admin.css'; ?>" />
+<link rel="stylesheet" href="<?= base_url() . 'assets/css/admin/user.css'; ?>" />
 
 
 

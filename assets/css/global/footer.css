@@ -3,7 +3,7 @@
 	height: 64px;
 	margin-top: -64px;
 	/*background: linear-gradient(#6FBB44,#3B8D42);*/
-	/*background-image: url(../images/landing/header-bg.jpg);*/
+	background-image: url(../images/landing/header-bg.jpg);
 	background-color: #CCCCCC;
 	background-position:  center top;
 	background-repeat: no-repeat;

@@ -19,7 +19,7 @@ class User extends MBL_Controller {
 	public function index() {
 		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/user/user_functions','',TRUE);
-		$this->parser->parse('layouts/home', $data);
+		$this->parser->parse('layouts/default', $data);
 	}
 	public function create() {
 		//set validation rules
@@ -71,7 +71,7 @@ class User extends MBL_Controller {
 			$data['body_content'] = $this->load->view('admin/user/function_result',$create_data,TRUE);
 		}
 		$data['page_title'] = "Create User - Admin - SSCO Module-Based Learning";
-		$this->parser->parse('layouts/home', $data);
+		$this->parser->parse('layouts/default', $data);
 	}
 
 	public function view($username = FALSE) {
@@ -94,7 +94,7 @@ class User extends MBL_Controller {
 			$data['body_content'] = $this->load->view('admin/user/user_view',$user,TRUE);
 		}
 		$data['page_title'] = "View User - Admin - SSCO Module-Based Learning";
-		$this->parser->parse('layouts/home', $data);
+		$this->parser->parse('layouts/default', $data);
 	}
 
 	public function edit($username = FALSE) {
@@ -180,7 +180,7 @@ class User extends MBL_Controller {
 			}
 		}
 		$data['page_title'] = "Edit User - Admin - SSCO Module-Based Learning";
-		$this->parser->parse('layouts/home', $data);
+		$this->parser->parse('layouts/default', $data);
 	}
 
 	public function delete($username) {
@@ -206,7 +206,7 @@ class User extends MBL_Controller {
 		}
 
 		$data['page_title'] = "Delete User - Admin - SSCO Module-Based Learning";
-		$this->parser->parse('layouts/home', $data);
+		$this->parser->parse('layouts/default', $data);
 	}
 
 	private function create_user() {
