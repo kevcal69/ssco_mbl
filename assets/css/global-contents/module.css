@@ -143,6 +143,7 @@
 	float: left;
 	text-align: left;
 	overflow: hidden;
+	height: 40px;
 	transition: width .2s linear;
 }
 
@@ -177,21 +178,18 @@
 .module.index .module-box:hover .actions {
 	transition: opacity .3s ease .250s, top .5s linear;
 	height: 40px;
-	top: -30px;
 	opacity: 1;
 }
 
 .module.index .module-box .actions ul li {
 	display: inline-block;
-	width: 60px !important;
-	font-family: "OpenSansRegular";	
-	height: 30px;
-	padding: 5px 5px 5px 5px;
-	background-color: #EBF8A4;
-	font-size: 15px;
+	vertical-align: top;
 	color:  #717171;
-	border-radius: 2px;
 	cursor: pointer;
+}
+.module.index .module-box .actions ul li button {
+	width: 60px;
+	padding: 5px 5px !important;
 }
 
 .module.index .module-box .actions ul li:hover {
