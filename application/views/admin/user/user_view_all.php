@@ -1,8 +1,8 @@
-<div id="users-container">
-	<div>
-		<h1>View All Users</h1>
+<div id="users-container" class="user-container">
+	<div class="view-title-bar">
+		<legend id="view-legend">View All Users</legend>
+		<a class="button button-primary" href="<?=base_url('admin/user');?>">Home</a>
 		<a class="button" onClick="history.go(-1);">Back</a>
-		<a class="button" href="<?=base_url('admin/user');?>">Home</a>
 	</div>
 	<table>
 		<thead>

@@ -3,32 +3,34 @@ html, body {
 	font-size: 14px;
 }
 
+/* Typography */
+
 h1, h2, h3, h4, h5, h6 {
-	color: #12AD2B;
+	/*color: #12AD2B;*/
 }
 
 h1 {
-	font-size: 2.75rem;
+	font-size: 2.75rem !important;
 }
 
 h2 {
-	font-size: 2.25rem;
+	font-size: 2.25rem !important;
 }
 
 h3 {
-	font-size: 1.75rem;
+	font-size: 1.75rem !important;
 }
 
 h4 {
-	font-size: 1.25rem;
+	font-size: 1.25rem !important;
 }
 
 h5 {
-	font-size: 1rem;
+	font-size: 1rem !important;
 }
 
 h6 {
-	font-size: 0.75rem;
+	font-size: 0.75rem !important;
 }
 
 .muted {
@@ -78,6 +80,8 @@ pre {
 	margin: 10 20px;
 }
 
+/* Tables */
+
 table {
 	margin: 20px 0;
 	width:  100%;
@@ -90,16 +94,17 @@ table {
 
 table th, table td {
 	padding: 8px;
-	line-height: 20px;
+	/*line-height: 20px;*/
 	text-align: left;
 	border-left: 1px solid #808080;
 	border-top: 1px solid #808080;
 }
 
 table th {
-	/*font-weight: bold;*/
-	color: white;
-	background-color: #5DB653;
+	font-weight: normal;
+	font-size: 1rem;
+	color: black;
+	background-color: #E6E6E6;
 }
 
 table td {
@@ -111,6 +116,8 @@ table thead:first-child tr:first-child th {
 	border-left: 1px solid #808080;
 }
 
+/* Forms */
+
 form {
 	padding: 10px;
 }
@@ -118,7 +125,7 @@ form {
 fieldset {
 	padding: 0;
 	margin: 0;
-	border: none;
+	border: none !important;
 }
 
 legend {
@@ -129,7 +136,8 @@ legend {
 	font-size: 1.6rem;
 	line-height: 2.5rem;
 	border: 0;
-	border-bottom: 1px solid #dfdfdf;
+	border-bottom: 1px solid #C4C2C2 !important;
+	/*color: #12AD2B;*/
 }
 
 .field,
@@ -137,13 +145,16 @@ input[type='text'],
 input[type='password'],
 select {
 	width: 200px;
-	height: 28px;
+	/*height: 28px;*/
 	border: 1px solid #cccccc;
 	display:inline-block;
-	vertical-align: top;
 	margin: 0;
-	padding: 0px 6px;
+	padding: 6px 6px;
 	font-size: inherit;
+}
+
+select {
+	padding: 5px 6px !important;
 }
 
 input[type='submit'],
@@ -152,25 +163,24 @@ button,
 .button {
 	display: inline-block;
 	margin: 0;
+	margin-right: 5px;
 	border: none;
-	height: 30px;
-	line-height: 18px;
-	padding: 5px 15px;
+	padding: 6px 15px 5px 15px;
 	background-color: #949393;
-	color: white;
+	color: white !important;
 	font-family: "OpenSansLight","Segoe UI";
 	font-size: 1rem;
 	text-align: center;
 	vertical-align: baseline;
 	cursor: pointer;
-	transition: background-color 0.2s ease-in-out;
+	transition: opacity 0.2s ease-in-out;
 }
 
 input[type='submit']:hover,
 input[type='button']:hover,
 button:hover, 
 .button:hover {
-	opacity: .85;
+	opacity: .9;
 }
 
 .button-warning {
@@ -189,94 +199,116 @@ button:hover,
 	background-color: #54B948 !important;
 }
 
-/*Form-default*/
-form .control-group {
-	display:block;
-	width: 100%;
-	text-align: left;
-	margin-bottom: 15px;
+.button-primary {
+	background-color: #008287 !important;
 }
 
-form .control-group .controls {
-	display:block;
+input[type="radio"], 
+input[type="checkbox"] {
+	margin: 4px 0 0;
 }
-form .control-group label {
+
+.checkbox input[type='checkbox'],
+.radio input[type='radio'] {
+	display: inline-block;
+	float: left;
+	margin: 0;
+	margin-top: 4px;
+	margin-left: -20px;
+	vertical-align: middle;
+}
+
+label.checkbox, 
+label.radio {
+	float: none;
+	text-align: left;
+	display: block;
+	min-height: 20px;
+	line-height: 20px;
+	padding-left: 20px;
+	padding-top: 5px;
+	margin-bottom: 5px;
+}
+
+label {
 	text-align: left;
 	display: block;
 	padding-top: 7px;
-	margin-bottom: 6px;
-}
-form .control-group label.checkbox, 
-form .control-group label.radio {
-	float: none;
-	text-align: left;
-	display: inline;
-	padding-top: 7px;
-	margin-bottom: 6px;
+	margin-bottom: 7px;
 }
 
-/*Form-horizontal*/
-form.form-horizontal .control-group {
+label.checkbox.inline, 
+label.radio.inline {
+	display: inline-block;
+}
+
+/*Form-default*/
+.control-group {
 	display:block;
 	width: 100%;
 	text-align: left;
 	margin-bottom: 15px;
 }
 
-form.form-horizontal .control-group .controls {
+.controls {
+	display:block;
+}
+
+/*Form-horizontal*/
+.form-horizontal .control-group {
+	display:block;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+.form-horizontal .controls {
 	display:block;
 	margin-left:  120px;
 }
-form.form-horizontal .control-group label {
+.form-horizontal label {
 	float: left;
 	text-align: right;
 	width: 100px;
 	display: block;
-	padding-top: 7px;
-	margin-bottom: 6px;
 }
-form.form-horizontal .control-group label.checkbox, 
-form.form-horizontal .control-group label.radio{
+.form-horizontal label.checkbox, 
+.form-horizontal label.radio{
 	float: none;
 	text-align: left;
-	display: inline;
-	padding-top: 7px;
-	margin-bottom: 6px;
+	display: block;
+	vertical-align: middle;
 }
 
 /*Form-inline*/
-form.form-inline .control-group {
-	display:inline-block;
-	width: 100%;
-	text-align: left;
-	margin-bottom: 15px;
+.form-inline input,
+.form-inline select {
+	display: inline-block;
+	margin-bottom: 0;
+	vertical-align: middle;
 }
 
-form.form-inline .control-group .controls {
-	display:inline;
-	margin-left:  10px;
-}
-form.form-inline .control-group label {
-	float: none;
-	text-align: right;
-	margin-left: 10px;
+.form-inline label {
 	display: inline-block;
-	padding-top: 7px;
-	margin-bottom: 6px;
 }
-form.form-inline .control-group label.checkbox, 
-form.form-inline .control-group label.radio{
-	float: none;
-	text-align: left;
-	display: inline;
-	padding-top: 7px;
-	margin-bottom: 6px;
+
+.form-inline label.checkbox,
+.form-inline label.radio {
+	padding-left: 0;
+	margin-bottom: 5px;
+	vertical-align: middle;
 }
-form.form-inline input[type='submit'],
-form.form-inline input[type='button'],
-form.form-inline button,
-form.form-inline .button {
-	height: 28px;
-	vertical-align: top;
-	margin-left: 10px;
+
+.form-inline .checkbox input[type='checkbox'],
+.form-inline .radio input[type='radio'] {
+	display: inline-block;
+	float: left;
+	margin-left: 0px;
+	margin-right: 5px;
+}
+
+hr {
+	border: 0;
+	border-bottom: 1px solid #C4C2C2;
+  width: 95%;
 }
