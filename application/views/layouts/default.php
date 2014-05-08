@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <?php $this->load->view('partials/head'); ?>
-  <script>
+ <script>
 
-    var DCS = { BASE_URL: '<?= base_url(); ?>' };
+    var DCS = { BASE_URL: '<?= base_url(); ?>',BODY_CLSS: '<?=body_classes($controller, $action)?>' };
 
   </script>
+  <?php $this->load->view('partials/head'); ?>
   <title>{page_title}</title>
 </head>
 

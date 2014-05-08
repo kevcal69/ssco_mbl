@@ -46,7 +46,7 @@
 					<?=$module->title;?>
 				</div>
 				<div class="description">
-					<?=strip_tags(word_limiter($module->description, 20));?> 
+					<?=stripslashes(strip_tags(word_limiter($module->description, 20)))?> 
 				</div>
 
 			</div>
@@ -58,7 +58,7 @@
 				<li>
 					<span class= "topic">
 						<img id ="arrow" src="<?=base_url() . 'assets/images/module/module_default/arrow.png'?>">
-						<?=$module->title;?>
+						<?=stripslashes($module->title)?>
 					</span>
 				</li>
 			</ul>	

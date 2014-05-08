@@ -43,23 +43,36 @@
 		$module_title = $this->input->post('title');
 		$module_description = $this->input->post('description');		
 
-		$data =  array(
-			'title' => addslashes($module_title),
-			'description' => addslashes($module_description),
-			'content' => addslashes($str)
-		);
 
-		if ($this->mModule->create_module($data)) {
-			redirect('admin/module');
-		} else  {
-			show_404();
+			$data =  array(
+				'title' => addslashes($module_title),
+				'description' => addslashes($module_description),
+				'content' => addslashes($str)
+			);
+
+			if ($this->mModule->create_module($data)) {
+				redirect('admin/module');
+			} else  {
+				show_404();
+			}			
+		
+	}
+
+	function authenticate_content($str) {
+		if ($this->security->xss_clean($str, TRUE) === FALSE) {	
+			$this->session->set_flashdata('alert', 'Error: ');		
+			return false;
+		} else if (trim($str) === '') {
+			return false;
 		}
+		return true;
 	}
 
 	function modify_module() {
 		$str =  $this->input->post('editor1');
 		$module_title = $this->input->post('title');
 		$module_description = $this->input->post('description');
+		$id = $this->input->post('id');
 
 		$data =  array(
 			'title' => addslashes($module_title),
@@ -73,8 +86,12 @@
 		}		
 	}	
 
-	function delete() {
-
+	function delete($id) {
+		if ($this->mModule->delete_module($id)) {
+			redirect('admin/module');
+		} else  {
+			show_404();
+		}			
 	}	
 }
 

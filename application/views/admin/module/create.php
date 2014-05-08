@@ -1,5 +1,9 @@
 <script src="<?= base_url() . 'assets/plugins/ckeditor/ckeditor.js'; ?>"></script>
 <script src="<?= base_url() . 'assets/plugins/ckeditor/adapters/jquery.js'; ?>"></script>
+<?php if($this->session->flashdata('alert')): ?>
+<p class="alert text-error"><?=$this->session->flashdata('alert')?>s</p>
+<?php endif; ?>
+
 <div id ="editor-container">
 	<form  action = "<?=site_url('admin/module/create_module')?>" method = "POST">
 
@@ -20,7 +24,7 @@
 			<div class="control-group">
 				<label>Title</label>
 				<div class="controls">
-					<input id="text" name = "username" type = "text" placeholder = "Title">
+					<input id="text" name = "title" type = "text" placeholder = "Title">
 				</div>
 			</div>
 
@@ -30,7 +34,7 @@
 					<textarea name = "description"></textarea>	
 				</div>
 			</div>
-			<input type = 'submit' value = "Create Module" id = "c-module-button"> 
+			<input type = 'submit' value = "Save" class = "button-info" > 
 			
 		</div>
 	

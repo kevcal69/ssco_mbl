@@ -46,56 +46,64 @@
 }
 
  #module-container #grid-container .module-box {
-	width:  200px;
-	height: 300px;
-	margin: 30px 1px 10px 25px;
-	box-shadow: 0px 5px 15px -5px black;
+	width:  300px;
+	height: 200px;
 	display: inline-block;
+	background: rgba(85, 85, 85, 1);
 	vertical-align: top;
-	background: #f3f3f3;
-	-webkit-transition: box-shadow 1s; /* For Safari 3.1 to 6.0 */
-	transition: box-shadow 1s;
-}
- #module-container #grid-container .module-box:hover {
-	box-shadow: 0px 5px 25px -5px black;
+	border: 2px solid #dddddd;
+	overflow: hidden;
+	position: relative;
 }
 
+#module-container #grid-container .module-box .check {
+	float: right;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 25px 25px 0;
+	border-color: transparent #53b948 transparent transparent;
+	 -webkit-transform:rotate(360deg);
+}
  #module-container #grid-container .module-box .thumb {
-	margin: 0 auto;
-	margin-top: 15px;
-	width: 185px;
+	margin: 0 auto;;
 	background-color: white;
-	height: 135px;
+	height: 200px;
 	background-repeat: no-repeat;
-	border: 1px solid #aaaaaa;
 	background-size: 100%,100%;
 }
 
  #module-container #grid-container .module-box .mb-title {
-	font-size: 18px;
-	color: #555555;
+	font-size: 1.2rem;
+	height: 35px;
+	margin-top: -35px;
+	background: rgba(85, 85, 85, .7);
 	text-align: left;
-	padding: 5px;
+	padding: 5px 5px 5px 5px;
 	font-family: sans-serif;
-	width: 200px;
-	height: 40px;
-	margin-top: 5px;
+	width: 100%;
+	color: #f3f3f3;
 }
 
  #module-container #grid-container .module-box .description{
 	margin: 0 auto;
-	border-top: 1px solid #cccccc;
-	width: 200px;
+	border-top: 1px solid black;
+	width: 100%;
 	height: 70px;
-	margin-top: 12px;
+	background: rgba(85, 85, 85, .7);
 	padding: 5px;
 	font-size: 12px;
+	color: #f3f3f3;
 	font-family: "OpenSansRegular";
 	text-align: left;
-	color:#666666;
 	line-height: 1.5em;
 }
 
+#module-container #grid-container .module-box:hover .mb-title {
+	margin-top: -105px;
+	-webkit-transition: margin-top .1s linear .2s; /* For Safari 3.1 to 6.0 */
+	transition: margin-top .1s linear .2s;	
+}
   #module-container #list-container {
 	width: 100%;
 	height: 100%;
@@ -155,10 +163,7 @@
 	opacity: 1;
 }
 
-.module.index .module-box {
-	position: relative !important;
-	background-color: red;
-}
+
 .module.index .actions.grid {
 	width: inherit;
 	height: 0px;
@@ -199,8 +204,4 @@
 .module.create #editor-container  {
 	width: 100%;
 	margin-bottom: 20px;
-}
-
-.admin.create #editor-container form #c-module-button {
-	margin: 0;
 }

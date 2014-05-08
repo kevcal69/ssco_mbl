@@ -19,47 +19,53 @@ body.admin.index {
 .admin.index  #options-container .options {
 	background-color: #f3f3f3;
 	width: 200px;
-	height: 250px;
+	height: 200px;
 	display: inline-block;
 	margin: 10px;
 	margin-top: 50px;
-	border-radius: 20px;
-	border: 5px solid #4D924D;
+	border: 1px solid #dddddd;
 	vertical-align: top;
 	cursor: pointer;
-}
-
-.admin.index  #options-container .options:hover {
-	box-shadow: 0px 0px 15px 2px  #ADFF2F, 0px 5px 20px black;
-	-webkit-transition: box-shadow 1.5s; /* For Safari 3.1 to 6.0 */
-	transition: box-shadow 1.5s;	
+	overflow: hidden;
 }
 
 .admin.index  #options-container .options .thumb {
 	width: 140px;
 	height: 140px;
-	border: 3px solid black;
 	margin: 0 auto;
 	margin-top: 20px;
 	border-radius: 10px;
-	border: 3px solid #4D924D;
 	background-position: 100%,100%;
 	background-repeat: no-repeat;
 }
 
 .admin.index  #options-container .options .action {
 	font-family: "ConsolasRegular";
-	color: #666666;
-	margin: 5px 0px;
-	font-weight: bold;
-	text-decoration: underline;
+	color: white;
+	margin: 23px 0px 0px 0px;
+	background: rgba(81, 142, 48, .9);
+	font-size: 1.2rem;
 }
 
+.admin.index  #options-container .options .text-options {
+	overflow: hidden;
+	-webkit-transition: margin-top .6s; /* For Safari 3.1 to 6.0 */
+	transition: margin-top .6s;
+	margin-top: 86px;
+	z-index: -5;
+}
+
+.admin.index  #options-container .options:hover .text-options {
+	margin-top: -50px;
+	z-index: 1;
+}
 .admin.index  #options-container .options .des {
 	font-family: "ConsolasRegular";
-	font-size: 15px;
-	color: #666666;
-	margin: 5px 0px;
+	font-size: 1rem;
+	color: white;
+	margin: 0px 0px;
+	padding: 5px;
+	background: rgba(81, 142, 48, .9);
 }
 
 .admin.index  #options-container .options a {
