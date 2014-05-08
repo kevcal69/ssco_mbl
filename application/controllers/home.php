@@ -3,9 +3,9 @@
 class Home extends MBL_Controller {
     function __construct() {
         parent::__construct();
-	if ($this->session->userdata('role') == 'admin') {
-		redirect('admin');
-	}
+	// if ($this->session->userdata('role') == 'admin') {
+	// 	redirect('admin');
+	// }
         $this->load->model('Module_model','mModel');
 
 

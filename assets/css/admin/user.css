@@ -1,136 +1,34 @@
 /*General*/
-.user {
-	font-family: "Arial";
-	font-size: 14px;
-}
 .user a {
 	text-decoration: none;
 }
 
-.user h1 {
-	text-align: left;
-	color: #54b948;
-	font-size: 20px;
-	font-family: "LatoHairline";
-	font-weight: bold;
-}
-
-.user hr {
-	border: 0;
-  height: 1px;
-  margin: 8px -20px;
-  background: black;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, #4D924D));
-}
-
-.user p.error {
-  font-size: .75em;
-  color: red;
+.user p.text-error {
+  font-size: .75rem;
   margin: 3px 3px 3px 5px;
 }
-.user p.notice {
-  font-size: .75em;
-	color: #4D924D;
+.user p.text-info {
+  font-size: .75rem;
   margin: 3px 3px 3px 5px;
 }
 .user p.warning {
-	font-size: .75em;
-	color: #F89407;
+	font-size: .75rem;
   margin: 3px 3px 3px 5px;
-}
-
-.user button, .user .button {
-	display: inline-block;
-	margin: 0;
-	border-radius: 5px;
-	border: 1px solid #4D924D;
-	height: 30px;
-	line-height: 18px;
-	padding: 5px 15px;
-	/*box-shadow: inset 0 1px 0  rgba(0, 0, 0, 0.05);*/
-	/*background-image: linear-gradient(to bottom, #62c462, #51a351);*/
-	/*background-repeat: repeat-x;*/
-	background-color: #51a351;
-	color: white;
-	font-family: "Arial";
-	font-size: 14px;
-	text-align: center;
-	vertical-align: baseline;
-
-	/*text-shadow: rgba(0, 0, 0, 0.247059) 0px 0px 2px;*/
-	cursor: pointer;
-	transition: background-color 0.2s ease-in-out;
-}
-
-.user button:hover, .user .button:hover {
-	background-color: #62c462;
-}
-
-.user .button.danger {
-	background-color: #DB4038;
-	border: 1px solid #BD362F;
-}
-.user .button.danger:hover {
-	background-color: #FF8580;
 }
 
 /*Form*/
 
-.user .form-container {
+.user .user-container {
 	min-height: 200px;
 	min-width: 450px;
 	vertical-align: top;
 	display: inline-block;
 	background: #f4f5f6;
-	padding: 10px 20px 10px 20px;
+	padding: 20px 20px 10px 20px;
 	margin: 20px 0px;
-
-	border-radius: 15px;
-	border: 2px solid #4D924D;
+	border: 1px solid #C5C5C5;
 }
 
-.user .form-container form {
-	display: block;
-	margin: 15px 0px;
-	padding: 15px 15px 0px 15px;
-}
-
-.user .form-container h1 {
-	margin: 0px -10px;
-}
-
-.user .form-container .field {
-	/*position: relative;*/
-	width: 200px;
-	height: 28px;
-	border-radius: 3px;
-	border: 1px solid #4D924D;
-	display:inline;
-	vertical-align: top;
-	margin: 0;
-	padding: 0px 0px 0px 6px;
-	font-size: inherit;
-}
-.user .form-container .control-group {
-	display:block;
-	width: 100%;
-	text-align: left;
-	margin-bottom: 15px;
-}
-
-.user .form-container .control-group .controls {
-	display:block;
-	margin-left:  120px;
-}
-.user .form-container .control-group label {
-	float: left;
-	text-align: right;
-	width: 100px;
-	vertical-align: top;
-	display: block;
-	padding-top: 7px;
-	margin-bottom: 6px;
-}
 
 /*Functions*/
 .user #functions-container {
@@ -142,181 +40,69 @@
 }
 
 .user #functions-container .function {
-	background-color: #f3f3f3;
 	width: 200px;
 	height: 200px;
 	display: inline-block;
 	margin: 10px;
 	margin-top: 50px;
-	border-radius: 20px;
-	border: 5px solid #4D924D;
+	border: 1px solid #dddddd;
 	vertical-align: top;
 	cursor: pointer;
-}
-
-.user #functions-container .function:hover {
-	box-shadow: 0px 0px 15px 2px  #60AE44, 0px 5px 20px black;
-	transition: box-shadow 0.5s;	
+	overflow: hidden;
 }
 
 .user #functions-container .function .thumb {
 	width: 140px;
 	height: 140px;
-	border: 3px solid black;
 	margin: 0 auto;
 	margin-top: 20px;
 	border-radius: 10px;
-	border: 3px solid #4D924D;
 	background-position: 100%,100%;
 	background-repeat: no-repeat;
-}
-
-.user #functions-container .function .thumb .overlay {
-	position: relative;
-	top:52px;
-	left:65px;
-	width: 64px;
-	height: 64px;
-	background-size:64px 64px;
-	background-position: 100%,100%;
-	background-repeat: no-repeat;
-	overflow: hidden;
-	padding-top: 7.6px;
-}
-
-.user #functions-container .function .thumb .overlay img{
-	width: 64px;
-	height: 64px;
 }
 
 .user #functions-container .function .action {
 	font-family: "ConsolasRegular";
-	color: #666666;
-	margin: 5px 0px;
-	font-weight: bold;
-}
-
-/*Function result*/
-.user #function-result-container {
-	min-height: 200px;
-	min-width: 450px;
-	vertical-align: top;
-	display: inline-block;
-	background: #f4f5f6;
-	margin: 20px 0px;
+	color: white;
+	background: rgba(81, 142, 48, .9);
+	font-size: 1.2rem;
 	overflow: hidden;
-	padding: 10px 20px 10px 20px;
-	margin: 20px 0px;
-	border-radius: 10px;
+	z-index: -5;
+	margin-top: 50px;
+	padding-top: 15px;
+	height: 60px;
+
+	transition: margin-top .4s;
 }
 
-.user #function-result-container #message-content {
-	margin: 15px 0;
-	padding: 10px;
+.user #functions-container .function:hover .action {
+	margin-top: -20px;
+	z-index: 1;
 }
 
-.user #function-result-container #message-content {
-	margin: 15px 0;
-	padding: 10px;
-}
+/*Function result and Delete confirm*/
 
-.user #function-result-container #message-content p {
-  font-size: 1em;
-  margin: 3px 3px 3px 5px;
-}
-
-/*Delete confirm*/
-.user #delete-confirm-container {
-	min-height: 200px;
-	min-width: 450px;
-	vertical-align: top;
-	display: inline-block;
-	background: #f4f5f6;
-	margin: 20px 0px;
-	overflow: hidden;
-	padding: 10px 20px 10px 20px;
-	margin: 20px 0px;
-	border-radius: 10px;
-}
-
+.user #function-result-container #message-content,
 .user #delete-confirm-container #message-content {
 	margin: 15px 0;
 	padding: 10px;
 }
 
-.user #delete-confirm-container #message-content {
-	margin: 15px 0;
-	padding: 10px;
-}
-
+.user #function-result-container #message-content p,
 .user #delete-confirm-container #message-content p {
-  font-size: 1em;
-  margin: 3px 3px 3px 5px;
+  font-size: 1rem;
 }
 
 /*View all users*/
-.user #users-container {
-	min-height: 200px;
-	min-width: 450px;
-	vertical-align: top;
-	display: inline-block;
-	background: #f4f5f6;
-	margin: 20px 0px;
-	overflow: hidden;
-	padding: 20px 20px 10px 20px;
-	margin: 20px 0px;
-	border-radius: 10px;
-/*
-	border: 2px solid #4D924D;*/
-}
-
 .user #users-container table {
 	margin-top: 10px;
-	width:  100%;
-	border: 2px solid #4D924D;
 	border-left: 0;
 	border-collapse: separate;
-	border-radius: 5px;
 	border-spacing: 0;
 }
 
-.user #users-container table th, .user #users-container table td {
-	padding: 8px;
-	line-height: 20px;
-	text-align: left;
-	border-left: 2px solid #4D924D;
-	border-top: 2px solid #4D924D;
-}
-
-.user #users-container table th {
-	font-weight: bold;
-}
-
-.user #users-container table thead:first-child tr:first-child th:first-child {
-	border-top-left-radius: 5px;
-}
-
-.user #users-container table thead:first-child tr:first-child th:last-child {
-	border-top-right-radius: 5px;
-}
-
-.user #users-container table thead:first-child tr:first-child th {
-	border-top: 0;
-	border-left: 2px solid #4D924D;
-}
-
-.user #users-container table tbody:last-child tr:last-child td:first-child {
-	border-bottom-left-radius: 5px;
-}
-
-.user #users-container table tbody:last-child tr:last-child td:last-child {
-	border-bottom-right-radius: 5px;
-}
-
-.user #users-container h1 {
-	display: inline-block;
-	float: left;
-	margin-bottom: 10px;
+.user #users-container table td {
+	background-color: white;
 }
 
 .user #users-container .button {
@@ -326,34 +112,23 @@
 	margin-left: 5px;
 }
 
-/*First name and last name fields*/
-.user #create-form, .user #edit-form {
-	transition: all .2s linear;
+.user .user-container .view-title-bar {
+	min-height: 40px;
+	width: 100%;
+	display: block;
 }
-.user #create-form .trainee-name, .user #edit-form .trainee-name {
-	display: none;
+
+.user .user-container .view-title-bar #view-legend {
+	width: auto;
+	font-size: 20px;
+	line-height: 30px;
+	display: inline !important;
+	float: left;
+	margin-bottom: 10px;
+	border-bottom: none !important;
 }
 
 /*View User*/
-.user #view-container {
-	/*min-height: 200px;*/
-	min-width: 400px;
-	vertical-align: top;
-	display: inline-block;
-	background: #f4f5f6;
-	margin: 20px 0px;
-	overflow: hidden;
-	padding: 10px 20px 10px 20px;
-	margin: 20px 0px;
-	border-radius: 10px;
-}
-
-.user #view-container h1 {
-	display: inline-block;
-	float: left;
-	margin: 5px 0;
-}
-
 .user #view-container .button {
 	display: inline-block;
 	float: right;
@@ -368,17 +143,11 @@
 .user #view-container .control-group {
 	display:block;
 	width: 100%;
-	text-align: left;
+	margin-bottom: 10px;
 }
 
 .user #view-container label {
-	/*float: left;*/
-	text-align: right;
-	width: 100px;
-	vertical-align: top;
 	display: inline-block;
-	padding-top: 7px;
-	margin-bottom: 6px;
 }
 
 .user #view-container label.label {
@@ -387,8 +156,15 @@
 
 .user #view-container label.value {
 	margin-left:  10px;
-
+	float: none;
 	text-align: left;
-	/*height: 28px;*/
 
+}
+
+/*First name and last name fields*/
+.user #create-form, .user #edit-form {
+	transition: all .1s linear;
+}
+.user #create-form .trainee-name, .user #edit-form .trainee-name {
+	display: none;
 }
