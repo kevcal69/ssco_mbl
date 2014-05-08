@@ -14,6 +14,35 @@ var modules = {
 		// $("#list-container").show();
 		// $("#grid-container").hide();		
 
+		$flag_m = '1';
+		$flag_c = 200;
+
+		$('.module-box').click (function () {
+			if($flag_m == '1') {
+				$('.module-box').css('border','2px solid #dddddd');
+				$('.module-box').height(200);
+				$('.check').remove();
+				$('.mb-title').removeClass('mod_active');
+				$('.actions').removeClass('active');
+
+				$(this).height($(this).height() + 40);
+				console.log(""+$(this).height());
+				$(this).children('.actions').addClass('active');
+				$(this).children('.mb-title').addClass('mod_active');
+				$(this).prepend('<div class = "check"></div>');
+				$(this).css('border', '4px solid #54B948');					
+				$flag_m = '0';
+			} else {
+				$('.module-box').css('border','2px solid #dddddd');
+				$('.module-box').height(200);
+				$('.check').remove();
+				$('.mb-title').removeClass('mod_active');
+				$('.actions').removeClass('active');
+				$flag_m = '1';
+				
+			}
+
+		}); 
 
 	},
 	toggle_to_grid: function() {
@@ -33,8 +62,7 @@ var modules = {
 		$('.mb-title').css('margin-top', '-5px');
 		$('.check').remove();
 
-		$($el).bind( "mouseenter mouseleave" );
-
+		$($el).unbind( "click" );
 
 		$($el).prepend('<div class = "check"></div>');
 		$($el).css('border', '4px solid #54B948');

@@ -13,9 +13,8 @@
 	</div>
 	<div id="grid-container">
 		<?php foreach ($modules as $module): ?>
-			<div class = "module-box" onclick="modules.box_click(this)">
+			<div class = "module-box" >
 				<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);">
-
 				</div>
 				<div class = "mb-title">
 					<?=$module->title;?>

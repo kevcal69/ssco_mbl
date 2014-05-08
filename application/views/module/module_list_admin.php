@@ -10,8 +10,18 @@
 	</div>
 	<div id="grid-container">
 		<?php foreach ($modules as $module): ?>
-			<div class = "module-box">
-				<?php if ($this->session->userdata('role')): ?>
+			<div class = "module-box">	
+				<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);">
+					<img src="">
+
+				</div>
+				<div class = "mb-title">
+					<?=$module->title;?>
+				</div>
+				<div class="description">
+					<?=stripslashes(strip_tags(word_limiter($module->description, 20)))?> 
+				</div>
+			<?php if ($this->session->userdata('role')): ?>
 					<?php if ($this->session->userdata('role') === "admin"): ?>
 						<div class="actions grid ">
 							<ul>
@@ -37,19 +47,10 @@
 							</ul>
 						</div>									
 					<?php endif; ?>
-				<?php endif; ?>		
-				<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);">
-					<img src="">
-
-				</div>
-				<div class = "mb-title">
-					<?=$module->title;?>
-				</div>
-				<div class="description">
-					<?=stripslashes(strip_tags(word_limiter($module->description, 20)))?> 
-				</div>
+				<?php endif; ?>				
 
 			</div>
+
 		<?php endforeach; ?>			
 	</div>
 	<div id="list-container">
