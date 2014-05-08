@@ -1,9 +1,9 @@
 $(document).ready(function() {
-  // setInterval(function() {refresh_page()}, 1000);
-  setTimeout(function(){hide.notes_tips()},30000);
-  trainee.toggle();
-  view_all.autoReload();
-
+	modules.initialize();
+	// setInterval(function() {refresh_page()}, 1000);
+	hide.initialize();
+	trainee.toggle();
+	view_all.autoReload();
 });
 
 var modules = {
@@ -26,17 +26,35 @@ var modules = {
 	},
 	toggle_title: function() {
 		$("#title-create").show();
-	},	
+	},
+
+	box_click: function($el) {
+		$('.module-box').css('border','2px solid #dddddd');
+		$('.mb-title').css('margin-top', '-5px');
+		$('.check').remove();
+
+		$($el).bind( "mouseenter mouseleave" );
+
+
+		$($el).prepend('<div class = "check"></div>');
+		$($el).css('border', '4px solid #54B948');
+		$($el).children('.mb-title').css('margin-top', '-105px');
+	}
 };
 
 function refresh_page() {
 	location.reload();
 }
 var hide = {
+	initialize: function() {
+		if (DCS.BODY_CLSS === "module create" || DCS.BODY_CLSS === "module modify")
+			setTimeout(function(){hide.notes_tips()},30000);
+	},
+
 	notes_tips: function() {
 		 var editor_height =  parseInt(edi.ui.space( 'contents' ).getStyle( 'height' ).replace("px","") )+  parseInt($("#instruction").height());
 		$("#instruction").fadeOut();	
-		edi.resize( '100%', editor_height , true )		
+		edi.resize( '100%', editor_height , true );	
 	}
 }
 

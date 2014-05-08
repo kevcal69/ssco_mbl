@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://192.168.233.133/ssco_mbl';
+$config['base_url']	= 'http://192.168.78.135/ssco_mbl';
 
 /*
 |--------------------------------------------------------------------------

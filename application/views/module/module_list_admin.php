@@ -15,9 +15,9 @@
 					<?php if ($this->session->userdata('role') === "admin"): ?>
 						<div class="actions grid ">
 							<ul>
-								<a href="<?=base_url() . 'admin/module/view/'.$module->id?>"><li>View</li></a>
-								<a href="<?=base_url() . 'admin/module/modify/'.$module->id?>"><li>Modify</li></a>
-								<a href="<?=base_url() . 'admin/module/delete/'.$module->id?>"><li>Delete</li></a>
+								<a href="<?=base_url() . 'admin/module/view/'.$module->id?>"><li><button type="button" class = "button-info">View</button></li></a>
+								<a href="<?=base_url() . 'admin/module/modify/'.$module->id?>"><li><button type="button" class = "button-warning">Modify</button></li></a>
+								<a href="<?=base_url() . 'admin/module/delete/'.$module->id?>"><li><button type="button" class = "button-danger">Delete</button></li></a>
 							</ul>
 						</div>	
 						<?php elseif ($this->session->userdata('role') === "trainee"): ?>
@@ -46,7 +46,7 @@
 					<?=$module->title;?>
 				</div>
 				<div class="description">
-					<?=strip_tags(word_limiter($module->description, 20));?> 
+					<?=stripslashes(strip_tags(word_limiter($module->description, 20)))?> 
 				</div>
 
 			</div>
@@ -58,7 +58,7 @@
 				<li>
 					<span class= "topic">
 						<img id ="arrow" src="<?=base_url() . 'assets/images/module/module_default/arrow.png'?>">
-						<?=$module->title;?>
+						<?=stripslashes($module->title)?>
 					</span>
 				</li>
 			</ul>	

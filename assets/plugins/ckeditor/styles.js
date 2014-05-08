@@ -64,7 +64,7 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: 'Typewriter',		element: 'tt' },
 
 	{ name: 'Computer Code',	
-	element: 'code',
+	element: 'pre',
 	styles: {
 		'background-color':'#eeeeee',
 		'padding':'5px 5px 5px 5px',

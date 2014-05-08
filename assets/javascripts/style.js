@@ -4,13 +4,13 @@ $(document).ready(function() {
 
 var code = {
 	initialize: function() {
-		$('code').css('background-color', '#eeeeee');
-		$('code').css('padding', '10px 10px 10px 10px');
-		$('code').css('color', '#284c7e');
-		$('code').css('font-size', '12px');
-		$('code').css('color', '#284c7e');
-		$('code').css('border-left', '3px solid orange');
-		$('code').css('margin-left', '20px');		
+		// $('code').css('background-color', '#eeeeee');
+		// $('code').css('padding', '10px 10px 10px 10px');
+		// $('code').css('color', '#284c7e');
+		// $('code').css('font-size', '12px');
+		// $('code').css('color', '#284c7e');
+		// $('code').css('border-left', '3px solid orange');
+		// $('code').css('margin-left', '20px');		
 	}
 }
 

@@ -19,5 +19,5 @@ class Home extends MBL_Controller {
 		$this->parser->parse('layouts/default', $data);
 	}
 }
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file home.php */
+/* Location: ./application/controllers/home.php */

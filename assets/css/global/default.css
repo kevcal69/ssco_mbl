@@ -33,3 +33,9 @@ html, body {
 .hidden {
 	display: none;
 }
+
+a,
+a:visited, 
+a:hover{
+	text-decoration: none;
+}

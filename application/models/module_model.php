@@ -35,6 +35,9 @@ class Module_model extends CI_Model {
 			return $this->db->affected_rows();
 		}
 	}	
+	function delete_module($id) {
+		return $this->db->delete('module',array('id' => $id));
+	}
 }
 
 /* End of file session.php */
