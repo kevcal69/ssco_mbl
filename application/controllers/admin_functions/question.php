@@ -12,9 +12,9 @@
       			$this->load->helper('application_helper');
 	    }	
 
-	function create() {
+	function create($id) {
 		$data['page_title'] = "SSCO Module Base Learning";
-		$data['body_content'] = $this->load->view('admin/question/create',array('modules' => $this->mModule->get_module_entries()),TRUE); // kevcal
+		$data['body_content'] = $this->load->view('admin/question/create',array('module' => $this->mModule->fetch_module($id)),TRUE); // kevcal
 		$this->parser->parse('layouts/default', $data);
 	}	
 }
