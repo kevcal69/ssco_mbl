@@ -163,7 +163,6 @@ button,
 .button {
 	display: inline-block;
 	margin: 0;
-	margin-right: 5px;
 	border: none;
 	padding: 6px 15px 5px 15px;
 	background-color: #949393;
