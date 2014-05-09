@@ -1,10 +1,12 @@
 <div id="options">
 	<div id="side-bar">
 		<h3>Quick Links</h3>
+		<div id="actions-list">
 			<ul>
 				<li><i class = "fa fa-plus-circle fa-small2x"></i><span>Users</span></li>
 				<li><i class = "fa fa-bars fa-small2x"></i><span>Modules</span></li>
-			</ul>		
+			</ul>	
+		</div>	
 		<h3>Options</h3>
 		<div id="module-profile">
 			<div id = "thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);"></div>
@@ -21,7 +23,7 @@
 			
 		</div>
 		<h3>Actions</h3>
-		<div id="actions">
+		<div id="actions-list">
 			<ul>
 				<li><i class = "fa fa-plus-circle fa-small2x"></i><span>Add Questions</span></li>
 				<li><i class = "fa fa-bars fa-small2x"></i><span>List all Questions</span></li>

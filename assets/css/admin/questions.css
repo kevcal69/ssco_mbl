@@ -72,29 +72,30 @@
 	margin: 0px;
 }
 
-.question.create #options #side-bar #actions {
+.question.create #options #side-bar #actions-list {
 	width: 100%;
-	height: 200px;
+	min-height: 50px;
 }
 
-.question.create #options #side-bar #actions ul {
+.question.create #options #side-bar #actions-list ul {
 	margin: 0;
 	padding: 0;
 }
 
-.question.create #options #side-bar #actions ul li {
+.question.create #options #side-bar #actions-list ul li {
 	width: 100%;
 	padding: 0px 0px 0px 15px;
 	height: 35px;
 	display: block;
 	margin: 0px;
 	vertical-align: top;
+	cursor: pointer;
 } 
-.question.create #options #side-bar #actions ul li:hover {
+.question.create #options #side-bar #actions-list ul li:hover {
 	background: ;
 }
 
-.question.create #options #side-bar #actions ul li span {
+.question.create #options #side-bar #actions-list ul li span {
 	font-size: .9em;
 	margin: 10px;
 	display: inline-block;
