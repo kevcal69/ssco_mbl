@@ -25,9 +25,11 @@
 					<?php if ($this->session->userdata('role') === "admin"): ?>
 						<div class="actions grid ">
 							<ul>
-								<a href="<?=base_url() . 'admin/module/view/'.$module->id?>"><li><button type="button" class = "button-info">View</button></li></a>
+								<a href="<?=base_url() . 'admin/module/view/'.$module->id?>"><li><button type="button" class = "button-primary">View</button></li></a>
+								<a href="<?=base_url() . 'admin/question/create/'.$module->id?>"><li><button type="button" class = "button-info">Test Q</button></li></a>
 								<a href="<?=base_url() . 'admin/module/modify/'.$module->id?>"><li><button type="button" class = "button-warning">Modify</button></li></a>
 								<a href="<?=base_url() . 'admin/module/delete/'.$module->id?>"><li><button type="button" class = "button-danger">Delete</button></li></a>
+
 							</ul>
 						</div>	
 						<?php elseif ($this->session->userdata('role') === "trainee"): ?>

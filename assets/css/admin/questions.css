@@ -1,0 +1,6 @@
+.question.create #options{
+	width: 100%;
+	height: inherit;
+	border: 1px solid black;
+	text-align: left;
+}

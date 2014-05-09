@@ -1,8 +1,4 @@
 /*Icons*/
-
-.icon.icon-delete {
-	height: 100%;
-	width: 100%;
-	/*background-color: red;*/
-	background:url('../../images/icons/modern_ui_icons/light/appbar.user.delete.png') no-repeat;
+i {
+	display: inline-block !important;	
 }

@@ -42,6 +42,8 @@ $route['admin/module/(:any)'] = 'admin_functions/module/$1';
 $route['admin/module'] = 'admin_functions/module';
 $route['admin/user/(:any)'] = 'admin_functions/user/$1';
 $route['admin/user'] = 'admin_functions/user';
+$route['admin/question'] = 'admin_functions/question';
+$route['admin/question/(:any)'] = 'admin_functions/question/$1';
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 

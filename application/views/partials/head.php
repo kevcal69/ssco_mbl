@@ -19,6 +19,7 @@
 
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/admin/admin.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/admin/user.css'; ?>" />
+<link rel="stylesheet" href="<?= base_url() . 'assets/css/admin/questions.css'; ?>" />
 
 
 
@@ -29,4 +30,5 @@
 <script src="<?= base_url() . 'assets/javascripts/style.js'; ?>"></script>
 
 <!--plugins-->
-
+<link rel="stylesheet" href="<?= base_url() . 'assets/plugins/fa-icons/css/font-awesome.css'; ?>" />
+<link rel="stylesheet" href="<?= base_url() . 'assets/plugins/fa-icons/css/font-awesome.min.css'; ?>" />
