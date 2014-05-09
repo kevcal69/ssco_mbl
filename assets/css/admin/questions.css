@@ -1,6 +1,102 @@
 .question.create #options{
 	width: 100%;
 	height: inherit;
-	border: 1px solid black;
 	text-align: left;
+	margin-bottom: 20px;
 }
+
+.question.create #options #side-bar {
+	width: 200px;
+	font-family: "OpenSansLight" !important;
+	height: inherit;
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid #e6e6e6;
+	background: white;
+}
+
+.question.create #options #side-bar h3 {
+	margin: 0 !important;
+	background: #54B948;
+	padding: 5px 0px 5px 10px !important;
+	font-weight: normal;	
+	color: #ffffff;
+}
+
+.question.create #options #side-bar * {
+	display: block;
+}
+
+.question.create #options #side-bar #module-profile {
+	width: 100%;
+	height: 190px;
+	overflow: hidden;
+	border-left: none;
+}
+
+.question.create #options #side-bar #module-profile #thumb {
+	width: 200px;
+	height: 150px;
+	background-size: 100%, 100%;
+}
+
+.question.create #options #side-bar #module-profile #module-title {
+	width: 100%;
+	min-height: 20px;
+	margin-top: 0px;
+	padding: 5px;
+	color: black;
+}
+
+.question.create #options #side-bar #module-stat {
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #e6e6e6;	
+	padding-left: 10px;
+}
+.question.create #options #side-bar #module-stat ul {
+	margin: 0;
+	padding: 0;
+}
+
+.question.create #options #side-bar #module-stat ul li {
+	width: 100%;
+	height: 20px;
+	padding: 5px;
+}
+
+.question.create #options #side-bar #module-stat ul li span {
+	font-size: .8rem;
+	text-align: right;
+	display: inline-block;
+	margin: 0px;
+}
+
+.question.create #options #side-bar #actions {
+	width: 100%;
+	height: 200px;
+}
+
+.question.create #options #side-bar #actions ul {
+	margin: 0;
+	padding: 0;
+}
+
+.question.create #options #side-bar #actions ul li {
+	width: 100%;
+	padding: 0px 0px 0px 15px;
+	height: 35px;
+	display: block;
+	margin: 0px;
+	vertical-align: top;
+} 
+.question.create #options #side-bar #actions ul li:hover {
+	background: ;
+}
+
+.question.create #options #side-bar #actions ul li span {
+	font-size: .9em;
+	margin: 10px;
+	display: inline-block;
+}
+

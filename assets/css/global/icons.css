@@ -2,3 +2,23 @@
 i {
 	display: inline-block !important;	
 }
+.fa-small {
+	font-size: .6em;
+}
+.fa-small2x {
+	font-size: .8em;
+}
+.fa-small3x {
+	font-size: .9em;
+}
+
+.icon-box-nt {
+	width: 15px;
+	margin: 0px 10px 0px 10px;
+	vertical-align: top;
+}
+
+.icon-box {
+	margin: 5px 10px 0px 10px;
+	vertical-align: top;
+}
