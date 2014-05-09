@@ -25,10 +25,10 @@
 		    <td><?php echo $user['role'];?></td>
 				<td>
 					<a href="edit/<?php echo $user['username'];?>">
-						edit
+						<span style="font-size:1.2rem;">&#x1f4dd;</span>
 					</a>
 					<a href="delete/<?php echo $user['username'];?>">
-						delete
+						<span style="font-size:1.2rem;">&#x2716;</span>
 					</a>
 				</td>
 		  </tr>
