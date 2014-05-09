@@ -1,3 +1,10 @@
+<div id="sidebar">
+  <ul class="nav nav-pills nav-stacked">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">Profile</a></li>
+    <li><a href="#">Messages</a></li>
+  </ul>
+</div>
 <div id="functions-container">
 	<div class="function">
 		<a href = "user/create">

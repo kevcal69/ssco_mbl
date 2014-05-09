@@ -25,10 +25,10 @@
 		    <td><?php echo $user['role'];?></td>
 				<td>
 					<a href="edit/<?php echo $user['username'];?>">
-						<span style="font-size:1.2rem;">&#x1f4dd;</span>
+						<i class="fa fa-edit fa-lg" title="Edit"></i>
 					</a>
 					<a href="delete/<?php echo $user['username'];?>">
-						<span style="font-size:1.2rem;">&#x2716;</span>
+						<i class="fa fa-trash-o fa-lg" title="Delete"></i>
 					</a>
 				</td>
 		  </tr>
