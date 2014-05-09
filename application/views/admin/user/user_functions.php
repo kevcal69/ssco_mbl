@@ -1,8 +1,10 @@
 <div id="sidebar">
   <ul class="nav nav-pills nav-stacked">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">Messages</a></li>
+    <li><a href="#">Home</a></li>
+    <li class="active"><a href="#">Users</a></li>
+    <li><a href="#">Modules</a></li>
+    <li><a href="#">Questions</a></li>
+    <li><a href="#">Tests</a></li>
   </ul>
 </div>
 <div id="functions-container">

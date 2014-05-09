@@ -32,11 +32,13 @@
 
 /*Functions*/
 .user #functions-container {
-	width: 1000px;
+	/*float: right;*/
+	width: 800px;
 	min-height: 350px;
 	margin: 0 auto;
-	padding: 20px 20px 20px 20px;
+	margin-left: 200px;
 	margin-bottom: 20px;
+	padding: 20px 20px 20px 20px;
 }
 
 .user #functions-container .function {
@@ -44,7 +46,7 @@
 	height: 200px;
 	display: inline-block;
 	margin: 10px;
-	margin-top: 50px;
+	margin-top: 0px;
 	border: 1px solid #dddddd;
 	vertical-align: top;
 	cursor: pointer;
@@ -56,7 +58,6 @@
 	height: 140px;
 	margin: 0 auto;
 	margin-top: 20px;
-	border-radius: 10px;
 	background-position: 100%,100%;
 	background-repeat: no-repeat;
 }
@@ -163,4 +164,12 @@
 }
 .user #create-form .trainee-name, .user #edit-form .trainee-name {
 	display: none;
+}
+
+/*Sidebar*/
+.user #sidebar {
+	/*float: left;*/
+	position: fixed;
+	width: 200px;
+	border: 1px solid #dddddd;
 }
