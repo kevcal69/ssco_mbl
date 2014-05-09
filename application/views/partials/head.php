@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/global/header.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/global/footer.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/global/default.css'; ?>" />
-<link rel="stylesheet" href="<?= base_url() . 'assets/css/global/animations.css'; ?>" />
+<link rel="stylesheet" href="<?= base_url() . 'assets/css/global/icons.css'; ?>" />
 
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/global-contents/layouts.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/global-contents/module.css'; ?>" />
