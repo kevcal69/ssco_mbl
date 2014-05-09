@@ -25,10 +25,10 @@
 		    <td><?php echo $user['role'];?></td>
 				<td>
 					<a href="edit/<?php echo $user['username'];?>">
-						edit
+						<i class="fa fa-edit fa-lg" title="Edit"></i>
 					</a>
 					<a href="delete/<?php echo $user['username'];?>">
-						delete
+						<i class="fa fa-trash-o fa-lg" title="Delete"></i>
 					</a>
 				</td>
 		  </tr>

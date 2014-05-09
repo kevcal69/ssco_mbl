@@ -1,6 +1,8 @@
 <html>
 <head>
 	<link rel="stylesheet" href="template.css"/>
+<link rel="stylesheet" href="../plugins/fa-icons/css/font-awesome.css" />
+<link rel="stylesheet" href="../plugins/fa-icons/css/font-awesome.min.css" />
 </head>
 <body>
 	<div id="type">
@@ -89,8 +91,21 @@
           </div>
         </div>
         <div class="control-group">
+          <label>CheckBox</label>
           <div class="controls">
             <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="radio"><input type="radio">Radio</label>
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Radio</label>
+          <div class="controls">
+            <label class="radio"><input type="radio">Radio</label>
+            <label class="radio"><input type="radio">Radio</label>
+            <label class="radio"><input type="radio">Radio</label>
             <label class="radio"><input type="radio">Radio</label>
           </div>
         </div>
@@ -117,31 +132,19 @@
 		<form class="form-inline">
 			<fieldset>
 				<legend>Legend</legend>
-				<div class="control-group">
-					<label for = "username">Username</label>
-					<div class="controls">
-						<input id="username" name = "username" value="<?php echo set_value('username',$username); ?>" type = "text" placeholder = "Username" class="field">
-					</div>
-          <label for = "password">Password</label>
-          <div class="controls">
-            <input id="password" name = "password" value="<?php echo set_value('password',$password); ?>" type = "password" placeholder = "Password" class="field">
-            <input type="submit" value="Button">
-          </div>
-        </div>
-        <div class="control-group">
-          <div class="controls">
-            <label class="checkbox"><input type="checkbox">Check box</label>
-            <label class="radio"><input type="radio">Radio</label>
-          </div>
-          <label for = "select">Select</label>
-          <div class="controls">
-            <select id="select">
-              <option value="admin">Admin</option>
-              <option value="trainee">Trainee</option>
-              <option value="content_manager">Content Manager</option>
-            </select>
-          </div>          
-				</div>
+				<label for = "username">Username</label>
+				<input id="username" name = "username" value="<?php echo set_value('username',$username); ?>" type = "text" placeholder = "Username" class="field">
+        <label for = "password">Password</label>
+        <input id="password" name = "password" value="<?php echo set_value('password',$password); ?>" type = "password" placeholder = "Password" class="field">
+        <label for = "select">Select</label>
+        <select id="select">
+          <option value="admin">Admin</option>
+          <option value="trainee">Trainee</option>
+          <option value="content_manager">Content Manager</option>
+        </select>
+        <input type="submit" value="Button">
+        <label class="checkbox"><input type="checkbox">Check box</label>
+        <label class="radio"><input type="radio">Radio</label>
 			</fieldset>
 		</form>
 	</div>
@@ -164,12 +167,6 @@
           </div>
         </div>
         <div class="control-group">
-          <div class="controls">
-            <label class="checkbox"><input type="checkbox">Check box</label>
-            <label class="radio"><input type="radio">Radio</label>
-          </div>
-        </div>
-        <div class="control-group">
           <label for = "select">Select</label>
           <div class="controls">
             <select id="select">
@@ -177,6 +174,25 @@
               <option value="trainee">Trainee</option>
               <option value="content_manager">Content Manager</option>
             </select>
+          </div>
+        </div>
+        <div class="control-group">
+          <label>CheckBox</label>
+          <div class="controls">
+            <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="checkbox"><input type="checkbox">Check box</label>
+            <label class="radio"><input type="radio">Radio</label>
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Radio</label>
+          <div class="controls">
+            <label class="radio"><input type="radio">Radio</label>
+            <label class="radio"><input type="radio">Radio</label>
+            <label class="radio"><input type="radio">Radio</label>
+            <label class="radio"><input type="radio">Radio</label>
           </div>
         </div>
         <div class="control-group">
@@ -191,11 +207,95 @@
   <div id="buttons">
     <h2>Buttons</h2>
     <input type="submit" value="Input Button">
+    <a class="button">&lt;a&gt; button</a>
     <button>Default</button>
+    <button class="button-primary">Primary</button>
     <button class="button-warning">Warning</button>
     <button class="button-danger">Danger</button>
     <button class="button-info">Info</button>
     <button class="button-success">Success</button>
+  </div>
+  <div id="icons">
+    <h2>Icons - Font Awesome</h2>
+
+    <h3>Size</h3>
+    <p><i class="fa fa-camera-retro fa-lg"></i> fa-camera-retro fa-lg</p>
+    <p><i class="fa fa-camera-retro fa-2x"></i> fa-camera-retro fa-2x</p>
+    <p><i class="fa fa-camera-retro fa-3x"></i> fa-camera-retro fa-3x</p>
+    <p><i class="fa fa-camera-retro fa-4x"></i> fa-camera-retro fa-4x</p>
+    <p><i class="fa fa-camera-retro fa-5x"></i> fa-camera-retro fa-5x</p>
+
+    <h3>Fixed Width</h3>
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active"><a href="#"><i class="fa fa-home fa-fw"></i> Home</a></li>
+      <li><a href="#"><i class="fa fa-book fa-fw"></i> Library</a></li>
+      <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Applications</a></li>
+      <li><a href="#"><i class="fa fa-cogs fa-fw"></i> Settings</a></li>
+    </ul>
+
+
+    <h3>List Icons</h3>
+    <ul class="fa-ul">
+      <li><i class="fa-li fa fa-check-square"></i>List icons (like these)</li>
+      <li><i class="fa-li fa fa-check-square"></i>can be used</li>
+      <li><i class="fa-li fa fa-spinner fa-spin"></i>to replace</li>
+      <li><i class="fa-li fa fa-square"></i>default bullets in lists</li>
+    </ul>
+
+    <h3>Bordered & Pulled Icons</h3>
+    <i class="fa fa-quote-left fa-2x pull-left fa-border"></i>
+    Use a few styles together and you'll have easy pull quotes or a great introductory article icon.
+
+    <h3>Spinning Icons</h3>
+    <i class="fa fa-spinner fa-spin"></i>
+    <i class="fa fa-refresh fa-spin"></i>
+    <i class="fa fa-cog fa-spin"></i>
+
+    <h3>Rotated & Flipped</h3>
+    <i class="fa fa-shield"></i>&nbsp; normal<br>
+    <i class="fa fa-shield fa-rotate-90"></i>&nbsp; fa-rotate-90<br>
+    <i class="fa fa-shield fa-rotate-180"></i>&nbsp; fa-rotate-180<br>
+    <i class="fa fa-shield fa-rotate-270"></i>&nbsp; fa-rotate-270<br>
+    <i class="fa fa-shield fa-flip-horizontal"></i>&nbsp; fa-flip-horizontal<br>
+    <i class="fa fa-shield fa-flip-vertical"></i>&nbsp; icon-flip-vertical
+
+    <h3>Stacked Icons</h3>
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-square-o fa-stack-2x"></i>
+      <i class="fa fa-twitter fa-stack-1x"></i>
+    </span>
+    fa-twitter on fa-square-o<br>
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+    </span>
+    fa-flag on fa-circle<br>
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-square fa-stack-2x"></i>
+      <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+    </span>
+    fa-terminal on fa-square<br>
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-camera fa-stack-1x"></i>
+      <i class="fa fa-ban fa-stack-2x text-danger"></i>
+    </span>
+    fa-ban on fa-camera
+  </div>
+  <div id="nav">
+    <h2>Navigation</h2>
+    <h3>Pills</h3>
+    <h4>Normal</h4>
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Messages</a></li>
+    </ul>
+    <h4>Stacked</h4>
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Messages</a></li>
+    </ul>
   </div>
 </body>
 </html>
