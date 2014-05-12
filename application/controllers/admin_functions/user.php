@@ -18,44 +18,49 @@ class User extends MBL_Controller {
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 					array(
-						'content' => 'Users',
+						'content' => '<i class="fa fa-user"></i> Users',
 						'href' => base_url('admin/user'),
 						'active' => TRUE
 						),
 					array(
-						'content' => 'Modules',
+						'content' => '<i class="fa fa-book"></i> Modules',
 						'href' => base_url('admin/module'),
 						'active' => FALSE
 						),
 					array(
-						'content' => 'Questions',
+						'content' => '<i class="fa fa-question-circle"></i> Questions',
 						'href' => base_url('admin/question'),
 						'active' => FALSE
 						),
 					array(
-						'content' => 'Tests',
+						'content' => '<i class="fa fa-list"></i> Tests',
 						'href' => base_url('admin/test'),
 						'active' => FALSE
 						)
 					),
 				'actions' => array(
+					'home' => array(
+						'content' => '<i class="fa fa-home"></i> Home',
+						'href' => base_url('admin/user'),
+						'active' => FALSE
+						),
 					'create' => array(
-						'content' => 'Create User',
+						'content' => '<i class="fa fa-plus-square"></i> Create User',
 						'href' => base_url('admin/user/create'),
 						'active' => FALSE
 						),
 					'view' => array(
-						'content' => 'View Users',
+						'content' => '<i class="fa fa-search"></i> View Users',
 						'href' => base_url('admin/user/view'),
 						'active' => FALSE
 						),
 					'edit' => array(
-						'content' => 'Edit User',
+						'content' => '<i class="fa fa-edit"></i> Edit User',
 						'href' => base_url('admin/user/edit'),
 						'active' => FALSE
 						),
 					'delete' => array(
-						'content' => 'Delete User',
+						'content' => '<i class="fa fa-times"></i> Delete User',
 						'href' => base_url('admin/user/delete'),
 						'active' => FALSE
 						)
@@ -64,6 +69,7 @@ class User extends MBL_Controller {
     }	
 
 	public function index() {
+		$this->sidebar_content['actions']['home']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/user/user_functions','',TRUE);
