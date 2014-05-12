@@ -180,7 +180,7 @@
 	margin: 0px auto;
 }
 
-.active {
+.module .active {
 	transition: opacity .1s ease 0s, top .1s linear;
 	height: 40px !important;
 	opacity: 1 !important;

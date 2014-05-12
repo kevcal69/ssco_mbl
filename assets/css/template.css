@@ -15,12 +15,12 @@ html, body {
 
 /* Typography */
 a {
-	color: #1D9D74;
+	color: #489441;
 	/*color: #4287C2;*/
 	text-decoration: none;
 }
 a:hover, a:focus {
-	color: #17805E;
+	color: #3F8039;
 	/*color: #2a6496;*/
 	text-decoration: underline;
 }
@@ -349,9 +349,17 @@ ul, ol {
 	list-style: none;
 }
 
-.nav>li {
+.nav>li,
+.nav>li.header {
 	position: relative;
 	display: block;
+}
+
+.nav>li.header {
+	padding: 10px 15px;
+	color: #fff;
+	background-color: #4FA647;
+	cursor: default;
 }
 
 .nav-pills>li {
@@ -381,11 +389,18 @@ ul, ol {
 .nav-pills>li.active>a:hover, 
 .nav-pills>li.active>a:focus {
 	color: #fff;
-	background-color: #4FA647;
+	background-color: #91C78C;
+	/*background-color: #4FA647;*/
 	/*background-color: #428bca;*/
 }
 
 .nav>li>a:hover, .nav>li>a:focus {
 	text-decoration: none;
 	background-color: #E2E2E2;
+}
+
+/*Sidebar*/
+.sidebar {
+	width: 200px;
+	border: 1px solid #dddddd;
 }
