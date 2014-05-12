@@ -37,6 +37,7 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['trainee'] = 'trainee/trainee';
 $route['admin'] = 'admin_functions/admin';
 $route['admin/module/(:any)'] = 'admin_functions/module/$1';
 $route['admin/module'] = 'admin_functions/module';

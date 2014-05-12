@@ -40,7 +40,12 @@
 	max-width: 1000px;
 	min-height: 100%;
 }
+<<<<<<< HEAD
 #main-wrapper.logged_in #main-content #sidebar-content  {
+=======
+#main-wrapper.basic #main-content.logged_in #sidebar-content  {
+	/*position: fixed;*/
+>>>>>>> ce9f8348e9716b8eac8bab7e8664e62008d5a909
 	float: left;
 	margin: auto 20px;
 	/*margin-top: 40px;*/
