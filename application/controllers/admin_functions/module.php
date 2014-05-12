@@ -10,30 +10,76 @@
 			}			
 			$this->load->model('Module_model','mModule');
       			$this->load->helper('application_helper');
+      			$this->load->helper('sidebar_helper');
+			$this->sidebar_content = array(
+				'quicklinks' => array(
+					array(
+						'content' => to_sidebar_element('fa-user', 'Users'),
+						'href' => base_url('admin/user'),
+						'active' => FALSE
+						),
+					array(
+						'content' => to_sidebar_element('fa-book','Modules'),
+						'href' => base_url('admin/module'),
+						'active' => TRUE
+						),
+					array(
+						'content' => to_sidebar_element('fa-question-circle','Questions'),
+						'href' => base_url('admin/question'),
+						'active' => FALSE
+						),
+					array(
+						'content' => to_sidebar_element('fa-list','Tests'),
+						'href' => base_url('admin/test'),
+						'active' => FALSE
+						)
+					)
+				);      			
 	    }	
 
 	function index() {
+		$this->sidebar_content['actions'] = array(
+					'list' => array(
+						'content' => to_sidebar_element('fa-search','View Users'),
+						'href' => base_url('admin/user/view'),
+						'active' => FALSE
+						),
+					'home' => array(
+						'content' => to_sidebar_element('fa-home','List Modules'),
+						'href' => base_url('admin/module/'),
+						'active' => TRUE
+						),
+					'create' => array(
+						'content' => to_sidebar_element('fa-plus-square','Create Modules'),
+						'href' => base_url('admin/module/create'),
+						'active' => FALSE
+						)
+					);
 		$data['page_title'] = "SSCO Module Base Learning";
 		$data['body_content'] = $this->load->view('admin/module/show',array('modules' => $this->mModule->get_module_entries()),TRUE); // kevcal
-		$this->parser->parse('layouts/default', $data);
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);
 	}
 
 	function create() {
 		$data['page_title'] = "SSCO Module Base Learning";
 		$data['body_content'] = $this->load->view('admin/module/create',array(),TRUE); // kevcal
-		$this->parser->parse('layouts/default', $data);
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);
 	}	
 
 	function view($id)  {
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/module/view',array('module' => $this->mModule->fetch_module($id)),TRUE); 
-		$this->parser->parse('layouts/default', $data);		
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);
 	}
 	
 	function modify($id)  {
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/module/modify',array('module' => $this->mModule->fetch_module($id)),TRUE); 
-		$this->parser->parse('layouts/default', $data);		
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);		
 		// echo stripslashes($this->mModule->fetch_module($id)->content);
 	}	
 

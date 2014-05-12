@@ -11,14 +11,13 @@
 </head>
 
 <body class = "<?=body_classes($controller, $action);?>">
-  <div id="main-wrapper" class="basic">          
+  <div id="main-wrapper" class="logged_in">          
     <div id = "main-header">
       <?php $this->load->view('partials/header',
         array('bc' => 'SSCO MBL</a> > <a > '.$controller.'</a> > '.$action)); ?>
     </div>
-    <div id="main-content" class="logged_in">
+    <div id="main-content">
       <div id="sidebar-content">{sidebar}</div>
-
       <div id="body-content">{body_content}</div>
     </div>
   </div>

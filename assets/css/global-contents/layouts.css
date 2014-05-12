@@ -1,5 +1,5 @@
 /*** HOME LAYOUT ***/
-#main-wrapper.basic {
+#main-wrapper {
   min-height: 100%;
   width: 100%;
   padding-bottom: 45px;
@@ -22,15 +22,26 @@
 	max-width: 1000px;
 }
 
-#main-wrapper.basic #main-content.logged_in #body-content  {
+#main-wrapper.logged_in #main-header {
+	width: 100%;
+	min-height: 100px;
+}
+
+#main-wrapper.logged_in #main-content {
+	width: 100%;
+	min-height: 500px;
+}
+
+#main-wrapper.logged_in #main-content #body-content  {
 	margin-top: 40px;
 	margin-right: 20px;
 	margin-left: 240px;
 	text-align: center;
 	max-width: 1000px;
+	min-height: 100%;
 }
-#main-wrapper.basic #main-content.logged_in #sidebar-content  {
-	position: fixed;
+#main-wrapper.logged_in #main-content #sidebar-content  {
+	float: left;
 	margin: auto 20px;
 	/*margin-top: 40px;*/
 	text-align: left;

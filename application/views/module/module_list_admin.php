@@ -1,4 +1,5 @@
 <div id = "module-container">
+
 	<div id = "module-liststyle">
 		<div class="liststyles">
 			<img src="<?=base_url().'assets/images/landing/list.png'?>" alt ="list" onclick = "modules.toggle_to_list()">
