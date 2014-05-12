@@ -359,6 +359,7 @@ ul, ol {
 	padding: 10px 15px;
 	color: #fff;
 	background-color: #4FA647;
+	cursor: default;
 }
 
 .nav-pills>li {
@@ -398,6 +399,7 @@ ul, ol {
 	background-color: #E2E2E2;
 }
 
+/*Sidebar*/
 .sidebar {
 	width: 200px;
 	border: 1px solid #dddddd;

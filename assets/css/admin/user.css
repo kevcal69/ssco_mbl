@@ -32,11 +32,9 @@
 
 /*Functions*/
 .user #functions-container {
-	/*float: right;*/
 	width: 800px;
 	min-height: 350px;
-	margin: 0 auto;
-	margin-left: 200px;
+	margin: 0;
 	margin-bottom: 20px;
 	padding: 20px 20px 20px 20px;
 }
@@ -164,12 +162,4 @@
 }
 .user #create-form .trainee-name, .user #edit-form .trainee-name {
 	display: none;
-}
-
-/*Sidebar*/
-.user #sidebar {
-	/*float: left;*/
-	position: fixed;
-	width: 200px;
-	border: 1px solid #dddddd;
 }

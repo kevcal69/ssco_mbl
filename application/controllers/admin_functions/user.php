@@ -13,13 +13,61 @@ class User extends MBL_Controller {
       $this->load->model('admin/user_model');
       $this->load->helper('application_helper');
 			$this->load->library('form_validation');
-			
+
+
+			$this->sidebar_content = array(
+				'quicklinks' => array(
+					array(
+						'content' => 'Users',
+						'href' => base_url('admin/user'),
+						'active' => TRUE
+						),
+					array(
+						'content' => 'Modules',
+						'href' => base_url('admin/module'),
+						'active' => FALSE
+						),
+					array(
+						'content' => 'Questions',
+						'href' => base_url('admin/question'),
+						'active' => FALSE
+						),
+					array(
+						'content' => 'Tests',
+						'href' => base_url('admin/test'),
+						'active' => FALSE
+						)
+					),
+				'actions' => array(
+					'create' => array(
+						'content' => 'Create User',
+						'href' => base_url('admin/user/create'),
+						'active' => FALSE
+						),
+					'view' => array(
+						'content' => 'View Users',
+						'href' => base_url('admin/user/view'),
+						'active' => FALSE
+						),
+					'edit' => array(
+						'content' => 'Edit User',
+						'href' => base_url('admin/user/edit'),
+						'active' => FALSE
+						),
+					'delete' => array(
+						'content' => 'Delete User',
+						'href' => base_url('admin/user/delete'),
+						'active' => FALSE
+						)
+					)
+				);
     }	
 
 	public function index() {
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/user/user_functions','',TRUE);
-		$this->parser->parse('layouts/default', $data);
+		$this->parser->parse('layouts/logged_in', $data);
 	}
 	public function create() {
 		//set validation rules
@@ -70,8 +118,10 @@ class User extends MBL_Controller {
 			$create_data = array('message' => $message, 'error' => $error);
 			$data['body_content'] = $this->load->view('admin/user/function_result',$create_data,TRUE);
 		}
+		$this->sidebar_content['actions']['create']['active'] = TRUE;
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "Create User - Admin - SSCO Module-Based Learning";
-		$this->parser->parse('layouts/default', $data);
+		$this->parser->parse('layouts/logged_in', $data);
 	}
 
 	public function view($username = FALSE) {
@@ -93,8 +143,10 @@ class User extends MBL_Controller {
 
 			$data['body_content'] = $this->load->view('admin/user/user_view',$user,TRUE);
 		}
+		$this->sidebar_content['actions']['view']['active'] = TRUE;
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "View User - Admin - SSCO Module-Based Learning";
-		$this->parser->parse('layouts/default', $data);
+		$this->parser->parse('layouts/logged_in', $data);
 	}
 
 	public function edit($username = FALSE) {
@@ -114,7 +166,6 @@ class User extends MBL_Controller {
 				$data['body_content'] = $this->load->view('admin/user/user_choose_edit',$data,TRUE);
 			} else {
 				//validation success, redirect to edit/user
-				echo $this->input->post('user');
 				redirect('admin/user/edit/'. $this->input->post('users'));
 			}
 		//$username parameter
@@ -147,16 +198,16 @@ class User extends MBL_Controller {
 					'label' => 'Role',
 					'rules' => 'trim|required|xss_clean'
 					),
-			array(
-				'field' => 'first_name',
-				'label' => 'First Name',
-				'rules' => 'trim|xss_clean'
-				),
-			array(
-				'field' => 'last_name',
-				'label' => 'Last Name',
-				'rules' => 'trim|xss_clean|callback_required_if_trainee'
-				)
+				array(
+					'field' => 'first_name',
+					'label' => 'First Name',
+					'rules' => 'trim|xss_clean'
+					),
+				array(
+					'field' => 'last_name',
+					'label' => 'Last Name',
+					'rules' => 'trim|xss_clean|callback_required_if_trainee'
+					)
 				);
 			$this->form_validation->set_rules($validation_rules);
 
@@ -179,34 +230,56 @@ class User extends MBL_Controller {
 				$data['body_content'] = $this->load->view('admin/user/function_result',$edit_data,TRUE);
 			}
 		}
+		$this->sidebar_content['actions']['edit']['active'] = TRUE;
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "Edit User - Admin - SSCO Module-Based Learning";
-		$this->parser->parse('layouts/default', $data);
+		$this->parser->parse('layouts/logged_in', $data);
 	}
 
-	public function delete($username) {
-		//must go through delete-confirm form
-		$confirm = $this->input->post('confirm');
+	public function delete($username = FALSE) {
+		if ($username === FALSE) {
+			$users = $this->user_model->view();
 
-		if ($confirm !== 'TRUE') {
-			//confirmation dialog
-			$data['body_content'] = $this->load->view('admin/user/delete_confirm',array('username' => $username),TRUE);
-		} else {
-			$result = $this->delete_user($username);
-
-			$message = '';
-			$error = '';
-			if ($result) {
-				$message = 'User '. $username . ' was successfully deleted.';
-			} else {
-				$message = 'User delete failed.';
-				$error = $this->db->_error_message();
+			foreach ($users as $user) {
+				$data['users'][$user['username']] = $user['username'];
 			}
-			$delete_data = array('message' => $message, 'error' => $error);
-			$data['body_content'] = $this->load->view('admin/user/function_result',$delete_data,TRUE);
-		}
 
+			//validation
+			$this->form_validation->set_rules('users', 'User', 'trim|required|xss_clean');
+
+			if ($this->form_validation->run() == FALSE) {
+				//validation failure, return to form
+				$data['body_content'] = $this->load->view('admin/user/user_choose_delete',$data,TRUE);
+			} else {
+				//validation success, redirect to edit/user
+				redirect('admin/user/delete/'. $this->input->post('users'));
+			}
+		} else {
+			//must go through delete-confirm form
+			$confirm = $this->input->post('confirm');
+
+			if ($confirm !== 'TRUE') {
+				//confirmation dialog
+				$data['body_content'] = $this->load->view('admin/user/delete_confirm',array('username' => $username),TRUE);
+			} else {
+				$result = $this->delete_user($username);
+
+				$message = '';
+				$error = '';
+				if ($result) {
+					$message = 'User '. $username . ' was successfully deleted.';
+				} else {
+					$message = 'User delete failed.';
+					$error = $this->db->_error_message();
+				}
+				$delete_data = array('message' => $message, 'error' => $error);
+				$data['body_content'] = $this->load->view('admin/user/function_result',$delete_data,TRUE);
+			}
+		}
+		$this->sidebar_content['actions']['delete']['active'] = TRUE;
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "Delete User - Admin - SSCO Module-Based Learning";
-		$this->parser->parse('layouts/default', $data);
+		$this->parser->parse('layouts/logged_in', $data);
 	}
 
 	private function create_user() {
