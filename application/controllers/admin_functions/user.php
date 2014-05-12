@@ -12,13 +12,14 @@ class User extends MBL_Controller {
 
       $this->load->model('admin/user_model');
       $this->load->helper('application_helper');
+      $this->load->helper('sidebar_helper');
 			$this->load->library('form_validation');
 
 
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 					array(
-						'content' => '<i class="fa fa-user"></i> Users',
+						'content' => to_sidebar_element('fa-user', 'Users'),
 						'href' => base_url('admin/user'),
 						'active' => TRUE
 						),

@@ -92,7 +92,7 @@
 	cursor: pointer;
 } 
 .question.create #options #side-bar #actions-list ul li:hover {
-	background: ;
+	background-color: #E2E2E2;
 }
 
 .question.create #options #side-bar #actions-list ul li span {
