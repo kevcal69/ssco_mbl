@@ -5,7 +5,7 @@
 	background-image: url(../../images/landing/header-bg.jpg);
 	background-position:  center top;
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 100% 100px;
 }
 #logo-block {
 	float: left;

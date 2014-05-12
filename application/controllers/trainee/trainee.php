@@ -18,22 +18,22 @@ class Trainee extends MBL_Controller {
 
 			$this->sidebar_content = array(
 				'quicklinks' => array(
-					array(
+					'home' => array(
 						'content' => to_sidebar_element('fa-home', 'Home'),
 						'href' => base_url('trainee'),
-						'active' => TRUE
+						'active' => FALSE
 						),
-					array(
+					'profile' => array(
 						'content' => to_sidebar_element('fa-user', 'Profile'),
 						'href' => base_url('trainee/view_profile'),
 						'active' => FALSE
 						),
-					array(
+					'module' => array(
 						'content' => to_sidebar_element('fa-book','Modules'),
 						'href' => base_url('trainee/module'),
 						'active' => FALSE
 						),
-					array(
+					'test' => array(
 						'content' => to_sidebar_element('fa-list','Tests'),
 						'href' => base_url('trainee/test'),
 						'active' => FALSE
@@ -43,7 +43,7 @@ class Trainee extends MBL_Controller {
     }	
 
 	public function index() {
-		// $this->sidebar_content['actions']['home']['active'] = TRUE;
+		$this->sidebar_content['quicklinks']['home']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('trainee/home','',TRUE);

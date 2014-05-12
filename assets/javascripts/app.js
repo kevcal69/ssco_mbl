@@ -46,12 +46,12 @@ var modules = {
 
 	},
 	toggle_to_grid: function() {
-		$("#list-container").fadeOut();
+		$("#list-container").hide();
 		$("#grid-container").fadeIn();
 	},
 	toggle_to_list: function() {
+		$("#grid-container").hide();	
 		$("#list-container").fadeIn();
-		$("#grid-container").fadeOut();	
 	},
 	toggle_title: function() {
 		$("#title-create").show();
