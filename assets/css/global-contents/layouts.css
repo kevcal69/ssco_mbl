@@ -30,7 +30,8 @@
 	max-width: 1000px;
 }
 #main-wrapper.basic #main-content.logged_in #sidebar-content  {
-	position: fixed;
+	/*position: fixed;*/
+	float: left;
 	margin: auto 20px;
 	/*margin-top: 40px;*/
 	text-align: left;

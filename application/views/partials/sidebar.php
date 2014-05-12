@@ -38,12 +38,14 @@
     </li>
     <?php endforeach; ?>
   </ul>
-  <ul class="nav nav-pills nav-stacked">
-    <li class="header">Actions</li>
-    <?php foreach ($actions as $link): ?>
-    <li <?php if ($link['active'] == TRUE) echo ' class="active"';?>>
-      <a href="<?php echo $link['href'];?>"><?php echo $link['content'];?></a>
-    </li>
-    <?php endforeach; ?>
-  </ul>
+  <?php if (isset($actions)): ?>
+    <ul class="nav nav-pills nav-stacked">
+      <li class="header">Actions</li>
+      <?php foreach ($actions as $link): ?>
+      <li <?php if ($link['active'] == TRUE) echo ' class="active"';?>>
+        <a href="<?php echo $link['href'];?>"><?php echo $link['content'];?></a>
+      </li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif;?>
 </div>

@@ -30,7 +30,6 @@ a:active, a:hover {
 
 h1, h2, h3, h4, h5, h6 {
 	/*color: #12AD2B;*/
-	clear: both;
 }
 
 h1 {
@@ -349,18 +348,9 @@ ul, ol {
 	list-style: none;
 }
 
-.nav>li,
-.nav>li.header {
+.nav>li {
 	position: relative;
 	display: block;
-}
-
-.nav>li.header {
-	padding: 10px 15px;
-	color: #fff;
-	background-color: #4FA647;
-	cursor: default;
-	font-size: 18px;
 }
 
 .nav-pills>li {
@@ -404,6 +394,28 @@ ul, ol {
 .sidebar {
 	width: 200px;
 	border: 1px solid #dddddd;
+}
+
+.sidebar .nav>li.header {
+	padding: 10px 15px;
+	color: #fff;
+	background-color: #4FA647;
+	cursor: default;
+	font-size: 18px;
+}
+
+.sidebar .nav>li.header {
+	position: relative;
+	display: block;
+}
+
+.sidebar .nav-pills>li.active>a, 
+.sidebar .nav-pills>li.active>a:hover, 
+.sidebar .nav-pills>li.active>a:focus {
+	color: #fff;
+	background-color: #B6B6B6;
+	/*background-color: #4FA647;*/
+	/*background-color: #428bca;*/
 }
 .sidebar a {
 	/*color: #489441;*/

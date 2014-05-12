@@ -19,6 +19,11 @@ class User extends MBL_Controller {
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 					array(
+						'content' => to_sidebar_element('fa-home', 'Home'),
+						'href' => base_url('admin'),
+						'active' => FALSE
+						),
+					array(
 						'content' => to_sidebar_element('fa-user', 'Users'),
 						'href' => base_url('admin/user'),
 						'active' => TRUE
@@ -26,11 +31,6 @@ class User extends MBL_Controller {
 					array(
 						'content' => to_sidebar_element('fa-book','Modules'),
 						'href' => base_url('admin/module'),
-						'active' => FALSE
-						),
-					array(
-						'content' => to_sidebar_element('fa-question','Questions'),
-						'href' => base_url('admin/question'),
 						'active' => FALSE
 						),
 					array(
