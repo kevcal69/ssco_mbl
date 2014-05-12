@@ -25,7 +25,7 @@
 		<h3>Actions</h3>
 		<div id="actions-list">
 			<ul>
-				<li><i class = "fa fa-plus-circle fa-small2x"></i><span>Add Questions</span></li>
+				<li></li>
 				<li><i class = "fa fa-bars fa-small2x"></i><span>List all Questions</span></li>
 				<li><i class = "fa fa-desktop fa-small2x"></i><span>Set EvalutaionTest</span></li>
 				<li><i class = "fa fa-tags fa-small2x"></i><span>Schedule a Test</span></li>
