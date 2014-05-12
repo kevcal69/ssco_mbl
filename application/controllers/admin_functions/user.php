@@ -24,44 +24,44 @@ class User extends MBL_Controller {
 						'active' => TRUE
 						),
 					array(
-						'content' => '<i class="fa fa-book"></i> Modules',
+						'content' => to_sidebar_element('fa-book','Modules'),
 						'href' => base_url('admin/module'),
 						'active' => FALSE
 						),
 					array(
-						'content' => '<i class="fa fa-question-circle"></i> Questions',
+						'content' => to_sidebar_element('fa-question-circle','Questions'),
 						'href' => base_url('admin/question'),
 						'active' => FALSE
 						),
 					array(
-						'content' => '<i class="fa fa-list"></i> Tests',
+						'content' => to_sidebar_element('fa-list','Tests'),
 						'href' => base_url('admin/test'),
 						'active' => FALSE
 						)
 					),
 				'actions' => array(
 					'home' => array(
-						'content' => '<i class="fa fa-home"></i> Home',
+						'content' => to_sidebar_element('fa-home','Home'),
 						'href' => base_url('admin/user'),
 						'active' => FALSE
 						),
 					'create' => array(
-						'content' => '<i class="fa fa-plus-square"></i> Create User',
+						'content' => to_sidebar_element('fa-plus-square','Create User'),
 						'href' => base_url('admin/user/create'),
 						'active' => FALSE
 						),
 					'view' => array(
-						'content' => '<i class="fa fa-search"></i> View Users',
+						'content' => to_sidebar_element('fa-search','View Users'),
 						'href' => base_url('admin/user/view'),
 						'active' => FALSE
 						),
 					'edit' => array(
-						'content' => '<i class="fa fa-edit"></i> Edit User',
+						'content' => to_sidebar_element('fa-edit','Edit User'),
 						'href' => base_url('admin/user/edit'),
 						'active' => FALSE
 						),
 					'delete' => array(
-						'content' => '<i class="fa fa-times"></i> Delete User',
+						'content' => to_sidebar_element('fa-times','Delete User'),
 						'href' => base_url('admin/user/delete'),
 						'active' => FALSE
 						)
