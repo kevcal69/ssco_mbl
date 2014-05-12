@@ -6,8 +6,6 @@
 
 <div id ="editor-container">
 	<form  action = "<?=site_url('admin/module/create_module')?>" method = "POST">
-
-			<h2>Create Module</h2>
 		<div id="field-container">
 			<div id="instruction">
 				<h3>Notes & Tips</h3>

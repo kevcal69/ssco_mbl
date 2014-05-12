@@ -73,7 +73,7 @@
 	background-color: white;
 	height: 200px;
 	background-repeat: no-repeat;
-	background-size: 100%,100%;
+	background-size: 100%100%;
 }
 
  #module-container #grid-container .module-box .mb-title {
@@ -122,11 +122,21 @@
 }
 
   #module-container #list-container ul li {
-	min-height: 30px;
-	width: 480px;
+  	text-align: left;
+	height: 100px;
+	width: 300px;
 	margin: 0px 5px 0px 5px;
+	list-style: none;
+	border: 2px solid #e6e6e6;
 }
 
+ #module-container #list-container ul li .thumb {
+	background-color: white;
+	height: 80px;
+	width: 80px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
   #module-container #list-container ul li span {
 	font-size: 15px;
 	display: inline-block;
@@ -182,7 +192,7 @@
 	margin: 0px auto;
 }
 
-.module .active {
+.module .active_mod {
 	transition: opacity .1s ease 0s, top .1s linear;
 	height: 40px !important;
 	opacity: 1 !important;

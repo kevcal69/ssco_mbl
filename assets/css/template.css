@@ -168,6 +168,7 @@ legend {
 input[type='text'],
 input[type='password'],
 select {
+	font-family: "FontAwesome","OpenSansLight";
 	width: 200px;
 	/*height: 28px;*/
 	border: 1px solid #cccccc;
@@ -263,6 +264,12 @@ label {
 label.checkbox.inline, 
 label.radio.inline {
 	display: inline-block;
+}
+
+textarea {
+	width: 300px;
+	height: 150px;
+	resize: none;
 }
 
 /*Form-default*/
@@ -397,16 +404,14 @@ ul, ol {
 }
 
 .sidebar .nav>li.header {
+	font-family: "OpenSansLight";
 	padding: 10px 15px;
 	color: #fff;
 	background-color: #4FA647;
 	cursor: default;
-	font-size: 18px;
-}
-
-.sidebar .nav>li.header {
+	font-size: 1.6rem;
 	position: relative;
-	display: block;
+	display: block;	
 }
 
 .sidebar .nav-pills>li.active>a, 
@@ -420,7 +425,9 @@ ul, ol {
 .sidebar a {
 	/*color: #489441;*/
 	/*color: #4287C2;*/
+	font-size: 1rem;
 	color: #6B6B6B;
+	font-family: "Arial","Segoe UI";
 	text-decoration: none;
 }
 .sidebar a:hover,
@@ -432,4 +439,13 @@ ul, ol {
 .sidebar a:active,
 .sidebar a:hover {
 	outline: 0;
+}
+.sidebar .search {
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+}
+
+.sidebar .search input {
+	width: 170px;
 }
