@@ -10,30 +10,109 @@
 			}			
 			$this->load->model('Module_model','mModule');
       			$this->load->helper('application_helper');
+      			$this->load->helper('sidebar_helper');
+			$this->sidebar_content = array(
+				'quicklinks' => array(
+
+					array(
+						'content' => to_sidebar_element('fa-home','Home'),
+						'href' => base_url('admin'),
+						'active' => FALSE
+						),					
+					array(
+						'content' => to_sidebar_element('fa-user', 'Users'),
+						'href' => base_url('admin/user'),
+						'active' => FALSE
+						),
+					array(
+						'content' => to_sidebar_element('fa-book','Modules'),
+						'href' => base_url('admin/module'),
+						'active' => TRUE
+						),
+					array(
+						'content' => to_sidebar_element('fa-list','Tests'),
+						'href' => base_url('admin/test'),
+						'active' => FALSE
+						)
+					)
+				);      			
 	    }	
 
 	function index() {
+		$this->sidebar_content['search'] = TRUE;
+		$this->sidebar_content['actions'] = array(
+					'home' => array(
+						'content' => to_sidebar_element('fa-home','List Modules'),
+						'href' => base_url('admin/module/'),
+						'active' => TRUE
+						),
+					'create' => array(
+						'content' => to_sidebar_element('fa-plus-square','Create Modules'),
+						'href' => base_url('admin/module/create'),
+						'active' => FALSE
+						)
+					);
 		$data['page_title'] = "SSCO Module Base Learning";
-		$data['body_content'] = $this->load->view('admin/module/show',array('modules' => $this->mModule->get_module_entries()),TRUE); // kevcal
-		$this->parser->parse('layouts/default', $data);
+		$data['body_content'] = $this->load->view('module/module_list_admin',array('modules' => $this->mModule->get_module_entries()),TRUE); // kevcal
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);
 	}
 
 	function create() {
 		$data['page_title'] = "SSCO Module Base Learning";
 		$data['body_content'] = $this->load->view('admin/module/create',array(),TRUE); // kevcal
-		$this->parser->parse('layouts/default', $data);
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);
 	}	
 
 	function view($id)  {
+		$this->sidebar_content['actions'] = array(
+					'home' => array(
+						'content' => to_sidebar_element('fa-home','List Modules'),
+						'href' => base_url('admin/module/'),
+						'active' => FALSE
+						),
+					'edit' => array(
+						'content' => to_sidebar_element('fa-plus-square','Modify this Module'),
+						'href' => base_url('admin/module/modify/'.$id),
+						'active' => FALSE
+						),
+					'delete' => array(
+						'content' => to_sidebar_element('fa-plus-square','Delete this Module'),
+						'href' => base_url('admin/module/delete'.$id),
+						'active' => FALSE
+						)
+					
+					);		
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/module/view',array('module' => $this->mModule->fetch_module($id)),TRUE); 
-		$this->parser->parse('layouts/default', $data);		
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);
 	}
 	
 	function modify($id)  {
+		$this->sidebar_content['actions'] = array(
+					'home' => array(
+						'content' => to_sidebar_element('fa-home','List Modules'),
+						'href' => base_url('admin/module/'),
+						'active' => FALSE
+						),
+					'edit' => array(
+						'content' => to_sidebar_element('fa-plus-square','View this Module'),
+						'href' => base_url('admin/module/view/'.$id),
+						'active' => FALSE
+						),
+					'delete' => array(
+						'content' => to_sidebar_element('fa-plus-square','Delete this Module'),
+						'href' => base_url('admin/module/delete'.$id),
+						'active' => FALSE
+						)
+					
+					);			
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/module/modify',array('module' => $this->mModule->fetch_module($id)),TRUE); 
-		$this->parser->parse('layouts/default', $data);		
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);		
 		// echo stripslashes($this->mModule->fetch_module($id)->content);
 	}	
 

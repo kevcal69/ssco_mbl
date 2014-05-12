@@ -1,4 +1,5 @@
 <!-- 
+<<<<<<< HEAD
 	Passing sidebar contents to this view requires one to provide quicklinks and actions arrays.
 	Format in controller
 		$sidebar_content = array(
@@ -41,6 +42,9 @@
 	<?php if (isset($actions)): ?>
 		<ul class="nav nav-pills nav-stacked">
 			<li class="header">Actions</li>
+			<?php if (isset($search)): ?> 
+				<li class = "search"><input type = "text" class = "field" placeholder = "&#xF002; Search for Module"></li>  
+			<?php endif;?>
 			<?php foreach ($actions as $link): ?>
 			<li <?php if ($link['active'] == TRUE) echo ' class="active"';?>>
 				<a href="<?php echo $link['href'];?>"><?php echo $link['content'];?></a>

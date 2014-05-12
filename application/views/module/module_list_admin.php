@@ -1,4 +1,5 @@
 <div id = "module-container">
+
 	<div id = "module-liststyle">
 		<div class="liststyles">
 			<img src="<?=base_url().'assets/images/landing/list.png'?>" alt ="list" onclick = "modules.toggle_to_list()">
@@ -58,10 +59,7 @@
 		<?php foreach ($modules as $module): ?>
 			<ul>
 				<li>
-					<span class= "topic">
-						<img id ="arrow" src="<?=base_url() . 'assets/images/module/module_default/arrow.png'?>">
-						<?=stripslashes($module->title)?>
-					</span>
+					<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);"></div>				
 				</li>
 			</ul>	
 		<?php endforeach; ?>

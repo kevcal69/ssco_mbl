@@ -1,5 +1,5 @@
 #header {
-	min-height: inherit;
+	height: 100%;
 	width: 100%;
 	/*background: linear-gradient(to top,#6FBB44,#3B8D42);*/
 	background-image: url(../../images/landing/header-bg.jpg);
