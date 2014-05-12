@@ -29,7 +29,7 @@ class User extends MBL_Controller {
 						'active' => FALSE
 						),
 					array(
-						'content' => to_sidebar_element('fa-question-circle','Questions'),
+						'content' => to_sidebar_element('fa-question','Questions'),
 						'href' => base_url('admin/question'),
 						'active' => FALSE
 						),
@@ -46,7 +46,7 @@ class User extends MBL_Controller {
 						'active' => FALSE
 						),
 					'create' => array(
-						'content' => to_sidebar_element('fa-plus-square','Create User'),
+						'content' => to_sidebar_element('fa-plus','Create User'),
 						'href' => base_url('admin/user/create'),
 						'active' => FALSE
 						),
