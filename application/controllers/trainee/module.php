@@ -31,8 +31,8 @@ class Module extends MBL_Controller {
 						),
 					'modules' => array(
 						'content' => to_sidebar_element('fa-book','Modules'),
-						'href' => base_url('trainee/modules'),
-						'active' => FALSE
+						'href' => base_url('trainee/module'),
+						'active' => TRUE
 						),
 					'tests' => array(
 						'content' => to_sidebar_element('fa-list','Tests'),
@@ -44,7 +44,6 @@ class Module extends MBL_Controller {
     }	
 
 	public function index() {
-		$this->sidebar_content['quicklinks']['modules']['active'] = TRUE;
 		$this->sidebar_content['actions'] = array(
 					'home' => array(
 						'content' => to_sidebar_element('fa-home','Home'),
@@ -87,8 +86,8 @@ class Module extends MBL_Controller {
 			//view specific module
 			$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 			$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-			$data['module'] = $this->module_model->fetch_module($id);
-			$data['body_content'] = $this->load->view('admin/module/view',$data,TRUE); 
+			$module = array('module' => $this->module_model->fetch_module($id));
+			$data['body_content'] = $this->load->view('admin/module/view',$module,TRUE); 
 			$this->parser->parse('layouts/logged_in', $data);		
 		}
 	}
