@@ -22,6 +22,7 @@
 	margin: 0 auto;
 	margin-top: 40px;
 	text-align: center;
+	overflow: hidden;
 	max-width: 1000px;
 	min-width: 600px;
 }
@@ -48,6 +49,7 @@
 }
 
 #main-wrapper.logged_in #main-content #body-content  {
+
 	text-align: center;
 	margin-right: 10px;
 	max-width: 1000px;

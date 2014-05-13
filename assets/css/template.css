@@ -59,7 +59,11 @@ h6 {
 	font-size: 0.75rem;
 }
 
-.muted {
+.text-primary {
+	color: #008287;
+}
+
+.text-muted {
 	color: #808080;
 }
 
@@ -78,7 +82,21 @@ h6 {
 .text-success {
 	color: #54B948;
 }
-
+.text-size-o {
+	font-size: 1rem;
+}
+.text-size-s1 {
+	font-size: .9rem;
+}
+.text-size-s2 {
+	font-size: .8rem;
+}
+.text-size-s3 {
+	font-size: .7rem;
+}
+.text-size-s4 {
+	font-size: .6rem;
+}
 blockquote {
 	border-left: 5px solid #BFD8BB;
 	padding: 10px 10px 10px 20px;

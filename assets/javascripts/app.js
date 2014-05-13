@@ -12,9 +12,10 @@ $(document).ready(function() {
 var stick_Sidebar = {
 	initialize: function() {
 		if ($(window).scrollTop() > 126){ 
-			$('#sidebar-content').css({'position': 'fixed', 'top': '10px'}); 
+			$h = $(window).scrollTop() - 126;
+			$('#sidebar-content').css({'margin-top': $h+'px'}); 
 		} else {
-			$('#sidebar-content').css({'position': 'static', 'top': 'auto'});
+			$('#sidebar-content').css({'margin-top': '10px'});
 		}
 	}
 }
