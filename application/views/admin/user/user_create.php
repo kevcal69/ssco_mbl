@@ -1,6 +1,8 @@
-<div class="user-container">
-	<?php echo form_open('admin/user/create', array('class' => 'form-horizontal', 'id' => 'create-form'));?>
-			<legend>Create User</legend>
+<div class="user-container panel">
+	<div class="panel-heading"><h3 class="panel-title">Create User</h3></div>
+	<div class="panel-body">
+		<?php echo form_open('admin/user/create', array('class' => 'form-horizontal', 'id' => 'create-form'));?>
+
 			<div class="control-group">
 				<label for="username">Username</label>
 				<div class="controls">
@@ -51,5 +53,6 @@
 					<a type="button" class="button" href="<?php echo base_url('admin/user');?>">Cancel</a>
 				</div>
 			</div>
-	</form>
+		</form>
+	</div>
 </div>

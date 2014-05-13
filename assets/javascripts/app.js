@@ -15,7 +15,7 @@ var stick_Sidebar = {
 			$h = $(window).scrollTop() - 126;
 			$('#sidebar-content').css({'margin-top': $h+'px'}); 
 		} else {
-			$('#sidebar-content').css({'margin-top': '10px'});
+			$('#sidebar-content').css({'margin-top': '0px'});
 		}
 	}
 }

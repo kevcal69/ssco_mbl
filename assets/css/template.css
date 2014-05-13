@@ -476,7 +476,7 @@ ul, ol {
 	display: block;
 	background: #ffffff;
 	margin-bottom: 20px;
-	border: 1px solid #C5C5C5;
+	border: 1px solid #D1D1D1;
 	text-align: left;
 }
 
@@ -487,7 +487,7 @@ ul, ol {
 .panel-heading {
 	padding: 10px 15px;
 	background: #E0E4E9;
-	border-bottom: 1px solid #C5C5C5;
+	border-bottom: 1px solid #D1D1D1;
 }
 
 .panel-title {

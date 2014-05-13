@@ -11,22 +11,19 @@
   font-size: .75rem;
   margin: 3px 3px 3px 5px;
 }
-.user p.warning {
-	font-size: .75rem;
-  margin: 3px 3px 3px 5px;
-}
 
 /*Form*/
 
 .user .user-container {
-	min-height: 200px;
+	/*min-height: 200px;*/
 	min-width: 450px;
 	vertical-align: top;
 	display: inline-block;
-	background: #f4f5f6;
-	padding: 10px 20px 10px 20px;
+	text-align: center;
+	/*background: #f4f5f6;*/
+	/*padding: 10px 20px 10px 20px;*/
 	margin: 20px 0px;
-	border: 1px solid #C5C5C5;
+	/*border: 1px solid #C5C5C5;*/
 }
 
 
@@ -83,8 +80,8 @@
 
 .user #function-result-container #message-content,
 .user #delete-confirm-container #message-content {
-	margin: 15px 0;
-	padding: 10px;
+	/*margin: 15px 0;*/
+	/*padding: 10px;*/
 }
 
 .user #function-result-container #message-content p,
@@ -108,7 +105,7 @@
 }
 
 .user .user-container .view-title-bar {
-	min-height: 40px;
+	min-height: 50px;
 	width: 100%;
 	display: block;
 }

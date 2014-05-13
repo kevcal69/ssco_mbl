@@ -47,7 +47,14 @@
 			<?php endif;?>
 			<?php foreach ($actions as $link): ?>
 			<li <?php if ($link['active'] == TRUE) echo ' class="active"';?>>
-				<a href="<?php echo $link['href'];?>"><?php echo $link['content'];?></a>
+				<a 
+					<?php if(isset($link['href'])): ?>
+						href="<?php echo $link['href'];?>" 
+					<?php endif;?>
+					<?php if(isset($link['extra'])) echo $link['extra'];?>
+				>
+					<?php echo $link['content'];?>
+				</a>
 			</li>
 			<?php endforeach; ?>
 		</ul>
