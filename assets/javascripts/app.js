@@ -65,8 +65,8 @@ var modules = {
 		$("#grid-container").fadeIn();
 	},
 	toggle_to_list: function() {
-		$("#grid-container").hide();	
-		$("#list-container").fadeIn();		
+		$("#grid-container").hide();
+		$("#list-container").fadeIn();
 	},
 	toggle_title: function() {
 		$("#title-create").show();

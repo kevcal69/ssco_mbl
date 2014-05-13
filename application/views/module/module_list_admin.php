@@ -36,9 +36,8 @@
 						<?php elseif ($this->session->userdata('role') === "trainee"): ?>
 						<div class="actions grid ">
 							<ul>
-								<li>View</li>
-								<li>Modify</li>
-								<li>Delete</li>
+								<li><a class="button" href="<?=base_url('trainee/module/view/'.$module->id)?>">View</a></li>
+								<li><a class="button button-primary" href="<?=base_url('trainee/module/enrol/'.$module->id)?>">Enrol</a></li>
 							</ul>
 						</div>	
 						<?php elseif ($this->session->userdata('role') === "content_manager"): ?>

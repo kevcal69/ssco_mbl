@@ -35,12 +35,13 @@
 #main-wrapper.logged_in #main-content {
 	width: 100%;
 	min-height: 500px;
+	margin-top: 40px;
 }
 
 #main-wrapper.logged_in #main-content #body-content  {
-	margin-top: 40px;
-	margin-right: 20px;
-	margin-left: 240px;
+
+	text-align: center;
+	margin-right: 10px;
 	max-width: 1000px;
 	min-height: 100%;
 	overflow: hidden;
