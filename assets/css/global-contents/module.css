@@ -48,7 +48,7 @@
 }
 
  #module-container #grid-container .module-box {
-	width:  300px;
+	width:  270px;
 	height: 200px;
 	display: inline-block;
 	background: rgba(85, 85, 85, 1);
@@ -73,7 +73,8 @@
 	background-color: white;
 	height: 200px;
 	background-repeat: no-repeat;
-	background-size: 100%100%;
+	background-size: auto auto;
+	background-position: center;
 }
 
  #module-container #grid-container .module-box .mb-title {
@@ -126,35 +127,39 @@
 	height: 100px;
 	width: 300px;
 	margin: 0px 5px 0px 5px;
+	padding: 10px;
 	list-style: none;
 	border: 2px solid #e6e6e6;
 }
 
+#module-container #list-container ul li:hover {
+	border: 3px solid #cccccc;
+}
+
  #module-container #list-container ul li .thumb {
 	background-color: white;
-	height: 80px;
-	width: 80px;
+	height: 50px;
+	width: 50px;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: top;
 }
-  #module-container #list-container ul li span {
+#module-container #list-container ul li .mb-title{
 	font-size: 15px;
 	display: inline-block;
+	vertical-align: top;
 	cursor: pointer;
 	color: #555555;
-	width: 300px;
-	padding: 5px ;
+	width: 130px;
 	-webkit-transition: background-color 1s; /* For Safari 3.1 to 6.0 */
 	transition: background-color 1s;
 }
 
-  #module-container #list-container ul li span:hover {
-	text-shadow: 0px 5px 8px #888888;
-	border-bottom: 1px solid orange;
-	background-color: #eeeeee;
+#module-container #list-container ul li .mb-title p {
+	margin: 0px;
+	padding: 0px;
 }
-
-
 /*Admin Module*/
 
 .module.index #module-container {

@@ -9,8 +9,7 @@ body.admin.index {
 	height: 200px;
 }
 .admin.index  #options-container {
-	width: 1000px;
-	height: 350px;
+	min-height: 350px;
 	margin: 0 auto;
 	padding: 20px 20px 20px 20px;
 	margin-bottom: 20px;

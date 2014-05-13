@@ -19,6 +19,7 @@
 	margin: 0 auto;
 	margin-top: 40px;
 	text-align: center;
+	overflow: hidden;
 	max-width: 1000px;
 }
 
@@ -40,9 +41,9 @@
 	margin-top: 40px;
 	margin-right: 20px;
 	margin-left: 240px;
-	text-align: center;
 	max-width: 1000px;
 	min-height: 100%;
+	overflow: hidden;
 }
 #main-wrapper.logged_in #main-content #sidebar-content  {
 	float: left;
