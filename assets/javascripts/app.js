@@ -101,12 +101,12 @@ var modules = {
 
 	},
 	toggle_to_grid: function() {
-		$('.panel-title').text("Module List : Grid View");
+		$('#module-list-panel-title').text("Module List : Grid View");
 		$("#list-container").hide();
 		$("#grid-container").fadeIn();
 	},
 	toggle_to_list: function() {
-		$('.panel-title').text("Module List : List View");
+		$('#module-list-panel-title').text("Module List : List View");
 		$("#grid-container").hide();
 		$("#list-container").fadeIn();
 	},

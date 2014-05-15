@@ -52,9 +52,9 @@ class Trainee extends MBL_Controller {
 		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->trainee_id);
 		
 		// $data['available_modules'] = $this->module_model->get_module_entries(3,TRUE);
-		$data['available_modules'] = $this->trainee_module_model->get_available_modules($this->trainee_id,3,TRUE);
+		$data['available_modules'] = $this->trainee_module_model->get_available_modules($this->trainee_id,'',TRUE);
 
-		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
+		// $data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
 
 		$data['body_content'] = $this->load->view('trainee/home',$data,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);

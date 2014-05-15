@@ -1,22 +1,23 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Module extends MBL_Controller {
-    function __construct() {
-      parent::__construct();
-      //refuse access when not logged as admin
+		function __construct() {
+			parent::__construct();
+			//refuse access when not logged as admin
 			if ($this->session->userdata('role') !== 'trainee') {
 				$message_403 = "You don't have permission to access the url you are trying to reach.";
 				$heading = '403 Forbidden';
 				show_error($message_403,403,$heading);
 			}
 
-      // $this->load->model('trainee/trainee_model');
-      $this->load->model('module_model');
-      $this->load->model('trainee/trainee_module_model');
-      $this->load->helper('application_helper');
-      $this->load->helper('sidebar_helper');
+			// $this->load->model('trainee/trainee_model');
+			$this->load->model('module_model');
+			$this->load->model('trainee/trainee_module_model');
+			$this->load->helper('application_helper');
+			$this->load->helper('sidebar_helper');
 			$this->load->library('form_validation');
 
+			$this->trainee_id = $this->session->userdata('id');
 
 			$this->sidebar_content = array(
 				'quicklinks' => array(
@@ -42,7 +43,7 @@ class Module extends MBL_Controller {
 						)
 					)
 				);
-    }	
+		}
 
 	public function index() {
 		$this->sidebar_content['actions'] = array(
@@ -68,8 +69,14 @@ class Module extends MBL_Controller {
 						)
 					);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['modules'] = $this->module_model->get_module_entries();
-		$data['body_content'] = $this->load->view('module/module_list_admin',$data,TRUE);
+
+		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->trainee_id);
+
+		// $data['available_modules'] = $this->module_model->get_module_entries(3,TRUE);
+		$data['available_modules'] = $this->trainee_module_model->get_available_modules($this->trainee_id,3,TRUE);
+
+		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
+		$data['body_content'] = $this->load->view('trainee/module/module',$data,TRUE);
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
 	}
@@ -84,8 +91,8 @@ class Module extends MBL_Controller {
 					'active' => FALSE
 					),
 				);
-			if ($this->trainee_module_model->is_enroled($id,$this->session->userdata('id'))) {
-				if ($this->trainee_module_model->is_completed($id,$this->session->userdata('id'))) {
+			if ($this->trainee_module_model->is_enroled($id,$this->trainee_id)) {
+				if ($this->trainee_module_model->is_completed($id,$this->trainee_id)) {
 					//already completed the module
 					$this->sidebar_content['actions']['retake_test'] = array(
 						'content' => to_sidebar_element('fa-edit','Retake the Test'),
@@ -146,7 +153,7 @@ class Module extends MBL_Controller {
 				)
 			);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->session->userdata('id'));
+		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->trainee_id);
 		$data['body_content'] = $this->load->view('trainee/module/current_modules',$data,TRUE);
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
@@ -161,7 +168,7 @@ class Module extends MBL_Controller {
 				)
 			);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->session->userdata('id'));
+		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
 		$data['body_content'] = $this->load->view('trainee/module/completed_modules',$data,TRUE);
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
@@ -171,10 +178,9 @@ class Module extends MBL_Controller {
 		if ($module_id !== FALSE) {
 			//enrol specific module
 			$confirm = $this->input->post('confirm');
-			$trainee_id = $this->session->userdata('id');
 			$module_title = $this->module_model->get_title($module_id);
 			//check if already enroled
-			$result = $this->trainee_module_model->get_enroled_module($module_id, $trainee_id);
+			$result = $this->trainee_module_model->get_enroled_module($module_id, $this->trainee_id);
 			if (!empty($result)) {
 				//reenrol warning
 				$reenrol_confirm = $this->input->post('reenrol-confirm');
@@ -186,7 +192,7 @@ class Module extends MBL_Controller {
 						);
 					$data['body_content'] = $this->load->view('trainee/module/reenrol_confirm',$reenrol_data,TRUE);
 				} else {
-					$result = $this->trainee_module_model->enrol_module($module_id, $trainee_id);
+					$result = $this->trainee_module_model->enrol_module($module_id, $this->trainee_id);
 					$enrol_data['title'] = 'Reenrol in "'.$module_title.'"';
 					$enrol_data['message'] = '';
 					$enrol_data['error'] = '';
@@ -208,7 +214,7 @@ class Module extends MBL_Controller {
 						);
 					$data['body_content'] = $this->load->view('trainee/module/enrol_confirm',$confirm_data,TRUE);
 				} else {
-					$result = $this->trainee_module_model->enrol_module($module_id, $trainee_id);
+					$result = $this->trainee_module_model->enrol_module($module_id, $this->trainee_id);
 					$enrol_data['title'] = 'Enrol in "'.$module_title.'"';
 					$enrol_data['message'] = '';
 					$enrol_data['error'] = '';

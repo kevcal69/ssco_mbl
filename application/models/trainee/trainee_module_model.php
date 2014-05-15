@@ -74,7 +74,7 @@ class Trainee_module_model extends CI_Model {
 
 	public function get_available_modules($trainee_id, $limit = FALSE, $random = FALSE) {
 		$sql_query = '
-			SELECT	id, title, description
+			SELECT	*
 			FROM		module m
 			WHERE		NOT EXISTS (
 							SELECT	NULL

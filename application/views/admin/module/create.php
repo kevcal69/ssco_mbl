@@ -5,7 +5,7 @@
 <?php endif; ?>
 
 <div id ="editor-container">
-	<form  action = "<?=site_url('admin/module/modify_module')?>" method = "POST">
+	<form  action = "<?=site_url('admin/module/create_module')?>" method = "POST">
 	<div class="panel panel-success">
 		<div class="panel-heading">
 			<h3 class="panel-title">Create Module</h3>
