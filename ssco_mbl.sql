@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2014 at 11:42 AM
+-- Generation Time: May 15, 2014 at 09:03 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.27
 
@@ -82,12 +82,24 @@ CREATE TABLE IF NOT EXISTS `module_slide` (
 
 CREATE TABLE IF NOT EXISTS `question` (
   `id` int(225) NOT NULL AUTO_INCREMENT,
-  `question` varchar(225) NOT NULL,
+  `qtitle` varchar(225) NOT NULL,
+  `question` text NOT NULL,
   `answer` varchar(225) NOT NULL,
   `module_id` int(225) NOT NULL,
+  `choices` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`id`, `qtitle`, `question`, `answer`, `module_id`, `choices`) VALUES
+(1, 'Question #1: Why so serious? Why o why? The joker is always happy.', '<pre style=\\"background-color:#eeeeee;color:#284c7e;font-size:12px;margin:5px 0px 5px 0px;padding:5px 5px 5px 5px;\\">\r\nSerious face has been with us</pre>\r\n', 'YToxOntpOjA7czoxOiIwIjt9', 6, 'YToyOntpOjA7czoyOiJObyI7aToxO3M6MzoiWWVzIjt9'),
+(2, ' Why so serious? Why o why? The joker is always happy.', '<div>Halelujah. Boom Boom Boom. Bomb all those who wrecked my plans.&nbsp;</div>\r\n', 'YToxOntpOjA7czoxOiIwIjt9', 6, 'YToyOntpOjA7czoxMDoiQXNrIEJhdG1hbiI7aToxO3M6MTc6IlN1cGVybWFuIE9uIGJvYXJkIjt9'),
+(3, 'Chicken crossing the road.', '<div>Why on earth did the chicken cross the road? From the other side, it was firmly fine. Anxiety has brought the chicken the motivation of venturing the other side of the road. The other side ,often described by some flying chickens (sick chickens cause they dont fly) as fulfilling to ones mind, is very vast that flying can be useful in times of tireness. Almost, some testimonies from the sick chickens that some of them witness ninja chickens with huge blade attached to their feet would often head on with each other.&nbsp;</div>\r\n', 'YToxOntpOjA7czoxOiIwIjt9', 6, 'YToxOntpOjA7czo1NDoiQmVjYXVzZSB0aGUgZm9yY2UgaXMgZHJhd2luZyB0aGUgY2hpY2tlbnMgaW5uZXIgcG93ZXIuIjt9'),
+(4, 'Stupendous stupidly act!', '<div>Ever wonder when a stupid act became stupendous? Always check for source. How to format. Chicken cross the road.</div>\r\n', 'YToxOntpOjA7czoxOiIwIjt9', 6, 'YToxOntpOjA7czoyMToiS2lsbCB0aGUgZ3JpbSByZWFwZXIhIjt9');
 
 -- --------------------------------------------------------
 

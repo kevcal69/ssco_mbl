@@ -28,11 +28,6 @@
 						'content' => to_sidebar_element('fa-book','Modules'),
 						'href' => base_url('admin/module'),
 						'active' => TRUE
-						),
-					array(
-						'content' => to_sidebar_element('fa-list','Tests'),
-						'href' => base_url('admin/test'),
-						'active' => FALSE
 						)
 					)
 				);      			
@@ -42,7 +37,7 @@
 		$this->sidebar_content['search'] = TRUE;
 		$this->sidebar_content['actions'] = array(
 					'home' => array(
-						'content' => to_sidebar_element('fa-home','List Modules'),
+						'content' => to_sidebar_element('fa-bars','List Modules'),
 						'href' => base_url('admin/module/'),
 						'active' => TRUE
 						),
@@ -59,6 +54,13 @@
 	}
 
 	function create() {
+		$this->sidebar_content['actions'] = array(
+					'home' => array(
+						'content' => to_sidebar_element('fa-bars','List Modules'),
+						'href' => base_url('admin/module/'),
+						'active' => FALSE
+						)	
+					);
 		$data['page_title'] = "SSCO Module Base Learning";
 		$data['body_content'] = $this->load->view('admin/module/create',array(),TRUE); // kevcal
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
@@ -68,17 +70,17 @@
 	function view($id)  {
 		$this->sidebar_content['actions'] = array(
 					'home' => array(
-						'content' => to_sidebar_element('fa-home','List Modules'),
+						'content' => to_sidebar_element('fa-bars','List Modules'),
 						'href' => base_url('admin/module/'),
 						'active' => FALSE
 						),
 					'edit' => array(
-						'content' => to_sidebar_element('fa-plus-square','Modify this Module'),
+						'content' => to_sidebar_element('fa-cogs','Modify this Module'),
 						'href' => base_url('admin/module/modify/'.$id),
 						'active' => FALSE
 						),
 					'delete' => array(
-						'content' => to_sidebar_element('fa-plus-square','Delete this Module'),
+						'content' => to_sidebar_element('fa-times-circle','Delete this Module'),
 						'href' => base_url('admin/module/delete'.$id),
 						'active' => FALSE
 						)
@@ -93,17 +95,17 @@
 	function modify($id)  {
 		$this->sidebar_content['actions'] = array(
 					'home' => array(
-						'content' => to_sidebar_element('fa-home','List Modules'),
+						'content' => to_sidebar_element('fa-bars','List Modules'),
 						'href' => base_url('admin/module/'),
 						'active' => FALSE
 						),
 					'edit' => array(
-						'content' => to_sidebar_element('fa-plus-square','View this Module'),
+						'content' => to_sidebar_element('fa-laptop','View this Module'),
 						'href' => base_url('admin/module/view/'.$id),
 						'active' => FALSE
 						),
 					'delete' => array(
-						'content' => to_sidebar_element('fa-plus-square','Delete this Module'),
+						'content' => to_sidebar_element('fa-times-circle','Delete this Module'),
 						'href' => base_url('admin/module/delete'.$id),
 						'active' => FALSE
 						)

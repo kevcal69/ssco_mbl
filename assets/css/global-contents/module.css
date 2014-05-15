@@ -3,18 +3,8 @@
 	height: 100%;
 	overflow: hidden;
 	padding-bottom: 30px;
-	margin-top: 10px;
 	display: inline-block;
 	vertical-align: top;
-}
-
- #module-container h1 {
-	text-align: left;
-	font-size: 40px;
-	font-family: sans-serif;
-	color: #54b948;
-	font-weight: 900;
-	width: 550px;
 }
 
  #module-container #module-liststyle {
@@ -43,8 +33,68 @@
 	box-shadow: 0px 0px 1px black;
 }
 
- #module-container #grid-container {
+
+/*Admin Module*/
+
+.module.index .actions.grid {
+	width: inherit;
+	height: 0px;
+	background: #54B948;
+	opacity: 0;
+	padding:  5px 5px 5px 5px;
+}
+
+.module.index .actions.grid ul {
+	padding: 0px;
+	margin: 0px auto;
+}
+
+.module .active_mod {
+	transition: opacity .1s ease 0s, top .1s linear;
+	height: 40px !important;
+	opacity: 1 !important;
+}
+
+.module.index .module-box .actions ul li {
 	display: inline-block;
+	vertical-align: top;
+	color:  #717171;
+	cursor: pointer;
+}
+
+.module.index .module-box .actions ul li button {
+	width: 60px;
+	padding: 5px 5px !important;
+}
+
+.module.index .module-box .actions ul li:hover {
+	background: #FFD700;	
+}
+
+.module.create #editor-container  {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.module.index #module-container #list-container ul li .actions{
+	float: right;
+	margin-top: -5px;
+	cursor: pointer;
+	display: none;
+}
+
+.module.index #module-container #list-container ul li .actions span:hover {
+	text-shadow: 0px 0px 10px black;
+}
+
+/*GRID*/
+
+ #module-container #grid-container {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+	margin-left: 20px;
 }
 
  #module-container #grid-container .module-box {
@@ -110,31 +160,41 @@
 	transition: margin-top .1s linear .2s;	
 }
 
+/*LIST*/
+
   #module-container #list-container {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	margin-top: 20px;
-}
-
-  #module-container #list-container ul {
-	margin-left: 50px;
 	text-align: left;
 }
 
   #module-container #list-container ul li {
   	text-align: left;
-	height: 100px;
-	width: 300px;
-	margin: 0px 5px 0px 5px;
+  	display: inline-block;
+	height: 80px;
+	width: 250px;
+	margin: 10px 5px 0px 5px;
 	padding: 10px;
 	list-style: none;
 	border: 2px solid #e6e6e6;
 }
-
-#module-container #list-container ul li:hover {
-	border: 3px solid #cccccc;
+#module-container #list-container ul .li-active{
+	border: 3px solid #54B948;
 }
+
+#module-container #list-container ul li .li-check {
+	margin: -10px -10px 0px 0px;
+	float: right;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 20px 0;
+	border-color: transparent #53b948 transparent transparent;
+	 -webkit-transform:rotate(360deg);
+}
+
+
 
  #module-container #list-container ul li .thumb {
 	background-color: white;
@@ -160,65 +220,6 @@
 	margin: 0px;
 	padding: 0px;
 }
-/*Admin Module*/
-
-.module.index #module-container {
-	margin-top: 10px;	
-}
-
-.module.index #module-add {
-	cursor: pointer;
-	float: left;
-	text-align: left;
-	overflow: hidden;
-	height: 40px;
-	transition: width .2s linear;
-}
-
-.module.index #module-img {
-	 transition: opacity .3s ease, visibility 1s ease;	
-	display: none;
-	vertical-align: middle;
-	float: left;
-	opacity: 1;
-}
 
 
-.module.index .actions.grid {
-	width: inherit;
-	height: 0px;
-	background: #54B948;
-	opacity: 0;
-	padding:  5px 5px 5px 5px;
-}
 
-.module.index .actions.grid ul {
-	padding: 0px;
-	margin: 0px auto;
-}
-
-.module .active_mod {
-	transition: opacity .1s ease 0s, top .1s linear;
-	height: 40px !important;
-	opacity: 1 !important;
-}
-
-.module.index .module-box .actions ul li {
-	display: inline-block;
-	vertical-align: top;
-	color:  #717171;
-	cursor: pointer;
-}
-.module.index .module-box .actions ul li button {
-	width: 60px;
-	padding: 5px 5px !important;
-}
-
-.module.index .module-box .actions ul li:hover {
-	background: #FFD700;	
-}
-
-.module.create #editor-container  {
-	width: 100%;
-	margin-bottom: 20px;
-}

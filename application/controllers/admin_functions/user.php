@@ -32,11 +32,6 @@ class User extends MBL_Controller {
 						'content' => to_sidebar_element('fa-book','Modules'),
 						'href' => base_url('admin/module'),
 						'active' => FALSE
-						),
-					array(
-						'content' => to_sidebar_element('fa-list','Tests'),
-						'href' => base_url('admin/test'),
-						'active' => FALSE
 						)
 					),
 				'actions' => array(
