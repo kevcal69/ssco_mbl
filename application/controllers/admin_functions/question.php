@@ -35,7 +35,7 @@
 	    }	
 
 	function create($id) {
-
+		$this->load->helper('output_text_helper');
 		$this->sidebar_content['actions'] = array(
 					'list' => array(
 						'content' => to_sidebar_element('fa-bars','List Questions'),
@@ -66,7 +66,6 @@
 
 	function create_question() {
 		$information = $this->input->post('question');
-
 		$question = array(
 			'id' => '',
 			'qtitle' => addslashes($information['title']),
@@ -75,13 +74,11 @@
 			'module_id' => $information['module'],
 			'choices' => base64_encode(serialize($information['choices'])),
 		);
-
 		if ($this->mQ->add($question)) {
 			redirect('admin/question/create/'.$information['module']);
 		} else  {
 			show_404();
 		}
-
 	}
 }
 

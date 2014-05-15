@@ -1,5 +1,5 @@
 .question-list {
-	height: 300px;
+	max-height: 500px;
 	overflow: auto;	
 }
 .item {
@@ -54,9 +54,8 @@
 	color: #000000;	
 }
 .qfield{
-	height: 50px;
+	height: 40px;
 	width: 100% !important;
-	margin-bottom: 10px !important;
 }
 #econtainer {
 	display: inline-block;
@@ -77,4 +76,8 @@
 }
 .checkbox {
 	width: 100% !important;
+}
+.question.create form {
+	padding: 0 !important;
+	background: transparent !important;
 }

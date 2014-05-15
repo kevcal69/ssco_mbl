@@ -23,7 +23,9 @@ var question = {
 		});
 	},
 	add: function() {
-		$('#choices-li').prepend('<label class="checkbox"><input type="checkbox" name = "question[answers][]" value = "'+$('.checkbox').length+'"><input type = "text" class = "choices" name = "question[choices][]"><span class = "text-error text-size-s2" onclick = "question.del(this)">del</span></label>');
+		$('#choices-li').append('<label class="checkbox"><input type="checkbox" name = "question[answers][]" value = "'+$('.checkbox').length+'"><input type = "text" class = "choices" name = "choices[]"><span class = "text-error text-size-s2" onclick = "question.del(this)">del</span></label>');	
+
+		console.log($('.choices').length);
 
 		
 	},
