@@ -450,6 +450,7 @@ ul, ol {
 	color: #6B6B6B;
 	font-family: "Arial","Segoe UI";
 	text-decoration: none;
+	cursor: pointer;
 }
 .sidebar a:hover,
 .sidebar a:focus {
@@ -488,6 +489,12 @@ ul, ol {
 	padding: 10px 15px;
 	background: #E0E4E9;
 	border-bottom: 1px solid #D1D1D1;
+}
+
+.panel-footer {
+	padding: 10px 15px;
+	background: #EEEFF0;
+	border-top: 1px solid #E0E0E0;
 }
 
 .panel-title {
