@@ -1,9 +1,10 @@
+<?php if (!isset($panelbody_only) OR $panelbody_only !== TRUE):?>
 <div class="panel panel-success">
 	<div class="panel-heading">
-		<h3 class="panel-title">Module List : Grid View</h3>
+		<h3 class="panel-title" id="module-list-panel-title">Module List : Grid View</h3>
 	</div>
+<?php endif;?>
 	<div id = "module-container" class = "panel-body">
-
 		<div id = "module-liststyle">
 			<div class="liststyles">
 				<img src="<?=base_url().'assets/images/landing/list.png'?>" alt ="list" onclick = "modules.toggle_to_list()">
@@ -15,18 +16,18 @@
 		</div>
 		<div id="grid-container">
 			<?php foreach ($modules as $module): ?>
-				<div class = "module-box">	
+				<div class = "module-box">
 					<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);">
 						<img src="">
 
 					</div>
 					<div class = "mb-title">
-						<?=$module->title;?>
+						<?=character_limiter($module->title,25);?>
 					</div>
 					<div class="description">
-						<?=stripslashes(strip_tags(word_limiter($module->description, 20)))?> 
+						<?=stripslashes(strip_tags(word_limiter($module->description, 20)))?>
 					</div>
-				<?php if ($this->session->userdata('role')): ?>
+					<?php if ($this->session->userdata('role')): ?>
 						<?php if ($this->session->userdata('role') === "admin"): ?>
 							<div class="actions grid ">
 								<ul>
@@ -51,37 +52,48 @@
 									<li>Modify</li>
 									<li>Delete</li>
 								</ul>
+							</div>
 						<?php endif; ?>
-					<?php endif; ?>				
+					<?php endif; ?>
 
 				</div>
 
-			<?php endforeach; ?>			
+			<?php endforeach; ?>
 		</div>
 		<div id="list-container">
 			<ul>
 				<?php foreach ($modules as $module): ?>
 						<li class = "list-box">
-							<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);"></div>				
+							<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);"></div>
 							<div class = "mb-title">
 								<p = "m-title" class = "text-primary">
-									<?=$module->title;?>
+									<?=$module->title?>
 								</p>
 								<p = "m-category" class = "text-warning text-size-s1">
 									SSCO
 								</p>
-							</div>		
+							</div>
+
+					<?php if ($this->session->userdata('role')): ?>
+						<?php if ($this->session->userdata('role') === "admin"): ?>
 							<div class="actions">
 								<span><a href="<?=base_url() . 'admin/module/view/'.$module->id?>" class = "text-primary text-size-s3">View</a></span>
 								<span><a href="<?=base_url() . 'admin/question/create/'.$module->id?>" class = "text-info text-size-s3">Test Q</a></span>
 								<span><a href="<?=base_url() . 'admin/module/modify/'.$module->id?>" class = "text-warning text-size-s3">Modify</a></span>
 								<span><a href="<?=base_url() . 'admin/module/delete/'.$module->id?>" class = "text-error text-size-s3">Delete</a></span>
-							</div>			
-
+							</div>
+						<?php elseif ($this->session->userdata('role') === "trainee"): ?>
+							<div class="actions">
+								<a class="button" href="<?=base_url('trainee/module/view/'.$module->id)?>" class = "text-info text-size-s3">View</a>
+								<a class="button button-primary" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
+							</div>
+						<?php endif; ?>
+					<?php endif; ?>
 						</li>
-					
 				<?php endforeach; ?>
 			</ul>	
 		</div>
 	</div>
+<?php if (!isset($panelbody_only) OR $panelbody_only !== TRUE):?>
 </div>
+<?php endif; ?>

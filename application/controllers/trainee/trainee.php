@@ -10,13 +10,14 @@ class Trainee extends MBL_Controller {
 				show_error($message_403,403,$heading);
 			}
 
-      // $this->load->model('trainee/trainee_model');
+      $this->load->model('trainee/trainee_model');
+      $this->load->model('trainee/trainee_module_model');
       $this->load->model('module_model');
       $this->load->helper('application_helper');
       $this->load->helper('sidebar_helper');
 			$this->load->library('form_validation');
 
-
+			$this->trainee_id = $this->session->userdata('id');
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 					'home' => array(
@@ -46,10 +47,31 @@ class Trainee extends MBL_Controller {
 	public function index() {
 		$this->sidebar_content['quicklinks']['home']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
+		$data['page_title'] = "SSCO Module-Based Learning";
 
-		$data['available_modules'] = $this->module_model->get_module_entries(3,TRUE);
+		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->trainee_id);
+		
+		// $data['available_modules'] = $this->module_model->get_module_entries(3,TRUE);
+		$data['available_modules'] = $this->trainee_module_model->get_available_modules($this->trainee_id,'',TRUE);
+
+		// $data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
+
 		$data['body_content'] = $this->load->view('trainee/home',$data,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);
+	}
+
+	public function view_profile() {
+		$this->sidebar_content['quicklinks']['profile']['active'] = TRUE;
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$data['page_title'] = "SSCO Module-Based Learning";
+
+		$data['name'] = $this->trainee_model->get_name($this->trainee_id);
+		$data['statistics'] = $this->trainee_model->get_statistics($this->trainee_id);
+
+		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->trainee_id);
+		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
+
+		$data['body_content'] = $this->load->view('trainee/profile/profile',$data,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 }

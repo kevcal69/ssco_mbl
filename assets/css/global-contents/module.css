@@ -11,8 +11,8 @@
 	width: 400px;
 	height: 20px;
 	padding: 0px 5px 5px 5px;
-	margin-left: 20px;
-	margin-top: 20px;
+	/*margin-left: 20px;*/
+	/*margin-top: 20px;*/
 	text-align: left;
 } 
 
@@ -36,55 +36,56 @@
 
 /*Admin Module*/
 
-.module.index .actions.grid {
+#module-container .actions.grid {
 	width: inherit;
 	height: 0px;
 	background: #54B948;
 	opacity: 0;
 	padding:  5px 5px 5px 5px;
+	text-align: center;
 }
 
-.module.index .actions.grid ul {
+#module-container .actions.grid ul {
 	padding: 0px;
 	margin: 0px auto;
 }
 
-.module .active_mod {
+#module-container .active_mod {
 	transition: opacity .1s ease 0s, top .1s linear;
 	height: 40px !important;
 	opacity: 1 !important;
 }
 
-.module.index .module-box .actions ul li {
+#module-container .module-box .actions ul li {
 	display: inline-block;
 	vertical-align: top;
 	color:  #717171;
 	cursor: pointer;
 }
 
-.module.index .module-box .actions ul li button {
+#module-container .module-box .actions ul li button {
 	width: 60px;
 	padding: 5px 5px !important;
 }
 
-.module.index .module-box .actions ul li:hover {
+#module-container .module-box .actions ul li:hover {
 	background: #FFD700;	
 }
 
-.module.create #editor-container  {
-	width: 100%;
-	margin-bottom: 20px;
-}
-
-.module.index #module-container #list-container ul li .actions{
+#module-container #list-container ul li .actions{
 	float: right;
 	margin-top: -5px;
 	cursor: pointer;
 	display: none;
 }
 
-.module.index #module-container #list-container ul li .actions span:hover {
+#module-container #list-container ul li .actions span:hover {
 	text-shadow: 0px 0px 10px black;
+}
+
+.module.create #editor-container  {
+	width: 100%;
+	margin-bottom: 20px;
 }
 
 /*GRID*/

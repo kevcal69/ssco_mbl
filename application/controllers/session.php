@@ -36,7 +36,7 @@ class Session extends MBL_Controller {
 	}
 
 	public function logout()  {
-		echo 'LOGGING OUT';
+		echo 'LOGGING OUT...';
 			
 		$this->session->sess_destroy();
 		redirect(base_url(),'refresh');

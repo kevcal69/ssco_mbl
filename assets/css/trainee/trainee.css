@@ -1,3 +1,77 @@
 .trainee.index .panel-body p {
 	margin: 0 auto;
 }
+
+.module .form-container {
+	min-width: 450px;
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	margin: 20px 0px;
+}
+
+.module form,
+.module .form-container .panel-body {
+	text-align: center;
+}
+
+/*profile*/
+.view_profile .form-horizontal .control-group {
+	display:block;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.view_profile .form-horizontal label {
+	display: inline-block;
+	width: 200px;
+}
+
+.view_profile .form-horizontal label.label {
+	font-weight: bold;
+}
+
+.view_profile .form-horizontal label.value {
+	margin-left:  10px;
+	float: none;
+	text-align: left;
+
+}
+
+/*Module List View*/
+.trainee.index #module-container #list-container ul {
+	padding-left: 0;
+	text-align: center;
+}
+
+.trainee.index #module-container #list-container ul li {
+	width: calc(100% - 6px);
+	height: auto;
+	/*max-height: 57px;*/
+	border: 2px solid #dddddd;
+	/*overflow: hidden;*/
+}
+
+.trainee.index #module-container #list-container ul .li-active {
+	border: 3px solid #54B948;
+}
+
+.trainee.index #module-container #list-container ul li .mb-title {
+	width: calc(100% - 70px);
+	white-space:nowrap;
+}
+
+.trainee.index #module-container #list-container ul li .mb-title p {
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+
+.trainee.index #module-container #list-container ul li .actions {
+	float: left;
+	margin-top: 5px;
+}
+
+.trainee.index #module-container #list-container ul li .actions .button {
+	font-size: .7rem;
+	padding: 4px 10px 3px 10px;
+}
