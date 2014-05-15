@@ -1,4 +1,4 @@
-<meta charset="utf-8" />
+<meta content-type = "text/html" charset="utf-8" />
 <!--Stylesheets-->
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/global/reset.css'; ?>" />
 
@@ -12,7 +12,6 @@
 
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/global-contents/layouts.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/global-contents/module.css'; ?>" />
-<link rel="stylesheet" href="<?= base_url() . 'assets/css/global-contents/ckeditor.css'; ?>" />
 
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/contents/home.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/contents/module.css'; ?>" />

@@ -14,16 +14,11 @@
 	text-indent: 20px;
 }
 
-
-
-
-
 #field-container {
 	width: 100%;
 	min-height:300px;
 	text-align: left;
 	padding: 10px 10px 10px 10px;	
-	margin-bottom: 20px;
 	border: 1px solid #54b948;
 }
 

@@ -1,9 +1,14 @@
 <script src="<?= base_url() . 'assets/plugins/ckeditor/ckeditor.js'; ?>"></script>
 <script src="<?= base_url() . 'assets/plugins/ckeditor/adapters/jquery.js'; ?>"></script>
 <script src="<?= base_url() .  'assets/plugins/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js';?>"></script>
+
 <div id ="editor-container">
 	<form  action = "<?=site_url('admin/module/modify_module')?>" method = "POST">
-		<div id="field-container">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">Modify Module No : <?=$module->id?></h3>
+		</div>
+		<div id="field-container" class = "panel-body">
 			<div id="instruction">
 				<h3>Notes & Tips</h3>
 				<ul>
@@ -33,6 +38,8 @@
 			<input type = 'submit' value = "Save" class = "button-info" > 
 			
 		</div>
+	</div>	
+		
 
 	<form  action = "<?=site_url('admin/module/modify_module')?>" method = "POST">
 		<input type = "hidden" value = "<?=$module->id?>" name = "id">

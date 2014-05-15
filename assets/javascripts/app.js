@@ -4,10 +4,33 @@ $(document).ready(function() {
 	hide.initialize();
 	trainee.toggle();
 	view_all.autoReload();
+	question.initialize();
 	$(window).scroll(function() {
 		stick_Sidebar.initialize();
 	});
 });
+
+var question = {
+	initialize: function() {
+		$('.show_d').click(function() {
+			if ($(this).text() == "Show Details") {
+				$(this).text('Hide Details');
+				$(this).parent().parent().children('.item-body').css({'display':'block'});	
+			} else {
+				$(this).text('Show Details');
+				$(this).parent().parent().children('.item-body').css({'display':'none'});					
+			}
+		});
+	},
+	add: function() {
+		$('#choices-li').prepend('<label class="checkbox"><input type="checkbox" name = "question[answers][]" value = "'+$('.checkbox').length+'"><input type = "text" class = "choices" name = "question[choices][]"><span class = "text-error text-size-s2" onclick = "question.del(this)">del</span></label>');
+
+		
+	},
+	del: function($d) {
+		$($d).parent().remove();
+	}
+}
 
 var stick_Sidebar = {
 	initialize: function() {
@@ -15,7 +38,7 @@ var stick_Sidebar = {
 			$h = $(window).scrollTop() - 126;
 			$('#sidebar-content').css({'margin-top': $h+'px'}); 
 		} else {
-			$('#sidebar-content').css({'margin-top': '10px'});
+			$('#sidebar-content').css({'margin-top': '5px'});
 		}
 	}
 }
@@ -23,17 +46,15 @@ var stick_Sidebar = {
 
 var modules = {
 	initialize: function() {
-		// $("#list-container").hide();
-		// $("#grid-container").show();
+		$("#list-container").hide();
+		$("#grid-container").show();
 
-		$("#grid-container").hide();		
-		$("#list-container").show();
+		// $("#grid-container").hide();		
+		// $("#list-container").show();
 
-		$flag_m = '1';
-		$flag_c = 200;
-
+		$flag_m = null;
 		$('.module-box').click (function () {
-			if($flag_m == '1') {
+			if($flag_m != this) {
 				$('.module-box').css('border','2px solid #dddddd');
 				$('.module-box').height(200);
 				$('.check').remove();
@@ -46,25 +67,44 @@ var modules = {
 				$(this).children('.mb-title').addClass('mod_active');
 				$(this).prepend('<div class = "check"></div>');
 				$(this).css('border', '4px solid #54B948');					
-				$flag_m = '0';
+				$flag_m = this;
 			} else {
 				$('.module-box').css('border','2px solid #dddddd');
 				$('.module-box').height(200);
 				$('.check').remove();
 				$('.mb-title').removeClass('mod_active');
 				$('.actions').removeClass('active_mod');
-				$flag_m = '1';
-				
+				$flag_m = null;
 			}
 
 		}); 
 
+		$('.list-box').click (function(){
+			if ($flag_m != this) {
+				$('.li-check').remove();
+				$('.list-box').removeClass('li-active');
+				$('.list-box').children('.actions').hide();				
+
+				$(this).children('.actions').show();
+				$(this).prepend('<div class = "li-check"></div>');
+				$(this).addClass('li-active');	
+				$flag_m = this;
+			} else {
+				$(this).removeClass('li-active');
+				$('.li-check').remove();	
+				$('.list-box').children('.actions').hide();	
+				$flag_m = null;
+			}
+		});
+
 	},
 	toggle_to_grid: function() {
+		$('.panel-title').text("Module List : Grid View");
 		$("#list-container").hide();
 		$("#grid-container").fadeIn();
 	},
 	toggle_to_list: function() {
+		$('.panel-title').text("Module List : List View");
 		$("#grid-container").hide();
 		$("#list-container").fadeIn();
 	},

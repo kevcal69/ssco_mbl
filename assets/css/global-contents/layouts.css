@@ -39,11 +39,10 @@
 }
 
 #main-wrapper.logged_in #main-content #body-content  {
-
-	text-align: center;
 	margin-right: 10px;
 	max-width: 1000px;
 	min-height: 100%;
+	text-align: center;
 	overflow: hidden;
 }
 #main-wrapper.logged_in #main-content #sidebar-content  {

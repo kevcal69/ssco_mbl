@@ -5,8 +5,12 @@
 <?php endif; ?>
 
 <div id ="editor-container">
-	<form  action = "<?=site_url('admin/module/create_module')?>" method = "POST">
-		<div id="field-container">
+	<form  action = "<?=site_url('admin/module/modify_module')?>" method = "POST">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">Create Module</h3>
+		</div>
+		<div id="field-container" class = "panel-body">
 			<div id="instruction">
 				<h3>Notes & Tips</h3>
 				<ul>
@@ -35,9 +39,8 @@
 			<input type = 'submit' value = "Save" class = "button-info" > 
 			
 		</div>
-	
-	<textarea name="editor1" id="editor1" rows="10" cols="80">
-		</textarea>
+	</div>	
+	<textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
 	            <script>
 	                // Replace the <textarea id="editor1"> with a CKEditor
 	                // instance, using default configuration.
@@ -49,4 +52,3 @@
 	            </script>	
 	</form>	
 </div>
-
