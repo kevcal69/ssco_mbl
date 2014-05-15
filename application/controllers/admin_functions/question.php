@@ -42,14 +42,9 @@
 						'href' => base_url(''),
 						'active' => TRUE
 						),
-					'eval' => array(
-						'content' => to_sidebar_element('fa-desktop','Set Evaluation Test'),
-						'href' => base_url(''),
-						'active' => FALSE
-						),
 					'sched' => array(
 						'content' => to_sidebar_element('fa-tags','Schedule a Test'),
-						'href' => base_url(''),
+						'href' => base_url('admin/question/fetch_evaluation_test/6'),
 						'active' => FALSE
 						),
 					'stats' => array(
@@ -62,6 +57,27 @@
 		$data['body_content'] = $this->load->view('admin/question/create',array('module' => $this->mModule->fetch_module($id),'questions' => $this->mQ->fetch_questions($id)),TRUE); // kevcal
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
+	}
+
+	function fetch_evaluation_test($id) {
+		$array = $this->mQ->fetch_questions($id);
+		$data = array();
+
+		$haystack = array();
+		if (sizeof($array) < 10) {
+			return $array;
+		} else {
+			for ($i=0; $i < 10; $i++) { 
+				$rand_num = rand(0,sizeof($array)-1);
+				if (in_array($rand_num, $haystack)) {
+					$i--;
+				} else {
+					$haystack[$i] = $rand_num;
+					array_push($data, $array[$i]);
+				}
+			}
+		}
+		return $data;
 	}	
 
 	function create_question() {
