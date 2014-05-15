@@ -45,11 +45,6 @@ class Module extends MBL_Controller {
 
 	public function index() {
 		$this->sidebar_content['actions'] = array(
-					'home' => array(
-						'content' => to_sidebar_element('fa-home','Home'),
-						'href' => base_url('trainee/module'),
-						'active' => TRUE
-						),
 					'current_module' => array(
 						'content' => to_sidebar_element('fa-edit','View Current Module'),
 						'href' => base_url('trainee/module/view_current_module'),
@@ -57,12 +52,12 @@ class Module extends MBL_Controller {
 						),
 					'view_module' => array(
 						'content' => to_sidebar_element('fa-search','View Modules'),
-						'href' => base_url('trainee/module/view_module'),
+						'href' => base_url('trainee/module/view'),
 						'active' => FALSE
 						),
 					'enrol_module' => array(
 						'content' => to_sidebar_element('fa-plus','Enrol Module'),
-						'href' => base_url('admin/user/view'),
+						'href' => base_url('admin/user/enrol'),
 						'active' => FALSE
 						),
 					'delete' => array(
@@ -81,14 +76,48 @@ class Module extends MBL_Controller {
 	public function view($id = FALSE) {
 		if ($id === FALSE) {
 			//view all available modules
+			$this->sidebar_content['actions'] = array (
+				'back' => array(
+					'content' => to_sidebar_back('Back'),
+					'extra' => 'onClick="history.go(-1);"',
+					'active' => FALSE
+					)
+				);
+			$data['page_title'] = "Trainee - SSCO Module-Based Learning";
+			$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+			$data['modules'] = $this->module_model->get_module_entries();
+			$data['body_content'] = $this->load->view('trainee/module/view_all',$data,TRUE);
+			$this->parser->parse('layouts/logged_in', $data);
 
 		} else {
 			//view specific module
+			$this->sidebar_content['actions'] = array (
+				'back' => array(
+					'content' => to_sidebar_back('Back'),
+					'extra' => 'onClick="history.go(-1);"',
+					'active' => FALSE
+					),
+				'enrol' => array(
+					'content' => to_sidebar_element('fa-plus','Enrol Module'),
+					'href' => base_url('admin/user/enrol/'.$id),
+					'active' => FALSE
+					)
+				);
 			$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 			$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 			$module = array('module' => $this->module_model->fetch_module($id));
-			$data['body_content'] = $this->load->view('admin/module/view',$module,TRUE); 
-			$this->parser->parse('layouts/logged_in', $data);		
+			$data['body_content'] = $this->load->view('admin/module/view',$module,TRUE);
+			$this->parser->parse('layouts/logged_in', $data);
+		}
+	}
+
+	public function enrol($id = FALSE) {
+		if ($id === FALSE) {
+			//choose enrol module
+
+		} else {
+			//enrol specific module
+
 		}
 	}
 }

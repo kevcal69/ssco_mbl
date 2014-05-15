@@ -5,8 +5,17 @@ class Module_model extends CI_Model {
 		parent::__construct();
 	}
 	
-	function get_module_entries() {
-		$query = $this->db->get('module');
+	function get_module_entries($limit = FALSE, $random = FALSE) {
+		if ($limit === FALSE) {
+			$query = $this->db->get('module');
+		} else if ($limit !== FALSE && $random === TRUE) {
+			$this->db->order_by('id', 'RANDOM');
+			$this->db->limit($limit);
+			$query = $this->db->get('module');
+		} else {
+			$this->db->limit($limit);
+			$query = $this->db->get('module');
+		}
 		return $query->result();
 	}
 
@@ -18,12 +27,12 @@ class Module_model extends CI_Model {
 	}
 
 	function fetch_module($id) {
-		 $query = $this->db->get_where('module', array('id' => $id));
-		 if ($query) {
-		 	return $query->row();
-		 } else {
-		 	return false;
-		 }
+		$query = $this->db->get_where('module', array('id' => $id));
+		if ($query) {
+			return $query->row();
+		} else {
+			return false;
+		}
 	}
 	function modify_module($data,$id) {
 		$this->db->where('id', $id);

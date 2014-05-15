@@ -11,6 +11,7 @@ class Trainee extends MBL_Controller {
 			}
 
       // $this->load->model('trainee/trainee_model');
+      $this->load->model('module_model');
       $this->load->helper('application_helper');
       $this->load->helper('sidebar_helper');
 			$this->load->library('form_validation');
@@ -46,7 +47,9 @@ class Trainee extends MBL_Controller {
 		$this->sidebar_content['quicklinks']['home']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
-		$data['body_content'] = $this->load->view('trainee/home','',TRUE);
+
+		$data['available_modules'] = $this->module_model->get_module_entries(3,TRUE);
+		$data['body_content'] = $this->load->view('trainee/home',$data,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 }
