@@ -6,16 +6,13 @@ class Module_model extends CI_Model {
 	}
 	
 	function get_module_entries($limit = FALSE, $random = FALSE) {
-		if ($limit === FALSE) {
-			$query = $this->db->get('module');
-		} else if ($limit !== FALSE && $random === TRUE) {
+		if (is_numeric($limit)) {
+			$this->db->limit($limit);
+		} 
+		if ($random === TRUE) {
 			$this->db->order_by('id', 'RANDOM');
-			$this->db->limit($limit);
-			$query = $this->db->get('module');
-		} else {
-			$this->db->limit($limit);
-			$query = $this->db->get('module');
 		}
+		$query = $this->db->get('module');
 		return $query->result();
 	}
 
@@ -46,6 +43,16 @@ class Module_model extends CI_Model {
 	}	
 	function delete_module($id) {
 		return $this->db->delete('module',array('id' => $id));
+	}
+
+	function get_title($id) {
+		$this->db->select('title');
+		$query =  $this->db->get_where('module', array('id' => $id), 1);
+		if ($query) {
+			return $query->row()->title;
+		} else {
+			return false;
+		}
 	}
 }
 
