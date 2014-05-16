@@ -46,8 +46,8 @@
 		</div>
 	</div>
 	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3 class="panel-title">Modules (<?php echo (sizeof($current_modules) + sizeof($completed_modules))?>)</h3>
+		<div class="panel-heading" onclick="trainee_profile.toggle_body();">
+			<h3 class="panel-title">Enroled Modules (<?php echo (sizeof($current_modules) + sizeof($completed_modules))?>)</h3>
 		</div>
 		<div class="panel-body">	
 			<div class="panel panel-info">
