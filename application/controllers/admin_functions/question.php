@@ -126,6 +126,30 @@
 			show_404();
 		}
 	}
+	function create_test_question() {
+		$information = $this->input->post('question');
+		$question = array(
+			'id' => '',
+			'qtitle' => addslashes($information['title']),
+			'question' => addslashes($information['question']),
+			'answer' => base64_encode(serialize($information['answers'])),
+			'module_id' => $information['module'],
+			'choices' => base64_encode(serialize($information['choices'])),
+		);
+		if ($this->mQ->add_test($question)) {
+			redirect('admin/question/create/'.$information['module']);
+		} else  {
+			show_404();
+		}
+	}
+	function set_question(){
+		$this->load->helper('output_text_helper');		
+		$id = $this->input->post('id');
+		$mid = $this->input->post('mid');
+		$val = $this->input->post('val');
+		$this->mQ->set_test($id,$val);
+		echo "success";
+	}
 }
 
 /* End of file welcome.php */

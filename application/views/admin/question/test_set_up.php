@@ -4,17 +4,21 @@
 
 <div class="panel panel-success">
 	<div class="panel-heading">	
-		<?php if (isset($test) && isset($test->isset_test) && $test->isset_test == FALSE):?>
+		<?php if (isset($test) && (!isset($test->isset_test) || $test->isset_test == FALSE)):?>
+
 			<button type = "button" class = "button-warning">Coduct a Test</button>
 		<?php else:?>	
+			<?=isset($test->isset_test) ?>
 			<button type = "button" class = "button-danger">Stop the Test</button>
 		<?php endif;?>
 	</div>
-	<div class="panel-body question-list">
+	<div class="panel-body question-list" id ="qbody">
 		<?php foreach ($questions as $question): ?>
+		<?php if ($question->is_used == 1):?>			
 		<div class="panel panel-primary item">
 			<div class="panel-heading">
 				<button type = "button" class = "button-warning show_d">Show Details</button>
+				<button type = "button" id = "q<?=$question->id?>" onclick="question.exclude_test(<?=$question->id?>,<?=$module->id?>,0)">Exclude</button>
 				<h3 class="panel-title"><?=$question->qtitle?></h3>
 			</div>
 			<div class="panel-body item-body">
@@ -42,7 +46,9 @@
 				
 
 		</div>	
+		<?php endif;?>
 		<?php endforeach; ?>
+
 	</div>
 </div>
 
@@ -52,9 +58,11 @@
 	</div>
 	<div class="panel-body question-list">
 		<?php foreach ($questions as $question): ?>
-		<div class="panel panel-primary item">
+		<?php if ($question->is_used == 0):?>	
+		<div class="panel panel-primary item" id ="pan<?=$question->id?>">
 			<div class="panel-heading">
 				<button type = "button" class = "button-warning show_d">Show Details</button>
+				<button type = "button" id = "q<?=$question->id?>" class ="button-success" onclick="question.include_test(<?=$question->id?>,<?=$module->id?>,1)">Include</button>
 				<h3 class="panel-title"><?=$question->qtitle?></h3>
 			</div>
 			<div class="panel-body item-body">
@@ -82,12 +90,14 @@
 				
 
 		</div>	
+		<?php endif;?>
 		<?php endforeach; ?>
 	</div>
 </div>
-<form action = "<?=base_url('admin/question/create_question')?>" method = "POST">
-<div class="panel panel-success ">
 
+
+<div class="panel panel-success ">
+<form action = "<?=base_url('admin/question/create_test_question')?>" method = "POST">
 	<div class="panel-heading">
 		<h3 class="panel-title">
 			<input type = "hidden" name = "question[module]" value = "<?=$module->id?>"/>
@@ -95,36 +105,23 @@
 		</h3>
 	</div>
 	<div class="panel-body">
-			<div id="econtainer">
-			<textarea id = "q-area" name = "question[question]" placeholder = "Question"></textarea>	
-
-				<script type="text/javascript">
-			CKEDITOR.replace( 'q-area', {
-				resize_enabled : false,
-				removePlugins : 'autosave',				
-				toolbar: [
-					[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
-					{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
-					'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
-					{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
-					],
-			});	
-				</script>	
-			</div>
-				<div id="instruction">
-					<div class="panel panel-success">
-						<div class="panel-heading">
-							<h3 class="panel-title">How to format</h3>
-						</div>
-						<div class="panel-body">
-							<ul>
-								<li>Always check for the source</li>
-								<li>Always check for source</li>
-								<li>Choices are found below check the checkbox if the choice is an answer</li>
-							</ul>
-						</div>
-					</div>					
-				</div>	
+		<div id="econtainer">
+		<textarea id = "q-area" name = "question[question]" placeholder = "Question"></textarea>
+		</div>
+		<div id="instruction">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">How to format</h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						<li>Always check for the source</li>
+						<li>Always check for source</li>
+						<li>Choices are found below check the checkbox if the choice is an answer</li>
+					</ul>
+				</div>
+			</div>					
+		</div>	
 	</div>
 	<div class="panel-footer">
 			<div class="control-group">
@@ -140,11 +137,21 @@
 			</div>		
 			<button  class = "button-success">Save</button>				
 	</div>
-	
+</form>
 </div>
 
-</form>
-
+<script type="text/javascript">
+	CKEDITOR.replace( 'q-area', {
+		resize_enabled : false,
+		removePlugins : 'autosave',				
+		toolbar: [
+			[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
+			{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+			'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+			{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+			],
+	});	
+</script>	
 
 
 

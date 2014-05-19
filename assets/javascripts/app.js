@@ -23,15 +23,44 @@ var question = {
 		});
 	},
 	add: function() {
-		$('#choices-li').append('<label class="checkbox"><input type="checkbox" name = "question[answers][]" value = "'+$('.checkbox').length+'"><input type = "text" class = "choices" name = "choices[]"><span class = "text-error text-size-s2" onclick = "question.del(this)">del</span></label>');	
-
-		console.log($('.choices').length);
-
-		
+		$('#choices-li').append('<label class="checkbox"><input type="checkbox" name = "question[answers][]" value = "'+$('.checkbox').length+'"><input type = "text" class = "choices" name = "question[choices][]"><span class = "text-error text-size-s2" onclick = "question.del(this)">del</span></label>');	
+		console.log($('.choices').length);		
 	},
 	del: function($d) {
 		$($d).parent().remove();
-	}
+	},
+	include_test: function($id,$mid,$val) {
+		var q = $('#pan'+$id);
+		q.remove();
+
+		$.ajax({
+			type: "POST",
+			url: MBL.BASE_URL+ "admin/question/set_question", 
+			data: { id : $id, mid : $mid , val: $val},
+			dataType: "text",  
+			cache:false,
+			success: 
+			function(data){
+				location.reload();
+			}
+		});
+	},
+	exclude_test: function($id,$mid,$val) {
+		var q = $('#pan'+$id);
+		q.remove();
+
+		$.ajax({
+			type: "POST",
+			url: MBL.BASE_URL+ "admin/question/set_question", 
+			data: { id : $id, mid : $mid , val: $val},
+			dataType: "text",  
+			cache:false,
+			success: 
+			function(data){
+				location.reload();
+			}
+		});
+	}	
 }
 
 var stick_Sidebar = {
@@ -40,7 +69,7 @@ var stick_Sidebar = {
 			$h = $(window).scrollTop() - 126;
 			$('#sidebar-content').css({'margin-top': $h+'px'}); 
 		} else {
-			$('#sidebar-content').css({'margin-top': '5px'});
+			$('#sidebar-content').css({'margin-top': '0px'});
 		}
 	}
 }
@@ -132,10 +161,9 @@ function refresh_page() {
 }
 var hide = {
 	initialize: function() {
-		if (DCS.BODY_CLSS === "module create" || DCS.BODY_CLSS === "module modify")
+		if (MBL.BODY_CLSS === "module create" || MBL.BODY_CLSS === "module modify")
 			setTimeout(function(){hide.notes_tips()},30000);
 	},
-
 	notes_tips: function() {
 		 var editor_height =  parseInt(edi.ui.space( 'contents' ).getStyle( 'height' ).replace("px","") )+  parseInt($("#instruction").height());
 		$("#instruction").fadeOut();	
