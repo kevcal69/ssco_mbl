@@ -362,7 +362,7 @@ textarea {
 hr {
 	border: 0;
 	border-bottom: 1px solid #C4C2C2;
-  width: 95%;
+  /*width: 95%;*/
 }
 
 /*Navigation*/
@@ -409,7 +409,7 @@ ul, ol {
 .nav-pills>li.active>a:hover, 
 .nav-pills>li.active>a:focus {
 	color: #fff;
-	background-color: #91C78C;
+	background-color: #B6B6B6;
 	/*background-color: #4FA647;*/
 	/*background-color: #428bca;*/
 }
@@ -426,10 +426,10 @@ ul, ol {
 }
 
 .sidebar .nav>li.header {
-	font-family: "OpenSansLight";
+	font-family: "OpenSansLight",Arial;
 	padding: 10px 15px;
 	color: #fff;
-	background-color: #4FA647;
+	background-color: rgba(84, 185, 72, 1);
 	cursor: default;
 	font-size: 1.6rem;
 	position: relative;
@@ -478,25 +478,35 @@ ul, ol {
 	display: block;
 	background: #ffffff;
 	margin-bottom: 20px;
-	border: 1px solid #D1D1D1;
+	border: 1px solid rgba(140, 142, 146, 1);
 	text-align: left;
+	overflow: hidden;
+	position: relative;
 }
 
 .panel-body {
 	padding: 15px;
 	text-align: left;
+	overflow: hidden;
 }
 
 .panel-heading {
 	padding: 10px 15px;
-	background: #E0E4E9;
-	border-bottom: 1px solid #D1D1D1;
+	background: rgba(140, 142, 146, 1);
+	border-bottom: 1px solid rgba(140, 142, 146, 1);
+	overflow: hidden;
+	color: #FFF;
+}
+
+.panel-heading a {
+	color: #FFF;
 }
 
 .panel-footer {
 	padding: 10px 15px;
 	background: #EEEFF0;
 	border-top: 1px solid #E0E0E0;
+	overflow: hidden;
 }
 
 .panel-title {
@@ -518,41 +528,49 @@ ul, ol {
 }
 
 .panel-success {
-	border-color: #B3E6AD;
+	border-color: rgba(84, 185, 72, 1);
 }
 
 .panel-success>.panel-heading {
-	background-color: #B3E6AD;
-	border-color: #B3E6AD;
-	color: #33792A;
+	background-color: rgba(84, 185, 72, 1);
+	border-color: rgba(84, 185, 72, 1);
+	color: #FFF;
 }
 
 .panel-warning {
-	border-color: #F5CF8F;
+	border-color: rgba(235, 164, 46, 1);
 }
 
 .panel-warning>.panel-heading {
-	background-color: #F5CF8F;
-	border-color: #F5CF8F;
-	color: #A07122;
+	background-color: rgba(235, 164, 46, 1);
+	border-color: rgba(235, 164, 46, 1);
+	color: #FFF;
 }
 
 .panel-info {
-	border-color: #A9CCF5;
+	border-color: rgba(77, 153, 242, 1);
 }
 
 .panel-info>.panel-heading {
-	background-color: #A9CCF5;
-	border-color: #A9CCF5;
-	color: #2D5B91;
+	background-color: rgba(77, 153, 242, 1);
+	border-color: rgba(77, 153, 242, 1);
+	color: #FFF;
 }
 
 .panel-danger {
-	border-color: #F6B6AD;
+	border-color: rgba(214, 88, 72, 1);
 }
 
 .panel-danger>.panel-heading {
-	background-color: #F6B6AD;
-	border-color: #F6B6AD;
-	color: #9B3325;
+	background-color: rgba(214, 88, 72, 1);
+	border-color: rgba(214, 88, 72, 1);
+	color: #FFF;
+}
+
+.panel .close-panel {
+	float: right;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
 }
