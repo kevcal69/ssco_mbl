@@ -1,8 +1,19 @@
 <html>
 <head>
 	<link rel="stylesheet" href="template.css"/>
-<link rel="stylesheet" href="../plugins/fa-icons/css/font-awesome.css" />
-<link rel="stylesheet" href="../plugins/fa-icons/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../plugins/fa-icons/css/font-awesome.css" />
+	<link rel="stylesheet" href="../plugins/fa-icons/css/font-awesome.min.css" />
+	<script src="../javascripts/jquery.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.close-panel').click(function() {
+				$(this).parent().css('display','none');
+			});
+			$('#show-panel').click(function() {
+				$("#close-panel-example").css('display','block');
+			});
+		});
+	</script>
 </head>
 <body>
 	<div id="type">
@@ -433,6 +444,35 @@
 				Basic panel example
 			</div>
 			<div class="panel-footer">Panel footer</div>
+		</div>
+
+		<h3>Close Panel</h3>
+		<div class="panel panel-info">
+			<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
+			<div class="panel-heading">
+				<h3 class="panel-title">.close-panel</h3>
+			</div>
+			<div class="panel-body">
+				<p>Closes the panel. Put inside the .panel but outside heading, body, or footer.</p>
+				<code>
+					&lt;span class="close-panel"&gt;&lt;i class = "fa fa-times fa-fw"&gt;&lt;/i&gt;&lt;/span&gt;
+				</code>
+				<p>Needs this jQuery code to work</p>
+<pre>
+$('.close-panel').click(function() {
+	$(this).parent().css('display','none');
+});
+</pre>
+				<div class="panel panel-info" id="close-panel-example">
+					<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
+					<div class="panel-heading">
+						<h3 class="panel-title">close-panel-example</h3>
+					</div>
+					<div class="panel-body">
+					</div>
+				</div>
+				<button id="show-panel">Undo Close</button>
+			</div>
 		</div>
 	</div>
 </body>
