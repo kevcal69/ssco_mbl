@@ -4,22 +4,69 @@ $(document).ready(function() {
 	hide.initialize();
 	trainee.toggle();
 	view_all.autoReload();
-	question.initialize();
+	question.initialize();	
 	$(window).scroll(function() {
 		stick_Sidebar.initialize();
 	});
+
+
+		
 });
 
 var question = {
 	initialize: function() {
-		$('.show_d').click(function() {
-			if ($(this).text() == "Show Details") {
-				$(this).text('Hide Details');
-				$(this).parent().parent().children('.item-body').css({'display':'block'});	
-			} else {
-				$(this).text('Show Details');
-				$(this).parent().parent().children('.item-body').css({'display':'none'});					
-			}
+		$("#qbody").on("change","#filter" ,function (e) {
+			$val = $(this).children('option:selected').attr('value');
+			$.ajax({
+				type: "POST",
+				url: MBL.BASE_URL+ "admin/question/question_filter", 
+				data: { mid : $(this).data('mid') , val: $val},
+				cache:false,
+				success: 
+				function(data){
+					$temp = $('#results-filter');
+					$("#qbody").empty();
+					$("#qbody").append($temp);
+					$("#qbody").append(data);
+				}
+			});
+		}).on("click",".sh_mr", function () {
+				if ($(this).text() == "Show More") {
+					$(this).text('Hide');
+					$(this).parent().parent().children('.item-body').css({'display':'block'});	
+				} else {
+					$(this).text('Show More');
+					$(this).parent().parent().children('.item-body').css({'display':'none'});					
+				}		
+		}).on("click",".set-test", function(){
+			console.log($(this).data('val'));
+			console.log($(this).data('id'));
+			console.log($(this).data('mid'));
+			$.ajax({
+				type: "POST",
+				url: MBL.BASE_URL+ "admin/question/set_question", 
+				data: { id : $(this).data('id'), mid : $(this).data('mid') , val: $(this).data('val')},
+				cache:false,
+				success: 
+				function(data){
+					location.reload();
+				}
+			});
+
+		}).on("click",'.edit',function(e) { 
+			$('.edit').bind('click', function(){ return false; });
+			$(this).parent().parent().parent().find("*").not('#questionare, #questionare *').remove();
+			$('#questionare').show();
+			CKEDITOR.replace( 'edit-area', {
+				resize_enabled : false,
+				removePlugins : 'autosave',				
+				toolbar: [
+					[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
+					{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+					'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+					{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+				],
+			});
 		});
 	},
 	add: function() {
@@ -28,38 +75,6 @@ var question = {
 	},
 	del: function($d) {
 		$($d).parent().remove();
-	},
-	include_test: function($id,$mid,$val) {
-		var q = $('#pan'+$id);
-		q.remove();
-
-		$.ajax({
-			type: "POST",
-			url: MBL.BASE_URL+ "admin/question/set_question", 
-			data: { id : $id, mid : $mid , val: $val},
-			dataType: "text",  
-			cache:false,
-			success: 
-			function(data){
-				location.reload();
-			}
-		});
-	},
-	exclude_test: function($id,$mid,$val) {
-		var q = $('#pan'+$id);
-		q.remove();
-
-		$.ajax({
-			type: "POST",
-			url: MBL.BASE_URL+ "admin/question/set_question", 
-			data: { id : $id, mid : $mid , val: $val},
-			dataType: "text",  
-			cache:false,
-			success: 
-			function(data){
-				location.reload();
-			}
-		});
 	}	
 }
 
