@@ -84,19 +84,19 @@ class Module extends MBL_Controller {
 	public function view($id = FALSE) {
 		if ($id !== FALSE) {
 			//view specific module
-			$this->sidebar_content['actions'] = array (
-				'back' => array(
-					'content' => to_sidebar_back('Back'),
-					'extra' => 'onClick="history.go(-1);"',
-					'active' => FALSE
-					),
-				);
+			// $this->sidebar_content['actions'] = array (
+			// 	'back' => array(
+			// 		'content' => to_sidebar_back('Back'),
+			// 		'extra' => 'onClick="history.go(-1);"',
+			// 		'active' => FALSE
+			// 		),
+			// 	);
 			if ($this->trainee_module_model->is_enroled($id,$this->trainee_id)) {
 				if ($this->trainee_module_model->is_completed($id,$this->trainee_id)) {
 					//already completed the module
 					$this->sidebar_content['actions']['retake_test'] = array(
 						'content' => to_sidebar_element('fa-edit','Retake the Test'),
-						'href' => base_url('trainee/test/retake/'.$id),
+						'href' => base_url('trainee/test/take/'.$id),
 						'active' => FALSE
 						);
 					$this->sidebar_content['actions']['reenrol'] = array(
@@ -174,6 +174,22 @@ class Module extends MBL_Controller {
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
+	public function view_available_modules() {
+		$this->sidebar_content['actions'] = array (
+			'back' => array(
+				'content' => to_sidebar_back('Back'),
+				'extra' => 'onClick="history.go(-1);"',
+				'active' => FALSE
+				)
+			);
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$data['no_view_more'] = TRUE;
+		$data['available_modules'] = $this->trainee_module_model->get_available_modules($this->trainee_id,FALSE,FALSE);
+		$data['body_content'] = $this->load->view('trainee/module/available_modules',$data,TRUE);
+		$data['page_title'] = "SSCO Module-Based Learning";
+		$this->parser->parse('layouts/logged_in', $data);
+	}
+
 	public function enrol($module_id = FALSE) {
 		if ($module_id !== FALSE) {
 			//enrol specific module
@@ -236,14 +252,15 @@ class Module extends MBL_Controller {
 			}
 
 			//validation
-			$this->form_validation->set_rules('modules', 'Module', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('modules', 'Module', 'trim|required|xss_clean|callback_module_exists');
 
 			if ($this->form_validation->run() == FALSE) {
 				//validation failure, return to form
 				$data['body_content'] = $this->load->view('trainee/module/choose_enrol',$data,TRUE);
 			} else {
 				//validation success, redirect to edit/user
-				redirect('trainee/module/enrol/'. $this->input->post('modules'));
+				$module_id = $this->module_model->get_id(html_entity_decode($this->input->post('modules')));
+				redirect('trainee/module/enrol/'. $module_id);
 			}
 		}
 			$this->sidebar_content['actions'] = array (
@@ -256,6 +273,16 @@ class Module extends MBL_Controller {
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
+	}
+
+	public function module_exists($module_title) {
+		$result =  $this->module_model->get_id($module_title);
+		if ($result) {
+			return TRUE;
+		} else {
+			$this->form_validation->set_message('module_exists','No such module exists.');
+			return FALSE;
+		}
 	}
 }
 

@@ -16,22 +16,26 @@
 }
 
 /*profile*/
-.view_profile .form-horizontal .control-group {
+.view_profile .form-horizontal .control-group,
+.results-form .control-group {
 	display:block;
 	width: 100%;
 	margin-bottom: 10px;
 }
 
-.view_profile .form-horizontal label {
+.view_profile .form-horizontal label,
+.results-form label {
 	display: inline-block;
 	width: 200px;
 }
 
-.view_profile .form-horizontal label.label {
+.view_profile .form-horizontal label.label,
+.results-form label.label {
 	font-weight: bold;
 }
 
-.view_profile .form-horizontal label.value {
+.view_profile .form-horizontal label.value,
+.results-form label.value {
 	margin-left:  10px;
 	float: none;
 	text-align: left;
@@ -74,4 +78,85 @@
 .trainee.index #module-container #list-container ul li .actions .button {
 	font-size: .7rem;
 	padding: 4px 10px 3px 10px;
+}
+
+/*Test*/
+/*.test.take #body-content {
+	text-align: center;
+}
+*/
+.test #test-error-container,
+.test .form-container {
+	max-width: 500px;
+	vertical-align: top;
+	/*display: inline-block;*/
+	margin: 40px auto;
+}
+
+.test #test-error-container .panel-heading,
+.test #test-error-container .panel-footer,
+.test .form-container .panel-heading,
+.test .form-container .panel-footer {
+	text-align: center;
+}
+
+.test #test-error-container .panel-footer .button {
+	padding: 6px 50px 5px 50px;
+}
+
+.test #test-content #submit-bottom,
+.test #test-content #process-results-bottom {
+	font-size: 1.5rem;
+	padding: 10px 50px 9px 50px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.test #test-header {
+	text-align: left;
+	overflow: hidden;
+}
+
+.test #module-title {
+	max-width: calc(100% - 150px);
+	white-space:nowrap;
+	display: inline-block;
+	margin: 10px 0;
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+
+.test #test-header #action-buttons {
+	vertical-align: middle;
+	float: right;
+	margin: 18px 0;
+}
+
+.test-result-table th {
+	width: 170px;
+}
+
+
+.dataTables_wrapper select,
+.dataTables_wrapper input {
+	font-family: inherit;
+	width: auto;
+	height: auto;
+	padding: 2px;
+}
+
+/*.module-table td {
+	border: 0 !important;
+}
+.module-table {
+	border: 1px solid #808080 !important;
+}
+*/
+.module-table th {
+	border-bottom: 0 !important;
+}
+
+.module-table th:first-child {
+	width: 15px;
+	text-align: center;
 }

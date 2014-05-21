@@ -7,6 +7,8 @@
 			<p><?php echo $message;?></p>
 			<p class="error"><?php echo $error;?></p>
 		</div>
+	</div>
+	<div class="panel-footer">
 		<a class="button" onClick="window.name='autoreload';history.go(-2);">Back</a>
 		<a class="button button-primary" href="<?=base_url('admin/user/view');?>">View All Users</a>
 	</div>

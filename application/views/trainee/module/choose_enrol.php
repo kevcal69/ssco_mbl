@@ -3,12 +3,22 @@
 	<div class="panel-body">
 		<?php
 			echo form_open('trainee/module/enrol', array('class' => 'form-horizontal'));
-			$modules = array('' => 'Select Module to Enrol in') + $modules;
+			// $modules = array('' => 'Select Module to Enrol in') + $modules;
 		?>
 			<div class="control-group">
 				<label for="modules">Choose Module</label>
-				<div class="controls">
+				<!-- <div class="controls">
 					<?php echo form_dropdown('modules',$modules,'class="field"', 'class="field" id="modules"'); ?>
+					<?php echo form_error('modules','<p class="text-error">','</p>');?>
+				</div> -->
+				<div class="controls">
+					<input list="module-list" name="modules" class="field" id="users" placeholder="Enter Module Name">
+
+					<datalist id="module-list">
+						<?php foreach ($modules as $index => $module):?>
+							<option value="<?php echo htmlentities($module)?>">
+						<?php endforeach;?>
+					</datalist>
 					<?php echo form_error('modules','<p class="text-error">','</p>');?>
 				</div>
 			</div>

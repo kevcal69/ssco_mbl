@@ -54,6 +54,16 @@ class Module_model extends CI_Model {
 			return false;
 		}
 	}
+
+	function get_id($title) {
+		$this->db->select('id');
+		$query =  $this->db->get_where('module', array('title' => $title), 1);
+		if ($query->row()) {
+			return $query->row()->id;
+		} else {
+			return false;
+		}
+	}
 }
 
 /* End of file session.php */

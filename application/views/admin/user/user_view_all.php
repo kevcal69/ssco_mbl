@@ -1,14 +1,16 @@
 <div id="users-container" class="user-container panel">
 	<div class="view-title-bar panel-heading">
 		<legend id="view-legend">View All Users</legend>
-		<a class="button button-primary" href="<?=base_url('admin/user');?>">Home</a>
-		<a class="button" onClick="history.go(-1);">Back</a>
+		<div id="button-group">
+			<a class="button" onClick="history.go(-1);">Back</a>
+			<a class="button button-primary" href="<?=base_url('admin/user');?>">Home</a>
+		</div>
 	</div>
 	<div class="panel-body">
-		<table>
+		<table id="users-table">
 			<thead>
 				<tr>
-					<th></th>
+					<th>ID</th>
 					<th>Username</th>
 					<th>Role</th>
 					<th>Operations</th>
@@ -25,10 +27,10 @@
 					</td>
 			    <td><?php echo $user['role'];?></td>
 					<td>
-						<a href="edit/<?php echo $user['username'];?>">
+						<a class="text-muted" href="edit/<?php echo $user['username'];?>">
 							<i class="fa fa-edit fa-lg" title="Edit"></i>
 						</a>
-						<a href="delete/<?php echo $user['username'];?>">
+						<a class="text-error" href="delete/<?php echo $user['username'];?>">
 							<i class="fa fa-trash-o fa-lg" title="Delete"></i>
 						</a>
 					</td>

@@ -161,7 +161,7 @@ class User extends MBL_Controller {
 			}
 
 			//validation
-			$this->form_validation->set_rules('users', 'User', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('users', 'User', 'trim|required|xss_clean|callback_user_exists');
 
 			if ($this->form_validation->run() == FALSE) {
 				//validation failure, return to form
@@ -247,7 +247,7 @@ class User extends MBL_Controller {
 			}
 
 			//validation
-			$this->form_validation->set_rules('users', 'User', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('users', 'User', 'trim|required|xss_clean|callback_user_exists');
 
 			if ($this->form_validation->run() == FALSE) {
 				//validation failure, return to form
@@ -363,7 +363,7 @@ class User extends MBL_Controller {
 	public function unique_username($username) {
 		$result = $this->user_model->username_exists($username);
 		if($result) {
-			//error: username already exists			
+			//error: username already exists
 			$this->form_validation->set_message('unique_username','Username already exists.');
 			return FALSE;
 		} else {
@@ -380,6 +380,16 @@ class User extends MBL_Controller {
 			}
 		}
 		return TRUE;
+	}
+
+	public function user_exists($username) {
+		$result =  $this->user_model->username_exists($username);
+		if ($result) {
+			return TRUE;
+		} else {
+			$this->form_validation->set_message('user_exists','No such user exists.');
+			return FALSE;
+		}
 	}
 }
 

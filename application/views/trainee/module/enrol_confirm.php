@@ -10,6 +10,8 @@
 				</a>" module?
 			</p>
 		</div>
+	</div>
+	<div class="panel-footer">
 		<?php echo form_open('trainee/module/enrol/'.$module_id, array('id' => 'enrol-confirm-form'));?>
 			<input type="hidden" value="TRUE" name="confirm"/>
 			<button class="button-primary" type="submit">Enrol</button>

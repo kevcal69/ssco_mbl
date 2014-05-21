@@ -6,6 +6,8 @@
 		<div id="message-content">
 			<p>Are you sure you want to delete <a href="<?=base_url('admin/user/view/'. $username);?>"><?php echo $username;?></a>?</p>
 		</div>
+	</div>
+	<div class="panel-footer">
 		<?php echo form_open('admin/user/delete/'.$username, array('id' => 'delete-confirm-form'));?>
 			<input type="hidden" value="TRUE" name="confirm"/>
 			<button class="button-danger" type="submit">Delete</button>

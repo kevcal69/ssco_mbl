@@ -71,4 +71,10 @@ body.admin.index {
 	text-decoration: none;
 }
 
+.test-result-table th {
+	width: 170px;
+}
 
+#result-back {
+	float: right;
+}

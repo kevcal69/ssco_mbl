@@ -23,8 +23,6 @@
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/trainee/trainee.css'; ?>" />
 
 
-
-
 <!--Scripts-->
 <script src="<?= base_url() . 'assets/javascripts/jquery.js'; ?>"></script>
 <script src="<?= base_url() . 'assets/javascripts/app.js'; ?>"></script>
@@ -33,3 +31,7 @@
 <!--plugins-->
 <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/fa-icons/css/font-awesome.css'; ?>" />
 <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/fa-icons/css/font-awesome.min.css'; ?>" />
+
+<!-- DataTables -->
+<link rel="stylesheet" type="text/css" href="<?= base_url()?>assets/plugins/DataTables-1.10.0/media/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="<?= base_url()?>assets/plugins/DataTables-1.10.0/media/js/jquery.dataTables.js"></script>

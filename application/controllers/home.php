@@ -1,17 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Home extends MBL_Controller {
-    function __construct() {
-        parent::__construct();
-	// if ($this->session->userdata('role') == 'admin') {
-	// 	redirect('admin');
-	// }
-        $this->load->model('Module_model','mModel');
+	function __construct() {
+		parent::__construct();
+		if ($this->session->userdata('role') == 'admin') {
+			redirect('admin');
+		} else if ($this->session->userdata('role') == 'trainee') {
+			redirect('trainee');
+		} else if ($this->session->userdata('role') == 'content_manager') {
+			redirect('content_manager');
+		}
+		$this->load->model('Module_model','mModel');
 
 
-      $this->load->helper('application_helper');
+		$this->load->helper('application_helper');
 
-    }	
+	}
 
 	public function index() {
 		$data['page_title'] = "SSCO Module-Based Learning";

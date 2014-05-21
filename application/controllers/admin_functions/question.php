@@ -59,27 +59,6 @@
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
-	function fetch_evaluation_test($id) {
-		$array = $this->mQ->fetch_questions($id);
-		$data = array();
-
-		$haystack = array();
-		if (sizeof($array) < 10) {
-			return $array;
-		} else {
-			for ($i=0; $i < 10; $i++) { 
-				$rand_num = rand(0,sizeof($array)-1);
-				if (in_array($rand_num, $haystack)) {
-					$i--;
-				} else {
-					$haystack[$i] = $rand_num;
-					array_push($data, $array[$i]);
-				}
-			}
-		}
-		return $data;
-	}	
-
 	function create_question() {
 		$information = $this->input->post('question');
 		$question = array(

@@ -11,6 +11,8 @@
 				Do you want to reenrol in the module? Doing so will reset your progress.
 			</p>
 		</div>
+	</div>
+	<div class="panel-footer">
 		<?php echo form_open('trainee/module/enrol/'.$module_id, array('id' => 'reenrol-confirm-form'));?>
 			<input type="hidden" value="TRUE" name="reenrol-confirm"/>
 			<button class="button-warning" type="submit">Reenrol</button>

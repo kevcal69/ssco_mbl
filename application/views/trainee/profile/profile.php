@@ -34,19 +34,11 @@
 					<label class="label">Modules Completed</label>
 					<label class="value"><?php echo $statistics['num_modules_completed']?></label>
 				</div>
-				<div class="control-group">
-					<label class="label">Tests Taken</label>
-					<label class="value">UNDER CONSTRUCTION</label>
-				</div>
-				<div class="control-group">
-					<label class="label">Average Test Rating</label>
-					<label class="value">UNDER CONSTRUCTION</label>
-				</div>
 			</div>
 		</div>
 	</div>
 	<div class="panel panel-primary">
-		<div class="panel-heading" onclick="trainee_profile.toggle_body();">
+		<div class="panel-heading">
 			<h3 class="panel-title">Enroled Modules (<?php echo (sizeof($current_modules) + sizeof($completed_modules))?>)</h3>
 		</div>
 		<div class="panel-body">	
@@ -73,38 +65,10 @@
 	</div>
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h3 class="panel-title">Tests (2) - UNDER CONTRUCTION</h3>
+			<h3 class="panel-title">Evaluation Tests (0) - UNDER CONSTRUCTION</h3>
 		</div>
 		<div class="panel-body">
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<h3 class="panel-title">Evaluation Tests (0)</h3>
-				</div>
-				<div class="panel-body">
-					No scheduled tests taken.
-				</div>
-			</div>
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<h3 class="panel-title">Mastery Tests (2)</h3>
-				</div>
-				<div class="panel-body">
-					<div class="panel">
-						<div class="panel-heading">
-							<h3 class="panel-title"><a class="button">Show Details</a> Module #1 (8/10)</h3>
-						</div>
-					</div>
-					<div class="panel">
-						<div class="panel-heading">
-							<h3 class="panel-title"><a class="button">Hide Details</a> Module #2 (7/10)</h3>
-						</div>
-						<div class="panel-body">
-							{Questions}
-						</div>
-						<div class="panel-footer">Total Score: 7</div>
-					</div>
-				</div>
-			</div>
+			No scheduled tests taken.
 		</div>
 	</div>
 </div>

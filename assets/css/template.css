@@ -161,6 +161,14 @@ table thead:first-child tr:first-child th {
 	border-left: 1px solid #808080;
 }
 
+table.vertical-headings {
+	border-top: 0;
+}
+
+table.vertical-headings th {
+	text-align: right;
+}
+
 /* Forms */
 
 form {
@@ -199,8 +207,9 @@ select {
 	font-size: inherit;
 }
 
-select {
+select option {
 	padding: 5px 6px !important;
+	max-width:200px;
 }
 
 input[type='submit'],
@@ -498,7 +507,8 @@ ul, ol {
 	color: #FFF;
 }
 
-.panel-heading a {
+.panel-heading *,
+.panel-heading *:hover {
 	color: #FFF;
 }
 

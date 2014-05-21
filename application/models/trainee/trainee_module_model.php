@@ -17,10 +17,26 @@ class Trainee_module_model extends CI_Model {
 		} else {
 			// $data['last_page'] = NULL;
 			$data['is_completed'] = FALSE;
+			$data['date_enroled'] = NULL;
+			$data['date_completed'] = 'DEFAULT 0';
 			$this->db->where('trainee_id',$trainee_id);
 			$this->db->where('module_id',$module_id);
 			return $this->db->update('enrolled_module',$data);
 		}
+	}
+
+	public function update_module($module_id,$trainee_id,$rating,$is_completed) {
+		//TODO rating calculation
+		$data = array(
+			'rating' => $rating,
+			'is_completed' => $is_completed
+			);
+		if ($is_completed == TRUE) {
+			$data['date_completed'] = NULL;
+		}
+		$this->db->where('trainee_id',$trainee_id);
+		$this->db->where('module_id',$module_id);
+		return $this->db->update('enrolled_module',$data);
 	}
 
 	public function get_enroled_module($module_id = FALSE, $trainee_id = FALSE) {

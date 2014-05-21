@@ -8,6 +8,15 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 		stick_Sidebar.initialize();
 	});
+	close_panel.initialize();
+	$('#users-table').DataTable({
+		"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		"pageLength": 25
+	});
+	$('.module-table').DataTable({
+		"lengthMenu": [ [5, 20, 50, 100, -1], [5, 20, 50, 100, "All"]],
+		"pageLength": 5
+	});
 });
 
 var question = {
@@ -156,9 +165,32 @@ var trainee = {
 
 var view_all = {
 	autoReload: function(){
-  if (window.name=='autoreload') {
-     location.reload();
-     window.name='';
-  }
+	if (window.name=='autoreload') {
+		 location.reload();
+		 window.name='';
+	}
 }
+}
+
+var close_panel = {
+	initialize: function() {
+		$('.close-panel').click(function() {
+			$(this).parent().css('display','none');
+		});
+	}
+}
+
+var admin_view = {
+	filter: function() {
+		var value = $("#filter").val();
+		if (value === "admin") {
+			$("td")
+		} else if (value === "trainee") {
+
+		} else if (value === "content_manager") {
+
+		} else {
+
+		}
+	}
 }

@@ -21,11 +21,12 @@
 					</div>
 				</div>
 			<?php endforeach; ?>
-
-<?php if(!isset($no_container) || $no_container !== TRUE):?>
-			<a class="button button-info" href="<?=base_url('trainee/module/view')?>">
-				View More Modules
-			</a>
+<?php if (!isset($no_view_more) || $no_view_more !== TRUE):?>
+	<?php if(!isset($no_container) || $no_container !== TRUE):?>
+				<a class="button button-info" href="<?=base_url('trainee/module/view_available_modules')?>">
+					View More Modules
+				</a>
+	<?php endif;?>
 <?php endif;?>
 
 		<?php else:?>

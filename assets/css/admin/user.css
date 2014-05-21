@@ -58,7 +58,7 @@
 }
 
 .user #functions-container .function .action {
-	font-family: "ConsolasRegular";
+	font-family: "ConsolasRegular",Arial;
 	color: white;
 	background: rgba(81, 142, 48, .9);
 	font-size: 1.2rem;
@@ -90,6 +90,9 @@
 }
 
 /*View all users*/
+.user #users-container {
+	width: 100%;
+}
 .user #users-container table {
 	margin-top: 10px;
 	border-left: 0;
@@ -97,11 +100,17 @@
 	border-spacing: 0;
 }
 
-.user #users-container .button {
+.user #users-container #button-group {
 	display: inline-block;
 	float: right;
-	margin-bottom: 10px;
+}
+
+.user #users-container #button-group .button {
+	vertical-align: middle;
+	margin-bottom: 0px;
 	margin-left: 5px;
+	display: inline-block;
+	border: 1px solid rgb(189, 189, 189);
 }
 
 .user .user-container .view-title-bar {
@@ -116,18 +125,30 @@
 	line-height: 30px;
 	display: inline !important;
 	float: left;
-	margin-bottom: 10px;
+	margin-bottom: 0px;
 	border-bottom: none !important;
 }
 
+.user #users-table_wrapper select,
+.user #users-table_wrapper input {
+	font-family: inherit;
+	width: auto;
+	height: auto;
+	padding: 2px;
+}
 /*View User*/
-.user #view-container .button {
+.user #view-container #button-group {
 	display: inline-block;
 	float: right;
-	margin-bottom: 10px;
-	margin-left: 5px;
 }
 
+.user #view-container #button-group .button {
+	vertical-align: middle;
+	margin-bottom: 0px;
+	margin-left: 5px;
+	display: inline-block;
+	border: 1px solid rgb(189, 189, 189);
+}
 .user #view-container #profile-content {
 	padding: 15px 25px;
 }

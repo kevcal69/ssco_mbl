@@ -106,13 +106,17 @@ class User_model extends CI_Model {
 		}
 	}
 
-	public function view_trainee($user_id = FALSE) {
-		if ($user_id === FALSE) {
+	public function view_trainee($user_id = FALSE,$trainee_id = FALSE) {
+		if (empty($user_id) && empty($trainee_id)) {
 			$query = $this->db->get('trainee');
 			return $query->result_array();
+		} else if (!empty($user_id) && empty($trainee_id)) {
+			$query = $this->db->get_where('trainee', array('user_id' => $user_id));
+			return $query->row_array();
+		} else if (empty($user_id) && !empty($trainee_id)) {
+			$query = $this->db->get_where('trainee', array('id' => $trainee_id));
+			return $query->row_array();
 		}
-		$query = $this->db->get_where('trainee', array('user_id' => $user_id));
-		return $query->row_array();
 	}
 
 	function username_exists($username) {
