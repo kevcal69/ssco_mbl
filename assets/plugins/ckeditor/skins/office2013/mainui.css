@@ -53,8 +53,8 @@ Special outer level classes used in this file:
 	padding: 0;
 
 
-	border: 1px solid #54b948;
-	box-shadow: 0 0 6px 1px rgba(172, 181, 194, 0.56);
+	border: 1px solid #b6b6b6;
+	/*box-shadow: 0 0 6px 1px rgba(172, 181, 194, 0.56);*/
 }
 
 /* The inner boundary of the interface. */
@@ -120,7 +120,7 @@ Special outer level classes used in this file:
 	position: relative;
 
 
-	background: #54b948;
+	/*background: #54b948;*/
 }
 
 /* On iOS we need to manually enable scrolling in the contents block. (#9945) */

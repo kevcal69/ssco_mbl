@@ -3,7 +3,7 @@
 <head>
  <script>
 
-    var DCS = { BASE_URL: '<?= base_url(); ?>',BODY_CLSS: '<?=body_classes($controller, $action)?>' };
+    var MBL= { BASE_URL: '<?= base_url(); ?>',BODY_CLSS: '<?=body_classes($controller, $action)?>' };
 
   </script>
   <?php $this->load->view('partials/head'); ?>

@@ -199,6 +199,7 @@ input[type='password'],
 select {
 	font-family: "FontAwesome","OpenSansLight";
 	width: 200px;
+	color: black;
 	/*height: 28px;*/
 	border: 1px solid #cccccc;
 	display:inline-block;
@@ -492,7 +493,6 @@ ul, ol {
 	overflow: hidden;
 	position: relative;
 }
-
 .panel-body {
 	padding: 15px;
 	text-align: left;
@@ -501,7 +501,7 @@ ul, ol {
 
 .panel-heading {
 	padding: 10px 15px;
-	background: rgba(140, 142, 146, 1);
+	background: rgba(162, 163, 165, 1);
 	border-bottom: 1px solid rgba(140, 142, 146, 1);
 	overflow: hidden;
 	color: #FFF;

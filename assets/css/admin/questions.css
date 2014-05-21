@@ -1,22 +1,77 @@
 .question-list {
-	max-height: 500px;
+	height: 600px;
 	overflow: auto;	
 }
 .item {
-	max-width: 100%;
-	margin: 5px;
-}
-.item .panel-heading {
-	padding: 5px;
+	width: 100%;
+	min-height: 70px;
+	margin: 5px 0px 5px 0px;
+	padding: 15px;
+	background: rgba(243, 244, 246, 1);
+	border:  1px solid rgba(162, 163, 165, 1);
 }
 
-.item h3 {
+.item .que-tit {
 	margin: 0;
-	font-size: 1rem;
+	padding: 0px;
+	font-size: 1.1rem;
+	font-weight: normal;
+	display: inline-block;
+	font-family: "Akashi";
+	letter-spacing: .051rem;
+	cursor: pointer;
+}
+.item .item-heading .opt-group {
+	margin: 5px;
+	margin-left: 20px;
+	font-size: .8rem;
+	cursor: pointer;
+	color: #666666;
+}
+.panel #results-filter {
+	color: black;
+}
+.item .item-heading .opt-group * {
+	margin: 2px;
+}
+.item .item-title {
+	margin: 2px;
+}
+.item .panel.panel-body{
+	padding: 5px;
+}
+.item .item-id {
+	font-size: .7rem;
+	float: right;
+}
+.item .item-id .qid-label::before {
+	content: "Question ID: ";
+	color: #666666;
+}
+.item .item-id .mid-label::before {
+	content: "Module ID: ";
+	color: #666666;
+}
+.item .show_d {
+	width: 80px;
+	font-size: .8rem;
+	padding: 0;
 	display: inline-block;
 }
-.item p {
-	margin: 0 auto;
+.item .show_d .sh_mr {
+	display: block;
+	width: 100px;
+	margin: 2px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.item .show_d .sh_mr:hover {
+	text-decoration: underline;
+}
+.item .show_d .sh_mr::before {
+	font-family: "FontAwesome";
+	content: "\f0a9";
+	margin-right: 5px;	
 }
 .item .item-body {
 	display: none;
@@ -34,13 +89,7 @@
 .item .panel-body .panel-body {
 	padding: 5px;
 }
-.item .show_d {
-	width: 80px;
-	height: 30px;
-	font-size: .8rem;
-	padding: 0;
-	display: inline-block;
-}
+
 #q-area {
 	padding: 10px;
 	width: 100%;
@@ -56,6 +105,9 @@
 .qfield{
 	height: 40px;
 	width: 100% !important;
+}
+#questionare {
+	display: none;
 }
 #econtainer {
 	display: inline-block;

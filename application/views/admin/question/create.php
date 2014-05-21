@@ -6,37 +6,30 @@
 	<div class="panel-heading">
 		<h3 class="panel-title">Question List</h3>
 	</div>
-	<div class="panel-body question-list">
+	<div class="panel-body question-list" id = "qbody">
 		<?php foreach ($questions as $question): ?>
-		<div class="panel panel-primary item">
-			<div class="panel-heading">
-				<button type = "button" class = "button-warning show_d">Show Details</button>
-				<h3 class="panel-title"><?=$question->qtitle?></h3>
+		<div class="item">
+			<div class="item-heading">
+				<h3 class = "que-tit"><?=$question->qtitle?></h3>
+			
+			<div class="item-id">
+				<span class = "text-warning qid-label"><?=$question->id?></span>
+				<span class = "text-warning mid-label"><?=$module->id?></span>
 			</div>
-			<div class="panel-body item-body">
-				<div class="panel">
-					<?=$question->question?>
-				</div>
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">Choices</h3>
-					</div>
-					<div class="panel-body">
-						<?=display_choices(unserialize(base64_decode($question->choices)))?>
-					</div>
-				</div>
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">Answers</h3>
-					</div>
-					<div class="panel-body">
-						<?=display_answers(unserialize(base64_decode($question->choices)),unserialize(base64_decode($question->answer)))?>
-					</div>
-				</div>
-
 			</div>
-				
-
+			<div class="show_d">
+				<span class = "text-warning sh_mr">Show More</span>
+			</div>	
+			<div class="item-body">
+				<h4 class = "item-title">Question</h4>
+				<div class="panel panel-body">
+					<p><?=$question->question?></p>
+				</div>
+				<h4 class = "item-title">Choices and Answers</h4>
+				<div class="panel panel-body">
+					<?=display_ca(unserialize(base64_decode($question->choices)),unserialize(base64_decode($question->answer)))?>
+				</div>				
+			</div>
 		</div>	
 		<?php endforeach; ?>
 	</div>
