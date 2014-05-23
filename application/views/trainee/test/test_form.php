@@ -24,7 +24,15 @@
 				<h3 class="panel-title">Instructions</h3>
 			</div>
 			<div class="panel-body">
-				Insert Instructions Here
+				<ul>
+					<li>Select your answer/s by clicking on the checbox next to the choices. Each question
+					 can have multiple answers. Having answers less or more than the correct number of
+					 answers will be marked as wrong.</li>
+					<li>All questions must be answered. You cannot submit your answers for the test unless you answer every question.</li>
+					<li>Submit your answers by clicking on either of the submit buttons at the top and bottom of the page.</li>
+					<li>Consult with the test administrator if you have any questions, concerns, or problems.</li>
+					<li>Good luck with the test! May you answer the questions as best and as honestly as you can.</li>
+				</ul>
 			</div>
 		</div>
 			<input type="hidden" name="questions-string" value="<?php echo $questions_string?>"/>
@@ -64,27 +72,3 @@
 		<button id="submit-bottom" type="submit" name="is_submit" value="TRUE" class="button-primary" form="test-form">Submit Answers</button>
 	</div>
 </div>
-
-<script>
-	var warning = 'Leaving the test will mark your score as zero.\n\nAlso note that reloading the page will start another test, marking the previous one as zero.';
-	$(document).ready(function() {
-		$('button[type="submit"], input[type="submit"]').on('mousedown', function() {
-			stopNavigate();
-			$('#test-form').submit();
-		});
-
-		$('button[type="submit"], input[type="submit"]').on('mouseleave', function () {
-			$(window).on('beforeunload', function(){
-				return warning;
-			});
-		});
-	});
-
-	$(window).on('beforeunload', function(){
-		return warning;
-	});
-
-	function stopNavigate(){
-		$(window).off('beforeunload');
-	}
-</script>

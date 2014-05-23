@@ -7,7 +7,7 @@ class Question_model extends CI_Model {
 
 	function add($data) {
 		if ($this->db->insert('question', $data)) {
-			return true;	
+			return true;
 		} 
 		return false;
 	}
@@ -15,17 +15,17 @@ class Question_model extends CI_Model {
 
 	function add_test($data) {
 		if ($this->db->insert('scheduled_test_question', $data)) {
-			return true;	
+			return true;
 		} 
 		return false;
 	}	
 
 	function edit_test($data) {
 		$this->db->where('id', $data['id']);
-		$this->db->update('scheduled_test_question', $data); 
+		$this->db->update('scheduled_test_question', $data);
 
 		if ($this->db->_error_message()) {
-			return FALSE; 
+			return FALSE;
 		} else {
 			return $this->db->affected_rows();
 		}
@@ -37,7 +37,7 @@ class Question_model extends CI_Model {
 		 	return $query->result();
 		 } else {
 		 	return false;
-		 }		
+		 }
 	}
 	function fetch_test_questions($id) {
 		 $query = $this->db->get_where('scheduled_test_question', array('module_id' => $id));
@@ -45,7 +45,7 @@ class Question_model extends CI_Model {
 		 	return $query->result();
 		 } else {
 		 	return false;
-		 }		
+		 }
 	}	
 
 	function fetch_test_sched($id) {
@@ -54,12 +54,12 @@ class Question_model extends CI_Model {
 		 	return $query->result();
 		 } else {
 		 	return false;
-		 }				
+		 }
 	}	
 
 	function set_test($id,$val) {
 		$this->db->where('id', $id);
-		$this->db->update('scheduled_test_question', array('is_used'=>$val)); 
+		$this->db->update('scheduled_test_question', array('is_used'=>$val));
 	}
 
 	function fetch_filtered_test($filter,$mid) {
@@ -68,7 +68,7 @@ class Question_model extends CI_Model {
 		 	return $query->result();
 		 } else {
 		 	return false;
-		 }			 
+		 }
 	}
 
 	function fetch_evaluation_test($id, $limit = FALSE) {
@@ -94,7 +94,16 @@ class Question_model extends CI_Model {
 			}
 		}
 		return $data;
-	}	
+	}
+
+	function get_scheduled_tests() {
+		$query = $this->db->get_where('scheduled_test', array('isset_test' => TRUE));
+		if ($query) {
+			return $query->result();
+		} else {
+			return FALSE;
+		}
+	}
 }
 
 /* End of file question_model.php */

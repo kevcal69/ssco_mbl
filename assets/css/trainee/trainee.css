@@ -85,22 +85,22 @@
 	text-align: center;
 }
 */
-.test #test-error-container,
+.scheduled_test .form-container,
 .test .form-container {
-	max-width: 500px;
+	min-width: 500px;
 	vertical-align: top;
-	/*display: inline-block;*/
+	display: inline-block;
 	margin: 40px auto;
 }
 
-.test #test-error-container .panel-heading,
-.test #test-error-container .panel-footer,
+.scheduled_test .form-container .panel-heading,
+.scheduled_test .form-container .panel-footer,
 .test .form-container .panel-heading,
 .test .form-container .panel-footer {
 	text-align: center;
 }
 
-.test #test-error-container .panel-footer .button {
+.scheduled_test .form-container .panel-footer .button {
 	padding: 6px 50px 5px 50px;
 }
 

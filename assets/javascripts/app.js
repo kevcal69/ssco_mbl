@@ -10,6 +10,7 @@ $(document).ready(function() {
 	});
 
 	close_panel.initialize();
+	test_form.initialize();
 	$('#users-table').DataTable({
 		"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
 		"pageLength": 25
@@ -193,6 +194,7 @@ var hide = {
 	}
 }
 
+//(Create/Edit User) Hides first name and last name fields if role is not trainee
 var trainee = {
 	toggle: function() {
 		var value = $("#role").val();
@@ -218,5 +220,23 @@ var close_panel = {
 		$('.close-panel').click(function() {
 			$(this).parent().css('display','none');
 		});
+	}
+}
+
+//warning when trying to leave an ongoing test
+var test_form = {
+	initialize: function() {
+		if ($('form').is('#test-form')) {
+			var warning = 'Leaving the test will mark your score as zero.\n\nAlso note that reloading the page will start another test, marking the previous one as zero.';
+			var form_submitted = false;
+
+			$('button[name="is_submit"]').on('click', function () {
+				form_submitted = true;
+			});
+
+			$(window).on('beforeunload', function(){
+				if (form_submitted == false) return warning;
+			});
+		}
 	}
 }

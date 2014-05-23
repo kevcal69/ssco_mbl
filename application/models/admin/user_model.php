@@ -114,6 +114,7 @@ class User_model extends CI_Model {
 			$query = $this->db->get_where('trainee', array('user_id' => $user_id));
 			return $query->row_array();
 		} else if (empty($user_id) && !empty($trainee_id)) {
+			echo $trainee_id;
 			$query = $this->db->get_where('trainee', array('id' => $trainee_id));
 			return $query->row_array();
 		}

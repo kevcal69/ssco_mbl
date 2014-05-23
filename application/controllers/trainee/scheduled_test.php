@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Test extends MBL_Controller {
+class Scheduled_test extends MBL_Controller {
 	function __construct() {
 		parent::__construct();
 		//refuse access when not logged as trainee
@@ -152,5 +152,5 @@ class Test extends MBL_Controller {
 	}
 }
 
-/* End of file test.php */
-/* Location: ./application/controllers/trainee/test.php */
+/* End of file scheduled_test.php */
+/* Location: ./application/controllers/trainee/scheduled_test.php */

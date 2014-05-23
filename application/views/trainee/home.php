@@ -1,4 +1,9 @@
 <div id="home-container">
+	<?php if (isset($scheduled_tests)):?>
+		<?php foreach ($scheduled_tests as $test):?>
+			<?php echo $this->load->view('trainee/test/scheduled_test_notice',$test);?>
+		<?php endforeach;?>
+	<?php endif;?>
 	<?php $this->load->view('trainee/module/current_modules',array('current_modules' => $current_modules));?>
 	<div class="panel panel-info">
 		<div class="panel-heading">

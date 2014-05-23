@@ -13,6 +13,7 @@ class Trainee extends MBL_Controller {
       $this->load->model('trainee/trainee_model');
       $this->load->model('trainee/trainee_module_model');
       $this->load->model('module_model');
+      $this->load->model('question_model');
       $this->load->helper('application_helper');
       $this->load->helper('sidebar_helper');
 			$this->load->library('form_validation');
@@ -45,6 +46,14 @@ class Trainee extends MBL_Controller {
     }	
 
 	public function index() {
+		$scheduled_tests = $this->question_model->get_scheduled_tests();
+		if (sizeof($scheduled_tests) > 0) {
+			foreach ($scheduled_tests as $index => $test) {
+				$data['scheduled_tests'][$index]['test_id'] = $test->id;
+				$data['scheduled_tests'][$index]['module_id'] = $test->module_id;
+				$data['scheduled_tests'][$index]['module_title'] = $this->module_model->get_title($test->module_id);
+			}
+		}
 		$this->sidebar_content['quicklinks']['home']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "SSCO Module-Based Learning";

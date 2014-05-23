@@ -16,7 +16,7 @@
 		<?php echo form_open('trainee/test/take/'.$module_id, array('id' => 'retake-confirm-form'));?>
 			<input type="hidden" value="TRUE" name="retake-confirm"/>
 			<button class="button-warning" type="submit">Retake</button>
-			<a class="button" onClick="history.go(-1);">Cancel</a>
+			<a class="button" href="<?=base_url('trainee/module/view/'. $module_id);?>">Cancel</a>
 		</form>
 	</div>
 </div>
