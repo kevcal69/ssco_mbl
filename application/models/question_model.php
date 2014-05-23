@@ -20,6 +20,17 @@ class Question_model extends CI_Model {
 		return false;
 	}	
 
+	function edit($data) {
+		$this->db->where('id', $data['id']);
+		$this->db->update('question', $data); 
+
+		if ($this->db->_error_message()) {
+			return FALSE; 
+		} else {
+			return $this->db->affected_rows();
+		}
+	}	
+
 	function edit_test($data) {
 		$this->db->where('id', $data['id']);
 		$this->db->update('scheduled_test_question', $data);
@@ -51,7 +62,7 @@ class Question_model extends CI_Model {
 	function fetch_test_sched($id) {
 		 $query = $this->db->get_where('scheduled_test', array('module_id' => $id));
 		 if ($query) {
-		 	return $query->result();
+		 	return $query->row();
 		 } else {
 		 	return false;
 		 }
@@ -70,6 +81,14 @@ class Question_model extends CI_Model {
 		 	return false;
 		 }
 	}
+
+	function conduct_test($id,$val,$str) {
+		$this->db->insert('scheduled_test', array('isset_test'=>1,'module_id'=>$id,'content'=>$str)); 
+	}	
+	function stop_test($tid,$id,$val) {
+		$this->db->where('id', $tid);
+		$this->db->update('scheduled_test', array('isset_test'=>0,'module_id'=>$id)); 
+	}	
 
 	function fetch_evaluation_test($id, $limit = FALSE) {
 		if ($limit === FALSE) {

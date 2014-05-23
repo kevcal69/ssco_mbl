@@ -10,8 +10,7 @@ $(document).ready(function() {
 	});
 
 	close_panel.initialize();
-	test_form.initialize();
-	$('#users-table').DataTable({
+	$('#users-table , .module-table-admin').DataTable({
 		"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
 		"pageLength": 25
 	});
@@ -63,9 +62,25 @@ var question = {
 
 		}).on("click",'.edit',function(e) { 
 			$('.edit').bind('click', function(){ return false; });
-			$(this).parent().parent().parent().find("*").not('#questionare, #questionare *').remove();
-			$('#questionare').show();
-			CKEDITOR.replace( 'edit-area', {
+			$(this).parent().parent().find('#questionare').show();
+			$(this).parent().parent().find("*").not('#questionare, #questionare *').remove();
+			console.log('edit-area'+$(this).data('id'));
+			CKEDITOR.replace( 'edit-area'+$(this).data('id'), {
+				resize_enabled : false,
+				removePlugins : 'autosave',				
+				toolbar: [
+					[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
+					{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+					'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+					{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+				],
+			});
+		}).on("click",'.qedit',function(e) { 
+			$('.qedit').bind('click', function(){ return false; });
+			$(this).parent().parent().find('#questionare').show();
+			$(this).parent().parent().find("*").not('#questionare, #questionare *').remove();
+			console.log('edit'+$(this).data('id'));
+			CKEDITOR.replace( 'edit'+$(this).data('id'), {
 				resize_enabled : false,
 				removePlugins : 'autosave',				
 				toolbar: [
@@ -76,9 +91,51 @@ var question = {
 				],
 			});
 		});
+		$(".panel-heading").on("click","#conduct" ,function (e) {
+			$('#conduct').after('<button type = "button" data-mid = "'+$(this).data('mid')+'" class = "button-warning" id = "confirm">Confirm Test</button>');
+			$('#conduct').remove();
+			$val = 1;
+			$.ajax({
+				type: "POST",
+				url: MBL.BASE_URL+ "admin/question/question_filter", 
+				data: { mid : $(this).data('mid') , val: $val},
+				cache:false,
+				success: 
+				function(data){
+
+					$temp = $('#results-filter');
+					$("#qbody").empty();
+					$("#qbody").append($temp);
+					$("#qbody").append(data);
+				}
+			});			
+		}).on("click","#confirm" ,function (e) {
+			console.log($(this).data('mid'));
+			$.ajax({
+				type: "POST",
+				url: MBL.BASE_URL+ "admin/question/conduct", 
+				data: { mid : $(this).data('mid')},
+				cache:false,
+				success: 
+				function(data){
+					location.reload();
+				}
+			});
+		}).on("click","#stop" ,function (e) {
+			$.ajax({
+				type: "POST",
+				url: MBL.BASE_URL+ "admin/question/stop", 
+				data: { tid:$(this).data('tid'),mid : $(this).data('mid')},
+				cache:false,
+				success: 
+				function(data){
+					location.reload();
+				}
+			});
+		});
 	},
-	add: function() {
-		$('#choices-li').append('<label class="checkbox"><input type="checkbox" name = "question[answers][]" value = "'+$('.checkbox').length+'"><input type = "text" class = "choices" name = "question[choices][]"><span class = "text-error text-size-s2" onclick = "question.del(this)">del</span></label>');	
+	add: function(e) {
+		$(e).parent().children('#choices-li').append('<label class="checkbox"><input type="checkbox" name = "question[answers][]" value = "'+$('.checkbox').length+'"><input type = "text" class = "choices" name = "question[choices][]"><span class = "text-error text-size-s2" onclick = "question.del(this)">del</span></label>');	
 		console.log($('.choices').length);		
 	},
 	del: function($d) {
@@ -100,11 +157,11 @@ var stick_Sidebar = {
 
 var modules = {
 	initialize: function() {
-		$("#list-container").hide();
-		$("#grid-container").show();
+		// $("#list-container").hide();
+		// $("#grid-container").show();
 
-		// $("#grid-container").hide();		
-		// $("#list-container").show();
+		 $("#grid-container").hide();		
+		 $("#list-container").show();
 
 		$flag_m = null;
 		$('.module-box').click (function () {
@@ -132,25 +189,6 @@ var modules = {
 			}
 
 		}); 
-
-		$('.list-box').click (function(){
-			if ($flag_m != this) {
-				$('.li-check').remove();
-				$('.list-box').removeClass('li-active');
-				$('.list-box').children('.actions').hide();				
-
-				$(this).children('.actions').show();
-				$(this).prepend('<div class = "li-check"></div>');
-				$(this).addClass('li-active');	
-				$flag_m = this;
-			} else {
-				$(this).removeClass('li-active');
-				$('.li-check').remove();	
-				$('.list-box').children('.actions').hide();	
-				$flag_m = null;
-			}
-		});
-
 	},
 	toggle_to_grid: function() {
 		$('#module-list-panel-title').text("Module List : Grid View");

@@ -593,6 +593,13 @@ ul, ol {
 	cursor: pointer;
 }
 
+
+.inline-display {
+	display: inline-block;
+}
+.inlineblock-display {
+	display: inline-block;
+}
 .notif {
 	display: block;
 	margin-bottom: 10px;
@@ -644,4 +651,3 @@ ul, ol {
 	background-color: rgba(214, 88, 72, 0.2);
 	border-color: rgba(214, 88, 72, 1);
 	color: rgba(214, 88, 72, 1);
-}

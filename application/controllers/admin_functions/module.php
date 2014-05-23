@@ -34,7 +34,6 @@
 	    }	
 
 	function index() {
-		$this->sidebar_content['search'] = TRUE;
 		$this->sidebar_content['actions'] = array(
 					'home' => array(
 						'content' => to_sidebar_element('fa-bars','List Modules'),
