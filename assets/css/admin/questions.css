@@ -1,5 +1,5 @@
 .question-list {
-	height: 600px;
+	max-height: 700px;
 	overflow: auto;	
 }
 .item {
@@ -100,9 +100,11 @@
 }
 .qfield{
 	height: 40px;
+	margin: 0px 0px 10px 0px !important;
 	width: 100% !important;
 }
 #questionare {
+	margin-top: 100px;
 	display: none;
 }
 #econtainer {
@@ -128,4 +130,14 @@
 .question.create form {
 	padding: 0 !important;
 	background: transparent !important;
+}
+
+/*modal */
+#modal-addquestionare {
+	background-color: #fff;
+	width: 1000px;
+	display: block;
+	margin: 0 auto;
+	margin-top: 100px;
+	min-height: 200px;
 }

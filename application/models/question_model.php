@@ -51,22 +51,14 @@ class Question_model extends CI_Model {
 		 }
 	}
 	function fetch_test_questions($id) {
+		$this->db->order_by("is_used", "desc"); 
 		 $query = $this->db->get_where('scheduled_test_question', array('module_id' => $id));
 		 if ($query) {
 		 	return $query->result();
 		 } else {
 		 	return false;
 		 }
-	}	
-
-	function fetch_test_sched($id) {
-		 $query = $this->db->get_where('scheduled_test', array('module_id' => $id));
-		 if ($query) {
-		 	return $query->row();
-		 } else {
-		 	return false;
-		 }
-	}	
+	}		
 
 	function set_test($id,$val) {
 		$this->db->where('id', $id);
@@ -81,8 +73,17 @@ class Question_model extends CI_Model {
 		 	return false;
 		 }
 	}
-
-	function conduct_test($id,$val,$str) {
+	function fetch_test_sched($id) {
+		$this->db->order_by("id", "desc"); 
+		$this->db->limit(1);
+		 $query = $this->db->get_where('scheduled_test', array('module_id' => $id));
+		 if ($query) {
+		 	return $query->row();
+		 } else {
+		 	return false;
+		 }
+	}	
+	function conduct_test($id,$str) {
 		$this->db->insert('scheduled_test', array('isset_test'=>1,'module_id'=>$id,'content'=>$str)); 
 	}	
 	function stop_test($tid,$id,$val) {
