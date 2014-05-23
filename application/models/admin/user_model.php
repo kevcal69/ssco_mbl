@@ -76,9 +76,13 @@ class User_model extends CI_Model {
 		$this->db->trans_start();
 
 		$user = $this->view($username);
-		if ($user['role'] === 'trainee' OR $this->trainee_exists($user['id'])) {
-			$this->delete_trainee($user['id']);
-		}
+		// if ($user['role'] === 'trainee' OR $this->trainee_exists($user['id'])) {
+		// 	//delete trainee entry
+		// 	$this->delete_trainee($user['id']);
+		// 	//delete enrolled_module entries
+		// 	//delete module_test_result entries
+		// 	//delete test_result entries
+		// }
 		$result = $this->db->delete('user',array('username' => $username));
 
 		$this->db->trans_complete();

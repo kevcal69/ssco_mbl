@@ -105,28 +105,33 @@
 }
 
 .test #test-content #submit-bottom,
-.test #test-content #process-results-bottom {
+.test #test-content #process-results-bottom,
+.scheduled_test #test-content #submit-bottom,
+.scheduled_test #test-content #process-results-bottom {
 	font-size: 1.5rem;
 	padding: 10px 50px 9px 50px;
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
 
-.test #test-header {
+.test #test-header,
+.scheduled_test #test-header {
 	text-align: left;
 	overflow: hidden;
 }
 
-.test #module-title {
+.test #module-title,
+.scheduled_test #module-title {
 	max-width: calc(100% - 150px);
-	white-space:nowrap;
+	/*white-space:nowrap;*/
 	display: inline-block;
 	margin: 10px 0;
-	text-overflow: ellipsis;
+	/*text-overflow: ellipsis;*/
 	overflow:hidden;
 }
 
-.test #test-header #action-buttons {
+.test #test-header #action-buttons,
+.scheduled_test #test-header #action-buttons {
 	vertical-align: middle;
 	float: right;
 	margin: 18px 0;

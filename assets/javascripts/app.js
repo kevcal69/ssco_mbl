@@ -18,6 +18,8 @@ $(document).ready(function() {
 		"lengthMenu": [ [5, 20, 50, 100, -1], [5, 20, 50, 100, "All"]],
 		"pageLength": 5
 	});
+
+	test_form.initialize();
 });
 
 var question = {
@@ -265,7 +267,11 @@ var close_panel = {
 var test_form = {
 	initialize: function() {
 		if ($('form').is('#test-form')) {
-			var warning = 'Leaving the test will mark your score as zero.\n\nAlso note that reloading the page will start another test, marking the previous one as zero.';
+			if ($('body').hasClass('test')) {
+				var warning = 'Leaving the test will mark your score as zero.\n\nAlso note that reloading the page will start another test, marking the previous one as zero.';
+			} else if ($('body').hasClass('scheduled_test')) {
+				var warning = 'Leaving the test will mark your score as zero.\nYou should finish this test as you can take this only once.';
+			}
 			var form_submitted = false;
 
 			$('button[name="is_submit"]').on('click', function () {

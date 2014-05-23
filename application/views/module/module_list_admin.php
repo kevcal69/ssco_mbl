@@ -68,6 +68,8 @@
 						<th>Module Title</th>
 						<th>Category</th>
 						<th>Actions</th>
+						<th style="display:none;">Description</th>
+						<th style="display:none;">Content</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -89,12 +91,14 @@
 									</div>
 								<?php elseif ($this->session->userdata('role') === "trainee"): ?>
 									<div class="actions">
-										<a class="button" href="<?=base_url('trainee/module/view/'.$module->id)?>" class = "text-info text-size-s3">View</a>
-										<a class="button button-primary" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
+										<a class="text-muted" href="<?=base_url('trainee/module/view/'.$module->id)?>" class = "text-info text-size-s3">View</a>
+										<a class="text-primary" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
 									</div>
 								<?php endif; ?>
 							<?php endif; ?>
 						</td>
+						<td style="display:none;"><?=$module->description?></td>
+						<td style="display:none;"><?=$module->content?></td>
 				  </tr>
 				<?php endforeach ?>
 				</tbody>

@@ -43,29 +43,33 @@ class Question_model extends CI_Model {
 	}	
 
 	function fetch_questions($id) {
-		 $query = $this->db->get_where('question', array('module_id' => $id));
-		 if ($query) {
-		 	return $query->result();
-		 } else {
-		 	return false;
-		 }
+		$query = $this->db->get_where('question', array('module_id' => $id));
+		if ($query) {
+			return $query->result();
+		} else {
+			return false;
+		}
 	}
-	function fetch_test_questions($id) {
-		 $query = $this->db->get_where('scheduled_test_question', array('module_id' => $id));
-		 if ($query) {
-		 	return $query->result();
-		 } else {
-		 	return false;
-		 }
+	function fetch_test_questions($id,$is_used = NULL) {
+		if ($is_used === NULL) {
+			$query = $this->db->get_where('scheduled_test_question', array('module_id' => $id));
+		} else {
+			$query = $this->db->get_where('scheduled_test_question', array('module_id' => $id, 'is_used' => $is_used));
+		}
+		if ($query) {
+			return $query->result();
+		} else {
+			return false;
+		}
 	}	
 
 	function fetch_test_sched($id) {
-		 $query = $this->db->get_where('scheduled_test', array('module_id' => $id));
-		 if ($query) {
-		 	return $query->row();
-		 } else {
-		 	return false;
-		 }
+		$query = $this->db->get_where('scheduled_test', array('module_id' => $id));
+		if ($query) {
+			return $query->row();
+		} else {
+			return false;
+		}
 	}	
 
 	function set_test($id,$val) {
@@ -74,12 +78,12 @@ class Question_model extends CI_Model {
 	}
 
 	function fetch_filtered_test($filter,$mid) {
-		 $query = $this->db->get_where('scheduled_test_question', array('module_id' => $mid, 'is_used' => $filter));
-		 if ($query) {
-		 	return $query->result();
-		 } else {
-		 	return false;
-		 }
+		$query = $this->db->get_where('scheduled_test_question', array('module_id' => $mid, 'is_used' => $filter));
+		if ($query) {
+			return $query->result();
+		} else {
+			return false;
+		}
 	}
 
 	function conduct_test($id,$val,$str) {
@@ -137,7 +141,7 @@ class Question_model extends CI_Model {
 	function isset_test($test_id) {
 		$query = $this->db->get_where('scheduled_test', array('id' => $test_id));
 		if ($query) {
-			return $query->isset_test;
+			return $query->row()->isset_test;
 		} else {
 			return FALSE;
 		}

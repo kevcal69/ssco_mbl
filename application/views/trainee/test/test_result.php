@@ -1,9 +1,21 @@
-<!-- Form for test and test results -->
+<!-- Form for test results -->
 <div id="test-container">
 	<div id="test-header">
-		<h1 id="module-title"><?php echo $module_title?> - <?php echo format_rating($results['rating'])?></h1>
+		<h1 id="module-title">
+			<?php echo $module_title?>
+
+			<?php if (isset($is_scheduled_test) && $is_scheduled_test === TRUE):?>
+			 - Scheduled Test
+			<?php endif;?>
+
+			 (<?php echo format_rating($results['rating'])?>)
+		</h1>
 		<div id="action-buttons">
-			<a href="<?php echo base_url('trainee/module/view/'.$module_id)?>" class="button button-primary">Back to Module</a>
+			<?php if (isset($is_scheduled_test) && $is_scheduled_test === TRUE):?>
+				<a href="<?php echo base_url('trainee')?>" class="button button-primary">Back to Home</a>
+			<?php else:?>
+				<a href="<?php echo base_url('trainee/module/view/'.$module_id)?>" class="button button-primary">Back to Module</a>
+			<?php endif;?>
 		</div>
 	</div>
 	<hr>
@@ -63,6 +75,10 @@
 			<?php endforeach;?>
 		</form>
 		<hr>
-		<a href="<?php echo base_url('trainee/module/view/'.$module_id)?>" id="process-results-bottom" class="button button-primary">Back to Module</a>
+		<?php if (isset($is_scheduled_test) && $is_scheduled_test === TRUE):?>
+			<a href="<?php echo base_url('trainee')?>" id="process-results-bottom" class="button button-primary">Back to Home</a>
+		<?php else:?>
+			<a href="<?php echo base_url('trainee/module/view/'.$module_id)?>" id="process-results-bottom" class="button button-primary">Back to Module</a>
+		<?php endif;?>
 	</div>
 </div>

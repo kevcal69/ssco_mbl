@@ -621,6 +621,7 @@ ul, ol {
 .notif-icon {
 	border-right: 1px solid;
 	border-color: inherit;
+	vertical-align: middle;
 }
 
 .notif-warning {
