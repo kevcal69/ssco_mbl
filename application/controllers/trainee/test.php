@@ -35,13 +35,14 @@ class Test extends MBL_Controller {
 
 		if (!$this->trainee_module_model->is_enroled($module_id,$this->trainee_id)) {
 			$data['error_message'] = 'You are not allowed to take the test for a module you are not enroled in.';
-			$data['error_title'] = 'Forbidden Test';
+			$data['error_title'] = 'Not Allowed to Take the Test';
 			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		} else if ($this->session->flashdata('test_ongoing') === FALSE 
 						&& !empty($result) 
 						&& $this->input->post('retake-confirm') !== 'TRUE'
 						&& $this->trainee_module_model->is_completed($module_id,$this->trainee_id) === TRUE
 						) {
+			//retake
 			if ($this->input->post('retake-confirm') !== 'TRUE') {
 				$retake_data = array(
 					'module_title' => $this->module_model->get_title($module_id),

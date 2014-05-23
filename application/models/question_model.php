@@ -96,10 +96,29 @@ class Question_model extends CI_Model {
 		return $data;
 	}
 
-	function get_scheduled_tests() {
-		$query = $this->db->get_where('scheduled_test', array('isset_test' => TRUE));
+	function get_scheduled_tests($test_id = FALSE) {
+		if ($test_id === FALSE) {
+			//get all scheduled tests
+			$query = $this->db->get_where('scheduled_test', array('isset_test' => TRUE));
+			if ($query) {
+				return $query->result();
+			} else {
+				return FALSE;
+			}
+		} else {
+			$query = $this->db->get_where('scheduled_test', array('id' => $test_id));
+			if ($query) {
+				return $query->row();
+			} else {
+				return FALSE;
+			}
+		}
+	}
+
+	function isset_test($test_id) {
+		$query = $this->db->get_where('scheduled_test', array('id' => $test_id));
 		if ($query) {
-			return $query->result();
+			return $query->isset_test;
 		} else {
 			return FALSE;
 		}

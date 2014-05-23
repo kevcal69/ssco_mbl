@@ -15,7 +15,7 @@
 			<i class="fa fa-fw fa-exclamation-triangle"></i>
 		</div>
 		<div class="notif-body">
-			A mastery test has been scheduled for the module <?php echo $module_title?>. You are required to take this exam. Click here to take the test.
+			A mastery test has been scheduled for a module. You are required to take this exam. Click here to take the test.
 		</div>
 	</div>
 </a>

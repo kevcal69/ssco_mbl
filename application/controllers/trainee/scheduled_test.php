@@ -13,7 +13,7 @@ class Scheduled_test extends MBL_Controller {
 		// $this->load->model('trainee/trainee_model');
 		$this->load->model('trainee/trainee_module_model');
 		$this->load->model('module_model');
-		$this->load->model('module_test_result_model','test_result_model');
+		$this->load->model('scheduled_test_result_model','test_result_model');
 		$this->load->model('question_model');
 		$this->load->helper('application_helper');
 		$this->load->helper('output_text_helper');
@@ -29,13 +29,16 @@ class Scheduled_test extends MBL_Controller {
 	// 	//scheduled test results
 	// }
 
-	public function take($module_id) {
+	public function take($test_id) {
+		// $module_id = 
+
 		//check if already taken test
-		$result = $this->test_result_model->get_results($module_id,$this->trainee_id);
+		$result = $this->test_result_model->get_results($test_id,$this->trainee_id);
+		echo $result;
 
 		if (!$this->trainee_module_model->is_enroled($module_id,$this->trainee_id)) {
 			$data['error_message'] = 'You are not allowed to take the test for a module you are not enroled in.';
-			$data['error_title'] = 'Forbidden Test';
+			$data['error_title'] = 'Not Allowed to Take the Test';
 			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		} else if ($this->session->flashdata('test_ongoing') === FALSE 
 						&& !empty($result) 

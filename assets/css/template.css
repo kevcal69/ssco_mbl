@@ -605,16 +605,15 @@ ul, ol {
 	color: rgba(140, 142, 146, 1);
 }
 
-.notif-icon {
+.notif-icon,
+.notif-body {
+	padding: 10px;
 	display: table-cell;
-	padding: 5px;
-	border-right: 1px solid;
-	border-color: inherit;
 }
 
-.notif-body {
-	padding: 5px;
-	display: table-cell;
+.notif-icon {
+	border-right: 1px solid;
+	border-color: inherit;
 }
 
 .notif-warning {
