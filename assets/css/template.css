@@ -508,8 +508,16 @@ ul, ol {
 }
 
 .panel-heading *,
-.panel-heading *:hover {
+.panel-heading a:hover {
 	color: #FFF;
+}
+
+.panel-heading input[type="text"],
+.panel-heading input[type="password"],
+.panel-heading select,
+.panel-heading option,
+.panel-heading .field {
+	color: black;
 }
 
 .panel-footer {
@@ -528,13 +536,13 @@ ul, ol {
 }
 
 .panel-primary {
-	border-color: #1EAFB4;
+	border-color: rgba(30, 175, 180, 1);
 }
 
 .panel-primary>.panel-heading {
-	background-color: #1EAFB4;
-	border-color: #1EAFB4;
-	color: white;
+	background-color: rgba(30, 175, 180, 1);
+	border-color: rgba(30, 175, 180, 1);
+	color: #FFF;
 }
 
 .panel-success {
@@ -585,9 +593,62 @@ ul, ol {
 	cursor: pointer;
 }
 
+
 .inline-display {
 	display: inline-block;
 }
 .inlineblock-display {
 	display: inline-block;
 }
+.notif {
+	display: block;
+	margin-bottom: 10px;
+	text-align: left;
+	overflow: hidden;
+	position: relative;
+
+	background: #ffffff;
+	border: 1px solid rgba(140, 142, 146, 1);
+	color: rgba(140, 142, 146, 1);
+}
+
+.notif-icon {
+	display: table-cell;
+	padding: 5px;
+	border-right: 1px solid;
+	border-color: inherit;
+}
+
+.notif-body {
+	padding: 5px;
+	display: table-cell;
+}
+
+.notif-warning {
+	background-color: rgba(231, 144, 0, 0.2);
+	border-color: rgba(231, 144, 0, 1);
+	color: rgba(231, 144, 0, 1);
+}
+
+.notif-primary {
+	background-color: rgba(6, 150, 155, 0.2);
+	border-color: rgba(6, 150, 155, 1);
+	color: rgba(6, 150, 155, 1);
+}
+
+.notif-success {
+	background-color: rgba(22, 155, 6, 0.2);
+	border-color: rgba(22, 155, 6, 1);
+	color: rgba(22, 155, 6, 1);
+}
+
+.notif-info {
+	background-color: rgba(23, 100, 190, 0.2);
+	border-color: rgba(23, 100, 190, 1);
+	color: rgba(23, 100, 190, 1);
+}
+
+.notif-danger {
+	background-color: rgba(214, 88, 72, 0.2);
+	border-color: rgba(214, 88, 72, 1);
+	color: rgba(214, 88, 72, 1);

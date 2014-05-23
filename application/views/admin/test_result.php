@@ -49,7 +49,7 @@
 	</div>
 	<hr>
 	<div id="test-content">
-		<form method="post" id="test-form">
+		<form method="post">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Test Results</label>

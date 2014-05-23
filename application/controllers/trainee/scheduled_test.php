@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Test extends MBL_Controller {
+class Scheduled_test extends MBL_Controller {
 	function __construct() {
 		parent::__construct();
 		//refuse access when not logged as trainee
@@ -119,13 +119,13 @@ class Test extends MBL_Controller {
 		}
 		//rating is stored as score/total. it will be displayed as round(($data['results']['rating']*100),3)
 		$data['results']['rating'] = $data['results']['score'] / $data['results']['total'];
+
 		//update test_results
 		$update_data['rating'] = $data['results']['rating'];
 		$update_data['content'] = base64_encode(serialize($data));
 		$this->test_result_model->update_result($data['test_id'],$update_data);
 		//mark module as completed
 		$this->trainee_module_model->update_module($data['module_id'],$this->trainee_id,$update_data['rating'],TRUE);
-		
 		return $this->load->view('trainee/test/test_result',$data,TRUE);
 	}
 //TODO transfer to admin
@@ -152,5 +152,5 @@ class Test extends MBL_Controller {
 	}
 }
 
-/* End of file test.php */
-/* Location: ./application/controllers/trainee/test.php */
+/* End of file scheduled_test.php */
+/* Location: ./application/controllers/trainee/scheduled_test.php */
