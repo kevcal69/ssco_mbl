@@ -38,12 +38,12 @@
 		$this->load->helper('output_text_helper');
 		$this->sidebar_content['actions'] = array(
 					'list' => array(
-						'content' => to_sidebar_element('fa-bars','List Questions'),
-						'href' => base_url(''),
+						'content' => to_sidebar_element('fa-bars','Evaluation Questions'),
+						'href' => base_url('admin/question/create/'.$id),
 						'active' => TRUE
 						),
 					'set' => array(
-						'content' => to_sidebar_element('fa-tags','Set Up Test'),
+						'content' => to_sidebar_element('fa-tags','Scheduled Test'),
 						'href' => base_url('admin/question/test_set_up/'.$id),
 						'active' => FALSE
 						),
@@ -63,8 +63,13 @@
 		$this->load->helper('output_text_helper');
 		$this->sidebar_content['actions'] = array(
 					'list' => array(
-						'content' => to_sidebar_element('fa-bars','List Questions'),
-						'href' => base_url(''),
+						'content' => to_sidebar_element('fa-bars','Evaluation Questions'),
+						'href' => base_url('admin/question/create/'.$id),
+						'active' => FALSE
+						),
+					'set' => array(
+						'content' => to_sidebar_element('fa-tags','Scheduled Test'),
+						'href' => base_url('admin/question/test_set_up/'.$id),
 						'active' => TRUE
 						),
 					'stats' => array(
@@ -234,9 +239,10 @@
 	}
 	function conduct() {
 		$mid = $this->input->post('mid');
-		$test_question = fetch_test_questions($mid);
-		$this->mQ->conduct_test($mid,base64_encode(serialize($test_question)));
-		
+		$test_question = $this->mQ->fetch_test_questions($mid);
+		$test_question = base64_encode(serialize($test_question));
+		$this->mQ->conduct_test($mid,$test_question);
+		echo "success";
 	}
 	function stop() {
 		$mid = $this->input->post('mid');

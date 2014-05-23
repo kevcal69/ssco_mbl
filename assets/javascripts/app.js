@@ -48,9 +48,8 @@ var question = {
 					$(this).parent().parent().children('.item-body').css({'display':'none'});					
 				}		
 		}).on("click",".set-test", function(){
-			console.log($(this).data('val'));
-			console.log($(this).data('id'));
-			console.log($(this).data('mid'));
+			$filter = $("#filter").children('option:selected').attr('value');
+			$this = $(this);
 			$.ajax({
 				type: "POST",
 				url: MBL.BASE_URL+ "admin/question/set_question", 
@@ -58,42 +57,24 @@ var question = {
 				cache:false,
 				success: 
 				function(data){
-					location.reload();
+					if ($filter == 2) {
+						location.reload();
+					} else {
+						$($this).parent().parent().parent().remove();
+					}
+					
 				}
 			});
-
 		}).on("click",'.edit',function(e) { 
-			$('.edit').bind('click', function(){ return false; });
-			$(this).parent().parent().find('#questionare').show();
-			$(this).parent().parent().find("*").not('#questionare, #questionare *').remove();
-			console.log('edit-area'+$(this).data('id'));
-			CKEDITOR.replace( 'edit-area'+$(this).data('id'), {
-				resize_enabled : false,
-				removePlugins : 'autosave',				
-				toolbar: [
-					[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
-					{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
-					'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
-					{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
-				],
-			});
+			$(".modal-container"+$(this).data('id')).show();
+			$(".modal-container"+$(this).data('id')+" #popup #questionare").show();
 		}).on("click",'.qedit',function(e) { 
-			$('.qedit').bind('click', function(){ return false; });
-			$(this).parent().parent().find('#questionare').show();
-			$(this).parent().parent().find("*").not('#questionare, #questionare *').remove();
+			$(".modal-container"+$(this).data('id')).show();
+			$(".modal-container"+$(this).data('id')+" #popup #questionare").show();
 			console.log('edit'+$(this).data('id'));
-			CKEDITOR.replace( 'edit'+$(this).data('id'), {
-				resize_enabled : false,
-				removePlugins : 'autosave',				
-				toolbar: [
-					[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
-					{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
-					'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
-					{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
-				],
-			});
 		});
 		$(".panel-heading").on("click","#conduct" ,function (e) {
+			$("#filter").val('1');
 			$('#conduct').after('<button type = "button" data-mid = "'+$(this).data('mid')+'" class = "button-warning" id = "confirm">Confirm Test</button>');
 			$('#conduct').remove();
 			$val = 1;
@@ -112,17 +93,25 @@ var question = {
 				}
 			});			
 		}).on("click","#confirm" ,function (e) {
-			console.log($(this).data('mid'));
-			$.ajax({
-				type: "POST",
-				url: MBL.BASE_URL+ "admin/question/conduct", 
-				data: { mid : $(this).data('mid')},
-				cache:false,
-				success: 
-				function(data){
-					location.reload();
-				}
-			});
+			$item_size = $('.item').size();
+			if ($item_size == 0) {
+				console.log($item_size);
+				$("#confirm").text("Error! no items tagged");
+				$("#confirm").removeClass("button-warning");
+				$("#confirm").addClass("button-danger");
+
+				setTimeout(function () {location.reload()},1000);
+			}
+			// $.ajax({
+			// 	type: "POST",
+			// 	url: MBL.BASE_URL+ "admin/question/conduct", 
+			// 	data: { mid : $(this).data('mid')},
+			// 	cache:false,
+			// 	success: 
+			// 	function(data){
+			// 		location.reload();
+			// 	}
+			// });
 		}).on("click","#stop" ,function (e) {
 			$.ajax({
 				type: "POST",
@@ -134,6 +123,10 @@ var question = {
 					location.reload();
 				}
 			});
+		});
+		$("#button-addq").on('click', function() {
+			$("#modal-container").show();
+			$("#modal-container #popup #modal-addquestionare").show();
 		});
 	},
 	add: function(e) {
@@ -257,8 +250,13 @@ var view_all = {
 
 var close_panel = {
 	initialize: function() {
-		$('.close-panel').click(function() {
-			$(this).parent().css('display','none');
+		$('.close-modal').click(function() {
+			$(this).closest(".panel").hide();
+			$("#modal-container").hide();
+			$(".modal-container").hide();
+		});		
+		$('.close-panel:not(".close-modal")').click(function() {
+			$(this).closest(".panel").hide();
 		});
 	}
 }

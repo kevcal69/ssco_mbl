@@ -7,7 +7,7 @@
 	<script>
 		$(document).ready(function() {
 			$('.close-panel').click(function() {
-				$(this).parent().css('display','none');
+				$(this).closest(".panel").hide();
 			});
 			$('#show-panel').click(function() {
 				$("#close-panel-example").css('display','block');
@@ -448,8 +448,8 @@
 
 		<h3>Close Panel</h3>
 		<div class="panel panel-info">
-			<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 			<div class="panel-heading">
+			<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 				<h3 class="panel-title">.close-panel</h3>
 			</div>
 			<div class="panel-body">
@@ -464,8 +464,8 @@ $('.close-panel').click(function() {
 });
 </pre>
 				<div class="panel panel-info" id="close-panel-example">
-					<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 					<div class="panel-heading">
+					<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 						<h3 class="panel-title">close-panel-example</h3>
 					</div>
 					<div class="panel-body">

@@ -62,3 +62,31 @@
 	text-align: left;
 	max-width: 200px;
 }
+
+#modal-container {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 100;
+	background-color: rgba(81, 81, 81, .5);
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	display: none;
+}
+.modal-container{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 100;
+	background-color: rgba(81, 81, 81, .5);
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	display: none;
+}
+#popup {
+	max-width: 1000px;
+	display: block;
+	margin: 0 auto;
+}

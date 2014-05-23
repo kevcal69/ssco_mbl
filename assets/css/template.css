@@ -491,7 +491,7 @@ ul, ol {
 	border: 1px solid rgba(140, 142, 146, 1);
 	text-align: left;
 	overflow: hidden;
-	position: relative;
+	/*position: relative;*/
 }
 .panel-body {
 	padding: 15px;
@@ -587,13 +587,14 @@ ul, ol {
 
 .panel .close-panel {
 	float: right;
-	position: absolute;
-	top: 5px;
-	right: 5px;
 	cursor: pointer;
 }
-
-
+.float-l {
+	float: left;
+}
+.float-r {
+	float: right;
+}
 .inline-display {
 	display: inline-block;
 }
