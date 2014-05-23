@@ -45,20 +45,6 @@
 		</a>	
 	</div>
 	<div class="options" >
-		<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/questions.png';?>);">
-			
-		</div>
-		<div class = "text-options">
-			<div class="action">
-				Questions
-			</div>
-			<div class="des">
-				Create, View, and Modify Questions
-			</div>		
-		</div>
-	</div>
-	
-	<div class="options" >
 		<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/test.png';?>);">
 			
 		</div>

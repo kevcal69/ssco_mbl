@@ -584,3 +584,10 @@ ul, ol {
 	right: 5px;
 	cursor: pointer;
 }
+
+.inline-display {
+	display: inline-block;
+}
+.inlineblock-display {
+	display: inline-block;
+}

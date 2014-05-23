@@ -4,12 +4,11 @@
 
 <div class="panel">
 	<div class="panel-heading">	
-		<?php if (isset($test) && (!isset($test->isset_test) || $test->isset_test == FALSE)):?>
-			<button type = "button" class = "button-info">Coduct a Test</button>
+		<?php if ((!isset($test) || empty($test)) || (isset($test) && ($test->isset_test == 0))):?>
+			<button type = "button" class = "button-info" id = "conduct" data-mid = "<?=$module->id?>">Conduct a Test</button>
 		<?php else:?>	
-			<?=isset($test->isset_test) ?>
-			<button type = "button" class = "button-danger">Stop the Test</button>
-		<?php endif;?>
+			<button type = "button" class = "button-danger" id = "stop"  data-tid = "<?=$test->id?>" data-mid = "<?=$module->id?>">Stop the Test</button>
+			<?php endif;?>
 	</div>
 	<div class="panel-body question-list" id ="qbody">
 	<div class="panel-heading" id = "results-filter">
@@ -19,8 +18,6 @@
 			<option value = "0">Untagged</option>
 			<option value = "2"selected="selected">Mixed</option>
 		</select>
-		<span>Keyword :</span>
-		<input type = "text">
 	</div>
 	<?php foreach ($questions as $question): ?>
 	<div class="item">
@@ -32,16 +29,42 @@
 	<?php if ($question->is_used == 1):?>	
 			 <i class="fa fa-tag fa-fw text-muted"></i> <h3 class = "text-info que-tit"><?=$question->qtitle?></h3>
 			<div class="opt-group">
-				<span class="edit"><i class="fa fa-gear"></i>Edit</span>
-				<span class="set-test" data-id = "<?=$question->id?>" data-mid = "<?=$module->id?>" data-val = "0"><i class="fa fa-times text-error"></i>Exclude</span>
+				<span class="edit" data-id = "<?=$question->id?>"><i class="fa fa-gear"></i>Edit</span>
+				<span class="set-test" data-id = "<?=$question->id?>" data-mid = "<?=$module->id?>" data-val = "0"><i class="fa fa-times text-error"></i>Exclude to test</span>
 			</div>
 	<?php elseif ($question->is_used == 0):?>
 			<h3 class = "text-info que-tit"><?=$question->qtitle?></h3>
 			<div class="opt-group">
-				<span class="edit"><i class="fa fa-gear"></i>Edit</span>
-				<span class="set-test" data-id = "<?=$question->id?>" data-mid = "<?=$module->id?>" data-val = "1"><i class="fa fa-check text-success"></i>Include</span>
+				<span class="edit" data-id = "<?=$question->id?>"><i class="fa fa-gear"></i>Edit</span>
+				<span class="set-test" data-id = "<?=$question->id?>" data-mid = "<?=$module->id?>" data-val = "1"><i class="fa fa-check text-success"></i>Include to test</span>
 			</div>				
-	<?php endif;?>
+	<?php endif;?>		
+			<div class="panel" id ="questionare">
+			<form action = "<?=base_url('admin/question/edit_test_question')?>" method = "POST">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<input type = "hidden" name = "question[id]" value = "<?=$question->id?>"/>
+						<input type = "hidden" name = "question[module]" value = "<?=$module->id?>"/>
+						<input type = "text" name = "question[title]" value = "<?=$question->qtitle?>" class = "qfield" />
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div id="econtainer">
+					<textarea id = "edit-area<?=$question->id?>" name = "question[question]" placeholder = "Question"><?=$question->question?></textarea>
+					</div>
+					
+				</div>
+				<div class="panel-footer">
+						<div class="control-group">
+							<label>Choices</label>
+							<div class="controls" id = "choices-li">
+								<?=edit_ca(unserialize(base64_decode($question->choices)),unserialize(base64_decode($question->answer)))?>
+							</div>
+							<button type = "button" class = "" onclick="question.add(this)">Add</button>
+						</div>		
+						<button  class = "button-success">Save</button>				
+				</div>
+			</form>
 		</div>
 		<div class="show_d">
 			<span class = "text-warning sh_mr">Show More</span>
@@ -56,32 +79,7 @@
 				<?=display_ca(unserialize(base64_decode($question->choices)),unserialize(base64_decode($question->answer)))?>
 			</div>				
 		</div>
-		<div class="panel" id ="questionare">
-			<form action = "<?=base_url('admin/question/edit_test_question')?>" method = "POST">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<input type = "hidden" name = "question[id]" value = "<?=$question->id?>"/>
-						<input type = "hidden" name = "question[module]" value = "<?=$module->id?>"/>
-						<input type = "text" name = "question[title]" value = "<?=$question->qtitle?>" class = "qfield" />
-					</h3>
-				</div>
-				<div class="panel-body">
-					<div id="econtainer">
-					<textarea id = "edit-area" name = "question[question]" placeholder = "Question"><?=$question->question?></textarea>
-					</div>
-					
-				</div>
-				<div class="panel-footer">
-						<div class="control-group">
-							<label>Choices</label>
-							<div class="controls" id = "choices-li">
-								<?=edit_ca(unserialize(base64_decode($question->choices)),unserialize(base64_decode($question->answer)))?>
-							</div>
-							<button type = "button" class = "" onclick="question.add()">Add</button>
-						</div>		
-						<button  class = "button-success">Save</button>				
-				</div>
-			</form>
+
 		</div>
 
 	</div>

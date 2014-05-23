@@ -10,7 +10,7 @@
 		<?php foreach ($questions as $question): ?>
 		<div class="item">
 			<div class="item-heading">
-				<h3 class = "que-tit"><?=$question->qtitle?></h3>
+				<h3 class = "que-tit text-info"><?=$question->qtitle?></h3>
 			
 			<div class="item-id">
 				<span class = "text-warning qid-label"><?=$question->id?></span>
@@ -18,7 +18,8 @@
 			</div>
 			</div>
 			<div class="show_d">
-				<span class = "text-warning sh_mr">Show More</span>
+				<span class = "qedit text-muted" data-id = "<?=$question->id?>"><i class="fa fa-gear"></i>Edit</span>
+				<span class = "text-warning sh_mr inline-display">Show More</span>
 			</div>	
 			<div class="item-body">
 				<h4 class = "item-title">Question</h4>
@@ -30,6 +31,33 @@
 					<?=display_ca(unserialize(base64_decode($question->choices)),unserialize(base64_decode($question->answer)))?>
 				</div>				
 			</div>
+			<div class="panel" id ="questionare">
+			<form action = "<?=base_url('admin/question/edit_question')?>" method = "POST">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<input type = "hidden" name = "question[id]" value = "<?=$question->id?>"/>
+						<input type = "hidden" name = "question[module]" value = "<?=$module->id?>"/>
+						<input type = "text" name = "question[title]" value = "<?=$question->qtitle?>" class = "qfield" />
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div id="econtainer">
+					<textarea id = "edit<?=$question->id?>" name = "question[question]" placeholder = "Question"><?=$question->question?></textarea>
+					</div>
+					
+				</div>
+				<div class="panel-footer">
+						<div class="control-group">
+							<label>Choices</label>
+							<div class="controls" id = "choices-li">
+								<?=edit_ca(unserialize(base64_decode($question->choices)),unserialize(base64_decode($question->answer)))?>
+							</div>
+							<button type = "button" class = "" onclick="question.add(this)">Add</button>
+						</div>		
+						<button  class = "button-success" onClick="if(confirm('You want to save?'))return true; else return false;" >Save</button>				
+				</div>
+			</form>
+			</div>			
 		</div>	
 		<?php endforeach; ?>
 	</div>
