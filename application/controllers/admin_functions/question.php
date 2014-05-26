@@ -238,6 +238,7 @@
 		echo "success";
 	}
 	function conduct() {
+		echo "success";
 		$mid = $this->input->post('mid');
 		$test_question = $this->mQ->fetch_test_questions($mid);
 		$test_question = base64_encode(serialize($test_question));

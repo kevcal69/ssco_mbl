@@ -18,6 +18,7 @@ $(document).ready(function() {
 		"lengthMenu": [ [5, 20, 50, 100, -1], [5, 20, 50, 100, "All"]],
 		"pageLength": 5
 	});
+	
 });
 
 var question = {
@@ -100,16 +101,16 @@ var question = {
 
 				setTimeout(function () {location.reload()},1000);
 			}
-			// $.ajax({
-			// 	type: "POST",
-			// 	url: MBL.BASE_URL+ "admin/question/conduct", 
-			// 	data: { mid : $(this).data('mid')},
-			// 	cache:false,
-			// 	success: 
-			// 	function(data){
-			// 		location.reload();
-			// 	}
-			// });
+			$.ajax({
+				type: "POST",
+				url: MBL.BASE_URL+ "admin/question/conduct", 
+				data: { mid : $(this).data('mid')},
+				cache:false,
+				success: 
+				function(data){
+					location.reload();
+				}
+			});
 		}).on("click","#stop" ,function (e) {
 			$.ajax({
 				type: "POST",
