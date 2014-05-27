@@ -23,12 +23,6 @@ class Test extends MBL_Controller {
 		$this->trainee_id = $this->session->userdata('id');
 	}
 
-	// public function index() {
-	// 	//scheduled tests
-	// 	//module tests not yet taken
-	// 	//scheduled test results
-	// }
-
 	public function take($module_id) {
 		//check if already taken test
 		$result = $this->test_result_model->get_results($module_id,$this->trainee_id);
@@ -68,8 +62,13 @@ class Test extends MBL_Controller {
 					$data['questions'] = $this->question_model->fetch_evaluation_test($module_id);
 					$data['questions_string'] = base64_encode(serialize($data['questions']));
 					$this->session->set_flashdata('test_ongoing',TRUE);
-					//insert zero-score result
-					$data['test_result_id'] = $this->test_result_model->insert_result($module_id,$this->trainee_id);
+					if (sizeof($data['questions']) > 0) {
+						//insert zero-score result
+						$data['test_result_id'] = $this->test_result_model->insert_result($module_id,$this->trainee_id);
+						//update rating
+						$module_rating = $this->calculate_rating($module_id);
+						$this->trainee_module_model->update_module($module_id,$this->trainee_id,$module_rating,TRUE);
+					}
 				} else {
 					$data['questions'] = unserialize(base64_decode($this->input->post('questions-string')));
 					$data['questions_string'] = $this->input->post('questions-string');
@@ -125,10 +124,33 @@ class Test extends MBL_Controller {
 		$update_data['content'] = base64_encode(serialize($data));
 		$this->test_result_model->update_result($data['test_result_id'],$update_data);
 		//mark module as completed
-		$this->trainee_module_model->update_module($data['module_id'],$this->trainee_id,$update_data['rating'],TRUE);
+		//rating calculation
+		$module_rating = $this->calculate_rating($data['module_id'],$update_data['rating']);
+		$this->trainee_module_model->update_module($data['module_id'],$this->trainee_id,$module_rating,TRUE);
 		
 		return $this->load->view('trainee/test/test_result',$data,TRUE);
 	}
+
+	private function calculate_rating($module_id, $current_rating = FALSE) {
+		//average of all test results
+		$prev_test_results = $this->test_result_model->get_results($module_id,$this->trainee_id);
+		$size = sizeof($prev_test_results);
+		$sum = 0;
+		$average = 0;
+		foreach ($prev_test_results as $index => $result) {
+			$sum += $result->rating;
+		}
+		
+		if ($current_rating !== FALSE && is_numeric($current_rating)) {
+			//average of current_rating + sum of prev ratings
+			$average = ($current_rating + $sum) / ++$size;
+		} else {
+			//average of prev ratings
+			$average = $sum / $size;
+		}
+		return $average;
+	}
+
 //TODO transfer to admin
 	public function result($test_result_id) {
 		$this->load->model('admin/user_model');

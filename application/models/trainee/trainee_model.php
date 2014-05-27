@@ -21,26 +21,48 @@ class Trainee_model extends CI_Model {
 	}
 
 	public function get_statistics($trainee_id) {
-		//modules enroled
-		$this->db->select('module_id,is_completed');
-		$modules_enroled = $this->db->get_where('enrolled_module', array('trainee_id' => $trainee_id));
-		
-		$result['modules_enroled'] = array();
-		foreach ($modules_enroled->result_array() as $module) {
-			array_push($result['modules_enroled'],$module['module_id']);
-		}
-		$result['num_modules_enroled'] = sizeof($result['modules_enroled']);
+		$this->load->model('module_model');
+		$this->load->model('module_test_result_model');
+		$this->load->model('scheduled_test_result_model');
+		//name
+		$result['name'] = $this->get_name($trainee_id);
+		//modules
+		$result['modules'] = array();
 		//modules completed
-		$result['modules_completed'] = array();
-		foreach ($modules_enroled->result_array() as $module) {
-			if ($module['is_completed'] == TRUE) {
-				array_push($result['modules_completed'],$module['module_id']);
-			}
+		$result['modules']['completed'] = array();
+		$modules_completed = $this->db->get_where('enrolled_module', array('trainee_id' => $trainee_id, 'is_completed' => TRUE));
+		foreach ($modules_completed->result() as $module_row) {
+			$module = array();
+			$module['id'] = $module_row->module_id;
+			$module['title'] = $this->module_model->get_title($module['id']);
+			$module['date_enroled'] = $module_row->date_enroled;
+			$module['date_completed'] = $module_row->date_completed;
+			$module['rating'] = $module_row->rating;
+			$module['tests_taken'] = sizeof($this->module_test_result_model->get_results($module['id'],$trainee_id));
+			array_push($result['modules']['completed'],$module);
 		}
-		$result['num_modules_completed'] = sizeof($result['modules_completed']);
-		//tests taken
-		
-		//average test rating
+		//modules current
+		$result['modules']['current'] = array();
+		$modules_current = $this->db->get_where('enrolled_module', array('trainee_id' => $trainee_id, 'is_completed' => FALSE));
+		foreach ($modules_current->result() as $module_row) {
+			$module = array();
+			$module['id'] = $module_row->module_id;
+			$module['title'] = $this->module_model->get_title($module['id']);
+			$module['date_enroled'] = $module_row->date_enroled;
+			array_push($result['modules']['current'],$module);
+		}
+		//scheduled tests
+		$result['scheduled_tests'] = array();
+		$scheduled_tests = $this->scheduled_test_result_model->get_results(FALSE,$trainee_id);
+		foreach ($scheduled_tests as $test_row) {
+			$test = array();
+			$test['id'] = $test_row->id;
+			$test['test_id'] = $test_row->test_id;
+			$test['module_title'] = $this->module_model->get_title($test_row->module_id);
+			$test['rating'] = $test_row->rating;
+			$test['date'] = $test_row->date;
+			array_push($result['scheduled_tests'],$test);
+		}
 
 		return $result;
 	}

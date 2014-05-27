@@ -75,7 +75,8 @@ body.admin.index {
 	text-decoration: none;
 }
 
-.test-result-table th {
+.test-result-table th,
+.test-result-table .th {
 	width: 170px;
 }
 

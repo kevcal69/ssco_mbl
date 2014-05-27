@@ -133,17 +133,24 @@ class User extends MBL_Controller {
 
 			$data['body_content'] = $this->load->view('admin/user/user_view_all',$users,TRUE);
 		} else {
-			$user = $this->user_model->view($username);
+			if ($this->user_model->username_exists($username) === FALSE) {
+				$error_data = array(
+					'error_title' => 'No Such User Exists',
+					'error_message' => 'Record for user '.$username.' does not exist in the database.'
+					);
+				$data['body_content'] = $this->load->view('admin/error', $error_data, TRUE);
+			} else {
+				$user = $this->user_model->view($username);
 
-			if ($user['role'] === 'trainee' && $this->user_model->trainee_exists($user['id'])) {
-				$trainee = $this->user_model->view_trainee($user['id']);
-				$user['first_name'] = $trainee['first_name'];
-				$user['last_name'] = $trainee['last_name'];
-				//TODO enrolled modules for trainees
-				//     created modules for content managers
+				if ($user['role'] === 'trainee' && $this->user_model->trainee_exists($user['id'])) {
+					$trainee = $this->user_model->view_trainee($user['id']);
+					$user['first_name'] = $trainee['first_name'];
+					$user['last_name'] = $trainee['last_name'];
+					//TODO enrolled modules for trainees
+					//     created modules for content managers
+				}
+				$data['body_content'] = $this->load->view('admin/user/user_view',$user,TRUE);
 			}
-
-			$data['body_content'] = $this->load->view('admin/user/user_view',$user,TRUE);
 		}
 		$this->sidebar_content['actions']['view']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
@@ -172,64 +179,72 @@ class User extends MBL_Controller {
 			}
 		//$username parameter
 		} else {
-			$user = $this->user_model->view($username);
-			//load first name and last name if trainee
-			if ($user['role'] === 'trainee' OR $this->user_model->trainee_exists($user['id'])) {
-				$trainee = $this->user_model->view_trainee($user['id']);
-				$user['first_name'] = $trainee['first_name'];
-				$user['last_name'] = $trainee['last_name'];
+			if ($this->user_model->username_exists($username) === FALSE) {
+				$error_data = array(
+					'error_title' => 'No Such User Exists',
+					'error_message' => 'Record for user '.$username.' does not exist in the database.'
+					);
+				$data['body_content'] = $this->load->view('admin/error', $error_data, TRUE);
 			} else {
-				$user['first_name'] = '';
-				$user['last_name'] = '';
-			}
-
-			//set validation rules
-			$validation_rules = array(
-				array(
-					'field' => 'username',
-					'label' => 'Username',
-					'rules' => 'trim|required|xss_clean|callback_unique_new_username['.$user['id'].']'
-					),
-				array(
-					'field' => 'password',
-					'label' => 'Password',
-					'rules' => 'trim|required|xss_clean'
-					),
-				array(
-					'field' => 'role',
-					'label' => 'Role',
-					'rules' => 'trim|required|xss_clean'
-					),
-				array(
-					'field' => 'first_name',
-					'label' => 'First Name',
-					'rules' => 'trim|xss_clean'
-					),
-				array(
-					'field' => 'last_name',
-					'label' => 'Last Name',
-					'rules' => 'trim|xss_clean|callback_required_if_trainee'
-					)
-				);
-			$this->form_validation->set_rules($validation_rules);
-
-			if ($this->form_validation->run() == FALSE) {
-				//validation failure, return to form
-				$data['body_content'] = $this->load->view('admin/user/user_edit',$user,TRUE);
-			} else {
-				//edit user
-				$result = $this->edit_user($user['id']);
-
-				$message = '';
-				$error = '';
-				if ($result) {
-					$message = 'User <a href="'. base_url('admin/user/view/' . $this->input->post('username')) . '">' . $this->input->post('username') . '</a> was successfully edited.';
+				$user = $this->user_model->view($username);
+				//load first name and last name if trainee
+				if ($user['role'] === 'trainee' OR $this->user_model->trainee_exists($user['id'])) {
+					$trainee = $this->user_model->view_trainee($user['id']);
+					$user['first_name'] = $trainee['first_name'];
+					$user['last_name'] = $trainee['last_name'];
 				} else {
-					$message = 'User edit failed.';
-					$error = $this->db->_error_message();
+					$user['first_name'] = '';
+					$user['last_name'] = '';
 				}
-				$edit_data = array('message' => $message, 'error' => $error);
-				$data['body_content'] = $this->load->view('admin/user/function_result',$edit_data,TRUE);
+
+				//set validation rules
+				$validation_rules = array(
+					array(
+						'field' => 'username',
+						'label' => 'Username',
+						'rules' => 'trim|required|xss_clean|callback_unique_new_username['.$user['id'].']'
+						),
+					array(
+						'field' => 'password',
+						'label' => 'Password',
+						'rules' => 'trim|required|xss_clean'
+						),
+					array(
+						'field' => 'role',
+						'label' => 'Role',
+						'rules' => 'trim|required|xss_clean'
+						),
+					array(
+						'field' => 'first_name',
+						'label' => 'First Name',
+						'rules' => 'trim|xss_clean'
+						),
+					array(
+						'field' => 'last_name',
+						'label' => 'Last Name',
+						'rules' => 'trim|xss_clean|callback_required_if_trainee'
+						)
+					);
+				$this->form_validation->set_rules($validation_rules);
+
+				if ($this->form_validation->run() == FALSE) {
+					//validation failure, return to form
+					$data['body_content'] = $this->load->view('admin/user/user_edit',$user,TRUE);
+				} else {
+					//edit user
+					$result = $this->edit_user($user['id']);
+
+					$message = '';
+					$error = '';
+					if ($result) {
+						$message = 'User <a href="'. base_url('admin/user/view/' . $this->input->post('username')) . '">' . $this->input->post('username') . '</a> was successfully edited.';
+					} else {
+						$message = 'User edit failed.';
+						$error = $this->db->_error_message();
+					}
+					$edit_data = array('message' => $message, 'error' => $error);
+					$data['body_content'] = $this->load->view('admin/user/function_result',$edit_data,TRUE);
+				}
 			}
 		}
 		$this->sidebar_content['actions']['edit']['active'] = TRUE;
@@ -253,29 +268,37 @@ class User extends MBL_Controller {
 				//validation failure, return to form
 				$data['body_content'] = $this->load->view('admin/user/user_choose_delete',$data,TRUE);
 			} else {
-				//validation success, redirect to edit/user
+				//validation success, redirect to delete/user
 				redirect('admin/user/delete/'. $this->input->post('users'));
 			}
 		} else {
-			//must go through delete-confirm form
-			$confirm = $this->input->post('confirm');
-
-			if ($confirm !== 'TRUE') {
-				//confirmation dialog
-				$data['body_content'] = $this->load->view('admin/user/delete_confirm',array('username' => $username),TRUE);
+			if ($this->user_model->username_exists($username) === FALSE) {
+				$error_data = array(
+					'error_title' => 'No Such User Exists',
+					'error_message' => 'Record for user '.$username.' does not exist in the database.'
+					);
+				$data['body_content'] = $this->load->view('admin/error', $error_data, TRUE);
 			} else {
-				$result = $this->delete_user($username);
+				//must go through delete-confirm form
+				$confirm = $this->input->post('confirm');
 
-				$message = '';
-				$error = '';
-				if ($result) {
-					$message = 'User '. $username . ' was successfully deleted.';
+				if ($confirm !== 'TRUE') {
+					//confirmation dialog
+					$data['body_content'] = $this->load->view('admin/user/delete_confirm',array('username' => $username),TRUE);
 				} else {
-					$message = 'User delete failed.';
-					$error = $this->db->_error_message();
+					$result = $this->delete_user($username);
+
+					$message = '';
+					$error = '';
+					if ($result) {
+						$message = 'User '. $username . ' was successfully deleted.';
+					} else {
+						$message = 'User delete failed.';
+						$error = $this->db->_error_message();
+					}
+					$delete_data = array('message' => $message, 'error' => $error);
+					$data['body_content'] = $this->load->view('admin/user/function_result',$delete_data,TRUE);
 				}
-				$delete_data = array('message' => $message, 'error' => $error);
-				$data['body_content'] = $this->load->view('admin/user/function_result',$delete_data,TRUE);
 			}
 		}
 		$this->sidebar_content['actions']['delete']['active'] = TRUE;

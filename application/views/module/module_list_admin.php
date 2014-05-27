@@ -75,28 +75,28 @@
 				<tbody>
 				<?php foreach ($modules as $module): ?>
 					<tr>
-						<td><?=$module->id?></td>
+						<td class="collapse nowrap center"><?=$module->id?></td>
 						<td>
 							<?=$module->title?>
 						</td>
 				    		<td>SSCO</td>
-						<td>
-							<?php if ($this->session->userdata('role')): ?>
-								<?php if ($this->session->userdata('role') === "admin"): ?>
+						<?php if ($this->session->userdata('role')): ?>
+							<?php if ($this->session->userdata('role') === "admin"): ?>
+								<td>
 									<div class="actions">
 										<span><a href="<?=base_url() . 'admin/module/view/'.$module->id?>" class = "text-primary text-size-s3">View</a></span>
 										<span><a href="<?=base_url() . 'admin/question/create/'.$module->id?>" class = "text-info text-size-s3">Test Q</a></span>
 										<span><a href="<?=base_url() . 'admin/module/modify/'.$module->id?>" class = "text-warning text-size-s3">Modify</a></span>
 										<span><a href="<?=base_url() . 'admin/module/delete/'.$module->id?>" class = "text-error text-size-s3" onClick="if(confirm('You really want ot delete?'))return true; else return false;">Delete</a></span>
 									</div>
-								<?php elseif ($this->session->userdata('role') === "trainee"): ?>
-									<div class="actions">
-										<a class="text-muted" href="<?=base_url('trainee/module/view/'.$module->id)?>" class = "text-info text-size-s3">View</a>
-										<a class="text-primary" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
-									</div>
-								<?php endif; ?>
+								</td>
+							<?php elseif ($this->session->userdata('role') === "trainee"): ?>
+								<td class="collapse nowrap center">
+									<a class="button table-button" href="<?=base_url('trainee/module/view/'.$module->id)?>" class = "text-info text-size-s3">View</a>
+									<a class="button button-primary table-button" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
+								</td>
 							<?php endif; ?>
-						</td>
+						<?php endif; ?>
 						<td style="display:none;"><?=$module->description?></td>
 						<td style="display:none;"><?=$module->content?></td>
 				  </tr>

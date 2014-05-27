@@ -40,7 +40,6 @@
 $route['trainee/scheduled_test/(:any)'] = 'trainee/scheduled_test/$1';
 $route['trainee/scheduled_test'] = 'trainee/scheduled_test';
 $route['trainee/test/(:any)'] = 'trainee/test/$1';
-$route['trainee/test'] = 'trainee/test';
 $route['trainee/module/(:any)'] = 'trainee/module/$1';
 $route['trainee/module'] = 'trainee/module';
 $route['trainee/(:any)'] = 'trainee/trainee/$1';

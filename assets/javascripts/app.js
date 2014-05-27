@@ -10,10 +10,12 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 		stick_Sidebar.initialize();
 	});
+
 	$('#module-stat-table').on('click','#more-details' ,function() {
 		$('.modal'+$(this).data('id')).show();
 		$('.modal-container *').show();
 	});	
+
 });
 
 var tables = {
@@ -309,14 +311,28 @@ var test_form = {
 			} else if ($('body').hasClass('scheduled_test')) {
 				var warning = 'Leaving the test will mark your score as zero.\nYou should finish this test as you can take this only once.';
 			}
+
+			//reload on back.
+			var d = new Date();
+			d = d.getTime();
+			if ($('#reloadValue').val().length == 0) 			{
+				$('#reloadValue').val(d);
+				$('body').show();
+			} else {
+				$('#reloadValue').val('');
+				location.reload();
+			}
+
 			var form_submitted = false;
 
 			$('button[name="is_submit"]').on('click', function () {
 				form_submitted = true;
 			});
 
-			$(window).on('beforeunload', function(){
-				if (form_submitted == false) return warning;
+			$(window).bind('beforeunload', function() {
+				if ($('#reloadValue').val().length != 0) {
+					if (form_submitted == false) return warning;
+				}
 			});
 		}
 	}

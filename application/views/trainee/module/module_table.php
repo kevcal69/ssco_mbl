@@ -13,7 +13,7 @@
 			<?php foreach ($modules as $index => $module): ?>
 				<tr>
 					<td><?php echo $module->id?></td>
-					<td><a href="<?php echo base_url('trainee/module/view'.$module->id)?>"><?=stripslashes($module->title)?></a></td>
+					<td><a href="<?php echo base_url('trainee/module/view/'.$module->id)?>"><?=stripslashes($module->title)?></a></td>
 					<td><?=stripslashes($module->description)?></td>
 					<td style="display:none;"><?=stripslashes($module->content)?></td>
 				</tr>

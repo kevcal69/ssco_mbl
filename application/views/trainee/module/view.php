@@ -1,7 +1,7 @@
 <?php if (isset($completed)):?>
 	<div class="panel panel-success">
-		<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 		<div class="panel-heading">
+			<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 			<h3 class="panel-title">Module Completed</h3>
 		</div>
 		<div class="panel-body">
@@ -10,8 +10,8 @@
 	</div>
 <?php elseif (isset($enroled)):?>
 	<div class="panel panel-info">
-		<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 		<div class="panel-heading">
+			<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 			<h3 class="panel-title">Enroled in Module</h3>
 		</div>
 		<div class="panel-body">
@@ -20,8 +20,8 @@
 	</div>
 <?php else:?>
 	<div class="panel panel-warning">
-		<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 		<div class="panel-heading">
+			<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
 			<h3 class="panel-title">Not Enroled in Module</h3>
 		</div>
 		<div class="panel-body">
