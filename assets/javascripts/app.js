@@ -10,15 +10,11 @@ $(document).ready(function() {
 	});
 
 	close_panel.initialize();
-	$('#users-table , .module-table-admin').DataTable({
+	$('#users-table , .module-table-admin, .module-table').DataTable({
 		"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-		"pageLength": 25
+		"pageLength": 25,
+		"order": [[1, "asc"]]
 	});
-	$('.module-table').DataTable({
-		"lengthMenu": [ [5, 20, 50, 100, -1], [5, 20, 50, 100, "All"]],
-		"pageLength": 5
-	});
-
 	test_form.initialize();
 });
 
@@ -270,14 +266,28 @@ var test_form = {
 			} else if ($('body').hasClass('scheduled_test')) {
 				var warning = 'Leaving the test will mark your score as zero.\nYou should finish this test as you can take this only once.';
 			}
+
+			//reload on back.
+			var d = new Date();
+			d = d.getTime();
+			if ($('#reloadValue').val().length == 0) 			{
+				$('#reloadValue').val(d);
+				$('body').show();
+			} else {
+				$('#reloadValue').val('');
+				location.reload();
+			}
+
 			var form_submitted = false;
 
 			$('button[name="is_submit"]').on('click', function () {
 				form_submitted = true;
 			});
 
-			$(window).on('beforeunload', function(){
-				if (form_submitted == false) return warning;
+			$(window).bind('beforeunload', function() {
+				if ($('#reloadValue').val().length != 0) {
+					if (form_submitted == false) return warning;
+				}
 			});
 		}
 	}

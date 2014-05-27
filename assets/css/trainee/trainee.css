@@ -15,26 +15,31 @@
 	text-align: center;
 }
 
+.module p.text-error {
+  font-size: .75rem;
+  margin: 3px 3px 3px 5px;
+}
+
 /*profile*/
-.view_profile .form-horizontal .control-group,
+.profile .form-horizontal .control-group,
 .results-form .control-group {
 	display:block;
 	width: 100%;
 	margin-bottom: 10px;
 }
 
-.view_profile .form-horizontal label,
+.profile .form-horizontal label,
 .results-form label {
 	display: inline-block;
 	width: 200px;
 }
 
-.view_profile .form-horizontal label.label,
+.profile .form-horizontal label.label,
 .results-form label.label {
 	font-weight: bold;
 }
 
-.view_profile .form-horizontal label.value,
+.profile .form-horizontal label.value,
 .results-form label.value {
 	margin-left:  10px;
 	float: none;
@@ -80,7 +85,7 @@
 	padding: 4px 10px 3px 10px;
 }
 
-/*Test*/
+/*Test Form*/
 /*.test.take #body-content {
 	text-align: center;
 }
@@ -137,11 +142,7 @@
 	margin: 18px 0;
 }
 
-.test-result-table th {
-	width: 170px;
-}
-
-
+/*dataTable*/
 .dataTables_wrapper select,
 .dataTables_wrapper input {
 	font-family: inherit;
@@ -150,18 +151,14 @@
 	padding: 2px;
 }
 
-/*.module-table td {
-	border: 0 !important;
-}
-.module-table {
-	border: 1px solid #808080 !important;
-}
-*/
-.module-table th {
+.dataTable th, .module-table th {
 	border-bottom: 0 !important;
 }
 
-.module-table th:first-child {
+.module-table td:first-child,
+.module-table-admin td:first-child,
+.module-table td.rating  {
 	width: 15px;
 	text-align: center;
+	white-space: nowrap;
 }

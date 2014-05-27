@@ -85,3 +85,4 @@
 		<button id="submit-bottom" type="submit" name="is_submit" value="TRUE" class="button-primary" form="test-form">Submit Answers</button>
 	</div>
 </div>
+<input id="reloadValue" type="hidden" name="reloadValue" value="" />

@@ -14,7 +14,7 @@
 					<?php echo form_error('users','<p class="text-error">','</p>');?>
 				</div> -->
 				<div class="controls">
-					<input list="user-list" name="users" class="field" id="users" placeholder="Enter Username">
+					<input list="user-list" name="users" class="field" id="users" placeholder="Enter Username" value="<?php echo set_value('users')?>">
 
 					<datalist id="user-list">
 						<?php foreach ($users as $user):?>

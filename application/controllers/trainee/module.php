@@ -28,7 +28,7 @@ class Module extends MBL_Controller {
 						),
 					'profile' => array(
 						'content' => to_sidebar_element('fa-user', 'Profile'),
-						'href' => base_url('trainee/view_profile'),
+						'href' => base_url('trainee/profile'),
 						'active' => FALSE
 						),
 					'modules' => array(
@@ -57,6 +57,11 @@ class Module extends MBL_Controller {
 						'href' => base_url('trainee/module/view_completed_modules'),
 						'active' => FALSE
 						),
+					'available_modules' => array(
+						'content' => to_sidebar_element('fa-th-large','Available Modules'),
+						'href' => base_url('trainee/module/view_available_modules'),
+						'active' => FALSE
+						),
 					'view_module' => array(
 						'content' => to_sidebar_element('fa-search','View All Modules'),
 						'href' => base_url('trainee/module/view'),
@@ -72,10 +77,10 @@ class Module extends MBL_Controller {
 
 		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->trainee_id);
 
-		// $data['available_modules'] = $this->module_model->get_module_entries(3,TRUE);
 		$data['available_modules'] = $this->trainee_module_model->get_available_modules($this->trainee_id,3,TRUE);
 
-		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
+		$data['view_more'] = TRUE;
+		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id,3);
 		$data['body_content'] = $this->load->view('trainee/module/module',$data,TRUE);
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
@@ -83,14 +88,6 @@ class Module extends MBL_Controller {
 
 	public function view($id = FALSE) {
 		if ($id !== FALSE) {
-			//view specific module
-			// $this->sidebar_content['actions'] = array (
-			// 	'back' => array(
-			// 		'content' => to_sidebar_back('Back'),
-			// 		'extra' => 'onClick="history.go(-1);"',
-			// 		'active' => FALSE
-			// 		),
-			// 	);
 			if ($this->trainee_module_model->is_enroled($id,$this->trainee_id)) {
 				if ($this->trainee_module_model->is_completed($id,$this->trainee_id)) {
 					//already completed the module
@@ -168,6 +165,8 @@ class Module extends MBL_Controller {
 				)
 			);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+
+		$data['view_more'] = FALSE;
 		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
 		$data['body_content'] = $this->load->view('trainee/module/completed_modules',$data,TRUE);
 		$data['page_title'] = "SSCO Module-Based Learning";
@@ -183,7 +182,7 @@ class Module extends MBL_Controller {
 				)
 			);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['no_view_more'] = TRUE;
+		$data['module_table'] = TRUE;
 		$data['available_modules'] = $this->trainee_module_model->get_available_modules($this->trainee_id,FALSE,FALSE);
 		$data['body_content'] = $this->load->view('trainee/module/available_modules',$data,TRUE);
 		$data['page_title'] = "SSCO Module-Based Learning";

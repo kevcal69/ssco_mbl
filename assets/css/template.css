@@ -161,13 +161,69 @@ table thead:first-child tr:first-child th {
 	border-left: 1px solid #808080;
 }
 
-table.vertical-headings {
+.vertical-headings {
 	border-top: 0;
 }
 
-table.vertical-headings th {
+.vertical-headings th,
+.vertical-headings .th {
 	text-align: right;
 }
+
+.collapse {	
+	width: 1px;
+}
+
+.nowrap {	
+	white-space: nowrap;
+}
+
+.center {	
+	text-align: center;
+}
+
+.button.table-button {
+	font-size: .7rem;
+	padding: 4px 10px 3px 10px;
+}
+
+.table {
+	display: table;
+	margin: 20px 0;
+	width:  100%;
+	border: 1px solid #808080;
+	border-left: 0;
+	border-collapse: separate;
+	border-spacing: 0;
+	background-color: #EEEEEE;
+}
+.th, .td {
+	display: table-cell;
+	padding: 8px;
+	/*line-height: 20px;*/
+	text-align: left;
+	border-left: 1px solid #808080;
+	border-top: 1px solid #808080;
+}
+.th {	
+	font-weight: bold;
+	font-size: 1rem;
+	color: black;
+	background-color: #E6E6E6;
+}
+.td {	
+	font-size: 0.9rem;
+	background-color: white;
+}
+.tr {
+	display: table-row;
+}
+.table .tr:first-child .th,
+.table .tr:first-child .td {
+	border-top: 0;
+	border-left: 1px solid #808080;
+}
+
 
 /* Forms */
 
@@ -375,8 +431,18 @@ hr {
   /*width: 95%;*/
 }
 
+/*List*/
+ul:not(.nav), ol:not(.nav) {
+	line-height: 1.5rem;
+}
+
+ul:not(.nav) li,
+ol:not(.nav) li {
+	margin-bottom: 8px;
+}
+
 /*Navigation*/
-ul, ol {
+ul.nav, ol.nav {
 	margin-top: 0;
 	margin-bottom: 10px;
 }
@@ -396,7 +462,7 @@ ul, ol {
 	float: left;
 }
 
-.nav-pills>li+li {
+.nav-pills>li:not(.header)+li {
 	margin-left: 2px;
 }
 
@@ -404,7 +470,7 @@ ul, ol {
 	float: none;
 }
 
-.nav-stacked>li+li {
+.nav-stacked>li:not(.header)+li {
 	margin-top: 2px;
 	margin-left: 0;
 }
@@ -433,6 +499,10 @@ ul, ol {
 .sidebar {
 	width: 200px;
 	border: 1px solid #dddddd;
+}
+
+.sidebar ul {
+	margin-bottom: 0px;
 }
 
 .sidebar .nav>li.header {
@@ -589,18 +659,23 @@ ul, ol {
 	float: right;
 	cursor: pointer;
 }
+
 .float-l {
 	float: left;
 }
+
 .float-r {
 	float: right;
 }
+
 .inline-display {
 	display: inline-block;
 }
+
 .inlineblock-display {
 	display: inline-block;
 }
+
 .notif {
 	display: block;
 	margin-bottom: 10px;
@@ -653,3 +728,4 @@ ul, ol {
 	background-color: rgba(214, 88, 72, 0.2);
 	border-color: rgba(214, 88, 72, 1);
 	color: rgba(214, 88, 72, 1);
+}

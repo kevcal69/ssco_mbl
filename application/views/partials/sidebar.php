@@ -59,4 +59,21 @@
 			<?php endforeach; ?>
 		</ul>
 	<?php endif;?>
+	<?php if (isset($statistics)): ?>
+		<ul class="nav nav-pills nav-stacked">
+			<li class="header">Statistics</li>
+			<?php foreach ($statistics as $link): ?>
+			<li <?php if ($link['active'] == TRUE) echo ' class="active"';?>>
+				<a 
+					<?php if(isset($link['href'])): ?>
+						href="<?php echo $link['href'];?>" 
+					<?php endif;?>
+					<?php if(isset($link['extra'])) echo $link['extra'];?>
+				>
+					<?php echo $link['content'];?>
+				</a>
+			</li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif;?>
 </div>

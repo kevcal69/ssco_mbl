@@ -20,7 +20,7 @@
 	</div>
 	<hr>
 	<div id="test-content">
-		<form method="post">
+		<form>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Test Results</h3>

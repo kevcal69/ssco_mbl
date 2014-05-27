@@ -1,5 +1,5 @@
 <!-- test results -->
-<?php if (!empty($details)): ?>
+<?php if (isset($details) && !empty($details)): ?>
 	<div class="panel panel-info">
 		<div class="panel-heading">
 			<h3 class="panel-title">
@@ -11,66 +11,82 @@
 			<p>
 				Shown below is the test result of 
 				<b><?php echo $details['trainee']['first_name'].' '.$details['trainee']['last_name']?></b> 
-				for module "<b><?php echo $module_title?></b>".
+				for module "<b><?php echo $details['module_title']?></b>".
 			</p>
-			<table class="vertical-headings test-result-table">
-				<tr>
-					<th>Test ID</th>
-					<td><?php echo $details['test_result_id']?></td>
-				</tr>
-				<tr>
-					<th>Trainee Name</th>
-					<td><?php echo $details['trainee']['last_name'].', '.$details['trainee']['first_name']?></td>
-				</tr>
-				<tr>
-					<th>Trainee ID</th>
-					<td><?php echo $details['trainee_id']?></td>
-				</tr>
-				<tr>
-					<th>Module Title</th>
-					<td><?php echo $module_title?></td>
-				</tr>
-				<tr>
-					<th>Module ID</th>
-					<td><?php echo $details['module_id']?></td>
-				</tr>
-				<tr>
-					<th>Date Taken</th>
-					<td><?php echo format_timestamp($details['date'])?></td>
-				</tr>
-			</table>
+			<div class="table vertical-headings test-result-table">
+				<div class="tr">
+					<div class="th">Test ID</div>
+					<div class="td"><?php echo $details['test_result_id']?></div>
+				</div>
+				<div class="tr">
+					<div class="th">Trainee Name</div>
+					<div class="td"><?php echo $details['trainee']['last_name'].', '.$details['trainee']['first_name']?></div>
+				</div>
+				<div class="tr">
+					<div class="th">Trainee ID</div>
+					<div class="td"><?php echo $details['trainee_id']?></div>
+				</div>
+				<div class="tr">
+					<div class="th">Module Title</div>
+					<div class="td"><?php echo $details['module_title']?></div>
+				</div>
+				<div class="tr">
+					<div class="th">Module ID</div>
+					<div class="td"><?php echo $details['module_id']?></div>
+				</div>
+				<div class="tr">
+					<div class="th">Date Taken</div>
+					<div class="td"><?php echo format_timestamp($details['date'])?></div>
+				</div>
+				<div class="tr">
+					<div class="th">Rating</div>
+					<div class="td"><?php echo format_rating($details['rating'])?></div>
+				</div>
+			</div>
 		</div>
 	</div>
 <?php endif;?>
 
+<?php if (!isset($results)):?>
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h3 class="panel-title">Notice: No Test Content</h3>
+		</div>
+		<div class="panel-body">
+			This test has been aborted by the user. As such, there are no records of the answers.
+		</div>
+	</div>
+<?php endif;?>
 <div id="test-container">
 	<div id="test-header">
-		<h1 id="module-title"><?php echo $module_title?> - <?php echo format_rating($results['rating'])?></h1>
+		<h1 id="module-title"><?php echo $module_title?><?php if(isset($results)) echo ' - '.format_rating($results['rating'])?></h1>
 	</div>
 	<hr>
 	<div id="test-content">
-		<form method="post">
+		<form>
+	<?php if (isset($results)):?>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">Test Results</label>
+				<h3 class="panel-title">Test Results</h3>
 			</div>
 			<div class="panel-body">
-				<table class="vertical-headings test-result-table">
-					<tr>
-						<th>Correct Answers</th>
-						<td><?php echo $results['score']?></td>
-					</tr>
-					<tr>
-						<th>Number of Questions</th>
-						<td><?php echo $results['total']?></td>
-					</tr>
-					<tr>
-						<th>Rating</th>
-						<td><?php echo format_rating($results['rating'])?></td>
-					</tr>
-				</table>
+				<div class="table vertical-headings test-result-table">
+					<div class="tr">
+						<div class="th">Correct Answers</div>
+						<div class="td"><?php echo $results['score']?></div>
+					</div>
+					<div class="tr">
+						<div class="th">Number of Questions</div>
+						<div class="td"><?php echo $results['total']?></div>
+					</div>
+					<div class="tr">
+						<div class="th">Rating</div>
+						<div class="td"><?php echo format_rating($results['rating'])?></div>
+					</div>
+				</div>
 			</div>
 		</div>
+	<?php endif;?>
 			<?php foreach($questions as $index => $question):?>
 				<div class="panel">
 					<div class="panel-heading">
@@ -94,10 +110,12 @@
 								<?php endforeach;?>
 							</div>
 						</div>
-						<?php if ($results['answers'][$index] === TRUE):?>
-							<p class="text-success"><i class = "fa fa-check fa-fw"></i> Correct!</p>
-						<?php else: ?>
-							<p class="text-error"><i class = "fa fa-times fa-fw"></i> Wrong.</p>
+						<?php if (isset($results)):?>
+							<?php if ($results['answers'][$index] === TRUE):?>
+								<p class="text-success"><i class = "fa fa-check fa-fw"></i> Correct!</p>
+							<?php else: ?>
+								<p class="text-error"><i class = "fa fa-times fa-fw"></i> Wrong.</p>
+							<?php endif;?>
 						<?php endif;?>
 					</div>
 				</div>

@@ -21,6 +21,11 @@
 					</div>
 				</div>
 			<?php endforeach; ?>
+			<?php if(isset($view_more) && $view_more === TRUE):?>
+				<a class="button button-success" href="<?=base_url('trainee/module/view_completed_modules')?>">
+					View More Modules
+				</a>
+			<?php endif;?>
 		<?php else:?>
 			No completed modules yet.
 		<?php endif;?>

@@ -56,9 +56,9 @@ class Scheduled_test_result_model extends CI_Model {
 		}
 	}
 
-	public function get_result($test_id) {
+	public function get_result($test_result_id) {
 		$data = array(
-			'id' => $test_id
+			'id' => $test_result_id
 			);
 		$query = $this->db->get_where('test_result', $data);
 		return $query->row();

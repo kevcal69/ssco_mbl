@@ -71,25 +71,16 @@ class User_model extends CI_Model {
 		}
 	}
 
-//TODO delete user from enrolled_module and trainee tables
 	function delete($username) {
 		$this->db->trans_start();
 
 		$user = $this->view($username);
-		// if ($user['role'] === 'trainee' OR $this->trainee_exists($user['id'])) {
-		// 	//delete trainee entry
-		// 	$this->delete_trainee($user['id']);
-		// 	//delete enrolled_module entries
-		// 	//delete module_test_result entries
-		// 	//delete test_result entries
-		// }
 		$result = $this->db->delete('user',array('username' => $username));
 
 		$this->db->trans_complete();
 		return $this->db->trans_status();
 	}
 
-//TODO delete user from enrolled_module table
 	function delete_trainee($user_id) {
 		return $this->db->delete('trainee',array('user_id' => $user_id));
 	}

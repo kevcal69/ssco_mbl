@@ -12,7 +12,7 @@
 					<?php echo form_error('modules','<p class="text-error">','</p>');?>
 				</div> -->
 				<div class="controls">
-					<input list="module-list" name="modules" class="field" id="users" placeholder="Enter Module Name">
+					<input list="module-list" name="modules" class="field" id="users" placeholder="Enter Module Name" value="<?php echo set_value('modules')?>">
 
 					<datalist id="module-list">
 						<?php foreach ($modules as $index => $module):?>

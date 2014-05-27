@@ -70,6 +70,19 @@ class Trainee_module_model extends CI_Model {
 		}
 	}
 
+	public function get_rating ($module_id, $trainee_id) {
+		$data = array(
+			'module_id' => $module_id,
+			'trainee_id' => $trainee_id
+			);
+		$query = $this->db->get_where('enrolled_module', $data);
+		if (is_null($query->row()->rating)) {
+			return 0;
+		} else {
+			return $query->row()->rating;
+		}
+	}
+
 	public function is_enroled($module_id,$trainee_id) {
 		$result =  $this->get_enroled_module($module_id,$trainee_id);
 		if ($result) {
@@ -122,12 +135,16 @@ class Trainee_module_model extends CI_Model {
 		return $result;
 	}
 
-	public function get_completed_modules($trainee_id) {
+	public function get_completed_modules($trainee_id, $limit = FALSE) {
 		$data = array(
 			'trainee_id' => $trainee_id,
 			'is_completed' => 1
 			);
-		$query = $this->db->get_where('enrolled_module', $data);
+		if ($limit !== FALSE && is_numeric($limit)) {
+			$query = $this->db->get_where('enrolled_module', $data, $limit);
+		} else {
+			$query = $this->db->get_where('enrolled_module', $data);
+		}
 		//get corresponding module from module table
 		$result = array();
 		foreach ($query->result() as $module) {

@@ -68,8 +68,20 @@ class Scheduled_test extends MBL_Controller {
 					$data['questions'] = $this->question_model->fetch_test_questions($module_id,TRUE);
 					$data['questions_string'] = base64_encode(serialize($data['questions']));
 					$this->session->set_flashdata('test_ongoing',TRUE);
-					//insert zero-score result
-					$data['test_result_id'] = $this->test_result_model->insert_result($test_id,$module_id,$this->trainee_id);
+					if (sizeof($data['questions']) > 0) {
+						//insert zero-score result
+						$result = $this->test_result_model->get_results($test_id,$this->trainee_id);
+						if (!$result) {
+							//basic content in case trainee aborts
+							$content_data = array();
+							$content_data['module_id'] = $module_id;
+							$content_data['module_title'] = $this->module_model->get_title($module_id);
+							$content_data['questions_string'] = $data['questions_string'];
+							$content_data['questions'] = $data['questions'];
+
+							$data['test_result_id'] = $this->test_result_model->insert_result($test_id,$module_id,$this->trainee_id,0, base64_encode(serialize($content_data)));
+						}
+					}
 				} else {
 					$data['questions'] = unserialize(base64_decode($this->input->post('questions-string')));
 					$data['questions_string'] = $this->input->post('questions-string');
@@ -135,6 +147,7 @@ class Scheduled_test extends MBL_Controller {
 		$result = $this->test_result_model->get_result($test_result_id);
 		if ($result) {
 			$result_content = unserialize(base64_decode($result->content));
+			// print_r($result_content);
 			$result_content['details']['test_result_id'] = $result->id;
 			$result_content['details']['trainee_id'] = $result->trainee_id;
 
@@ -143,6 +156,7 @@ class Scheduled_test extends MBL_Controller {
 			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
 			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
 
+			$result_content['details']['module_title'] = $this->module_model->get_title($result->module_id);
 			$result_content['details']['module_id'] = $result->module_id;
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
