@@ -168,11 +168,22 @@ table.vertical-headings {
 table.vertical-headings th {
 	text-align: right;
 }
+.table-id {
+	white-space: nowrap;
+	width: 1px;
+	text-align: center;
+}
+.table-sw{
+	white-space: nowrap;
+	width: 20px;
+	text-align: center;
+	font-size: .6rem;
+}
 
 /* Forms */
 
 form {
-	padding: 10px;
+	/*padding: 10px;*/
 }
 
 fieldset {
@@ -220,7 +231,7 @@ button,
 	display: inline-block;
 	margin: 0;
 	border: none;
-	padding: 6px 15px 5px 15px;
+	padding: 5px 15px 5px 15px;
 	background-color: #949393;
 	color: white !important;
 	font-family: "OpenSansLight","Segoe UI";
@@ -613,16 +624,16 @@ ul, ol {
 	color: rgba(140, 142, 146, 1);
 }
 
-.notif-icon {
+.notif-icon,
+.notif-body {
+	padding: 10px;
 	display: table-cell;
-	padding: 5px;
-	border-right: 1px solid;
-	border-color: inherit;
 }
 
-.notif-body {
-	padding: 5px;
-	display: table-cell;
+.notif-icon {
+	border-right: 1px solid;
+	border-color: inherit;
+	vertical-align: middle;
 }
 
 .notif-warning {

@@ -11,14 +11,23 @@
 		</div>
 	<?php endif;?>
 	<div id="test-header">
-		<h1 id="module-title"><?php echo $module_title?></h1>
+		<h1 id="module-title">
+			<?php echo $module_title?>
+			<?php if (isset($is_scheduled_test) && $is_scheduled_test === TRUE):?>
+			 - Scheduled Test
+			<?php endif;?>
+		</h1>
 		<div id="action-buttons">
 			<button type="submit" name="is_submit" value="TRUE" class="button-primary" form="test-form">Submit</button>
 		</div>
 	</div>
 	<hr>
 	<div id="test-content">
-		<?php echo form_open('trainee/test/take/'.$module_id,array('id' => 'test-form'));?>
+		<?php if (isset($is_scheduled_test) && $is_scheduled_test === TRUE):?>
+			<?php echo form_open('trainee/scheduled_test/take/'.$test_id,array('id' => 'test-form'));?>
+		<?php else:?>
+			<?php echo form_open('trainee/test/take/'.$module_id,array('id' => 'test-form'));?>
+		<?php endif;?>
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">Instructions</h3>
@@ -63,9 +72,13 @@
 				</div>
 			<?php endforeach;?>
 			<input form="test-form" type="hidden" name="module-title" value="<?php echo $module_title?>"/>
-			<input form="test-form" type="hidden" name="module-id" value="<?php echo $module_id?>"/>
-			<?php if (isset($test_id)):?>
-				<input form="test-form" type="hidden" name="test-id" value="<?php echo $test_id?>"/>
+			
+			<?php if (!isset($is_scheduled_test) || $is_scheduled_test === FALSE):?>
+				<input form="test-form" type="hidden" name="module-id" value="<?php echo $module_id?>"/>
+			<?php endif;?>
+
+			<?php if (isset($test_result_id)):?>
+				<input form="test-form" type="hidden" name="test-result-id" value="<?php echo $test_result_id?>"/>
 			<?php endif;?>
 		</form>
 		<hr>

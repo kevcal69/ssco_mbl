@@ -1,61 +1,66 @@
 <script src="<?= base_url() . 'assets/plugins/ckeditor/ckeditor.js'; ?>"></script>
 <script src="<?= base_url() . 'assets/plugins/ckeditor/adapters/jquery.js'; ?>"></script>
-<script src="<?= base_url() .  'assets/plugins/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js';?>"></script>
+<?php if($this->session->flashdata('alert')): ?>
+<p class="alert text-error"><?=$this->session->flashdata('alert')?>s</p>
+<?php endif; ?>
 
-<div id ="editor-container">
-	<form  action = "<?=site_url('admin/module/modify_module')?>" method = "POST">
-	<div class="panel panel-success">
-		<div class="panel-heading">
-			<h3 class="panel-title">Modify Module No : <?=$module->id?></h3>
-		</div>
-		<div id="field-container" class = "panel-body">
-			<div id="instruction">
-				<h3>Notes & Tips</h3>
+<div class="panel">
+	<div class="panel-heading">
+		<h3 class="panel-title">Modify Module No : <?=$module->id?></h3>
+	</div>
+	<div class="panel-body" id = "create-mod">
+		<div class="notif notif-primary">
+			<div class="notif-icon">
+				<i class="fa fa-fw fa-exclamation-triangle"></i>
+			</div>
+			<div class="notif-body">
+				Notes & Tips
 				<ul>
 					<li>It is highly encourage to use proper tag for better output. Computer code for code snippets, h's for heading, and formatted for text format.</li>
 					<li>The editor can directly parse copy pasted items.</li>
 					<li>Different text style are found on drop down menus. Full screen mode is in toolbar.</li>
-					<li>Always check for the content source found on upper left of the toolbar. Next to source toolbar is the save button</li>
-				</ul>
-
-				<button  id="hide-btn" onClick = "hide.notes_tips()" class="button-warning" type = "button">Hide</button>
-				
-			</div>			
-			<div class="control-group">
-				<label>Title</label>
-				<div class="controls">
-					<input id="text" name = "title" value = "<?=stripslashes($module->title)?>" type = "text" placeholder = "Title">
-					<input name = "id" value = "<?=stripslashes($module->id)?>" type = "hidden">
-				</div>
+					<li>Always check for the content source found on upper left of the toolbar. Next to source toolbar is the save button</li>				
+					<li>Always check for the source</li>
+					<li>Be sure to delete the initial content</li>
+					<li>Choices are found below check the checkbox if the choice is an answer</li>
+				</ul>				
 			</div>
-
-			<div class="control-group">
-				<label>Description</label>
-				<div class="controls">
-					<textarea name = "description" ><?=stripslashes($module->description)?></textarea>	
-				</div>
-			</div>
-			<input type = 'submit' value = "Save" class = "button-info" > 
-			
 		</div>
-	</div>	
-		
+		<form  action = "<?=site_url('admin/module/modify_module')?>" method = "POST" name = "question">
+			<div id="field-container">
+				<input type = "text" name = "title" value = "<?=stripslashes($module->title)?>" placeholder = "Module Title?" class = "qfield" />
+				<input name = "id" value = "<?=stripslashes($module->id)?>" type = "hidden">
+						<textarea name = "description" id = "description" placholder = "Description">
+							<?=stripslashes($module->description)?>
+						</textarea>	
+						<script type="text/javascript">
+							CKEDITOR.replace( 'description', {
+								resize_enabled : false,
+								removePlugins : 'autosave',				
+								toolbar: [
+									[ 'Source','Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
+									{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+									'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+									{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+								],
+							});
+						</script>	
+			</div>
 
-	<form  action = "<?=site_url('admin/module/modify_module')?>" method = "POST">
-		<input type = "hidden" value = "<?=$module->id?>" name = "id">
-		<textarea name="editor1" id="editor1" rows="10" cols="80">
-			<?=htmlspecialchars(stripslashes($module->content), ENT_HTML5);?>
-		</textarea>
-		<!-- <input type = 'submit' value = "Finished Editing" id = "c-module-button"> -->
-	            <script>
-	                // Replace the <textarea id="editor1"> with a CKEditor
-	                // instance, using default configuration.
+			<div id="editor-container">
+				<textarea name="editor1" id="editor1" rows="10" cols="80">
+					<?=htmlspecialchars(stripslashes($module->content), ENT_HTML5);?>
+				</textarea>
+				<script>
+					var $hc = $("#editor-container").height();
+					var edi = CKEDITOR.replace( 'editor1', {
+					height: $hc,
+				} );
+				</script>				
+			</div>
+			<button type = "button" class = "button-info float-r" id ="next-content">Next</button>
+		</form>
 
-	                var $hc = $("#editor-container").height();
-	                var edi = CKEDITOR.replace( 'editor1', {
-			height: $hc,
-		} );
-	            </script>			
-	</form>	
+	</div>
 </div>
 

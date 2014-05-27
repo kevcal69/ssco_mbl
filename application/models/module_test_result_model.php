@@ -55,6 +55,11 @@ class Module_test_result_model extends CI_Model {
 		}
 	}
 
+	public function	get_test_results_with_module_detail($trainee_id) {
+		$query = $this->db->query('select module.content, module.id, module.title,module.description, module_test_result.content, module_test_result.date, module_test_result.module_id, module_test_result.id, module_test_result.rating, module_test_result.trainee_id from module inner join module_test_result on module.id = module_test_result.module_id AND module_test_result.content IS NOT NULL AND module_test_result.trainee_id = '.$trainee_id.' ORDER BY module.title ASC');
+		return $query->result();
+	}
+	
 	public function get_result($test_id) {
 		$data = array(
 			'id' => $test_id

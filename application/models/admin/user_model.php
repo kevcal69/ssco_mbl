@@ -76,9 +76,13 @@ class User_model extends CI_Model {
 		$this->db->trans_start();
 
 		$user = $this->view($username);
-		if ($user['role'] === 'trainee' OR $this->trainee_exists($user['id'])) {
-			$this->delete_trainee($user['id']);
-		}
+		// if ($user['role'] === 'trainee' OR $this->trainee_exists($user['id'])) {
+		// 	//delete trainee entry
+		// 	$this->delete_trainee($user['id']);
+		// 	//delete enrolled_module entries
+		// 	//delete module_test_result entries
+		// 	//delete test_result entries
+		// }
 		$result = $this->db->delete('user',array('username' => $username));
 
 		$this->db->trans_complete();
@@ -114,7 +118,6 @@ class User_model extends CI_Model {
 			$query = $this->db->get_where('trainee', array('user_id' => $user_id));
 			return $query->row_array();
 		} else if (empty($user_id) && !empty($trainee_id)) {
-			echo $trainee_id;
 			$query = $this->db->get_where('trainee', array('id' => $trainee_id));
 			return $query->row_array();
 		}

@@ -5,7 +5,7 @@
 <div class="panel">
 	<div class="panel-heading">
 		<span class="panel-title">Question List</span>
-		<button class="button-info float-r" id = "button-addq"><i class = "fa fa-plus"></i>Question</button>
+		<button class="button-info float-r" id = "button-addq"><i class = "fa fa-plus fa-fw"></i> Question</button>
 	</div>
 	<div class="panel-body question-list" id = "qbody">
 		<?php foreach ($questions as $question): ?>
@@ -19,7 +19,7 @@
 			</div>
 			</div>
 			<div class="show_d">
-				<span class = "qedit text-muted" data-id = "<?=$question->id?>"><i class="fa fa-gear"></i>Edit</span>
+				<span class = "qedit text-muted" data-id = "<?=$question->id?>"><i class="fa fa-gear fa-fw"></i> Edit</span>
 				<span class = "text-warning sh_mr inline-display">Show More</span>
 			</div>	
 			<div class="item-body">
@@ -106,7 +106,7 @@
 			<div class="panel-body">
 				<input type = "text" name = "question[title]"placeholder = "Question Title?" class = "qfield" />
 				<div id="econtainer">
-					<textarea id = "q-area" name = "question[question]" placeholder = "Question"></textarea>	
+					<textarea id = "q-area" name = "question[question]" placeholder = "Question Body"></textarea>	
 					<script type="text/javascript">
 						CKEDITOR.replace( 'q-area', {
 							resize_enabled : false,

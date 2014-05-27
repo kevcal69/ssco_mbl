@@ -35,13 +35,14 @@ class Test extends MBL_Controller {
 
 		if (!$this->trainee_module_model->is_enroled($module_id,$this->trainee_id)) {
 			$data['error_message'] = 'You are not allowed to take the test for a module you are not enroled in.';
-			$data['error_title'] = 'Forbidden Test';
+			$data['error_title'] = 'Not Allowed to Take the Test';
 			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		} else if ($this->session->flashdata('test_ongoing') === FALSE 
 						&& !empty($result) 
 						&& $this->input->post('retake-confirm') !== 'TRUE'
 						&& $this->trainee_module_model->is_completed($module_id,$this->trainee_id) === TRUE
 						) {
+			//retake
 			if ($this->input->post('retake-confirm') !== 'TRUE') {
 				$retake_data = array(
 					'module_title' => $this->module_model->get_title($module_id),
@@ -68,11 +69,11 @@ class Test extends MBL_Controller {
 					$data['questions_string'] = base64_encode(serialize($data['questions']));
 					$this->session->set_flashdata('test_ongoing',TRUE);
 					//insert zero-score result
-					$data['test_id'] = $this->test_result_model->insert_result($module_id,$this->trainee_id);
+					$data['test_result_id'] = $this->test_result_model->insert_result($module_id,$this->trainee_id);
 				} else {
 					$data['questions'] = unserialize(base64_decode($this->input->post('questions-string')));
 					$data['questions_string'] = $this->input->post('questions-string');
-					$data['test_id'] = $this->input->post('test-id');
+					$data['test_result_id'] = $this->input->post('test-result-id');
 					$this->session->keep_flashdata('test_ongoing');
 				}
 
@@ -96,7 +97,7 @@ class Test extends MBL_Controller {
 	}
 
 	private function correct() {
-		$data['test_id'] = $this->input->post('test-id');		
+		$data['test_result_id'] = $this->input->post('test-result-id');		
 		$data['module_id'] = $this->input->post('module-id');
 		$data['module_title'] = $this->input->post('module-title');
 		$data['questions_string'] = $this->input->post('questions-string');
@@ -122,19 +123,19 @@ class Test extends MBL_Controller {
 		//update test_results
 		$update_data['rating'] = $data['results']['rating'];
 		$update_data['content'] = base64_encode(serialize($data));
-		$this->test_result_model->update_result($data['test_id'],$update_data);
+		$this->test_result_model->update_result($data['test_result_id'],$update_data);
 		//mark module as completed
 		$this->trainee_module_model->update_module($data['module_id'],$this->trainee_id,$update_data['rating'],TRUE);
 		
 		return $this->load->view('trainee/test/test_result',$data,TRUE);
 	}
 //TODO transfer to admin
-	public function result($test_id) {
+	public function result($test_result_id) {
 		$this->load->model('admin/user_model');
-		$result = $this->test_result_model->get_result($test_id);
+		$result = $this->test_result_model->get_result($test_result_id);
 		if ($result) {
 			$result_content = unserialize(base64_decode($result->content));
-			$result_content['details']['test_id'] = $result->id;
+			$result_content['details']['test_result_id'] = $result->id;
 			$result_content['details']['trainee_id'] = $result->trainee_id;
 
 			$trainee = $this->user_model->view_trainee($result->trainee_id);
@@ -146,6 +147,34 @@ class Test extends MBL_Controller {
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
+			$data['page_title'] = "SSCO Module-Based Learning";
+			$this->parser->parse('layouts/default', $data);
+		}
+	}
+	public function answers($test_result_id) {
+		$this->load->model('admin/user_model');
+		$result = $this->test_result_model->get_result($test_result_id);
+		if ($result) {
+			$result_content = unserialize(base64_decode($result->content));
+		
+			//change retrieved answers to correct answers			
+			foreach ($result_content['questions'] as $index => $question) {
+				$answer = unserialize_choices($question->answer);
+				$result_content['answers'][$index] = $answer;
+			}
+
+			$result_content['details']['test_result_id'] = $result->id;
+			$result_content['details']['trainee_id'] = $result->trainee_id;
+
+			$trainee = $this->user_model->view_trainee($result->trainee_id);
+
+			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
+			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
+
+			$result_content['details']['module_id'] = $result->module_id;
+			$result_content['details']['rating'] = $result->rating;
+			$result_content['details']['date'] = $result->date;
+			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
 			$data['page_title'] = "SSCO Module-Based Learning";
 			$this->parser->parse('layouts/default', $data);
 		}

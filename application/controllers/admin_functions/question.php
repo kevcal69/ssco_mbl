@@ -172,16 +172,16 @@
 			</div>
 		';
 		if ($question->is_used == 1):	
-		echo	 '<i class="fa fa-tag fa-fw text-muted"></i> <h3 class = "text-info que-tit">'.$question->qtitle.'</h3>
+		echo	 '<i class="fa fa-check-square fa-fw text-muted"></i> <h3 class = "text-info que-tit">'.$question->qtitle.'</h3>
 			<div class="opt-group">
-				<span class="edit"><i class="fa fa-gear"></i>Edit</span>
-				<span class="set-test" data-id = "'.$question->id.'" data-mid = "'.$question->module_id.'" data-val = "0"><i class="fa fa-times text-error"></i>Exclude</span>
+				<span class="edit"><i class="fa fa-gear fa-fw"></i>Edit</span>
+				<span class="set-test" data-id = "'.$question->id.'" data-mid = "'.$question->module_id.'" data-val = "0"><i class="fa fa-times text-error fa-fw"></i>Exclude from test</span>
 			</div>';
 		elseif ($question->is_used == 0):
 		echo	'<h3 class = "text-info que-tit">'.$question->qtitle.'</h3>
 			<div class="opt-group">
-				<span class="edit"><i class="fa fa-gear"></i>Edit</span>
-				<span class="set-test" data-id = "'.$question->id.'" data-mid = "'.$question->module_id.'" data-val = "1"><i class="fa fa-check text-success"></i>Include</span>
+				<span class="edit"><i class="fa fa-gear fa-fw"></i>Edit</span>
+				<span class="set-test" data-id = "'.$question->id.'" data-mid = "'.$question->module_id.'" data-val = "1"><i class="fa fa-check text-success fa-fw"></i>Include to test</span>
 			</div>';				
 		endif;
 		echo '</div>

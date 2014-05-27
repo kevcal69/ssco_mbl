@@ -43,12 +43,12 @@ class Question_model extends CI_Model {
 	}	
 
 	function fetch_questions($id) {
-		 $query = $this->db->get_where('question', array('module_id' => $id));
-		 if ($query) {
-		 	return $query->result();
-		 } else {
-		 	return false;
-		 }
+		$query = $this->db->get_where('question', array('module_id' => $id));
+		if ($query) {
+			return $query->result();
+		} else {
+			return false;
+		}
 	}
 	function fetch_test_questions($id) {
 		$this->db->order_by("is_used", "desc"); 
@@ -58,7 +58,7 @@ class Question_model extends CI_Model {
 		 } else {
 		 	return false;
 		 }
-	}		
+	}
 
 	function set_test($id,$val) {
 		$this->db->where('id', $id);
@@ -66,12 +66,12 @@ class Question_model extends CI_Model {
 	}
 
 	function fetch_filtered_test($filter,$mid) {
-		 $query = $this->db->get_where('scheduled_test_question', array('module_id' => $mid, 'is_used' => $filter));
-		 if ($query) {
-		 	return $query->result();
-		 } else {
-		 	return false;
-		 }
+		$query = $this->db->get_where('scheduled_test_question', array('module_id' => $mid, 'is_used' => $filter));
+		if ($query) {
+			return $query->result();
+		} else {
+			return false;
+		}
 	}
 	function fetch_test_sched($id) {
 		$this->db->order_by("id", "desc"); 
@@ -116,13 +116,40 @@ class Question_model extends CI_Model {
 		return $data;
 	}
 
-	function get_scheduled_tests() {
-		$query = $this->db->get_where('scheduled_test', array('isset_test' => TRUE));
+	function get_scheduled_tests($test_id = FALSE) {
+		if ($test_id === FALSE) {
+			//get all scheduled tests
+			$query = $this->db->get_where('scheduled_test', array('isset_test' => TRUE));
+			if ($query) {
+				return $query->result();
+			} else {
+				return FALSE;
+			}
+		} else {
+			$query = $this->db->get_where('scheduled_test', array('id' => $test_id));
+			if ($query) {
+				return $query->row();
+			} else {
+				return FALSE;
+			}
+		}
+	}
+
+	function isset_test($test_id) {
+		$query = $this->db->get_where('scheduled_test', array('id' => $test_id));
 		if ($query) {
-			return $query->result();
+			return $query->row()->isset_test;
 		} else {
 			return FALSE;
 		}
+	}
+
+	function fetch_both_user_stats_by_id() {
+		$query =  $this->db->query("Select trainee1.*, module_test_result.content,module_test_result.date,module_test_result.id,module_test_result.module_id,module_test_result.rating  from trainee as trainee1 inner join module_test_result on trainee1.user_id = module_test_result.trainee_id");
+		$results['mod_test_res'] = $query->result();
+		$query =  $this->db->query("Select trainee2.*,test_result.content,test_result.date,test_result.id,test_result.module_id,test_result.rating,test_result.test_id  from trainee as trainee2 inner join test_result on trainee2.user_id = test_result.trainee_id");
+		$results['sched_est_res'] = $query->result();
+		return $results;
 	}
 }
 

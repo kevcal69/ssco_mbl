@@ -1,26 +1,42 @@
 $(document).ready(function() {
 	modules.initialize();
 	// setInterval(function() {refresh_page()}, 1000);
-	hide.initialize();
 	trainee.toggle();
 	view_all.autoReload();
 	question.initialize();	
+	test_form.initialize();
+	close_panel.initialize();
+	tables.initialize();
 	$(window).scroll(function() {
 		stick_Sidebar.initialize();
 	});
-
-	close_panel.initialize();
-	$('#users-table , .module-table-admin').DataTable({
-		"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-		"pageLength": 25
-	});
-	$('.module-table').DataTable({
-		"lengthMenu": [ [5, 20, 50, 100, -1], [5, 20, 50, 100, "All"]],
-		"pageLength": 5
-	});
-	
+	$('#module-stat-table').on('click','#more-details' ,function() {
+		$('.modal'+$(this).data('id')).show();
+		$('.modal-container *').show();
+	});	
 });
 
+var tables = {
+	initialize: function() {
+		$('#users-table , .module-table-admin').DataTable({
+			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+			"pageLength": 25
+		});
+		$('.module-table').DataTable({
+			"lengthMenu": [ [5, 20, 50, 100, -1], [5, 20, 50, 100, "All"]],
+			"pageLength": 5
+		});
+		$('#users-stat-table').DataTable({
+			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+			"pageLength": 25
+		});
+		$('#module-stat-table').DataTable({
+			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+			"pageLength": 15,
+			"order": [[2,'asc']]
+		});				
+	}
+}
 var question = {
 	initialize: function() {
 		$("#qbody").on("change","#filter" ,function (e) {
@@ -100,18 +116,31 @@ var question = {
 				$("#confirm").addClass("button-danger");
 
 				setTimeout(function () {location.reload()},1000);
+			}else  {
+				$.ajax({
+					type: "POST",
+					url: MBL.BASE_URL+ "admin/question/conduct", 
+					data: { mid : $(this).data('mid')},
+					cache:false,
+					success: 
+					function(data){
+						location.reload();
+					}
+				});
 			}
+		}).on("click","#stop" ,function (e) {
 			$.ajax({
 				type: "POST",
-				url: MBL.BASE_URL+ "admin/question/conduct", 
-				data: { mid : $(this).data('mid')},
+				url: MBL.BASE_URL+ "admin/question/stop", 
+				data: { tid:$(this).data('tid'),mid : $(this).data('mid')},
 				cache:false,
 				success: 
 				function(data){
 					location.reload();
 				}
 			});
-		}).on("click","#stop" ,function (e) {
+		});
+		$("#stop" ).on("click",function (e) {
 			$.ajax({
 				type: "POST",
 				url: MBL.BASE_URL+ "admin/question/stop", 
@@ -183,6 +212,22 @@ var modules = {
 			}
 
 		}); 
+		$('#create-mod').on('click','#next-content' ,function() {
+			$('#field-container').hide();
+			$('#editor-container').fadeIn();
+			$(this).parent().append('<button type = "submit" class = "button-success float-r" id = "form-submit">Save</button>');
+			$(this).parent().append('<button type = "button" class = "button-info float-l" id = "prev-content">Prev</button>');
+			$(this).remove();
+		}).on('click','#prev-content',function() {
+			$('#editor-container').hide();
+			$('#field-container').fadeIn();
+			$(this).parent().append('<button type = "button" class = "button-info float-r" id ="next-content">Next</button>');
+			$('#form-submit').remove();
+			$(this).remove();
+		}).on('click', '.notif-icon',function(){
+			$(this).parent().fadeOut();
+		});	
+		
 	},
 	toggle_to_grid: function() {
 		$('#module-list-panel-title').text("Module List : Grid View");
@@ -197,7 +242,6 @@ var modules = {
 	toggle_title: function() {
 		$("#title-create").show();
 	},
-
 	box_click: function($el) {
 		$('.module-box').css('border','2px solid #dddddd');
 		$('.mb-title').css('margin-top', '-5px');
@@ -213,17 +257,6 @@ var modules = {
 
 function refresh_page() {
 	location.reload();
-}
-var hide = {
-	initialize: function() {
-		if (MBL.BODY_CLSS === "module create" || MBL.BODY_CLSS === "module modify")
-			setTimeout(function(){hide.notes_tips()},30000);
-	},
-	notes_tips: function() {
-		 var editor_height =  parseInt(edi.ui.space( 'contents' ).getStyle( 'height' ).replace("px","") )+  parseInt($("#instruction").height());
-		$("#instruction").fadeOut();	
-		edi.resize( '100%', editor_height , true );	
-	}
 }
 
 //(Create/Edit User) Hides first name and last name fields if role is not trainee
@@ -249,6 +282,13 @@ var view_all = {
 
 var close_panel = {
 	initialize: function() {
+		$(document).keydown(function(e) {
+			if (e.keyCode == 27) {
+				$('.close-modal').closest(".panel").hide();
+				$("#modal-container").hide();
+				$(".modal-container").hide();
+			}
+		});
 		$('.close-modal').click(function() {
 			$(this).closest(".panel").hide();
 			$("#modal-container").hide();
@@ -264,7 +304,11 @@ var close_panel = {
 var test_form = {
 	initialize: function() {
 		if ($('form').is('#test-form')) {
-			var warning = 'Leaving the test will mark your score as zero.\n\nAlso note that reloading the page will start another test, marking the previous one as zero.';
+			if ($('body').hasClass('test')) {
+				var warning = 'Leaving the test will mark your score as zero.\n\nAlso note that reloading the page will start another test, marking the previous one as zero.';
+			} else if ($('body').hasClass('scheduled_test')) {
+				var warning = 'Leaving the test will mark your score as zero.\nYou should finish this test as you can take this only once.';
+			}
 			var form_submitted = false;
 
 			$('button[name="is_submit"]').on('click', function () {
