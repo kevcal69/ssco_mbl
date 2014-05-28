@@ -1,6 +1,9 @@
 body.admin.index {
 	margin: 0 auto;
 }
+#module-intro{
+	text-align: left;
+}
 
 /*Options*/
 
@@ -13,6 +16,7 @@ body.admin.index {
 	margin: 0 auto;
 	padding: 20px 20px 20px 20px;
 	margin-bottom: 20px;
+	text-align: center;
 }
 
 .admin.index  #options-container .options {

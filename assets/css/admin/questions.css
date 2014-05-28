@@ -54,6 +54,7 @@
 	font-size: .8rem;
 	padding: 0;
 	display: inline-block;
+	cursor: pointer;
 }
 .item .show_d .sh_mr {	
 	width: 100px;

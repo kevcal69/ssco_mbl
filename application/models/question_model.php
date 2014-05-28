@@ -143,6 +143,14 @@ class Question_model extends CI_Model {
 			return FALSE;
 		}
 	}
+
+	function fetch_both_user_stats_by_id() {
+		$query =  $this->db->query("Select trainee1.*, module_test_result.content,module_test_result.date,module_test_result.id,module_test_result.module_id,module_test_result.rating  from trainee as trainee1 inner join module_test_result on trainee1.user_id = module_test_result.trainee_id");
+		$results['mod_test_res'] = $query->result();
+		$query =  $this->db->query("Select trainee2.*,test_result.content,test_result.date,test_result.id,test_result.module_id,test_result.rating,test_result.test_id  from trainee as trainee2 inner join test_result on trainee2.user_id = test_result.trainee_id");
+		$results['sched_est_res'] = $query->result();
+		return $results;
+	}
 }
 
 /* End of file question_model.php */

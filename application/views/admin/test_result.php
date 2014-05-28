@@ -13,6 +13,7 @@
 				<b><?php echo $details['trainee']['first_name'].' '.$details['trainee']['last_name']?></b> 
 				for module "<b><?php echo $details['module_title']?></b>".
 			</p>
+
 			<div class="table vertical-headings test-result-table">
 				<div class="tr">
 					<div class="th">Test ID</div>
@@ -43,6 +44,7 @@
 					<div class="td"><?php echo format_rating($details['rating'])?></div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 <?php endif;?>
@@ -70,6 +72,9 @@
 				<h3 class="panel-title">Test Results</h3>
 			</div>
 			<div class="panel-body">
+			<?php if ($this->session->userdata('role')&& $this->session->userdata('role') === "admin"): ?>
+				<a href="<?=base_url() . 'admin/test/answers/'.$details['test_result_id'] ?>" class = "button button-warning">View Correct Answers</a>
+			<?php endif; ?>
 				<div class="table vertical-headings test-result-table">
 					<div class="tr">
 						<div class="th">Correct Answers</div>
@@ -83,8 +88,10 @@
 						<div class="th">Rating</div>
 						<div class="td"><?php echo format_rating($results['rating'])?></div>
 					</div>
+
 				</div>
 			</div>
+			
 		</div>
 	<?php endif;?>
 			<?php foreach($questions as $index => $question):?>

@@ -169,6 +169,17 @@ table thead:first-child tr:first-child th {
 .vertical-headings .th {
 	text-align: right;
 }
+.table-id {
+	white-space: nowrap;
+	width: 1px;
+	text-align: center;
+}
+.table-sw{
+	white-space: nowrap;
+	width: 20px;
+	text-align: center;
+	font-size: .6rem;
+}
 
 .collapse {	
 	width: 1px;
@@ -228,7 +239,7 @@ table thead:first-child tr:first-child th {
 /* Forms */
 
 form {
-	padding: 10px;
+	/*padding: 10px;*/
 }
 
 fieldset {
@@ -276,7 +287,7 @@ button,
 	display: inline-block;
 	margin: 0;
 	border: none;
-	padding: 6px 15px 5px 15px;
+	padding: 5px 15px 5px 15px;
 	background-color: #949393;
 	color: white !important;
 	font-family: "OpenSansLight","Segoe UI";

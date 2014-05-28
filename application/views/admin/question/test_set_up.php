@@ -9,7 +9,7 @@
 		<?php else:?>	
 			<button type = "button" class = "button-danger" id = "stop"  data-tid = "<?=$test->id?>" data-mid = "<?=$module->id?>">Stop the Test</button>
 			<?php endif;?>
-		<button class="button-info float-r" id = "button-addq"><i class = "fa fa-plus"></i>Question</button>			
+		<button class="button-info float-r" id = "button-addq"><i class = "fa fa-plus fa-fw"></i> Question</button>			
 	</div>
 	<div class="panel-body question-list" id ="qbody">
 	<div class="panel-heading" id = "results-filter">
@@ -28,16 +28,16 @@
 				<span class = "text-warning mid-label"><?=$module->id?></span>
 			</div>
 	<?php if ($question->is_used == 1):?>	
-			 <i class="fa fa-tag fa-fw text-muted"></i> <h3 class = "text-info que-tit"><?=$question->qtitle?></h3>
+			 <i class="fa fa-check-square fa-fw text-muted"></i> <h3 class = "text-info que-tit"><?=$question->qtitle?></h3>
 			<div class="opt-group">
-				<span class="edit" data-id = "<?=$question->id?>"><i class="fa fa-gear"></i>Edit</span>
-				<span class="set-test" data-id = "<?=$question->id?>" data-mid = "<?=$module->id?>" data-val = "0"><i class="fa fa-times text-error"></i>Exclude to test</span>
+				<span class="edit" data-id = "<?=$question->id?>"><i class="fa fa-gear fa-fw"></i>Edit</span>
+				<span class="set-test" data-id = "<?=$question->id?>" data-mid = "<?=$module->id?>" data-val = "0"><i class="fa fa-times text-error fa-fw"></i>Exclude from test</span>
 			</div>
 	<?php elseif ($question->is_used == 0):?>
 			<h3 class = "text-info que-tit"><?=$question->qtitle?></h3>
 			<div class="opt-group">
-				<span class="edit" data-id = "<?=$question->id?>"><i class="fa fa-gear"></i>Edit</span>
-				<span class="set-test" data-id = "<?=$question->id?>" data-mid = "<?=$module->id?>" data-val = "1"><i class="fa fa-check text-success"></i>Include to test</span>
+				<span class="edit" data-id = "<?=$question->id?>"><i class="fa fa-gear fa-fw"></i>Edit</span>
+				<span class="set-test" data-id = "<?=$question->id?>" data-mid = "<?=$module->id?>" data-val = "1"><i class="fa fa-check text-success fa-fw"></i>Include to test</span>
 			</div>				
 	<?php endif;?>		
 			<div class = "modal-container modal-container<?=$question->id?>">
@@ -60,7 +60,7 @@
 											resize_enabled : false,
 											removePlugins : 'autosave',				
 											toolbar: [
-												[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
+												[ 'Source','Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
 												{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
 												'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
 												{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
@@ -112,6 +112,7 @@
 					</div>				
 				</div>
 
+
 		</div>
 	</div>
 	<?php endforeach; ?>
@@ -138,7 +139,7 @@
 							resize_enabled : false,
 							removePlugins : 'autosave',				
 							toolbar: [
-								[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
+								['Source', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
 								{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
 								'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
 								{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },

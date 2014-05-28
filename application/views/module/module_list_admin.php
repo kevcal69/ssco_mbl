@@ -1,5 +1,5 @@
 <?php if (!isset($panelbody_only) OR $panelbody_only !== TRUE):?>
-<div class="panel panel-success">
+<div class="panel">
 	<div class="panel-heading">
 		<h3 class="panel-title" id="module-list-panel-title">Module List : List View</h3>
 	</div>
@@ -102,38 +102,7 @@
 				  </tr>
 				<?php endforeach ?>
 				</tbody>
-			</table>		
-<!-- 			<ul>
-				<?php foreach ($modules as $module): ?>
-						<li class = "list-box">
-							<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);"></div>
-							<div class = "mb-title">
-								<p = "m-title" class = "text-primary">
-									<?=$module->title?>
-								</p>
-								<p = "m-category" class = "text-warning text-size-s1">
-									SSCO
-								</p>
-							</div>
-
-					<?php if ($this->session->userdata('role')): ?>
-						<?php if ($this->session->userdata('role') === "admin"): ?>
-							<div class="actions">
-								<span><a href="<?=base_url() . 'admin/module/view/'.$module->id?>" class = "text-primary text-size-s3">View</a></span>
-								<span><a href="<?=base_url() . 'admin/question/create/'.$module->id?>" class = "text-info text-size-s3">Test Q</a></span>
-								<span><a href="<?=base_url() . 'admin/module/modify/'.$module->id?>" class = "text-warning text-size-s3">Modify</a></span>
-								<span><a href="<?=base_url() . 'admin/module/delete/'.$module->id?>" class = "text-error text-size-s3">Delete</a></span>
-							</div>
-						<?php elseif ($this->session->userdata('role') === "trainee"): ?>
-							<div class="actions">
-								<a class="button" href="<?=base_url('trainee/module/view/'.$module->id)?>" class = "text-info text-size-s3">View</a>
-								<a class="button button-primary" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
-							</div>
-						<?php endif; ?>
-					<?php endif; ?>
-						</li>
-				<?php endforeach; ?>
-			</ul> -->	
+			</table>			
 		</div>
 	</div>
 <?php if (!isset($panelbody_only) OR $panelbody_only !== TRUE):?>
