@@ -3,7 +3,9 @@
 	<div class="panel-heading">
 		<h3 class="panel-title">Available Modules</h3>
 	</div>
-	<div class="panel-body">
+	<?php if (!isset($module_table) || $module_table !== TRUE):?>
+		<div class="panel-body">
+	<?php endif;?>
 <?php endif;?>
 
 		<?php if(isset($available_modules) && sizeof($available_modules) > 0):?>
@@ -36,6 +38,8 @@
 		<?php endif;?>
 
 <?php if(!isset($no_container) || $no_container !== TRUE):?>
-	</div>
+	<?php if (!isset($module_table) || $module_table !== TRUE):?>
+		</div>
+	<?php endif;?>
 </div>
 <?php endif;?>

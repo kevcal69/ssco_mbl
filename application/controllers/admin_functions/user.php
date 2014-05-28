@@ -133,6 +133,7 @@ class User extends MBL_Controller {
 
 			$data['body_content'] = $this->load->view('admin/user/user_view_all',$users,TRUE);
 		} else {
+			//view specific user
 			if ($this->user_model->username_exists($username) === FALSE) {
 				$error_data = array(
 					'error_title' => 'No Such User Exists',

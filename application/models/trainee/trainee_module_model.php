@@ -152,6 +152,21 @@ class Trainee_module_model extends CI_Model {
 		}
 		return $result;
 	}
+
+	public function get_statistics($trainee_id,$module_id) {
+		$this->load->model('module_test_result_model');
+		$query = $this->db->get_where('enrolled_module', array('trainee_id' => $trainee_id, 'module_id' => $module_id));
+		$module_row = $query->row();
+		$module = array();
+		$module['id'] = $module_row->module_id;
+		$module['title'] = $this->module_model->get_title($module['id']);
+		$module['date_enroled'] = $module_row->date_enroled;
+		$module['is_completed'] = $module_row->is_completed;
+		$module['date_completed'] = $module_row->date_completed;
+		$module['rating'] = $module_row->rating;
+		$module['tests_taken'] = sizeof($this->module_test_result_model->get_results($module['id'],$trainee_id));
+		return $module;
+	}
 }
 
 /* End of file trainee_module_model.php */
