@@ -72,7 +72,9 @@
 				<h3 class="panel-title">Test Results</h3>
 			</div>
 			<div class="panel-body">
-
+			<?php if ($this->session->userdata('role')&& $this->session->userdata('role') === "admin"): ?>
+				<a href="<?=base_url() . 'admin/test/answers/'.$details['test_result_id'] ?>" class = "button button-warning">View Correct Answers</a>
+			<?php endif; ?>
 				<div class="table vertical-headings test-result-table">
 					<div class="tr">
 						<div class="th">Correct Answers</div>

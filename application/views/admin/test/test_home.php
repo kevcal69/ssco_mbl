@@ -7,7 +7,7 @@
 </div>
 
 <?php if (!empty($scheduled_test)): ?>
-<div class="panel">
+<div class="panel panel-warning">
 	<div class="panel-heading">
 		<h3 class="panel-title">Scheduled Test</h3>
 	</div>
@@ -18,7 +18,7 @@
 					<button type = "button" class = "button-danger flaot-r" id = "stop"  data-tid = "<?=$test->id?>" data-mid = "<?=$test ->module_id?>"><i class="fa fa-fw fa-thumb-tack"></i>Stop the Test</button>
 				</div>
 				<div class="notif-body">
-					Module No: <?=$test ->module_id?>
+					Module No: <?=$test ->module_id?> : 
 				</div>
 			</div>
 		<?php endforeach ?>
@@ -45,7 +45,7 @@
 			    		<td>SSCO</td>
 					<td>
 						<div><a href="<?=base_url() . 'admin/test/module_test_view/'.$user_stat['user_id']?>">Module Test Result</a></div>
-						<div><a href="<?=base_url() . 'admin/test/module_test_view/'.$user_stat['user_id']?>" >Scheduled Test Result</a></div>
+						<div><a href="<?=base_url() . 'admin/test/schedule_test_view/'.$user_stat['user_id']?>" >Scheduled Test Result</a></div>
 					</td>
 			  </tr>
 			<?php endforeach ?>

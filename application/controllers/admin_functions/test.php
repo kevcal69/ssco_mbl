@@ -56,10 +56,20 @@
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	} 
+	function schedule_test_view($id) {
+		$this->load->helper('output_text_helper');
+		$this->load->model('module_test_result_model','mod_res');
+		$myData['module_test_result'] = $this->mod_res->get_test_results_with_module_detail($id);
+		$data['page_title'] = "SSCO Module Base Learning";
+		$data['body_content'] = $this->load->view('admin/test/schedule_test_result',$myData,TRUE); 
+		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		$this->parser->parse('layouts/logged_in', $data);
+	} 	
 	function result($test_result_id) {
 		$this->load->model('admin/user_model');
 		$this->load->helper('output_text_helper');
 		$this->load->model('module_test_result_model','test_result_model');
+		$this->load->model('module_model');
 		$result = $this->test_result_model->get_result($test_result_id);
 		if ($result) {
 			$result_content = unserialize(base64_decode($result->content));
@@ -71,10 +81,44 @@
 			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
 			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
 
+			$result_content['details']['module_title'] = $this->module_model->get_title($result->module_id);
 			$result_content['details']['module_id'] = $result->module_id;
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
+			$data['page_title'] = "SSCO Module-Based Learning";
+			$this->parser->parse('layouts/default', $data);
+		}
+	}	
+	function answers($test_result_id) {
+		$this->load->model('admin/user_model');
+		$this->load->helper('output_text_helper');
+		$this->load->model('module_test_result_model','test_result_model');
+		$this->load->model('module_model');
+		$result = $this->test_result_model->get_result($test_result_id);	
+		$result = $this->test_result_model->get_result($test_result_id);
+		if ($result) {
+			$result_content = unserialize(base64_decode($result->content));
+		
+			//change retrieved answers to correct answers			
+			foreach ($result_content['questions'] as $index => $question) {
+				$answer = unserialize_choices($question->answer);
+				$result_content['answers'][$index] = $answer;
+			}
+
+			$result_content['details']['test_result_id'] = $result->id;
+			$result_content['details']['trainee_id'] = $result->trainee_id;
+
+			$trainee = $this->user_model->view_trainee($result->trainee_id);
+
+			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
+			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
+
+			$result_content['details']['module_title'] = $this->module_model->get_title($result->module_id);
+			$result_content['details']['module_id'] = $result->module_id;
+			$result_content['details']['rating'] = $result->rating;
+			$result_content['details']['date'] = $result->date;
+			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
 			$data['page_title'] = "SSCO Module-Based Learning";
 			$this->parser->parse('layouts/default', $data);
 		}

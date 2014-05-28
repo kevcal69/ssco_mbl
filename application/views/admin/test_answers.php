@@ -1,4 +1,3 @@
-<?php print_r(unserialize(base64_decode('YToyOntpOjA7czoxOiIwIjtpOjE7czoxOiIzIjt9')))?>
 <!-- test results -->
 <?php if (!empty($details)): ?>
 	<div class="panel panel-info">

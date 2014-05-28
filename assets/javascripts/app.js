@@ -11,11 +11,6 @@ $(document).ready(function() {
 		stick_Sidebar.initialize();
 	});
 
-	$('#module-stat-table').on('click','#more-details' ,function() {
-		$('.modal'+$(this).data('id')).show();
-		$('.modal-container *').show();
-	});	
-
 });
 
 var tables = {

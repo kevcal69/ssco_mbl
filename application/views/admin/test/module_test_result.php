@@ -1,5 +1,14 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">
+		<h3 class="panel-title">Stats Sumarry</h3>
+	</div>
+	<div class="panel-body">
+	
+	</div>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
 		<h3 class="panel-title">Module Test Result</h3>
 	</div>
 	<div class="panel-body">
