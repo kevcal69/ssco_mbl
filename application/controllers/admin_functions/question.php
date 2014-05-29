@@ -10,8 +10,8 @@
 			}		
 			$this->load->model('Module_model','mModule');	
 			$this->load->model('Question_model','mQ');
-      			$this->load->helper('application_helper');
-      			$this->load->helper('sidebar_helper');
+			$this->load->helper('application_helper');
+			$this->load->helper('sidebar_helper');
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 
@@ -29,10 +29,18 @@
 						'content' => to_sidebar_element('fa-book','Modules'),
 						'href' => base_url('admin/module'),
 						'active' => TRUE
+						),
+					array(
+						'content' => to_sidebar_element('fa-list','Tests'),
+						'href' => base_url('admin/test'),
+						'active' => FALSE
 						)
 					)
-				);            			
-	    }	
+				);
+			//show sidebar search
+			$this->sidebar_content['actions'] = array();
+			$this->sidebar_content['module_search'] = TRUE;
+		}
 
 	function create($id) {
 		$this->load->helper('output_text_helper');

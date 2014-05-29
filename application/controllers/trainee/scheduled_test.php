@@ -42,7 +42,7 @@ class Scheduled_test extends MBL_Controller {
 			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		} else if (!$this->question_model->isset_test($test_id)) {
 			//check if test is scheduled
-			$data['error_message'] = 'No such test has been scheduled';
+			$data['error_message'] = 'No such test has been scheduled or test period is already over.';
 			$data['error_title'] = 'No Scheduled Test';
 			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		} else if (!empty($result) && $this->session->flashdata('test_ongoing') === FALSE) {

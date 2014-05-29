@@ -3,5 +3,6 @@
 	<div><p>
 		<?=stripslashes($module->description)?>
 	</p></div>
-	<?=stripslashes($module->content);?>
+	<hr>
+	<?php echo generate_toc(stripslashes($module->content))?>
 </div>

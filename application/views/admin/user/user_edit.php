@@ -58,7 +58,7 @@
 						New passwords will be hashed when updated.<br>
 					</p>
 					<button type = "submit" class="button-primary" id = "user_edit_submit">Edit</button>
-					<a class="button" onClick="history.go(-1);">Cancel</a>
+					<a class="button" onClick="history.go(-1);window.close();">Cancel</a>
 				</div>
 			</div>
 		</form>

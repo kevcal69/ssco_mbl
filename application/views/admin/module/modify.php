@@ -26,7 +26,7 @@
 				</ul>				
 			</div>
 		</div>
-		<form  action = "<?=site_url('admin/module/modify_module')?>" method = "POST" name = "question">
+		<form enctype='multipart/form-data' action = "<?=site_url('admin/module/modify_module')?>" method = "POST" name = "question">
 			<div id="field-container">
 				<input type = "text" name = "title" value = "<?=stripslashes($module->title)?>" placeholder = "Module Title?" class = "qfield" />
 				<input name = "id" value = "<?=stripslashes($module->id)?>" type = "hidden">
@@ -44,7 +44,23 @@
 									{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
 								],
 							});
-						</script>	
+						</script>
+				<div id="cover-picture-container" class="panel">
+					<div class="center panel-body">
+						<img id="cover-picture-preview" src="<?php echo base_url($module->cover_picture);?>" title="cover picture"/>
+						<?php if ($this->session->flashdata('cover_pic_errors')):?>
+							<?php foreach ($this->session->flashdata('cover_pic_errors') as $error):?>
+								<?php echo $error;?>
+							<?php endforeach;?>
+						<?php endif;?>
+					</div>
+				</div>
+				<div class="button-group  float-l">
+					<label class="button">
+						<input id="cover-picture-upload" type="file" name="cover-picture-upload" accept="image/*"/>
+						Cover Picture
+					</label>
+				</div>
 			</div>
 
 			<div id="editor-container">

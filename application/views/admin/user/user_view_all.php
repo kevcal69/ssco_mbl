@@ -2,7 +2,7 @@
 	<div class="view-title-bar panel-heading">
 		<legend id="view-legend">View All Users</legend>
 		<div id="button-group">
-			<a class="button" onClick="history.go(-1);">Back</a>
+			<a class="button" onClick="history.go(-1);window.close();">Back</a>
 			<a class="button button-primary" href="<?=base_url('admin/user');?>">Home</a>
 		</div>
 	</div>
@@ -19,14 +19,14 @@
 			<tbody>
 			<?php foreach ($users as $index=>$user): ?>
 				<tr>
-					<td><?php echo ($index + 1);?></td>
+					<td class="collapse nowrap center"><?php echo ($index + 1);?></td>
 					<td>
 						<a href="view/<?php echo $user['username'];?>">
 							<?php echo $user['username'];?>
 						</a>
 					</td>
-			    <td><?php echo $user['role'];?></td>
-					<td>
+			    <td class="collapse nowrap center"><?php echo $user['role'];?></td>
+					<td class="collapse nowrap center">
 						<a class="text-muted" href="edit/<?php echo $user['username'];?>">
 							<i class="fa fa-edit fa-lg" title="Edit"></i>
 						</a>

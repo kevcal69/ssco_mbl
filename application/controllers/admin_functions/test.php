@@ -10,8 +10,8 @@
 			}		
 			$this->load->model('Module_model','mModule');	
 			$this->load->model('Question_model','mQ');
-      			$this->load->helper('application_helper');
-      			$this->load->helper('sidebar_helper');
+			$this->load->helper('application_helper');
+			$this->load->helper('sidebar_helper');
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 
@@ -28,17 +28,25 @@
 					array(
 						'content' => to_sidebar_element('fa-book','Modules'),
 						'href' => base_url('admin/module'),
+						'active' => FALSE
+						),
+					array(
+						'content' => to_sidebar_element('fa-list','Tests'),
+						'href' => base_url('admin/test'),
 						'active' => TRUE
 						)
 					)
-				);            			
-	    }	
+				);
+			//show sidebar search
+			$this->sidebar_content['actions'] = array();
+			$this->sidebar_content['module_search'] = TRUE;
+		}
 	function index() {
 		$this->load->helper('output_text_helper');
 		$this->load->model('scheduled_test_result_model','strm');
 		$this->load->model('admin/user_model','user_model');
 		$this->sidebar_content['actions'] = array(
-					);	
+					);
 		$testDB['scheduled_test']  = $this->mQ->get_scheduled_tests();	
 		$testDB['user_stats']  =  $this->user_model->view_trainee();
 
@@ -125,5 +133,5 @@
 	}	
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file test.php */
+/* Location: ./application/admin_functions/test.php */

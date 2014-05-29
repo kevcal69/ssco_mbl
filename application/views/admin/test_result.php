@@ -7,7 +7,7 @@
 			</h3>
 		</div>
 		<div class="panel-body">
-			<a class="button" id="result-back" onclick="history.go(-1)">Back</a>
+			<a class="button" id="result-back" onclick="history.go(-1);window.close();">Back</a>
 			<p>
 				Shown below is the test result of 
 				<b><?php echo $details['trainee']['first_name'].' '.$details['trainee']['last_name']?></b> 
@@ -73,7 +73,7 @@
 			</div>
 			<div class="panel-body">
 			<?php if ($this->session->userdata('role')&& $this->session->userdata('role') === "admin"): ?>
-				<a href="<?=base_url() . 'admin/test/answers/'.$details['test_result_id'] ?>" class = "button button-warning">View Correct Answers</a>
+				<a href="<?=base_url() . 'admin/test/answers/'.$details['test_result_id'] ?>" class = "button button-warning" target="_blank">View Correct Answers</a>
 			<?php endif; ?>
 				<div class="table vertical-headings test-result-table">
 					<div class="tr">

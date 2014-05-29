@@ -1,8 +1,11 @@
 body.admin.index {
 	margin: 0 auto;
 }
-#module-intro{
+#module-intro {
 	text-align: left;
+}
+#module-intro #title {
+	margin-top: 0;
 }
 
 /*Options*/
@@ -12,7 +15,6 @@ body.admin.index {
 	height: 200px;
 }
 .admin.index  #options-container {
-	min-height: 350px;
 	margin: 0 auto;
 	padding: 20px 20px 20px 20px;
 	margin-bottom: 20px;
@@ -25,7 +27,7 @@ body.admin.index {
 	height: 200px;
 	display: inline-block;
 	margin: 10px;
-	margin-top: 50px;
+	margin-top: 20px;
 	border: 1px solid #dddddd;
 	vertical-align: top;
 	cursor: pointer;
@@ -52,8 +54,8 @@ body.admin.index {
 
 .admin.index  #options-container .options .text-options {
 	overflow: hidden;
-	-webkit-transition: margin-top .6s; /* For Safari 3.1 to 6.0 */
-	transition: margin-top .6s;
+	-webkit-transition: margin-top .4s; /* For Safari 3.1 to 6.0 */
+	transition: margin-top .4s;
 	margin-top: 86px;
 	z-index: -5;
 }

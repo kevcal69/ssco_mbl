@@ -8,6 +8,6 @@
 		</div>
 	</div>
 	<div class="panel-footer">
-		<a class="button" onClick="history.go(-1);">Back</a>
+		<a class="button" onClick="history.go(-1);window.close();">Back</a>
 	</div>
 </div>

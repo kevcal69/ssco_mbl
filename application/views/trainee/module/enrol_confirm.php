@@ -15,7 +15,7 @@
 		<?php echo form_open('trainee/module/enrol/'.$module_id, array('id' => 'enrol-confirm-form'));?>
 			<input type="hidden" value="TRUE" name="confirm"/>
 			<button class="button-primary" type="submit">Enrol</button>
-			<a class="button" onClick="history.go(-1);">Cancel</a>
+			<a class="button" onClick="history.go(-1);window.close();">Cancel</a>
 		</form>
 	</div>
 </div>

@@ -34,32 +34,16 @@
 	float: right;
 	text-align: right;
 }
-#navigation {
-	margin: 20px 20px auto auto;
-	color: white;
-	font-family: Helvetica, Arial, Sans-Serif;
-	font-size: 12px;
-}
-#navigation a {
-	color: white;
-	font-size: 12px;
-	text-decoration: none;
-}
-#navigation a:hover {
-	text-decoration: underline;
-}
-.pipe-separator {
-	letter-spacing: 3px;
-}
 
 #user {
-	margin: 30px 20px 0px 0px;
+	margin: 70px 20px 0px 0px;
 }
 #current-user {
 	font-family: medium;
 	font-family: "LatoHairline";
 	color: white;
 }
+
 #bread-crumbs {
 	min-width: 200px;
 	height: 20px;

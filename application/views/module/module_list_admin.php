@@ -17,10 +17,7 @@
 		<div id="grid-container">
 			<?php foreach ($modules as $module): ?>
 				<div class = "module-box">
-					<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);">
-						<img src="">
-
-					</div>
+					<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);"></div>
 					<div class = "mb-title">
 						<?=character_limiter($module->title,25);?>
 					</div>
@@ -97,8 +94,8 @@
 								</td>
 							<?php endif; ?>
 						<?php endif; ?>
-						<td style="display:none;"><?=$module->description?></td>
-						<td style="display:none;"><?=$module->content?></td>
+						<td style="display:none;"><?=stripslashes(strip_tags($module->description))?></td>
+						<td style="display:none;"><?=stripslashes($module->content)?></td>
 				  </tr>
 				<?php endforeach ?>
 				</tbody>
