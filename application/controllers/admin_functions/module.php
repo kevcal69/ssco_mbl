@@ -14,7 +14,6 @@
 			$this->load->helper('sidebar_helper');
 			$this->sidebar_content = array(
 				'quicklinks' => array(
-
 					array(
 						'content' => to_sidebar_element('fa-home','Home'),
 						'href' => base_url('admin'),
@@ -31,16 +30,17 @@
 						'active' => TRUE
 						),
 					array(
-						'content' => to_sidebar_element('fa-list','Tests'),
+						'content' => to_sidebar_element('fa-question','Test Results'),
 						'href' => base_url('admin/test'),
 						'active' => FALSE
 						)
-					)
+					),
+
 				);
 			//show sidebar search
 			$this->sidebar_content['actions'] = array();
 			$this->sidebar_content['module_search'] = TRUE;
-			}
+		}
 
 	function index() {
 		$this->sidebar_content['actions'] = array(

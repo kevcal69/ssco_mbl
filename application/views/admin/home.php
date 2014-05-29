@@ -44,6 +44,21 @@
 				</div>
 			</div>
 		</a>
+		</div>
+		<div class="options" >
+			<a href = "<?=base_url() . 'admin/test';?>">	
+				<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/test.png';?>);">
+				</div>
+				<div class="text-options">
+					<div class="action">
+						Test
+					</div>
+					<div class="des">
+						Tests Q(Modules and Trainee)
+					</div>	
+				</div>
+			</a>
+		</div>
 	</div>
 </div>
 

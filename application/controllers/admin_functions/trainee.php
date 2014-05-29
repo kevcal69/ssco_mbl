@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-	class Test extends MBL_Controller {
+	class Trainee extends MBL_Controller {
 		function __construct() {
 			parent::__construct();
 			if ($this->session->userdata('role') !== 'admin') {
@@ -10,8 +10,8 @@
 			}		
 			$this->load->model('Module_model','mModule');	
 			$this->load->model('Question_model','mQ');
-			$this->load->helper('application_helper');
-			$this->load->helper('sidebar_helper');
+      			$this->load->helper('application_helper');
+      			$this->load->helper('sidebar_helper');
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 
@@ -28,27 +28,27 @@
 					array(
 						'content' => to_sidebar_element('fa-book','Modules'),
 						'href' => base_url('admin/module'),
-						'active' => FALSE
+						'active' => TRUE
 						),
 					array(
 						'content' => to_sidebar_element('fa-question','Test Results'),
 						'href' => base_url('admin/test'),
-						'active' => TRUE
+						'active' => FALSE
 						)
-					),
-				);
-		 }
+					)
+				);            			
+	    }	
 	function index() {
 		$this->sidebar_content['actions'] = array(
 					'Mod_test' => array(
 						'content' => to_sidebar_element('fa-bars','By Module'),
 						'href' => base_url('admin/test/'),
-						'active' => TRUE
+						'active' => FALSE
 						),
 					'trainee_test' => array(
 						'content' => to_sidebar_element('fa-tags','By Trainee'),
-						'href' => base_url('admin/trainee/'),
-						'active' => FALSE
+						'href' => base_url('admin/trainee'),
+						'active' => TRUE
 						)
 					);		
 		$this->load->helper('output_text_helper');
@@ -59,7 +59,7 @@
 		$testDB['user_stats']  =  $this->user_model->view_trainee();
 		$testDB['modules'] = $this->mModule->get_module_entries();
 		$data['page_title'] = "SSCO Module Base Learning";
-		$data['body_content'] = $this->load->view('admin/test/test_home',$testDB,TRUE); 
+		$data['body_content'] = $this->load->view('admin/trainee/test_home',$testDB,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	}	   
@@ -68,59 +68,43 @@
 					'Mod_test' => array(
 						'content' => to_sidebar_element('fa-bars','By Module'),
 						'href' => base_url('admin/test/'),
-						'active' => TRUE
+						'active' => FALSE
 						),
 					'trainee_test' => array(
 						'content' => to_sidebar_element('fa-tags','By Trainee'),
-						'href' => base_url('admin/trainee/'),
-						'active' => FALSE
+						'href' => base_url('admin/trainee'),
+						'active' => TRUE
 						)
-					);			
+					);		
 		$this->load->helper('output_text_helper');
+		$this->load->model('Module_model','mModule');
 		$this->load->model('module_test_result_model','mod_res');
-		$myData['module_test_result'] = $this->mod_res->get_test_results_with_module_detail_by_module_id($id);
+		$this->load->model('trainee/trainee_model','trainee_model');
+		$myData['tid'] = $id;
+		$myData['user_info'] = $this->trainee_model->get_name($id); 
+		$myData['modules'] = $this->mModule->get_module_entries();
+		$myData['module_test_result'] = $this->mod_res->get_test_results_with_module_detail_by_trainee_id($id);
 		$data['page_title'] = "SSCO Module Base Learning";
-		$data['body_content'] = $this->load->view('admin/test/module_test_result',$myData,TRUE); 
+		$data['body_content'] = $this->load->view('admin/trainee/module_test_result',$myData,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	} 
 	function schedule_test_view($id) {
-		$this->sidebar_content['actions'] = array(
-					'Mod_test' => array(
-						'content' => to_sidebar_element('fa-bars','By Module'),
-						'href' => base_url('admin/test/'),
-						'active' => TRUE
-						),
-					'trainee_test' => array(
-						'content' => to_sidebar_element('fa-tags','By Trainee'),
-						'href' => base_url('admin/trainee/'),
-						'active' => FALSE
-						)
-					);			
 		$this->load->helper('output_text_helper');
 		$this->load->model('scheduled_test_result_model','sched_res');
 		$this->load->model('question_model','mQ');
-		$myData['mid'] = $id;
+		$this->load->model('Module_model','mModule');
+		$this->load->model('trainee/trainee_model','trainee_model');
+		$myData['tid'] = $id;
+		$myData['user_info'] = $this->trainee_model->get_name($id); 
 		$myData['scheduled_test'] = $this->mQ->get_scheduled_tests_by_modulet($id);
-		$myData['scheduled_test_result'] = $this->sched_res->get_test_results_with_module_detail_by_module_id($id);
+		$myData['scheduled_test_result'] = $this->sched_res->get_test_results_with_module_detail_by_module_id(false,$id);
 		$data['page_title'] = "SSCO Module Base Learning";
-		$data['body_content'] = $this->load->view('admin/test/schedule_test_result_view',$myData,TRUE); 
+		$data['body_content'] = $this->load->view('admin/trainee/schedule_test_result',$myData,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	} 	
 	function sched_results_view($test_result_id) {
-		$this->sidebar_content['actions'] = array(
-					'Mod_test' => array(
-						'content' => to_sidebar_element('fa-bars','By Module'),
-						'href' => base_url('admin/test/'),
-						'active' => TRUE
-						),
-					'trainee_test' => array(
-						'content' => to_sidebar_element('fa-tags','By Trainee'),
-						'href' => base_url('admin/trainee/'),
-						'active' => FALSE
-						)
-					);			
 		$this->load->model('admin/user_model');
 		$this->load->helper('output_text_helper');
 		$this->load->model('scheduled_test_result_model','test_result_model');
@@ -130,6 +114,7 @@
 		$data['body_content'] = $this->load->view('admin/test/schedule_test_result',$result,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
+		
 	}
 	function result($test_result_id) {
 		$this->load->model('admin/user_model');
@@ -189,7 +174,6 @@
 			$this->parser->parse('layouts/default', $data);
 		}
 	}
-
 	function sched_result($test_result_id) {
 		$this->load->model('module_model');
 		$this->load->helper('output_text_helper');
@@ -246,30 +230,31 @@
 			$data['page_title'] = "SSCO Module-Based Learning";
 			$this->parser->parse('layouts/default', $data);
 		}
-	}		
+	}	
 	function module_quick_access() {
 		$this->load->model('module_model');
 		$keyword = $this->input->post('keyword');
+		$tid = $this->input->post('tid');
 		$results = $this->module_model->get_module_by_keyword($keyword);
 		$this->load->helper('output_text_helper');
 		$this->load->model('module_test_result_model','mod_res');
 		$this->load->model('scheduled_test_result_model','sched_res');
-
 	 foreach ($results as $module): 
-	$mod_ratings = $this->mod_res->get_test_results_with_module_detail_by_module_id($module->id);
-	$sched_ratings =  $this->sched_res->get_test_results_with_module_detail_by_module_id($module->id);
+	 	$mod_ratings= $this->mod_res->get_test_results_with_module_detail_by_trainee_id($tid,$module->id);
+	 	$sched_ratings = $this->sched_res->get_test_results_with_module_detail_by_module_id($module->id,$tid);
 	if(!empty($mod_ratings)) {
-		$var = stats_parser($mod_ratings, 'rating');
+		$var = stat_format_per_tid($mod_ratings);
 	} else {
-		$var['takers'] = 0;
+		$var['taken'] = 0;
 		$var['rating_summary'] = 'N/A';
+		$var['status'] ='<span class = "text-error">Not</span>';
 	}
 	if(!empty($sched_ratings)) {
-		$foo = stats_parser($sched_ratings, 'rating');
+		$foo = stat_format_per_tid($sched_ratings);
 	} else {
-		$foo['takers'] = 0;
+		$foo['taken'] = 0;
 		$foo['rating_summary'] = 'N/A';
-	}	
+	}		
 	echo '<div class="inner-panel">
 				<div class="inner-panel-heading">
 					<h3 class="inner-panel-title">Module ID: '.$module->id.'</h3>
@@ -286,27 +271,31 @@
 							<div id="stat">
 								<div class="mod-stat">
 									<span class = "text-size-o" >Module Test Stat</span>
-									<ul>
+ 									<ul>
+ 										<li>
+ 										<span class = "stat-item">Status</span>
+ 										<span class = "stat-val">'.$var['status'].'</span>
+ 										</li>
 										<li>
-										<span class = "stat-item">Number of takers</span>
-										<span class = "stat-val">'.$var['takers'].'</span>
+										<span class = "stat-item">Times taken</span>
+										<span class = "stat-val">'.$var['taken'].'</span>
 										</li>
 										<li>
-										<span class = "stat-item">Percentage Difficulty</span>
+										<span class = "stat-item">Percentage Rating</span>
 										<span class = "stat-val">'.$var['rating_summary'].'</span>
 										</li>
 									</ul>
 									<span id = "sm-r" class = "text-size-o fa fa-arrow-circle-o-right float-r" ></span>
 								</div>
-								<div class="sched-stat">
+ 								<div class="sched-stat">
 									<span  class = "text-size-o " >Scheduled Test Stat</span>
 									<ul>
 										<li>
-										<span class = "stat-item">Number of takers</span>
-										<span class = "stat-val">'.$foo['takers'].'</span>
+										<span class = "stat-item">Times takers</span>
+										<span class = "stat-val">'.$foo['taken'].'</span>
 										</li>
 										<li>
-										<span class = "stat-item">Percentage Difficulty</span>
+										<span class = "stat-item">Percentage Rating</span>
 										<span class = "stat-val">'.$foo['rating_summary'].'</span>
 										</li>
 									</ul>
@@ -331,8 +320,8 @@
 				</div>
 			</div>';
 	endforeach;		
-	}
+	}	
 }
 
-/* End of file test.php */
-/* Location: ./application/admin_functions/test.php */
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

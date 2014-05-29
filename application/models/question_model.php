@@ -135,6 +135,26 @@ class Question_model extends CI_Model {
 		}
 	}
 
+	function get_scheduled_tests_by_modulet($id, $set = FALSE){
+		if ($set === FALSE) {
+			//get all scheduled tests
+			$query = $this->db->get_where('scheduled_test', array('module_id' => $id));
+			if ($query) {
+				return $query->result();
+			} else {
+				return FALSE;
+			}
+		} else {
+			$query = $this->db->get_where('scheduled_test', array('module_id' => $id, 'isset_test' => TRUE));
+			if ($query) {
+				return $query->row();
+			} else {
+				return FALSE;
+			}
+		}		
+	
+	}
+
 	function isset_test($test_id) {
 		$query = $this->db->get_where('scheduled_test', array('id' => $test_id));
 		if ($query) {

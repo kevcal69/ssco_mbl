@@ -47,6 +47,10 @@ $route['trainee'] = 'trainee/trainee';
 $route['admin'] = 'admin_functions/admin';
 $route['admin/test/(:any)'] = 'admin_functions/test/$1';
 $route['admin/test'] = 'admin_functions/test';
+
+$route['admin/trainee/(:any)'] = 'admin_functions/trainee/$1';
+$route['admin/trainee'] = 'admin_functions/trainee';
+
 $route['admin/module/(:any)'] = 'admin_functions/module/$1';
 $route['admin/module'] = 'admin_functions/module';
 $route['admin/user/(:any)'] = 'admin_functions/user/$1';

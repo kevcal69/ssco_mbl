@@ -34,7 +34,7 @@ class User extends MBL_Controller {
 						'active' => FALSE
 						),
 					array(
-						'content' => to_sidebar_element('fa-list','Tests'),
+						'content' => to_sidebar_element('fa-question','Test Results'),
 						'href' => base_url('admin/test'),
 						'active' => FALSE
 						)
