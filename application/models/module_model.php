@@ -64,6 +64,12 @@ class Module_model extends CI_Model {
 			return false;
 		}
 	}
+
+	function get_module_by_keyword($keyword) {
+		$this->db->like('title', $keyword); 
+		$query = $this->db->get('module');
+		return $query->result();
+	}
 }
 
 /* End of file session.php */

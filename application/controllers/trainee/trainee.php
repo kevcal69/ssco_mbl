@@ -90,8 +90,7 @@ class Trainee extends MBL_Controller {
 	}
 
 	private function get_scheduled_tests() {
-    $this->load->model('question_model');
-    
+   		 $this->load->model('question_model');
 		$result = array();
 		$scheduled_tests = $this->question_model->get_scheduled_tests();
 		if (sizeof($scheduled_tests) > 0) {

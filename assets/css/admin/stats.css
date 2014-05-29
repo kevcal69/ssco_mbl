@@ -3,3 +3,164 @@
 	min-height: 700px;
 	margin-top: 50px;
 }
+.inner-panel {
+	display: inline-block;
+	background: #ffffff;
+	margin-bottom: 20px;
+	vertical-align: top;
+	border: 1px solid rgba(140, 142, 146, 1);
+	text-align: left;
+	overflow: hidden;
+	width: 40%;
+}
+.inner-panel-body {
+	padding: 10px;
+	text-align: left;
+	font-size: .9rem;
+	overflow: hidden;
+}
+.inner-panel-heading {
+	padding: 5px 10px;
+	background: rgba(162, 163, 165, 1);
+	border-bottom: 1px solid rgba(140, 142, 146, 1);
+	overflow: hidden;
+	color: #FFF;
+}
+.inner-panel-title {
+	margin-top: 0;
+	margin-bottom: 0;
+	color: inherit;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+#mod-box {
+	width: 100%;
+	height: 200px;
+}
+
+#mod-box #thumb {
+	width: 200px;
+	height: 200px;
+	vertical-align: top;
+	border: 1px solid black;
+	display: inline-block;
+	margin: 0 auto;;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-size: auto auto;
+	background-position: center;	
+}
+#mod-box #title {
+	font-size: 1.2rem;
+}
+#mod-box #info-box {
+	display: inline-block;
+	width: 40%;
+	height: 200px;
+	vertical-align: top;
+}
+#mod-box #info-box #stat{
+	min-width: 200%;
+	height: 120px;
+	padding: 5px;
+	margin-top: 5px;
+	overflow: hidden;
+}
+.inner-panel ul {
+	padding: 0px;
+	list-style: none;
+	margin: 0px;
+}
+.inner-panel ul li {
+	font-size: .7rem;
+	margin: 5px;
+	display: inline-block;
+}
+#mod-box ul {
+	padding: 0px;
+	list-style: none;
+	margin: 0px;
+}
+#mod-box ul li {
+	font-size: .7rem;
+	width: 150px;
+	margin: 1px;
+	display: block;
+}
+#mod-box ul li .stat-item {
+	display: inline-block;
+	width: 90px;
+}
+#mod-box ul li .stat-val{
+	display: inline-block;
+}
+#mod-box ul li .stat-val::before {
+	content: ": ";
+}
+#mod-box #info-box #stat .sched-stat, 
+#mod-box #info-box #stat .mod-stat {
+	display: inline-block;
+	width: 130px;
+	height:100%;
+	vertical-align: top;
+ }
+ #mod-box #info-box #stat .mod-stat {
+ 	/*margin-left: -135px;*/
+ 	transition: margin .15s ease 0s;
+ }
+ #mod-box #info-box #stat .sched-stat{
+ 	display: none;
+ }
+a.actions {
+	font-size: .8rem;
+	border-bottom: 1px solid black;
+	margin: 5px;
+}
+#piechart, #module-info {
+	display: inline-block;
+	vertical-align: top;	
+}
+
+#piechart #piechart1, #piechart #legend {
+	display: inline-block;
+	vertical-align: top;
+}
+#piechart #legend  {
+	margin-top: 30px;
+}
+#piechart #legend .liststyle {
+	margin: 5px;
+}
+#piechart #legend .liststyle .chart-label {
+	font-size: .8rem;
+}
+.module-info {
+	min-width: 50%;
+	border: none;
+}
+.inner-panel-body #thumb {
+	width: 200px;
+	height: 200px;
+	vertical-align: top;
+	border: 1px solid black;
+	display: inline-block;
+	margin: 0 auto;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-size: auto auto;
+	background-position: center;		
+}
+.inner-panel-body .info {
+	display: inline-block;
+	padding: 5px;
+}
+.inner-panel-body .info  .title {
+	font-size: 1.2rem;
+}
+.inner-panel-body .info  .description {
+	width: 200px;
+}
+.inner-panel-body .info .summary ul li{
+	display: block;
+}

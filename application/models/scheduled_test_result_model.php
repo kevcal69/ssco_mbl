@@ -56,6 +56,45 @@ class Scheduled_test_result_model extends CI_Model {
 		}
 	}
 
+	public function	get_test_results_with_module_detail_by_module_id($module_id = FALSE,$trainee_id = FALSE) {
+		if ($trainee_id == FALSE) {			
+			$this->db->select('module.content, module.id, module.title,module.cover_picture,module.description, test_result.content, test_result.date, test_result.module_id, test_result.id, test_result.rating, test_result.trainee_id, trainee.first_name, trainee.last_name');
+			$this->db->from('test_result');
+			$this->db->join('module', ' module.id = test_result.module_id AND test_result.content IS NOT NULL AND test_result.module_id = '.$module_id.'', 'inner');
+			$this->db->join('trainee','test_result.trainee_id = trainee.user_id','inner');
+			$query = $this->db->get();
+			return $query->result();
+		} else if($module_id == FALSE) {
+			$this->db->select('module.content, module.id, module.title,module.cover_picture,module.description, test_result.content, test_result.date, test_result.module_id, test_result.id, test_result.rating, test_result.trainee_id, trainee.first_name, trainee.last_name');
+			$this->db->from('test_result');
+			$this->db->join('module', ' module.id = test_result.module_id AND test_result.content IS NOT NULL', 'inner');
+			$this->db->join('trainee','test_result.trainee_id = trainee.user_id','inner');
+			$this->db->where('test_result.trainee_id',$trainee_id);
+			$query = $this->db->get();
+			return $query->result();			
+		} else {
+			$this->db->select('module.content, module.id, module.title,module.cover_picture,module.description, test_result.content, test_result.date, test_result.module_id, test_result.id, test_result.rating, test_result.trainee_id, trainee.first_name, trainee.last_name');
+			$this->db->from('test_result');
+			$this->db->join('module', ' module.id = test_result.module_id AND test_result.content IS NOT NULL AND test_result.module_id = '.$module_id.'', 'inner');
+			$this->db->join('trainee','test_result.trainee_id = trainee.user_id','inner');
+			$this->db->where('test_result.trainee_id',$trainee_id);
+			$query = $this->db->get();
+			return $query->result();	
+		}
+	}
+	
+	public function	get_test_results_with_module_detail_by_test_id($test_id) {
+		$this->db->select('module.content,module.cover_picture,module.description,module.title');
+		$this->db->select('scheduled_test.content as test_content, scheduled_test.id as test_id, scheduled_test.isset_test, scheduled_test.module_id');
+		$this->db->select('test_result.content as test_result_content, test_result.id as test_result_id,test_result.rating, test_result.date');
+		$this->db->select('trainee.first_name, trainee.last_name, trainee.user_id as trainee_id, ');
+		$this->db->from('scheduled_test');
+		$this->db->join('module', ' module.id = scheduled_test.module_id AND scheduled_test.content IS NOT NULL AND scheduled_test.id = '.$test_id, 'inner');
+		$this->db->join('test_result','scheduled_test.id = test_result.test_id','inner');
+		$this->db->join('trainee','test_result.trainee_id = trainee.user_id','inner');
+		$query = $this->db->get();
+		return $query->result();
+	}
 	public function get_result($test_result_id) {
 		$data = array(
 			'id' => $test_result_id

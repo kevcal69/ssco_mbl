@@ -54,5 +54,29 @@ function format_timestamp($str) {
 	return date('M j Y g:i A',strtotime($str));
 }
 function format_rating($str) {
-	return round(($str*100),3).'%';
+	return round(($str*100),1).'%';
+}
+function stats_parser($array) {
+	$rating_sumarry = 0;
+	 foreach ($array as $key) {
+	 	$rating_sumarry += $key->rating;
+	 	$stats['ratings'][]= $key->rating;
+	 	
+	 }
+	$stats['takers']= count($stats['ratings']);
+	$stats['rating_summary'] = format_rating($rating_sumarry/$stats['takers']);
+	$ratings = $stats['ratings'];
+	$stats['percentage_ratings'] = array_count_values($ratings);
+	 return $stats;
+}
+function stat_format_per_tid($array) {
+	$rating_sumarry = 0;
+	 foreach ($array as $key => $value) {
+	 	$rating_sumarry += $value->rating;
+	 	$stats['ratings'][] = $value->rating;
+	 }
+	$stats['taken'] = count($stats['ratings']);
+	$stats['status'] = ($stats['taken'] > 0) ? 'Done</span>' : '<span class = "text-error">Not Taken</span>';
+	$stats['rating_summary'] = format_rating($rating_sumarry/$stats['taken']);
+	 return $stats;
 }

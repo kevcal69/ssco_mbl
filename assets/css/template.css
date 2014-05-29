@@ -193,7 +193,7 @@ table thead:first-child tr:first-child th {
 	text-align: center;
 }
 
-.button.table-button {
+.button.table-button,.table-button {
 	font-size: .7rem;
 	padding: 4px 10px 3px 10px;
 }
@@ -447,10 +447,7 @@ ul:not(.nav), ol:not(.nav) {
 	line-height: 1.5rem;
 }
 
-ul:not(.nav) li,
-ol:not(.nav) li {
-	margin-bottom: 8px;
-}
+r
 
 /*Navigation*/
 ul.nav, ol.nav {
@@ -680,7 +677,7 @@ ul.nav, ol.nav {
 }
 
 .inline-display {
-	display: inline-block;
+	display: inline !important;
 }
 
 .inlineblock-display {

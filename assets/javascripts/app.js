@@ -11,8 +11,74 @@ $(document).ready(function() {
 		stick_Sidebar.initialize();
 	});
 
+	$('.input-module').on('input','#module-search', function() {
+		var _keyword = $(this).val();
+		if (_keyword.length > 5) {
+			$.ajax({
+				type: "POST",
+				url: MBL.BASE_URL+ "admin/test/module_quick_access", 
+				data: { keyword: _keyword},
+				cache:false,
+				success: 
+				function(data){
+					$('.results-field').html(data);
+				}
+			});
+		} else if  (_keyword.length < 5) {
+			$('.results-field').empty();
+		}
+	}).on('click','#sm-r', function() {
+		$('.mod-stat').css({'margin-left': '-135px'});
+		$('.sched-stat').css({'display': 'inline-block'});
+	}).on('click','#ss-l' ,function() {
+		$('.mod-stat').css({'margin-left': '0px'});
+		$('.sched-stat').css({'display': 'none'});
+	});	
+
+	$('.input-module-trainee').on('input','#module-search', function() {
+		var _keyword = $(this).val();
+		if (_keyword.length > 5) {
+			$.ajax({
+				type: "POST",
+				url: MBL.BASE_URL+ "admin/trainee/module_quick_access", 
+				data: { keyword: _keyword,tid: $(this).data('tid')},
+				cache:false,
+				success: 
+				function(data){
+					$('.results-field').html(data);
+				}
+			});
+		} else if  (_keyword.length < 5) {
+			$('.results-field').empty();
+		}
+	}).on('click','#sm-r', function() {
+		$('.mod-stat').css({'margin-left': '-135px'});
+		$('.sched-stat').css({'display': 'inline-block'});
+	}).on('click','#ss-l' ,function() {
+		$('.mod-stat').css({'margin-left': '0px'});
+		$('.sched-stat').css({'display': 'none'});
+	});	
+	
 });
 
+var makepiechart = {
+	initialize: function(_per,_perVal) {
+		var slices = {
+			"percentages": _per,
+			"colors": ['#859731', '#462D44', '#566047', '#462D44', '#9DAF72','#566047','#000066','#FFDE00','#006666','#CC9900'],
+			"elements": _perVal,
+
+		}
+		var piechart  = Object.create(PieChart);
+		piechart.segmentMode = false;
+		piechart.drawPieChart(slices, 'piechart1');		
+		for (var i = 0; i < slices.percentages.length; i++) {
+		$('#piechart #legend').append("<div class = 'liststyle'><i class = 'fa fa-square fw' style = 'color:"+slices.colors[i]+";'></i> <span class =' chart-label'>"+slices.percentages[i]+"% got "+slices.elements[i]+"% rating </span></div>");	
+
+		}		
+	},
+
+}
 var tables = {
 	initialize: function() {
 		$('#users-table , .module-table-admin').DataTable({
@@ -29,9 +95,21 @@ var tables = {
 		});
 		$('#module-stat-table').DataTable({
 			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-			"pageLength": 15,
+			"pageLength": 10,
 			"order": [[2,'asc']]
-		});				
+		});	
+		$('.module-stat-table').DataTable({
+			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+			"pageLength": 10,
+			"order": [[2,'asc']],
+			"bFilter": false
+		});	
+		$('#module-sched-stat-table').DataTable({
+			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+			"pageLength": 10,
+			"order": [[1,'desc']],
+			"bFilter": false
+		});
 	}
 }
 var question = {

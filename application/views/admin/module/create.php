@@ -28,7 +28,7 @@
 		</div>
 		<form  action = "<?=site_url('admin/module/create_module')?>" method = "POST" name = "question">
 			<div id="field-container">
-				<input type = "text" name = "question[title]"placeholder = "Module Title?" class = "qfield" />
+				<input type = "text" name = "question[title]" placeholder = "Module Title?" class = "qfield" />
 						<div class="controls">
 							<textarea name = "description" id = "description" placholder = "Description">
 								<span style="color: rgb(128, 128, 128);">Description only (not the entire module content)</span>

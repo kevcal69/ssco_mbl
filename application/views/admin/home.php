@@ -52,7 +52,7 @@
 							Test
 						</div>
 						<div class="des">
-							Create, View, and Schedule Tests
+							Tests Q(Modules and Trainee)
 						</div>	
 					</div>
 				</a>
