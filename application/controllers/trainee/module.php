@@ -15,6 +15,7 @@ class Module extends MBL_Controller {
 			$this->load->model('trainee/trainee_module_model');
 			$this->load->helper('application_helper');
 			$this->load->helper('sidebar_helper');
+			$this->load->helper('output_text_helper');
 			$this->load->library('form_validation');
 
 			$this->trainee_id = $this->session->userdata('id');
@@ -47,32 +48,32 @@ class Module extends MBL_Controller {
 
 	public function index() {
 		$this->sidebar_content['actions'] = array(
-					'current_module' => array(
-						'content' => to_sidebar_element('fa-edit','Current Modules'),
-						'href' => base_url('trainee/module/view_current_modules'),
-						'active' => FALSE
-						),
-					'completed_modules' => array(
-						'content' => to_sidebar_element('fa-check-square-o','Completed Modules'),
-						'href' => base_url('trainee/module/view_completed_modules'),
-						'active' => FALSE
-						),
-					'available_modules' => array(
-						'content' => to_sidebar_element('fa-th-large','Available Modules'),
-						'href' => base_url('trainee/module/view_available_modules'),
-						'active' => FALSE
-						),
-					'view_module' => array(
-						'content' => to_sidebar_element('fa-search','View All Modules'),
-						'href' => base_url('trainee/module/view'),
-						'active' => FALSE
-						),
-					'enrol_module' => array(
-						'content' => to_sidebar_element('fa-plus','Enrol in Module'),
-						'href' => base_url('trainee/module/enrol'),
-						'active' => FALSE
-						)
-					);
+			'current_module' => array(
+				'content' => to_sidebar_element('fa-edit','Current Modules'),
+				'href' => base_url('trainee/module/view_current_modules'),
+				'active' => FALSE
+				),
+			'completed_modules' => array(
+				'content' => to_sidebar_element('fa-check-square-o','Completed Modules'),
+				'href' => base_url('trainee/module/view_completed_modules'),
+				'active' => FALSE
+				),
+			'available_modules' => array(
+				'content' => to_sidebar_element('fa-th-large','Available Modules'),
+				'href' => base_url('trainee/module/view_available_modules'),
+				'active' => FALSE
+				),
+			'view_module' => array(
+				'content' => to_sidebar_element('fa-search','View All Modules'),
+				'href' => base_url('trainee/module/view'),
+				'active' => FALSE
+				),
+			'enrol_module' => array(
+				'content' => to_sidebar_element('fa-plus','Enrol in Module'),
+				'href' => base_url('trainee/module/enrol'),
+				'active' => FALSE
+				)
+			);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 
 		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->trainee_id);
@@ -87,7 +88,7 @@ class Module extends MBL_Controller {
 	}
 
 	public function view($id = FALSE) {
-		if ($id !== FALSE) {
+		if ($id !== FALSE && is_numeric($id)) {
 			if ($this->trainee_module_model->is_enroled($id,$this->trainee_id)) {
 				if ($this->trainee_module_model->is_completed($id,$this->trainee_id)) {
 					//already completed the module
@@ -110,6 +111,7 @@ class Module extends MBL_Controller {
 						);
 					$module['enroled'] = TRUE;
 				}
+				$this->sidebar_content['module_statistics'] = $this->trainee_module_model->get_statistics($this->trainee_id,$id);
 			} else {
 				$this->sidebar_content['actions']['enrol'] = array(
 					'content' => to_sidebar_element('fa-plus','Enrol in Module'),
@@ -126,10 +128,30 @@ class Module extends MBL_Controller {
 			$this->parser->parse('layouts/logged_in', $data);
 		} else {
 			//view all available modules
-			$this->sidebar_content['actions'] = array (
-				'back' => array(
-					'content' => to_sidebar_back('Back'),
-					'extra' => 'onClick="history.go(-1);"',
+			$this->sidebar_content['actions'] = array(
+				'current_module' => array(
+					'content' => to_sidebar_element('fa-edit','Current Modules'),
+					'href' => base_url('trainee/module/view_current_modules'),
+					'active' => FALSE
+					),
+				'completed_modules' => array(
+					'content' => to_sidebar_element('fa-check-square-o','Completed Modules'),
+					'href' => base_url('trainee/module/view_completed_modules'),
+					'active' => FALSE
+					),
+				'available_modules' => array(
+					'content' => to_sidebar_element('fa-th-large','Available Modules'),
+					'href' => base_url('trainee/module/view_available_modules'),
+					'active' => FALSE
+					),
+				'view_module' => array(
+					'content' => to_sidebar_element('fa-search','View All Modules'),
+					'href' => base_url('trainee/module/view'),
+					'active' => TRUE
+					),
+				'enrol_module' => array(
+					'content' => to_sidebar_element('fa-plus','Enrol in Module'),
+					'href' => base_url('trainee/module/enrol'),
 					'active' => FALSE
 					)
 				);
@@ -142,10 +164,30 @@ class Module extends MBL_Controller {
 	}
 
 	public function view_current_modules() {
-		$this->sidebar_content['actions'] = array (
-			'back' => array(
-				'content' => to_sidebar_back('Back'),
-				'extra' => 'onClick="history.go(-1);"',
+		$this->sidebar_content['actions'] = array(
+			'current_module' => array(
+				'content' => to_sidebar_element('fa-edit','Current Modules'),
+				'href' => base_url('trainee/module/view_current_modules'),
+				'active' => TRUE
+				),
+			'completed_modules' => array(
+				'content' => to_sidebar_element('fa-check-square-o','Completed Modules'),
+				'href' => base_url('trainee/module/view_completed_modules'),
+				'active' => FALSE
+				),
+			'available_modules' => array(
+				'content' => to_sidebar_element('fa-th-large','Available Modules'),
+				'href' => base_url('trainee/module/view_available_modules'),
+				'active' => FALSE
+				),
+			'view_module' => array(
+				'content' => to_sidebar_element('fa-search','View All Modules'),
+				'href' => base_url('trainee/module/view'),
+				'active' => FALSE
+				),
+			'enrol_module' => array(
+				'content' => to_sidebar_element('fa-plus','Enrol in Module'),
+				'href' => base_url('trainee/module/enrol'),
 				'active' => FALSE
 				)
 			);
@@ -157,10 +199,30 @@ class Module extends MBL_Controller {
 	}
 
 	public function view_completed_modules() {
-		$this->sidebar_content['actions'] = array (
-			'back' => array(
-				'content' => to_sidebar_back('Back'),
-				'extra' => 'onClick="history.go(-1);"',
+		$this->sidebar_content['actions'] = array(
+			'current_module' => array(
+				'content' => to_sidebar_element('fa-edit','Current Modules'),
+				'href' => base_url('trainee/module/view_current_modules'),
+				'active' => FALSE
+				),
+			'completed_modules' => array(
+				'content' => to_sidebar_element('fa-check-square-o','Completed Modules'),
+				'href' => base_url('trainee/module/view_completed_modules'),
+				'active' => TRUE
+				),
+			'available_modules' => array(
+				'content' => to_sidebar_element('fa-th-large','Available Modules'),
+				'href' => base_url('trainee/module/view_available_modules'),
+				'active' => FALSE
+				),
+			'view_module' => array(
+				'content' => to_sidebar_element('fa-search','View All Modules'),
+				'href' => base_url('trainee/module/view'),
+				'active' => FALSE
+				),
+			'enrol_module' => array(
+				'content' => to_sidebar_element('fa-plus','Enrol in Module'),
+				'href' => base_url('trainee/module/enrol'),
 				'active' => FALSE
 				)
 			);
@@ -174,10 +236,30 @@ class Module extends MBL_Controller {
 	}
 
 	public function view_available_modules() {
-		$this->sidebar_content['actions'] = array (
-			'back' => array(
-				'content' => to_sidebar_back('Back'),
-				'extra' => 'onClick="history.go(-1);"',
+		$this->sidebar_content['actions'] = array(
+			'current_module' => array(
+				'content' => to_sidebar_element('fa-edit','Current Modules'),
+				'href' => base_url('trainee/module/view_current_modules'),
+				'active' => FALSE
+				),
+			'completed_modules' => array(
+				'content' => to_sidebar_element('fa-check-square-o','Completed Modules'),
+				'href' => base_url('trainee/module/view_completed_modules'),
+				'active' => FALSE
+				),
+			'available_modules' => array(
+				'content' => to_sidebar_element('fa-th-large','Available Modules'),
+				'href' => base_url('trainee/module/view_available_modules'),
+				'active' => TRUE
+				),
+			'view_module' => array(
+				'content' => to_sidebar_element('fa-search','View All Modules'),
+				'href' => base_url('trainee/module/view'),
+				'active' => FALSE
+				),
+			'enrol_module' => array(
+				'content' => to_sidebar_element('fa-plus','Enrol in Module'),
+				'href' => base_url('trainee/module/enrol'),
 				'active' => FALSE
 				)
 			);
@@ -262,13 +344,33 @@ class Module extends MBL_Controller {
 				redirect('trainee/module/enrol/'. $module_id);
 			}
 		}
-			$this->sidebar_content['actions'] = array (
-				'back' => array(
-					'content' => to_sidebar_back('Back'),
-					'extra' => 'onClick="history.go(-1);"',
-					'active' => FALSE
-					)
-				);
+		$this->sidebar_content['actions'] = array(
+			'current_module' => array(
+				'content' => to_sidebar_element('fa-edit','Current Modules'),
+				'href' => base_url('trainee/module/view_current_modules'),
+				'active' => FALSE
+				),
+			'completed_modules' => array(
+				'content' => to_sidebar_element('fa-check-square-o','Completed Modules'),
+				'href' => base_url('trainee/module/view_completed_modules'),
+				'active' => FALSE
+				),
+			'available_modules' => array(
+				'content' => to_sidebar_element('fa-th-large','Available Modules'),
+				'href' => base_url('trainee/module/view_available_modules'),
+				'active' => FALSE
+				),
+			'view_module' => array(
+				'content' => to_sidebar_element('fa-search','View All Modules'),
+				'href' => base_url('trainee/module/view'),
+				'active' => FALSE
+				),
+			'enrol_module' => array(
+				'content' => to_sidebar_element('fa-plus','Enrol in Module'),
+				'href' => base_url('trainee/module/enrol'),
+				'active' => TRUE
+				)
+			);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
