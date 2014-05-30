@@ -724,6 +724,7 @@ ul.nav, ol.nav {
 .notif-body {
 	padding: 10px;
 	display: table-cell;
+	vertical-align: middle;
 }
 
 .notif-icon {

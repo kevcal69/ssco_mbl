@@ -15,6 +15,7 @@
 	</div>
 
 	<div id="bread-crumbs">
-		<span><?=$bc?></span>
+		<!-- <span><?=$bc?></span> -->
+		<span><?php echo set_breadcrumb(); ?></span>
 	</div>
 </div>

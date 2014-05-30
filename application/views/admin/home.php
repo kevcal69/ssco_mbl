@@ -11,7 +11,7 @@
 			</div>
 			<div class ="text-options">
 				<div class="action">
-					User
+					Users
 				</div>
 				<div class="des">
 					Add, View, Edit and Delete Users
@@ -24,7 +24,7 @@
 			<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/modules.png';?>);"></div>
 			<div class="text-options">
 				<div class="action">
-					Module
+					Modules
 				</div>
 				<div class="des">
 					Create, View, and Edit Modules
@@ -38,7 +38,7 @@
 			</div>
 			<div class="text-options">
 				<div class="action">
-					Test
+					Tests
 				</div>
 				<div class="des">
 					Tests and Test Results
@@ -46,6 +46,19 @@
 			</div>
 		</a>
 	</div>
+	<div class="options" >
+		<a href = "<?=base_url() . 'admin/test';?>">	
+			<div class="thumb" style = "background-image: url(<?=base_url() . 'assets/images/admin/trainee.png';?>);">
+			</div>
+			<div class="text-options">
+				<div class="action">
+					Trainees
+				</div>
+				<div class="des">
+					Trainee Enrolment and Test Results
+				</div>	
+			</div>
+		</a>
 	</div>
 </div>
 

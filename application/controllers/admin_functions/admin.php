@@ -31,8 +31,13 @@ class Admin extends MBL_Controller {
 						'active' => FALSE
 						),
 					array(
-						'content' => to_sidebar_element('fa-question','Test Results'),
+						'content' => to_sidebar_element('fa-question','Tests'),
 						'href' => base_url('admin/test'),
+						'active' => FALSE
+						),
+					array(
+						'content' => to_sidebar_element('fa-group','Trainees'),
+						'href' => base_url('admin/trainee'),
 						'active' => FALSE
 						)
 					)

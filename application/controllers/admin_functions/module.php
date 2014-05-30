@@ -30,8 +30,13 @@
 						'active' => TRUE
 						),
 					array(
-						'content' => to_sidebar_element('fa-question','Test Results'),
+						'content' => to_sidebar_element('fa-question','Tests'),
 						'href' => base_url('admin/test'),
+						'active' => FALSE
+						),
+					array(
+						'content' => to_sidebar_element('fa-group','Trainees'),
+						'href' => base_url('admin/trainee'),
 						'active' => FALSE
 						)
 					),
@@ -89,11 +94,15 @@
 						),
 					'delete' => array(
 						'content' => to_sidebar_element('fa-times-circle','Delete this Module'),
-						'href' => base_url('admin/module/delete'.$id),
-						'active' => FALSE
+						'href' => base_url('admin/module/delete/'.$id),
+						'active' => FALSE,
+						'extra' => 'onClick="if(confirm(\'Do you really want to delete this module?\'))return true; else return false;"'
 						)
 					
-					);		
+					);
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('view' => array('view', $id.'|'.word_limiter($this->mModule->get_title($id),10))));
+
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/module/view',array('module' => $this->mModule->fetch_module($id)),TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
@@ -114,11 +123,15 @@
 						),
 					'delete' => array(
 						'content' => to_sidebar_element('fa-times-circle','Delete this Module'),
-						'href' => base_url('admin/module/delete'.$id),
-						'active' => FALSE
+						'href' => base_url('admin/module/delete/'.$id),
+						'active' => FALSE,
+						'extra' => 'onClick="if(confirm(\'Do you really want to delete this module?\'))return true; else return false;"'
 						)
 					
-					);			
+					);
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('modify' => array('modify', $id.'|'.word_limiter($this->mModule->get_title($id),10))));
+
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/module/modify',array('module' => $this->mModule->fetch_module($id)),TRUE);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);

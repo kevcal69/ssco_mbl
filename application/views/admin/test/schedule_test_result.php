@@ -75,13 +75,12 @@
 					<td class = "table-id collapse nowrap center"><?=$row->test_id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
 			    <td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
-					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->test_result_id?>"><a href="<?=base_url() . 'admin/test/sched_result/'.$row->test_result_id?>">Summary Details</a></td>		
+					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->test_result_id?>"><a href="<?=base_url() . 'admin/test/sched_result/'.$row->test_result_id?>" class="actions">Details</a></td>		
 				</tr>
 			<?php endforeach ?>
 			</tbody>
 		</table>	
 	</div>
-	<div class="panel-footer">Panel footer</div>
 </div>
 <?php else:?>
 <div class="panel panel-danger">
@@ -120,13 +119,12 @@
 					<td class = "table-id"><?=$row->id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
 			    		<td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
-					<td  id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>">Summary Details</a></td>		
+					<td  id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>" class="actions">Details</a></td>		
 				</tr>
 			<?php endforeach ?>
 			</tbody>
 		</table>	
 	</div>
-	<div class="panel-footer">Panel footer</div>
 </div>	
 <?php endif;?>
 

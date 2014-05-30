@@ -43,7 +43,7 @@
 					<td class = "table-id"><?=$row->id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
 			    		<td><?=$row->module_id?> : <?=$row->title?></td>
-					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/sched_result/'.$row->id?>">More Details</a></td>		
+					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/sched_result/'.$row->id?>" class="actions">Details</a></td>		
 			  </tr>
 			<?php endforeach ?>
 			</tbody>

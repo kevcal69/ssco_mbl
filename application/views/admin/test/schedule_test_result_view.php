@@ -23,7 +23,7 @@
 					<?php endif;?>
 					<?php if(!$row->isset_test): ?>
 					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>">
-						<a href="<?=base_url() . 'admin/test/sched_results_view/'.$row->id?>">Summary Details</a>
+						<a href="<?=base_url() . 'admin/test/sched_results_view/'.$row->id?>" class="actions">Details</a>
 					</td>
 					<?php else:?>
 					<td  id = "more-details" data-id = "<?=$row->id?>">

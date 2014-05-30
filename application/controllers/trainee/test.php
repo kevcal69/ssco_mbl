@@ -97,6 +97,8 @@ class Test extends MBL_Controller {
 				}
 			}
 		}
+			//breadcrumb settings
+			$this->config->set_item('replacer_embed', array('test' => array('/trainee/module|module', 'test', '../../module/view/'.$module_id.'|'.word_limiter($this->module_model->get_title($module_id),10)),'take' => ''));
 
 		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/default', $data);

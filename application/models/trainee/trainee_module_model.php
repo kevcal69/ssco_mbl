@@ -25,6 +25,25 @@ class Trainee_module_model extends CI_Model {
 		}
 	}
 
+	function delete($username) {
+		$this->db->trans_start();
+
+		$user = $this->view($username);
+		$result = $this->db->delete('user',array('username' => $username));
+
+		$this->db->trans_complete();
+		return $this->db->trans_status();
+	}
+	
+	public function unenrol_module($module_id, $trainee_id) {
+		$this->db->trans_start();
+
+		$result = $this->db->delete('enrolled_module',array('module_id' => $module_id,'trainee_id' => $trainee_id));
+
+		$this->db->trans_complete();
+		return $this->db->trans_status();
+	}
+
 	public function update_module($module_id,$trainee_id,$rating,$is_completed) {
 		//TODO rating calculation
 		$data = array(
@@ -40,6 +59,7 @@ class Trainee_module_model extends CI_Model {
 	}
 
 	public function get_enroled_module($module_id = FALSE, $trainee_id = FALSE) {
+		$this->load->model('module_model');
 		//allows for different filters
 		if ($module_id !== FALSE && $trainee_id !== FALSE) {
 			//module_id and trainee_id given
@@ -48,25 +68,42 @@ class Trainee_module_model extends CI_Model {
 				'trainee_id' => $trainee_id
 				);
 			$query = $this->db->get_where('enrolled_module', $data);
-			return $query->row();
+			if ($query->row()) {
+				$result = $this->module_model->fetch_module($query->row()->module_id);
+				return $result;
+			} else {
+				return FALSE;
+			}
 		} else if ($module_id === FALSE && $trainee_id !== FALSE) {
 			//only trainee_id is given. gets all modules trainee is enroled in
 			$data = array(
 				'trainee_id' => $trainee_id
 				);
 			$query = $this->db->get_where('enrolled_module', $data);
-			return $query->result();
+			$result = array();
+			foreach ($query->result() as $module) {
+				array_push($result,$this->module_model->fetch_module($module->module_id));
+			}
+			return $result;
 		} else if ($module_id !== FALSE && $trainee_id === FALSE) {
 			//only module_id is given. gets all trainees enroled in module
 			$data = array(
 				'module_id' => $module_id
 				);
 			$query = $this->db->get_where('enrolled_module', $data);
-			return $query->result();
+			$result = array();
+			foreach ($query->result() as $module) {
+				array_push($result,$this->module_model->fetch_module($module->module_id));
+			}
+			return $result();
 		} else {
 			//no parameters
 			$query = $this->db->get('enrolled_module');
-			return $query->result();
+			$result = array();
+			foreach ($query->result() as $module) {
+				array_push($result,$this->module_model->fetch_module($module->module_id));
+			}
+			return $result();
 		}
 	}
 
@@ -122,6 +159,7 @@ class Trainee_module_model extends CI_Model {
 	}
 
 	public function get_current_modules($trainee_id) {
+		$this->load->model('module_model');
 		$data = array(
 			'trainee_id' => $trainee_id,
 			'is_completed' => 0
@@ -136,6 +174,7 @@ class Trainee_module_model extends CI_Model {
 	}
 
 	public function get_completed_modules($trainee_id, $limit = FALSE) {
+		$this->load->model('module_model');
 		$data = array(
 			'trainee_id' => $trainee_id,
 			'is_completed' => 1
@@ -154,6 +193,7 @@ class Trainee_module_model extends CI_Model {
 	}
 
 	public function get_statistics($trainee_id,$module_id) {
+		$this->load->model('module_model');
 		$this->load->model('module_test_result_model');
 		$query = $this->db->get_where('enrolled_module', array('trainee_id' => $trainee_id, 'module_id' => $module_id));
 		$module_row = $query->row();

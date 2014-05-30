@@ -6,7 +6,7 @@
 
 <div class="panel">
 	<div class="panel-heading">
-		<h3 class="panel-title">Modify Module No : <?=$module->id?></h3>
+		<h3 class="panel-title">Modify Module: <?=$module->title?></h3>
 	</div>
 	<div class="panel-body" id = "create-mod">
 		<div class="notif notif-primary">

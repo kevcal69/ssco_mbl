@@ -34,25 +34,25 @@ class User extends MBL_Controller {
 						'active' => FALSE
 						),
 					array(
-						'content' => to_sidebar_element('fa-question','Test Results'),
+						'content' => to_sidebar_element('fa-question','Tests'),
 						'href' => base_url('admin/test'),
+						'active' => FALSE
+						),
+					array(
+						'content' => to_sidebar_element('fa-group','Trainees'),
+						'href' => base_url('admin/trainee'),
 						'active' => FALSE
 						)
 					),
 				'actions' => array(
-					'home' => array(
-						'content' => to_sidebar_element('fa-home','Home'),
-						'href' => base_url('admin/user'),
+					'view' => array(
+						'content' => to_sidebar_element('fa-search','View Users'),
+						'href' => base_url('admin/user/view'),
 						'active' => FALSE
 						),
 					'create' => array(
 						'content' => to_sidebar_element('fa-plus','Create User'),
 						'href' => base_url('admin/user/create'),
-						'active' => FALSE
-						),
-					'view' => array(
-						'content' => to_sidebar_element('fa-search','View Users'),
-						'href' => base_url('admin/user/view'),
 						'active' => FALSE
 						),
 					'edit' => array(
@@ -70,11 +70,7 @@ class User extends MBL_Controller {
     }	
 
 	public function index() {
-		$this->sidebar_content['actions']['home']['active'] = TRUE;
-		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "Admin - SSCO Module-Based Learning";
-		$data['body_content'] = $this->load->view('admin/user/user_functions','',TRUE);
-		$this->parser->parse('layouts/logged_in', $data);
+		redirect('admin/user/view');
 	}
 	public function create() {
 		//set validation rules
@@ -127,7 +123,7 @@ class User extends MBL_Controller {
 		}
 		$this->sidebar_content['actions']['create']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "Create User - Admin - SSCO Module-Based Learning";
+		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
@@ -160,7 +156,7 @@ class User extends MBL_Controller {
 		}
 		$this->sidebar_content['actions']['view']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "View User - Admin - SSCO Module-Based Learning";
+		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
@@ -255,7 +251,7 @@ class User extends MBL_Controller {
 		}
 		$this->sidebar_content['actions']['edit']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "Edit User - Admin - SSCO Module-Based Learning";
+		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
@@ -309,7 +305,7 @@ class User extends MBL_Controller {
 		}
 		$this->sidebar_content['actions']['delete']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "Delete User - Admin - SSCO Module-Based Learning";
+		$data['page_title'] = "SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 

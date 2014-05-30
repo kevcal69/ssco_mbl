@@ -7,8 +7,8 @@
 				<label for="username">Username</label>
 				<div class="controls">
 					<input id="username" name = "username" value="<?php echo set_value('username'); ?>" type = "text" placeholder = "Username" class="field">
-					<?php echo form_error('username','<p class="error">','</p>');?>
-					<?php echo form_error('unique_username','<p class="error">','</p>'); ?>
+					<?php echo form_error('username','<p class="text-error">','</p>');?>
+					<?php echo form_error('unique_username','<p class="text-error">','</p>'); ?>
 				</div>
 			</div>
 
@@ -16,7 +16,7 @@
 				<label for="password">Password</label>
 				<div class="controls">
 					<input id = "password" name = "password" value="<?php echo set_value('password'); ?>" type = "password" placeholder = "Password" class="field">
-					<?php echo form_error('password','<p class="error">','</p>');?>
+					<?php echo form_error('password','<p class="text-error">','</p>');?>
 				</div>
 			</div>
 
@@ -29,7 +29,7 @@
 						<option value="trainee" <?php echo set_select('role', 'trainee'); ?>>Trainee</option>
 						<option value="content_manager" <?php echo set_select('role', 'content_manager'); ?>>Content Manager</option>
 					</select>
-					<?php echo form_error('role','<p class="error">','</p>');?>
+					<?php echo form_error('role','<p class="text-error">','</p>');?>
 				</div>
 			</div>
 

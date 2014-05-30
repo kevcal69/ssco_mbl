@@ -12,12 +12,16 @@ class Trainee_model extends CI_Model {
 		$this->db->select('username');
 		$username = $this->db->get_where('user', array('id' => $trainee_id));
 
-		$result = array();
-		$result['first_name'] = $name->row()->first_name;
-		$result['last_name'] = $name->row()->last_name;
-		$result['username'] = $username->row()->username;
+		if ($name->row() && $username->row()) {
+			$result = array();
+			$result['first_name'] = $name->row()->first_name;
+			$result['last_name'] = $name->row()->last_name;
+			$result['username'] = $username->row()->username;
 
-		return $result;
+			return $result;
+		} else {
+			return FALSE;
+		}
 	}
 
 	public function get_statistics($trainee_id) {

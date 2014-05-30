@@ -31,8 +31,13 @@
 						'active' => TRUE
 						),
 					array(
-						'content' => to_sidebar_element('fa-question','Test Results'),
+						'content' => to_sidebar_element('fa-question','Tests'),
 						'href' => base_url('admin/test'),
+						'active' => FALSE
+						),
+					array(
+						'content' => to_sidebar_element('fa-group','Trainees'),
+						'href' => base_url('admin/trainee'),
 						'active' => FALSE
 						)
 					)
@@ -55,7 +60,10 @@
 						'href' => base_url('admin/question/test_set_up/'.$id),
 						'active' => FALSE
 						)
-					);	
+					);
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('create' => array('create', $id.'|'.word_limiter($this->mModule->get_title($id),10))));
+
 		$data['page_title'] = "SSCO Module Base Learning";
 		$data['body_content'] = $this->load->view('admin/question/create',array('module' => $this->mModule->fetch_module($id),'questions' => $this->mQ->fetch_questions($id)),TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
@@ -81,7 +89,10 @@
 			'module' => $this->mModule->fetch_module($id),
 			'questions' => $this->mQ->fetch_test_questions($id),
 			'test' => $this->mQ->fetch_test_sched($id),
-			);		
+			);
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('test_set_up' => array('scheduled test', $id.'|'.word_limiter($this->mModule->get_title($id),10))));
+
 		$data['body_content'] = $this->load->view('admin/question/test_set_up',$test_data,TRUE); // kevcal
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);		

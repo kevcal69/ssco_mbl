@@ -3,14 +3,9 @@
 	<div class="panel-body">
 		<?php
 			echo form_open('admin/user/edit', array('class' => 'form-horizontal'));
-			// $users = array('' => 'Select User to Edit') + $users;
 		?>
 			<div class="control-group">
 				<label for="users">Choose User</label>
-				<!-- <div class="controls">
-					<?php echo form_dropdown('users',$users,'class="field"', 'class="field" id="users"'); ?>
-					<?php echo form_error('users','<p class="text-error">','</p>');?>
-				</div> -->
 				<div class="controls">
 					<input list="user-list" name="users" class="field" id="users" placeholder="Enter Username" value="<?php echo set_value('users')?>">
 

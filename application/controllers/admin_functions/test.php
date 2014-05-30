@@ -31,14 +31,21 @@
 						'active' => FALSE
 						),
 					array(
-						'content' => to_sidebar_element('fa-question','Test Results'),
+						'content' => to_sidebar_element('fa-question','Tests'),
 						'href' => base_url('admin/test'),
 						'active' => TRUE
+						),
+					array(
+						'content' => to_sidebar_element('fa-group','Trainees'),
+						'href' => base_url('admin/trainee'),
+						'active' => FALSE
 						)
 					),
 				);
 		 }
 	function index() {
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('test' => 'test results'));
 		$this->sidebar_content['actions'] = array(
 					'Mod_test' => array(
 						'content' => to_sidebar_element('fa-bars','By Module'),
@@ -75,7 +82,10 @@
 						'href' => base_url('admin/trainee/'),
 						'active' => FALSE
 						)
-					);			
+					);
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('module_test_view' => '','test' => array('module test results', $id.'|'.word_limiter($this->mModule->get_title($id),10))));
+		
 		$this->load->helper('output_text_helper');
 		$this->load->model('module_test_result_model','mod_res');
 		$myData['module_test_result'] = $this->mod_res->get_test_results_with_module_detail_by_module_id($id);
@@ -96,7 +106,10 @@
 						'href' => base_url('admin/trainee/'),
 						'active' => FALSE
 						)
-					);			
+					);
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('schedule_test_view' => '','test' => array('scheduled test results', $id.'|'.word_limiter($this->mModule->get_title($id),10))));
+
 		$this->load->helper('output_text_helper');
 		$this->load->model('scheduled_test_result_model','sched_res');
 		$this->load->model('question_model','mQ');
@@ -108,7 +121,7 @@
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	} 	
-	function sched_results_view($test_result_id) {
+	function sched_results_view($test_id) {
 		$this->sidebar_content['actions'] = array(
 					'Mod_test' => array(
 						'content' => to_sidebar_element('fa-bars','By Module'),
@@ -120,15 +133,18 @@
 						'href' => base_url('admin/trainee/'),
 						'active' => FALSE
 						)
-					);			
+					);
 		$this->load->model('admin/user_model');
 		$this->load->helper('output_text_helper');
 		$this->load->model('scheduled_test_result_model','test_result_model');
 		$this->load->model('module_model');
-		$result['scheduled_test_result'] = $this->test_result_model->get_test_results_with_module_detail_by_test_id($test_result_id);
+		$result['scheduled_test_result'] = $this->test_result_model->get_test_results_with_module_detail_by_test_id($test_id);
 		$data['page_title'] = "SSCO Module Base Learning";
 		$data['body_content'] = $this->load->view('admin/test/schedule_test_result',$result,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('test' => 'scheduled test results', 'sched_results_view' => array('../schedule_test_view/'.$this->mQ->get_scheduled_tests($test_id)->module_id.'|'.word_limiter($this->mModule->get_title($this->mQ->get_scheduled_tests($test_id)->module_id),10), $test_id)));
+
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 	function result($test_result_id) {
@@ -153,6 +169,10 @@
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
 			$data['page_title'] = "SSCO Module-Based Learning";
+			
+			//breadcrumb settings
+			$this->config->set_item('replacer_embed', array('result'=> array('../module_test_view/'.$result_content['details']['module_id'].'|'.word_limiter($result_content['details']['module_title'],10), $test_result_id), 'test' => array('module test results')));
+
 			$this->parser->parse('layouts/default', $data);
 		}
 	}		
@@ -186,6 +206,9 @@
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
 			$data['page_title'] = "SSCO Module-Based Learning";
+			//breadcrumb settings
+			$this->config->set_item('replacer_embed', array('answers'=> array('../module_test_view/'.$result_content['details']['module_id'].'|'.word_limiter($result_content['details']['module_title'],10), $test_result_id), 'test' => array('module test answers')));
+
 			$this->parser->parse('layouts/default', $data);
 		}
 	}
@@ -213,6 +236,10 @@
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
 			$data['page_title'] = "SSCO Module-Based Learning";
+
+			//breadcrumb settings
+			$this->config->set_item('replacer_embed', array('sched_result'=> array('../module_test_view/'.$result_content['details']['module_id'].'|'.word_limiter($result_content['details']['module_title'],10), $test_result_id), 'test' => array('scheduled test results')));
+
 			$this->parser->parse('layouts/default', $data);
 		}
 	}
@@ -239,11 +266,16 @@
 			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
 			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
 
+			$result_content['details']['module_title'] = $this->module_model->get_title($result->module_id);
 			$result_content['details']['module_id'] = $result->module_id;
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
 			$data['page_title'] = "SSCO Module-Based Learning";
+
+			//breadcrumb settings
+			$this->config->set_item('replacer_embed', array('sched_answers'=> array('../module_test_view/'.$result_content['details']['module_id'].'|'.word_limiter($result_content['details']['module_title'],10), $test_result_id), 'test' => array('scheduled test answers')));
+
 			$this->parser->parse('layouts/default', $data);
 		}
 	}		
@@ -281,7 +313,7 @@
 						</div>
 						<div id="info-box">
 							<div id="title">
-								'.$module->title.'
+								'.word_limiter($module->title,10).'
 							</div>
 							<div id="stat">
 								<div class="mod-stat">
