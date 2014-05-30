@@ -1,31 +1,28 @@
 <div class="panel">
 	<div class="panel-heading">
-		<h3 class="panel-title">List of Scheduled test</h3>
+		<h3 class="panel-title"><?=$this->mModule->get_title($mid)?> - Scheduled Tests</h3>
 	</div>
 	<div class="panel-body">
 	<?php if (isset($scheduled_test) && !empty($scheduled_test)):?>		
 		<table id = "module-sched-stat-table">
 			<thead>
 				<tr>
-					<th>Module Test ID</th>
+					<th class="collapse nowrap center">Test ID</th>
 					<th>Status</th>
-					<th># : Name</th>
-					<th>Actions</th>
+					<th class="collapse nowrap center">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php foreach ($scheduled_test as $row): ?>
 				<tr>
-					<td class = "table-id"><?=$row->id?></td>
+					<td class = "table-id collapse nowrap center"><?=$row->id?></td>
 					<?php if(!$row->isset_test): ?>
-						<td class = "table-id button-success" > Done</td>
+						<td class = "table-id button-success" >Done</td>
 					<?php else:?>
-						<td class = "table-id button-danger" >On Going </td>
+						<td class = "table-id button-danger" >Ongoing</td>
 					<?php endif;?>
-
-			    		<td></td>
-			    		<?php if(!$row->isset_test): ?>
-					<td  id = "more-details" data-id = "<?=$row->id?>">
+					<?php if(!$row->isset_test): ?>
+					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>">
 						<a href="<?=base_url() . 'admin/test/sched_results_view/'.$row->id?>">Summary Details</a>
 					</td>
 					<?php else:?>

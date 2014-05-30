@@ -50,7 +50,7 @@
 						'active' => TRUE
 						),
 					'create' => array(
-						'content' => to_sidebar_element('fa-plus-square','Create Modules'),
+						'content' => to_sidebar_element('fa-plus-square','Create Module'),
 						'href' => base_url('admin/module/create'),
 						'active' => FALSE
 						)
@@ -138,8 +138,13 @@
 				'description' => addslashes($module_description),
 				'content' => addslashes($str)
 			);
-
-			if ($this->mModule->create_module($data)) {
+			$create = $this->mModule->create_module($data);
+			if ($create) {
+				if ($_FILES['cover-picture-upload']['size'] != 0 && $_FILES['cover-picture-upload']['error'] == 0) {
+					if (!$this->upload_cover_picture($id)) {
+						redirect('admin/module/modify/'.$id,'refresh');
+					}
+				}
 				redirect('admin/module');
 			} else  {
 				show_404();

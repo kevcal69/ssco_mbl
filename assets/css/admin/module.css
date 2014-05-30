@@ -95,6 +95,16 @@
 	margin-bottom: 20px;
 }
 
+.module.create #cover-picture-container, .module.modify #cover-picture-container {
+	margin-top: 10px;
+	border-color: rgb(204, 204, 204);
+}
+
+.module.create #cover-picture-container #cover-picture-preview, .module.modify #cover-picture-container #cover-picture-preview {
+	max-height: 200px;
+	max-width: 100%;
+}
+
 /*GRID*/
  #module-container #grid-container-show{
  	overflow: hidden;
@@ -139,7 +149,7 @@
 	background-color: white;
 	height: 200px;
 	background-repeat: no-repeat;
-	background-size: auto auto;
+	background-size: 100% auto;
 	background-position: center;
 }
 
@@ -210,9 +220,7 @@
 	 -webkit-transform:rotate(360deg);
 }
 
-
-
- #module-container #list-container ul li .thumb {
+#module-container #list-container ul li .thumb {
 	background-color: white;
 	height: 50px;
 	width: 50px;

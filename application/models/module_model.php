@@ -18,7 +18,7 @@ class Module_model extends CI_Model {
 
 	function create_module($data) {
 		if ($this->db->insert('module', $data)) {
-			return true;	
+			return $this->db->insert_id();
 		} 
 		return false;
 	}

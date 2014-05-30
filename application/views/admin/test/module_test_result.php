@@ -1,7 +1,7 @@
 <?php if(isset($module_test_result) && !empty($module_test_result)):?>
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<h3 class="panel-title">Stats Sumarry for Module : # <?=$module_test_result[0]->module_id?></h3>
+		<h3 class="panel-title"><?=$this->mModule->get_title($module_test_result[0]->module_id)?></h3>
 	</div>
 	<div class="panel-body">
 		<?php $var = stats_parser($module_test_result, 'rating')?>
@@ -34,7 +34,7 @@
 					</div>
 					<div class="actions">
 						<ul>
-							<li><a href=""> View Module</a></li>
+							<li><a href="<?php echo base_url('admin/module/view/'.$module_test_result[0]->module_id)?>"> View Module</a></li>
 						</ul>
 					</div>
 					<div class="summary">
@@ -57,7 +57,7 @@
 </div>	
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<h3 class="panel-title">Module Test Result</h3>
+		<h3 class="panel-title">Module Test Results</h3>
 	</div>
 	<div class="panel-body">
 		<table id = "module-stat-table">
@@ -66,7 +66,7 @@
 					<th>Module Test ID</th>
 					<th>Date</th>
 					<th># : Name</th>
-					<th>Actions</th>
+					<th class="collapse nowrap center">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -74,14 +74,13 @@
 				<tr>
 					<td class = "table-id"><?=$row->id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
-			    		<td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
-					<td  id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>">Summary Details</a></td>		
+			    <td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
+					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>">Summary Details</a></td>		
 				</tr>
 			<?php endforeach ?>
 			</tbody>
 		</table>	
 	</div>
-	<div class="panel-footer">Panel footer</div>
 </div>
 <?php else:?>
 <div class="panel panel-danger">
@@ -102,31 +101,30 @@
 	
 <div class="panel panel-danger">
 	<div class="panel-heading">
-		<h3 class="panel-title">Module Test Result</h3>
+		<h3 class="panel-title">Module Test Results</h3>
 	</div>
 	<div class="panel-body">
 		<table id = "module-stat-table">
 			<thead>
 				<tr>
-					<th>Module Test ID</th>
+					<th class="collapse nowrap center">Module Test ID</th>
 					<th>Date</th>
 					<th># : Name</th>
-					<th>Actions</th>
+					<th class="collapse nowrap center">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php foreach ($module_test_result as $row): ?>
 				<tr>
-					<td class = "table-id"><?=$row->id?></td>
+					<td class = "table-id collapse nowrap center"><?=$row->id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
-			    		<td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
-					<td  id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>">Summary Details</a></td>		
+			    <td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
+					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>">Summary Details</a></td>		
 				</tr>
 			<?php endforeach ?>
 			</tbody>
 		</table>	
 	</div>
-	<div class="panel-footer">Panel footer</div>
 </div>	
 <?php endif;?>
 

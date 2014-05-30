@@ -28,12 +28,12 @@
 					array(
 						'content' => to_sidebar_element('fa-book','Modules'),
 						'href' => base_url('admin/module'),
-						'active' => TRUE
+						'active' => FALSE
 						),
 					array(
 						'content' => to_sidebar_element('fa-question','Test Results'),
 						'href' => base_url('admin/test'),
-						'active' => FALSE
+						'active' => TRUE
 						)
 					)
 				);            			
@@ -75,7 +75,7 @@
 						'href' => base_url('admin/trainee'),
 						'active' => TRUE
 						)
-					);		
+					);
 		$this->load->helper('output_text_helper');
 		$this->load->model('Module_model','mModule');
 		$this->load->model('module_test_result_model','mod_res');
@@ -90,6 +90,18 @@
 		$this->parser->parse('layouts/logged_in', $data);
 	} 
 	function schedule_test_view($id) {
+		$this->sidebar_content['actions'] = array(
+					'Mod_test' => array(
+						'content' => to_sidebar_element('fa-bars','By Module'),
+						'href' => base_url('admin/test/'),
+						'active' => FALSE
+						),
+					'trainee_test' => array(
+						'content' => to_sidebar_element('fa-tags','By Trainee'),
+						'href' => base_url('admin/trainee'),
+						'active' => TRUE
+						)
+					);
 		$this->load->helper('output_text_helper');
 		$this->load->model('scheduled_test_result_model','sched_res');
 		$this->load->model('question_model','mQ');

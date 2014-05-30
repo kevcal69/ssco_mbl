@@ -92,7 +92,8 @@ var tables = {
 		});
 		$('#users-stat-table').DataTable({
 			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-			"pageLength": 25
+			"pageLength": 25,
+			"order": [[1,'asc']]
 		});
 		$('#module-stat-table').DataTable({
 			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],

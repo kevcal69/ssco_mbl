@@ -54,13 +54,8 @@
 						'content' => to_sidebar_element('fa-tags','Scheduled Test'),
 						'href' => base_url('admin/question/test_set_up/'.$id),
 						'active' => FALSE
-						),
-					'stats' => array(
-						'content' => to_sidebar_element('fa-bar-chart-o','Users\' Stats'),
-						'href' => base_url(''),
-						'active' => FALSE
 						)
-					);		
+					);	
 		$data['page_title'] = "SSCO Module Base Learning";
 		$data['body_content'] = $this->load->view('admin/question/create',array('module' => $this->mModule->fetch_module($id),'questions' => $this->mQ->fetch_questions($id)),TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
@@ -79,13 +74,8 @@
 						'content' => to_sidebar_element('fa-tags','Scheduled Test'),
 						'href' => base_url('admin/question/test_set_up/'.$id),
 						'active' => TRUE
-						),
-					'stats' => array(
-						'content' => to_sidebar_element('fa-bar-chart-o','Users\' Stats'),
-						'href' => base_url(''),
-						'active' => FALSE
 						)
-					);		
+					);
 		$data['page_title'] = "SSCO Module Base Learning";
 		$test_data = array(
 			'module' => $this->mModule->fetch_module($id),

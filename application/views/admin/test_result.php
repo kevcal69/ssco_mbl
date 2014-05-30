@@ -73,7 +73,11 @@
 			</div>
 			<div class="panel-body">
 			<?php if ($this->session->userdata('role') && $this->session->userdata('role') === "admin"): ?>
-				<a href="<?=base_url() . 'admin/test/answers/'.$details['test_result_id'] ?>" class = "button button-warning">View Correct Answers</a>
+				<?php if ($action === 'sched_result'):?>
+					<a href="<?=base_url() . 'admin/test/sched_answers/'.$details['test_result_id'] ?>" class = "button button-warning">View Correct Answers</a>
+				<?php else:?>
+					<a href="<?=base_url() . 'admin/test/answers/'.$details['test_result_id'] ?>" class = "button button-warning">View Correct Answers</a>
+				<?php endif;?>
 			<?php endif; ?>
 				<div class="table vertical-headings test-result-table">
 					<div class="tr">

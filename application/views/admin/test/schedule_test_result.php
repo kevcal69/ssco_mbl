@@ -1,7 +1,7 @@
 <?php if(isset($scheduled_test_result) && !empty($scheduled_test_result)):?>
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<h3 class="panel-title">Stats Sumarry for Module : # <?=$scheduled_test_result[0]->module_id?></h3>
+		<h3 class="panel-title"><?=$this->mModule->get_title($scheduled_test_result[0]->module_id)?></h3>
 	</div>
 	<div class="panel-body">
 		<?php $var = stats_parser($scheduled_test_result, 'rating')?>
@@ -34,7 +34,7 @@
 					</div>
 					<div class="actions">
 						<ul>
-							<li><a href=""> View Module</a></li>
+							<li><a href="<?php echo base_url('admin/module/view/'.$scheduled_test_result[0]->module_id)?>"> View Module</a></li>
 						</ul>
 					</div>
 					<div class="summary">
@@ -57,7 +57,7 @@
 </div>	
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<h3 class="panel-title">Module Test Result</h3>
+		<h3 class="panel-title">Scheduled Test Results</h3>
 	</div>
 	<div class="panel-body">
 		<table id = "module-stat-table">
@@ -66,16 +66,16 @@
 					<th>Module Test ID</th>
 					<th>Date</th>
 					<th># : Name</th>
-					<th>Actions</th>
+					<th class="collapse nowrap center">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php foreach ($scheduled_test_result as $row): ?>
 				<tr>
-					<td class = "table-id"><?=$row->test_id?></td>
+					<td class = "table-id collapse nowrap center"><?=$row->test_id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
-			    		<td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
-					<td  id = "more-details" data-id = "<?=$row->test_result_id?>"><a href="<?=base_url() . 'admin/test/sched_result/'.$row->test_result_id?>">Summary Details</a></td>		
+			    <td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
+					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->test_result_id?>"><a href="<?=base_url() . 'admin/test/sched_result/'.$row->test_result_id?>">Summary Details</a></td>		
 				</tr>
 			<?php endforeach ?>
 			</tbody>
