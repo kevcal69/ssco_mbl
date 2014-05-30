@@ -70,7 +70,7 @@
 						)	
 					);
 		$data['page_title'] = "SSCO Module Base Learning";
-		$data['body_content'] = $this->load->view('admin/module/create',array(),TRUE); // kevcal
+		$data['body_content'] = $this->load->view('admin/module/create',array('taglist' => $this->mModule->get_tags()),TRUE); // kevcal
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	}	
@@ -93,9 +93,9 @@
 						'active' => FALSE
 						)
 					
-					);		
+					);	
 		$data['page_title'] = "SSCO Module-Based Learning";
-		$data['body_content'] = $this->load->view('admin/module/view',array('module' => $this->mModule->fetch_module($id)),TRUE); 
+		$data['body_content'] = $this->load->view('admin/module/view',array('module' => $this->mModule->fetch_module($id),'tags' => $this->mModule->get_module_tags($id)),TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	}
@@ -119,26 +119,27 @@
 						)
 					
 					);			
+		$module_data['module'] = $this->mModule->fetch_module($id);
+		$module_data['tags'] = $this->mModule->get_module_tags($id);
+		$module_data['taglist'] = $this->mModule->get_tags();
 		$data['page_title'] = "SSCO Module-Based Learning";
-		$data['body_content'] = $this->load->view('admin/module/modify',array('module' => $this->mModule->fetch_module($id)),TRUE);
+		$data['body_content'] = $this->load->view('admin/module/modify',$module_data,TRUE);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 		// echo stripslashes($this->mModule->fetch_module($id)->content);
 	}	
 
 	function create_module()  {
-
 		$str =  $this->input->post('editor1');
 		$module_title = $this->input->post('title');
-		$module_description = $this->input->post('description');		
-
-
+		$module_description = $this->input->post('description');	
+		$tags = $this->input->post('tags');
 			$data =  array(
 				'title' => addslashes($module_title),
 				'description' => addslashes($module_description),
 				'content' => addslashes($str)
 			);
-			$id = $this->mModule->create_module($data);
+			$id = $this->mModule->create_module($data,$tags);
 			if ($id !== FALSE) {
 				if ($_FILES['cover-picture-upload']['size'] != 0 && $_FILES['cover-picture-upload']['error'] == 0) {
 					if (!$this->upload_cover_picture($id)) {
@@ -167,13 +168,14 @@
 		$module_title = $this->input->post('title');
 		$module_description = $this->input->post('description');
 		$id = $this->input->post('id');
-
+		$tags = $this->input->post('tags');
 		$data = array(
 			'title' => addslashes($module_title),
 			'description' => addslashes($module_description),
 			'content' => addslashes($str)
 		);
-		if ($this->mModule->modify_module($data,$id) >= 0) {
+
+		if ($this->mModule->modify_module($data,$id, $tags) >= 0) {
 			//success
 			if ($_FILES['cover-picture-upload']['size'] != 0 && $_FILES['cover-picture-upload']['error'] == 0) {
 				if (!$this->upload_cover_picture($id)) {

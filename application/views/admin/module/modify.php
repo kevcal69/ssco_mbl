@@ -3,11 +3,11 @@
 <?php if($this->session->flashdata('alert')): ?>
 <p class="alert text-error"><?=$this->session->flashdata('alert')?>s</p>
 <?php endif; ?>
-
 <div class="panel">
 	<div class="panel-heading">
 		<h3 class="panel-title">Modify Module No : <?=$module->id?></h3>
 	</div>
+	<form enctype='multipart/form-data' action = "<?=site_url('admin/module/modify_module')?>" method = "POST" name = "question">
 	<div class="panel-body" id = "create-mod">
 		<div class="notif notif-primary">
 			<div class="notif-icon">
@@ -23,10 +23,11 @@
 					<li>Always check for the source</li>
 					<li>Be sure to delete the initial content</li>
 					<li>Choices are found below check the checkbox if the choice is an answer</li>
+					<li>Tags can be found at the bottom.</li>
+					<li>Include your title in your tags. Preferable separate per space</li>
 				</ul>				
 			</div>
 		</div>
-		<form enctype='multipart/form-data' action = "<?=site_url('admin/module/modify_module')?>" method = "POST" name = "question">
 			<div id="field-container">
 				<input type = "text" name = "title" value = "<?=stripslashes($module->title)?>" placeholder = "Module Title?" class = "qfield" />
 				<input name = "id" value = "<?=stripslashes($module->id)?>" type = "hidden">
@@ -75,8 +76,24 @@
 				</script>				
 			</div>
 			<button type = "button" class = "button-info float-r" id ="next-content">Next</button>
-		</form>
-
-	</div>
+		</div>
+		<div class="panel-footer tags-section">
+				<span>TAGS :</span>
+				<input type = "text" id = "tag-input" list = "tag-list" placeholder = "Place tag and press enter (5 maximum tags)" class = "field tag-field" />
+				<datalist id="tag-list">
+					<?php foreach ($taglist as $tagli):?>
+						<option value="<?=$tagli->tags?>"></option>
+					<?php endforeach;?>
+				</datalist>		
+				<div class = "tag-list">
+					<?php foreach ($tags as $tag): ?>
+						<button type = "button" class = "button-warning button-tags table-button">
+						<?=$tag->tags?><input  type = "hidden" value = "<?=$tag->tags?>" name = "tags[]">
+						<i class = "fa fa-times-circle fa-fw close-parent"></i>
+						</button>
+					<?php endforeach; ?>
+				</div>
+		</div>
+	</form>
 </div>
 

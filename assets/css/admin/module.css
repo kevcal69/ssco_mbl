@@ -248,3 +248,19 @@
 #mod-content {
 	text-align: left;
 }
+
+.tags-section{
+	text-align: left;
+	min-height: 100px;
+}
+.tags-section .tag-field {
+	width: 350px;
+	padding: 10px 15px;
+}
+.tags-section .tag-list {
+	margin: 10px 0px 0px 50px;
+	width: 500px;
+}
+.tags-section .button-tags {
+	margin: 5px;
+}

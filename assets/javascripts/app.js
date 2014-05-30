@@ -6,11 +6,12 @@ $(document).ready(function() {
 	question.initialize();	
 	test_form.initialize();
 	close_panel.initialize();
-	tables.initialize();
+ 	tables.initialize();
+	tags.initialize();
+	cover_picture_upload.initialize();
 	$(window).scroll(function() {
 		stick_Sidebar.initialize();
 	});
-	cover_picture_upload.initialize();
 
 	$('.input-module').on('input','#module-search', function() {
 		var _keyword = $(this).val();
@@ -59,8 +60,42 @@ $(document).ready(function() {
 		$('.mod-stat').css({'margin-left': '0px'});
 		$('.sched-stat').css({'display': 'none'});
 	});
+
 });
 
+var tags = {
+	initialize: function() {
+		$('.close-parent').on('click', function() {
+			$(this).parent().remove();
+		});
+
+		$('.tags-section').on('keypress','#tag-input',function(e){
+			 if (e.which == 13) {
+				e.preventDefault();
+			 	if ($('.button-tags').size() >= 50) {
+			 		$('.notif-error').remove();
+			 		$("#tag-input").after("<span class = 'text-error notif-error'>Maximum Tag Number Reached</span>");
+			 	} else {
+			 		var _array = new Array();
+			 		$('.button-tags').each(function (_tag) {
+			 			_array.push($(this).text().trim());
+			 		});
+			 		if (jQuery.inArray(($("#tag-input").val()).trim(), _array) > -1) {
+			 			$('.notif-error').remove();
+			 			$("#tag-input").after("<span class = 'text-error notif-error'>Cant add the same tag</span>");
+			 		} else {
+			 			$('.notif-error').remove();
+			 			$(this).siblings('.tag-list').append(' <button type = "button" class = "button-warning table-button button-tags">'+($("#tag-input").val()).trim()+'<input  type = "hidden" value = "'+($("#tag-input").val()).trim()+'" name = "tags[]"> <i class = "fa fa-times-circle fa-fw close-parent"></i></button>');
+			 		$('.close-parent').bind('click', function() {
+			 			$(this).parent().remove();
+			 		});
+			 		}
+			 	}
+			 } 
+		});
+
+	}
+}
 var makepiechart = {
 	initialize: function(_per,_perVal) {
 		var slices = {
