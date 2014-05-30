@@ -182,15 +182,23 @@ table thead:first-child tr:first-child th {
 }
 
 .collapse {	
-	width: 1px;
+	width: 1px !important;
 }
 
 .nowrap {	
-	white-space: nowrap;
+	white-space: nowrap !important;
 }
 
 .center {	
-	text-align: center;
+	text-align: center !important;
+}
+
+.left {
+	text-align: left !important;
+}
+
+.right {
+	text-align: right !important;
 }
 
 .button.table-button,.table-button {
@@ -338,6 +346,11 @@ input[type="checkbox"] {
 	margin-top: 4px;
 	margin-left: -20px;
 	vertical-align: middle;
+}
+
+label>input[type="file"] {
+	position:fixed;
+	bottom:-100px;
 }
 
 label.checkbox, 
@@ -549,14 +562,27 @@ ul.nav, ol.nav {
 .sidebar a:hover {
 	outline: 0;
 }
-.sidebar .search {
-	position: relative;
-	display: block;
-	padding: 10px 15px;
+
+.sidebar .sidebar-search {
+	margin-bottom: -2px;
 }
 
-.sidebar .search input {
-	width: 170px;
+.sidebar .sidebar-search>a {
+	padding: 7px 5px;
+	background-color: #E2E2E2;
+	cursor: default;
+}
+
+.sidebar .sidebar-searchbox {
+	width: calc(100% - 28px);
+}
+
+.sidebar .sidebar-search-icon {
+	width: 28px;
+	height: 28px;
+	margin: 0;
+	padding: 0;
+	font-family: "FontAwesome","OpenSansLight";
 }
 
 /*Panels*/

@@ -17,10 +17,7 @@
 		<div id="grid-container">
 			<?php foreach ($modules as $module): ?>
 				<div class = "module-box">
-					<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);">
-						<img src="">
-
-					</div>
+					<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);"></div>
 					<div class = "mb-title">
 						<?=character_limiter($module->title,25);?>
 					</div>
@@ -34,7 +31,7 @@
 									<li><a href="<?=base_url() . 'admin/module/view/'.$module->id?>"><button type="button" class = "button-primary">View</button></a></li>
 									<li><a href="<?=base_url() . 'admin/question/create/'.$module->id?>"><button type="button" class = "button-info">Test Q</button></a></li>
 									<li><a href="<?=base_url() . 'admin/module/modify/'.$module->id?>"><button type="button" class = "button-warning">Modify</button></a></li>
-									<li><a href="<?=base_url() . 'admin/module/delete/'.$module->id?>" onClick="if(confirm('You really want ot delete?'))return true; else return false;"><button type="button" class = "button-danger">Delete</button></a></li>
+									<li><a href="<?=base_url() . 'admin/module/delete/'.$module->id?>" onClick="if(confirm('Do you really want to delete this module?'))return true; else return false;"><button type="button" class = "button-danger">Delete</button></a></li>
 
 								</ul>
 							</div>	
@@ -87,7 +84,7 @@
 										<span><a href="<?=base_url() . 'admin/module/view/'.$module->id?>" class = "text-primary text-size-s3">View</a></span>
 										<span><a href="<?=base_url() . 'admin/question/create/'.$module->id?>" class = "text-info text-size-s3">Test Q</a></span>
 										<span><a href="<?=base_url() . 'admin/module/modify/'.$module->id?>" class = "text-warning text-size-s3">Modify</a></span>
-										<span><a href="<?=base_url() . 'admin/module/delete/'.$module->id?>" class = "text-error text-size-s3" onClick="if(confirm('You really want ot delete?'))return true; else return false;">Delete</a></span>
+										<span><a href="<?=base_url() . 'admin/module/delete/'.$module->id?>" class = "text-error text-size-s3" onClick="if(confirm('Do you really want to delete this module?'))return true; else return false;">Delete</a></span>
 									</div>
 								</td>
 							<?php elseif ($this->session->userdata('role') === "trainee"): ?>
@@ -97,8 +94,8 @@
 								</td>
 							<?php endif; ?>
 						<?php endif; ?>
-						<td style="display:none;"><?=$module->description?></td>
-						<td style="display:none;"><?=$module->content?></td>
+						<td style="display:none;"><?=stripslashes(strip_tags($module->description))?></td>
+						<td style="display:none;"><?=stripslashes($module->content)?></td>
 				  </tr>
 				<?php endforeach ?>
 				</tbody>

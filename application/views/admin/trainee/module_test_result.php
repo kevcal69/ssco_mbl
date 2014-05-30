@@ -25,7 +25,7 @@
 </div>
 <div class="panel">
 	<div class="panel-heading">
-		<h3 class="panel-title">Quck Access to Module</h3>
+		<h3 class="panel-title">Search Module</h3>
 	</div>
 	<div class="panel-body input-module-trainee">
 		<div class="controls">		
@@ -55,7 +55,7 @@
 					<th>Module Test ID</th>
 					<th>Date</th>
 					<th># : Module Title</th>
-					<th>Actions</th>
+					<th class="collapse nowrap center">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -63,8 +63,8 @@
 				<tr>
 					<td class = "table-id"><?=$row->id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
-			    		<td><?=$row->module_id?> : <?=$row->title?></td>
-					<td  id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>">More Details</a></td>		
+			    <td><?=$row->module_id?> : <?=$row->title?></td>
+					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>">More Details</a></td>		
 			  </tr>
 			<?php endforeach ?>
 			</tbody>

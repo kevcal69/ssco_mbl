@@ -2,7 +2,7 @@
 	<div class="view-title-bar panel-heading">
 		<legend id="view-legend"><?php echo $username;?></legend>		
 		<div id="button-group">
-			<a class="button" onClick="history.go(-1);">Back</a>
+			<a class="button" onClick="history.go(-1);window.close();">Back</a>
 			<a class="button button-primary" href="<?=base_url('admin/user/edit/'.$username);?>">Edit</a>
 			<a class="button button-danger" href="<?=base_url('admin/user/delete/'.$username);?>">Delete</a>
 		</div>

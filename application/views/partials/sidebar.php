@@ -1,35 +1,3 @@
-<!-- 
-<<<<<<< HEAD
-	Passing sidebar contents to this view requires one to provide quicklinks and actions arrays.
-	Format in controller
-		$sidebar_content = array(
-			'quicklinks' => array(
-				array(
-					'content' => 'Users',
-					'href' => base_url('admin/user'),
-					'active' => TRUE
-					),
-				array(
-					'content' => 'Modules',
-					'href' => base_url('admin/module'),
-					'active' => FALSE
-					)
-				),
-			'actions' => array(
-				array(
-					'content' => 'Create User',
-					'href' => base_url('admin/user/create'),
-					'active' => FALSE
-					),
-				array(
-					'content' => 'View User',
-					'href' => base_url('admin/user/view'),
-					'active' => FALSE
-					)
-				)
-			);
- -->
-
 <div class="sidebar">
 	<ul class="nav nav-pills nav-stacked">
 		<li class="header">Quick Links</li>
@@ -42,8 +10,14 @@
 	<?php if (isset($actions)): ?>
 		<ul class="nav nav-pills nav-stacked">
 			<li class="header">Actions</li>
-			<?php if (isset($search)): ?> 
-				<li class = "search"><input type = "text" class = "field" placeholder = "&#xF002; Search for Module"></li>  
+			<?php if (isset($module_search) && $module_search === TRUE): ?>
+				<li class="sidebar-search">
+					<a>
+						<?php echo form_open('search',array('class' => 'form-inline'));?>
+							<input type="text" class="sidebar-searchbox" placeholder="Search Module"><input type="submit" class="sidebar-search-icon" value="&#xF002;">
+						</form>
+					</a>
+				</li>
 			<?php endif;?>
 			<?php foreach ($actions as $link): ?>
 			<li <?php if ($link['active'] == TRUE) echo ' class="active"';?>>

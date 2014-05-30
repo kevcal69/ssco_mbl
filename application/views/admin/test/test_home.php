@@ -21,7 +21,7 @@
 
 <div class="panel">
 	<div class="panel-heading">
-		<h3 class="panel-title">Quck Access to Module</h3>
+		<h3 class="panel-title">Search Module</h3>
 	</div>
 	<div class="panel-body input-module">
 		<div class="controls">		
@@ -44,10 +44,8 @@
 					<tr>
 						<th>ID</th>
 						<th>Module Title</th>
-						<th>Category</th>
-						<th>Actions</th>
-						<th style="display:none;">Description</th>
-						<th style="display:none;">Content</th>
+						<th class="collapse nowrap center">Category</th>
+						<th class="collapse nowrap center">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -57,16 +55,14 @@
 						<td>
 							<?=$module->title?>
 						</td>
-				    		<td>SSCO</td>
-						<td>
+				    <td class="collapse nowrap center">SSCO</td>
+						<td class="collapse nowrap center">
 							
 							<a href = "<?=base_url('admin/test/module_test_view/'.$module->id)?>" class = "actions"><span>Module Test Results</span></a>
 							<a href = "<?=base_url('admin/test/schedule_test_view/'.$module->id)?>" class = "actions"><span>Schedule Test Results</span></a>
 							<a href = "<?=base_url('admin/question/test_set_up/'.$module->id)?>" class = "actions"><span>Set up a Scheduled Test</span></a>
 						
 						</td>
-						<td style="display:none;"><?=$module->description?></td>
-						<td style="display:none;"><?=$module->content?></td>
 				  </tr>
 				<?php endforeach ?>
 				</tbody>

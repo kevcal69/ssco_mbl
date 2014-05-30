@@ -44,6 +44,9 @@ class Module extends MBL_Controller {
 						)
 					)
 				);
+			//show sidebar search
+			$this->sidebar_content['actions'] = array();
+			$this->sidebar_content['module_search'] = TRUE;
 		}
 
 	public function index() {

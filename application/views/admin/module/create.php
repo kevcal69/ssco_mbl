@@ -26,9 +26,9 @@
 				</ul>				
 			</div>
 		</div>
-		<form  action = "<?=site_url('admin/module/create_module')?>" method = "POST" name = "question">
+		<form enctype='multipart/form-data' action = "<?=site_url('admin/module/create_module')?>" method = "POST" name = "question">
 			<div id="field-container">
-				<input type = "text" name = "question[title]" placeholder = "Module Title?" class = "qfield" />
+				<input type = "text" name = "title" placeholder = "Module Title?" class = "qfield" />
 						<div class="controls">
 							<textarea name = "description" id = "description" placholder = "Description">
 								<span style="color: rgb(128, 128, 128);">Description only (not the entire module content)</span>
@@ -36,7 +36,7 @@
 							<script type="text/javascript">
 								CKEDITOR.replace( 'description', {
 									resize_enabled : false,
-									removePlugins : 'autosave',				
+									removePlugins : 'autosave',
 									toolbar: [
 										[ 'Source','Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
 										{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
@@ -44,8 +44,24 @@
 										{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
 									],
 								});
-							</script>					
-						</div>		
+							</script>
+						</div>
+				<div id="cover-picture-container" class="panel">
+					<div class="center panel-body">
+						<img id="cover-picture-preview" src="<?php echo base_url('assets/images/module/module_default/default.png');?>" title="cover picture"/>
+						<?php if ($this->session->flashdata('cover_pic_errors')):?>
+							<?php foreach ($this->session->flashdata('cover_pic_errors') as $error):?>
+								<?php echo $error;?>
+							<?php endforeach;?>
+						<?php endif;?>
+					</div>
+				</div>
+				<div class="button-group  float-l">
+					<label class="button">
+						<input id="cover-picture-upload" type="file" name="cover-picture-upload" accept="image/*"/>
+						Cover Picture
+					</label>
+				</div>
 			</div>
 			<div id="editor-container">
 				<textarea name="editor1" id="editor1" rows="10" cols="80">

@@ -12,7 +12,7 @@
 		<?php echo form_open('admin/user/delete/'.$username, array('id' => 'delete-confirm-form'));?>
 			<input type="hidden" value="TRUE" name="confirm"/>
 			<button class="button-danger" type="submit">Delete</button>
-			<a class="button" onClick="history.go(-1);">Cancel</a>
+			<a class="button" onClick="history.go(-1);window.close();">Cancel</a>
 		</form>
 	</div>
 </div>

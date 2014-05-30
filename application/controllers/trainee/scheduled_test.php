@@ -42,7 +42,7 @@ class Scheduled_test extends MBL_Controller {
 			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		} else if (!$this->question_model->isset_test($test_id)) {
 			//check if test is scheduled
-			$data['error_message'] = 'No such test has been scheduled';
+			$data['error_message'] = 'No such test has been scheduled or test period is already over.';
 			$data['error_title'] = 'No Scheduled Test';
 			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		} else if (!empty($result) && $this->session->flashdata('test_ongoing') === FALSE) {
@@ -165,85 +165,6 @@ class Scheduled_test extends MBL_Controller {
 			$this->parser->parse('layouts/default', $data);
 		}
 	}
-	public function answers($test_result_id) {
-		$this->load->model('admin/user_model');
-		$result = $this->test_result_model->get_result($test_result_id);
-		if ($result) {
-			$result_content = unserialize(base64_decode($result->content));
-		
-			//change retrieved answers to correct answers			
-			foreach ($result_content['questions'] as $index => $question) {
-				$answer = unserialize_choices($question->answer);
-				$result_content['answers'][$index] = $answer;
-			}
-
-			$result_content['details']['test_result_id'] = $result->id;
-			$result_content['details']['trainee_id'] = $result->trainee_id;
-
-			$trainee = $this->user_model->view_trainee($result->trainee_id);
-
-			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
-			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
-
-			$result_content['details']['module_id'] = $result->module_id;
-			$result_content['details']['rating'] = $result->rating;
-			$result_content['details']['date'] = $result->date;
-			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
-			$this->parser->parse('layouts/default', $data);
-		}
-	}
-	public function result($test_result_id) {
-		$this->load->model('admin/user_model');
-		$result = $this->test_result_model->get_result($test_result_id);
-		if ($result) {
-			$result_content = unserialize(base64_decode($result->content));
-			// print_r($result_content);
-			$result_content['details']['test_result_id'] = $result->id;
-			$result_content['details']['trainee_id'] = $result->trainee_id;
-
-			$trainee = $this->user_model->view_trainee($result->trainee_id);
-
-			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
-			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
-
-			$result_content['details']['module_title'] = $this->module_model->get_title($result->module_id);
-			$result_content['details']['module_id'] = $result->module_id;
-			$result_content['details']['rating'] = $result->rating;
-			$result_content['details']['date'] = $result->date;
-			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
-			$this->parser->parse('layouts/default', $data);
-		}
-	}
-	public function answers($test_result_id) {
-		$this->load->model('admin/user_model');
-		$result = $this->test_result_model->get_result($test_result_id);
-		if ($result) {
-			$result_content = unserialize(base64_decode($result->content));
-		
-			//change retrieved answers to correct answers			
-			foreach ($result_content['questions'] as $index => $question) {
-				$answer = unserialize_choices($question->answer);
-				$result_content['answers'][$index] = $answer;
-			}
-
-			$result_content['details']['test_result_id'] = $result->id;
-			$result_content['details']['trainee_id'] = $result->trainee_id;
-
-			$trainee = $this->user_model->view_trainee($result->trainee_id);
-
-			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
-			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
-
-			$result_content['details']['module_id'] = $result->module_id;
-			$result_content['details']['rating'] = $result->rating;
-			$result_content['details']['date'] = $result->date;
-			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
-			$this->parser->parse('layouts/default', $data);
-		}
-	}	
 }
 
 /* End of file scheduled_test.php */

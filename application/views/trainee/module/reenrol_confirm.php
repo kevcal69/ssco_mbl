@@ -16,7 +16,7 @@
 		<?php echo form_open('trainee/module/enrol/'.$module_id, array('id' => 'reenrol-confirm-form'));?>
 			<input type="hidden" value="TRUE" name="reenrol-confirm"/>
 			<button class="button-warning" type="submit">Reenrol</button>
-			<a class="button" onClick="history.go(-1);">Cancel</a>
+			<a class="button" onClick="history.go(-1);window.close();">Cancel</a>
 		</form>
 	</div>
 </div>

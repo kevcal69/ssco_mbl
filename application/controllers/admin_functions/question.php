@@ -10,8 +10,8 @@
 			}		
 			$this->load->model('Module_model','mModule');	
 			$this->load->model('Question_model','mQ');
-      			$this->load->helper('application_helper');
-      			$this->load->helper('sidebar_helper');
+			$this->load->helper('application_helper');
+			$this->load->helper('sidebar_helper');
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 
@@ -34,11 +34,13 @@
 						'content' => to_sidebar_element('fa-question','Test Results'),
 						'href' => base_url('admin/test'),
 						'active' => FALSE
-						)					
-					
+						)
 					)
-				);            			
-	    }	
+				);
+			//show sidebar search
+			$this->sidebar_content['actions'] = array();
+			$this->sidebar_content['module_search'] = TRUE;
+		}
 
 	function create($id) {
 		$this->load->helper('output_text_helper');
@@ -52,13 +54,8 @@
 						'content' => to_sidebar_element('fa-tags','Scheduled Test'),
 						'href' => base_url('admin/question/test_set_up/'.$id),
 						'active' => FALSE
-						),
-					'stats' => array(
-						'content' => to_sidebar_element('fa-bar-chart-o','Users\' Stats'),
-						'href' => base_url(''),
-						'active' => FALSE
 						)
-					);		
+					);	
 		$data['page_title'] = "SSCO Module Base Learning";
 		$data['body_content'] = $this->load->view('admin/question/create',array('module' => $this->mModule->fetch_module($id),'questions' => $this->mQ->fetch_questions($id)),TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
@@ -77,13 +74,8 @@
 						'content' => to_sidebar_element('fa-tags','Scheduled Test'),
 						'href' => base_url('admin/question/test_set_up/'.$id),
 						'active' => TRUE
-						),
-					'stats' => array(
-						'content' => to_sidebar_element('fa-bar-chart-o','Users\' Stats'),
-						'href' => base_url(''),
-						'active' => FALSE
 						)
-					);		
+					);
 		$data['page_title'] = "SSCO Module Base Learning";
 		$test_data = array(
 			'module' => $this->mModule->fetch_module($id),

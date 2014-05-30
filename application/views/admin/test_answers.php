@@ -7,7 +7,7 @@
 			</h3>
 		</div>
 		<div class="panel-body">
-			<a class="button" id="result-back" onclick="history.go(-1)">Back</a>
+			<a class="button" id="result-back" onclick="history.go(-1);window.close();">Back</a>
 			<p>
 				Shown below are the correct answers for the test taken by 
 				<b><?php echo $details['trainee']['first_name'].' '.$details['trainee']['last_name']?></b> 

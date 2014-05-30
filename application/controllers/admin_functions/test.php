@@ -10,8 +10,8 @@
 			}		
 			$this->load->model('Module_model','mModule');	
 			$this->load->model('Question_model','mQ');
-      			$this->load->helper('application_helper');
-      			$this->load->helper('sidebar_helper');
+			$this->load->helper('application_helper');
+			$this->load->helper('sidebar_helper');
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 
@@ -36,8 +36,8 @@
 						'active' => TRUE
 						)
 					),
-				);            			
-	    }	
+				);
+		 }
 	function index() {
 		$this->sidebar_content['actions'] = array(
 					'Mod_test' => array(
@@ -286,7 +286,7 @@
 							<div id="stat">
 								<div class="mod-stat">
 									<span class = "text-size-o" >Module Test Stat</span>
- 									<ul>
+									<ul>
 										<li>
 										<span class = "stat-item">Number of takers</span>
 										<span class = "stat-val">'.$var['takers'].'</span>
@@ -298,7 +298,7 @@
 									</ul>
 									<span id = "sm-r" class = "text-size-o fa fa-arrow-circle-o-right float-r" ></span>
 								</div>
- 								<div class="sched-stat">
+								<div class="sched-stat">
 									<span  class = "text-size-o " >Scheduled Test Stat</span>
 									<ul>
 										<li>
@@ -334,5 +334,5 @@
 	}
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file test.php */
+/* Location: ./application/admin_functions/test.php */

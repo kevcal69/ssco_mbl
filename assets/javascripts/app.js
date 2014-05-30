@@ -10,6 +10,7 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 		stick_Sidebar.initialize();
 	});
+	cover_picture_upload.initialize();
 
 	$('.input-module').on('input','#module-search', function() {
 		var _keyword = $(this).val();
@@ -57,8 +58,7 @@ $(document).ready(function() {
 	}).on('click','#ss-l' ,function() {
 		$('.mod-stat').css({'margin-left': '0px'});
 		$('.sched-stat').css({'display': 'none'});
-	});	
-	
+	});
 });
 
 var makepiechart = {
@@ -83,7 +83,8 @@ var tables = {
 	initialize: function() {
 		$('#users-table , .module-table-admin').DataTable({
 			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-			"pageLength": 25
+			"pageLength": 25,
+			"order": [[1,'asc']]
 		});
 		$('.module-table').DataTable({
 			"lengthMenu": [ [5, 20, 50, 100, -1], [5, 20, 50, 100, "All"]],
@@ -91,13 +92,14 @@ var tables = {
 		});
 		$('#users-stat-table').DataTable({
 			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-			"pageLength": 25
+			"pageLength": 25,
+			"order": [[1,'asc']]
 		});
 		$('#module-stat-table').DataTable({
 			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
 			"pageLength": 10,
 			"order": [[2,'asc']]
-		});	
+		});
 		$('.module-stat-table').DataTable({
 			"lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
 			"pageLength": 10,
@@ -271,7 +273,6 @@ var modules = {
 				$('.actions').removeClass('active_mod');
 
 				$(this).height($(this).height() + 40);
-				console.log(""+$(this).height());
 				$(this).children('.actions').addClass('active_mod');
 				$(this).children('.mb-title').addClass('mod_active');
 				$(this).prepend('<div class = "check"></div>');
@@ -408,5 +409,24 @@ var test_form = {
 				}
 			});
 		}
+	}
+}
+
+var cover_picture_upload = {
+	readURL: function(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+					$('#cover-picture-preview').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	},
+	initialize: function() {
+		$("#cover-picture-upload").change(function(){
+			cover_picture_upload.readURL(this);
+		});
 	}
 }

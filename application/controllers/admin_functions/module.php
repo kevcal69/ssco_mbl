@@ -9,15 +9,16 @@
 				show_error($message_403,403,$heading);
 			}			
 			$this->load->model('Module_model','mModule');
-      			$this->load->helper('application_helper');
-      			$this->load->helper('sidebar_helper');
+			$this->load->helper('application_helper');
+			$this->load->helper('output_text_helper');
+			$this->load->helper('sidebar_helper');
 			$this->sidebar_content = array(
 				'quicklinks' => array(
 					array(
 						'content' => to_sidebar_element('fa-home','Home'),
 						'href' => base_url('admin'),
 						'active' => FALSE
-						),					
+						),
 					array(
 						'content' => to_sidebar_element('fa-user', 'Users'),
 						'href' => base_url('admin/user'),
@@ -32,11 +33,14 @@
 						'content' => to_sidebar_element('fa-question','Test Results'),
 						'href' => base_url('admin/test'),
 						'active' => FALSE
-						)					
+						)
 					),
 
-				);      			
-	    }	
+				);
+			//show sidebar search
+			$this->sidebar_content['actions'] = array();
+			$this->sidebar_content['module_search'] = TRUE;
+		}
 
 	function index() {
 		$this->sidebar_content['actions'] = array(
@@ -46,7 +50,7 @@
 						'active' => TRUE
 						),
 					'create' => array(
-						'content' => to_sidebar_element('fa-plus-square','Create Modules'),
+						'content' => to_sidebar_element('fa-plus-square','Create Module'),
 						'href' => base_url('admin/module/create'),
 						'active' => FALSE
 						)
@@ -116,9 +120,9 @@
 					
 					);			
 		$data['page_title'] = "SSCO Module-Based Learning";
-		$data['body_content'] = $this->load->view('admin/module/modify',array('module' => $this->mModule->fetch_module($id)),TRUE); 
+		$data['body_content'] = $this->load->view('admin/module/modify',array('module' => $this->mModule->fetch_module($id)),TRUE);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$this->parser->parse('layouts/logged_in', $data);		
+		$this->parser->parse('layouts/logged_in', $data);
 		// echo stripslashes($this->mModule->fetch_module($id)->content);
 	}	
 
@@ -134,8 +138,13 @@
 				'description' => addslashes($module_description),
 				'content' => addslashes($str)
 			);
-
-			if ($this->mModule->create_module($data)) {
+			$id = $this->mModule->create_module($data);
+			if ($id !== FALSE) {
+				if ($_FILES['cover-picture-upload']['size'] != 0 && $_FILES['cover-picture-upload']['error'] == 0) {
+					if (!$this->upload_cover_picture($id)) {
+						redirect('admin/module/modify/'.$id,'refresh');
+					}
+				}
 				redirect('admin/module');
 			} else  {
 				show_404();
@@ -144,7 +153,7 @@
 	}
 
 	function authenticate_content($str) {
-		if ($this->security->xss_clean($str, TRUE) === FALSE) {	
+		if ($this->security->xss_clean($str, TRUE) === FALSE) {
 			$this->session->set_flashdata('alert', 'Error: ');		
 			return false;
 		} else if (trim($str) === '') {
@@ -154,30 +163,69 @@
 	}
 
 	function modify_module() {
-		$str =  $this->input->post('editor1');
+		$str = $this->input->post('editor1');
 		$module_title = $this->input->post('title');
 		$module_description = $this->input->post('description');
 		$id = $this->input->post('id');
 
-		$data =  array(
+		$data = array(
 			'title' => addslashes($module_title),
 			'description' => addslashes($module_description),
 			'content' => addslashes($str)
 		);
 		if ($this->mModule->modify_module($data,$id) >= 0) {
-			redirect('admin/module');
+			//success
+			if ($_FILES['cover-picture-upload']['size'] != 0 && $_FILES['cover-picture-upload']['error'] == 0) {
+				if (!$this->upload_cover_picture($id)) {
+					redirect('admin/module/modify/'.$id,'refresh');
+				}
+			}
+			redirect('admin/module','refresh');
 		} else  {
 			show_404();
-		}		
-	}	
+		}
+	}
 
 	function delete($id) {
 		if ($this->mModule->delete_module($id)) {
 			redirect('admin/module');
 		} else  {
 			show_404();
-		}			
-	}	
+		}
+	}
+
+	function upload_cover_picture($id) {
+			//upload cover picture
+			//create directory if not exists
+			if (!file_exists('assets/images/module/module_'.$id)) {
+				mkdir('assets/images/module/module_'.$id, 0777, true);
+			}
+			$config['upload_path'] = 'assets/images/module/module_'.$id;
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['overwrite'] = TRUE;
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('cover-picture-upload')) {
+				//error uploading
+				$this->session->set_flashdata('cover_pic_errors',array('error' => $this->upload->display_errors('<p class="text-error">','</p>')));
+				// redirect('admin/module/modify/'.$id);
+				return FALSE;
+			} else {
+				//success
+				//rename to cover.ext
+				$img_data=$this->upload->data();
+				$new_imgname='cover'.$img_data['file_ext'];
+				$new_imgpath=$img_data['file_path'].$new_imgname;
+				rename($img_data['full_path'], $new_imgpath);
+				//update module cover pic path
+				$data = array(
+					'cover_picture' => $config['upload_path'].'/'.$new_imgname
+				);
+				if ($this->mModule->modify_module($data,$id) >= 0) {
+					return TRUE;
+				}
+				return FALSE;
+		}
+	}
 }
 
 /* End of file welcome.php */
