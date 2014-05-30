@@ -14,7 +14,7 @@
 				<li class="sidebar-search">
 					<a>
 						<?php echo form_open('search',array('class' => 'form-inline'));?>
-							<input type="text" class="sidebar-searchbox" placeholder="Search Module"><input type="submit" class="sidebar-search-icon" value="&#xF002;">
+							<input type="text" name = "search" class="sidebar-searchbox" placeholder="Search Module"><input type="submit" class="sidebar-search-icon" value="&#xF002;">
 						</form>
 					</a>
 				</li>
