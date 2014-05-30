@@ -138,8 +138,8 @@
 				'description' => addslashes($module_description),
 				'content' => addslashes($str)
 			);
-			$create = $this->mModule->create_module($data);
-			if ($create) {
+			$id = $this->mModule->create_module($data);
+			if ($id !== FALSE) {
 				if ($_FILES['cover-picture-upload']['size'] != 0 && $_FILES['cover-picture-upload']['error'] == 0) {
 					if (!$this->upload_cover_picture($id)) {
 						redirect('admin/module/modify/'.$id,'refresh');
