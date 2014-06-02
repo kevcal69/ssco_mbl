@@ -27,7 +27,7 @@ class Question_model extends CI_Model {
 		if ($this->db->_error_message()) {
 			return FALSE; 
 		} else {
-			return $this->db->affected_rows();
+			return TRUE;
 		}
 	}	
 
@@ -38,7 +38,7 @@ class Question_model extends CI_Model {
 		if ($this->db->_error_message()) {
 			return FALSE;
 		} else {
-			return $this->db->affected_rows();
+			return TRUE;
 		}
 	}	
 
