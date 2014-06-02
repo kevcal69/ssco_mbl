@@ -157,7 +157,7 @@
 					)
 			);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
@@ -209,7 +209,7 @@
 					)
 			);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 	
@@ -307,7 +307,7 @@
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Admin - SSCO Module-Based Learning";
 			$this->parser->parse('layouts/default', $data);
 		}
 	}		
@@ -340,7 +340,7 @@
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Admin - SSCO Module-Based Learning";
 			$this->parser->parse('layouts/default', $data);
 		}
 	}
@@ -366,7 +366,7 @@
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Admin - SSCO Module-Based Learning";
 			$this->parser->parse('layouts/default', $data);
 		}
 	}
@@ -397,7 +397,7 @@
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Admin - SSCO Module-Based Learning";
 			$this->parser->parse('layouts/default', $data);
 		}
 	}	

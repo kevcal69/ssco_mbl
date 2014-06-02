@@ -61,10 +61,10 @@
 			<table class="module-table-admin">
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th class="collapse nowrap center">ID</th>
 						<th>Module Title</th>
-						<th>Category</th>
-						<th>Actions</th>
+						<th class="collapse nowrap center">Category</th>
+						<th class="collapse nowrap center">Actions</th>
 						<th style="display:none;">Description</th>
 						<th style="display:none;">Content</th>
 					</tr>
@@ -76,10 +76,10 @@
 						<td>
 							<?=$module->title?>
 						</td>
-				    		<td>SSCO</td>
+				    <td class="collapse nowrap center">SSCO</td>
 						<?php if ($this->session->userdata('role')): ?>
 							<?php if ($this->session->userdata('role') === "admin"): ?>
-								<td>
+								<td class="collapse nowrap center">
 									<div class="actions">
 										<span><a href="<?=base_url() . 'admin/module/view/'.$module->id?>" class = "text-primary text-size-s3">View</a></span>
 										<span><a href="<?=base_url() . 'admin/question/create/'.$module->id?>" class = "text-info text-size-s3">Test Q</a></span>

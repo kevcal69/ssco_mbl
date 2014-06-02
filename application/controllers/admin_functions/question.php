@@ -64,7 +64,7 @@
 		//breadcrumb settings
 		$this->config->set_item('replacer_embed', array('create' => array('create', $id.'|'.word_limiter($this->mModule->get_title($id),10))));
 
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/question/create',array('module' => $this->mModule->fetch_module($id),'questions' => $this->mQ->fetch_questions($id)),TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
@@ -84,7 +84,7 @@
 						'active' => TRUE
 						)
 					);
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$test_data = array(
 			'module' => $this->mModule->fetch_module($id),
 			'questions' => $this->mQ->fetch_test_questions($id),
@@ -262,5 +262,5 @@
 	}	
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file questions.php */
+/* Location: ./application/controllers/admin_functions/question.php */

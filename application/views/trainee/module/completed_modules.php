@@ -14,6 +14,9 @@
 							<a href="<?=base_url('trainee/module/view/'.$module->id)?>">
 								<?=stripslashes($module->title)?>
 							</a>
+							<a class="button button-primary table-button float-r" href="<?=base_url('trainee/module/view/'.$module->id)?>">
+								View Module
+							</a>
 						</h1>
 					</div>
 					<div class="panel-body">

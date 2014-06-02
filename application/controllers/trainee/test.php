@@ -3,14 +3,13 @@
 class Test extends MBL_Controller {
 	function __construct() {
 		parent::__construct();
-		//refuse access when not logged as trainee
+		//refuse access when not logged in as trainee
 		if ($this->session->userdata('role') !== 'trainee') {
 			$message_403 = "You don't have permission to access the url you are trying to reach.";
 			$heading = '403 Forbidden';
 			show_error($message_403,403,$heading);
 		}
 
-		// $this->load->model('trainee/trainee_model');
 		$this->load->model('trainee/trainee_module_model');
 		$this->load->model('module_model');
 		$this->load->model('module_test_result_model','test_result_model');
@@ -97,10 +96,10 @@ class Test extends MBL_Controller {
 				}
 			}
 		}
-			//breadcrumb settings
-			$this->config->set_item('replacer_embed', array('test' => array('/trainee/module|module', 'test', '../../module/view/'.$module_id.'|'.word_limiter($this->module_model->get_title($module_id),10)),'take' => ''));
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('test' => array('/trainee/module|module', 'test', '../../module/view/'.$module_id.'|'.word_limiter($this->module_model->get_title($module_id),10)),'take' => ''));
 
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 		$this->parser->parse('layouts/default', $data);
 	}
 
@@ -140,6 +139,7 @@ class Test extends MBL_Controller {
 		return $this->load->view('trainee/test/test_result',$data,TRUE);
 	}
 
+	//rating is computed as the average of all test ratings
 	private function calculate_rating($module_id, $current_rating = FALSE) {
 		//average of all test results
 		$prev_test_results = $this->test_result_model->get_results($module_id,$this->trainee_id);

@@ -50,7 +50,7 @@ class Admin extends MBL_Controller {
 	public function index() {
 		$data['scheduled_tests'] = $this->get_scheduled_tests();
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/home',$data,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	}

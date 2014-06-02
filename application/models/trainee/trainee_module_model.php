@@ -12,10 +12,11 @@ class Trainee_module_model extends CI_Model {
 			);
 		//insert if not exists
 		$result = $this->get_enroled_module($module_id, $trainee_id);
-		if (empty($result)) {
+		if ($result === FALSE) {
+			//insert/enrol
 			return $this->db->insert('enrolled_module',$data);
 		} else {
-			// $data['last_page'] = NULL;
+			// update/reenrol
 			$data['is_completed'] = FALSE;
 			$data['date_enroled'] = NULL;
 			$data['date_completed'] = 'DEFAULT 0';
@@ -45,7 +46,6 @@ class Trainee_module_model extends CI_Model {
 	}
 
 	public function update_module($module_id,$trainee_id,$rating,$is_completed) {
-		//TODO rating calculation
 		$data = array(
 			'rating' => $rating,
 			'is_completed' => $is_completed
@@ -69,7 +69,8 @@ class Trainee_module_model extends CI_Model {
 				);
 			$query = $this->db->get_where('enrolled_module', $data);
 			if ($query->row()) {
-				$result = $this->module_model->fetch_module($query->row()->module_id);
+				$result = $query->row();
+				$result->module_content = $this->module_model->fetch_module($query->row()->module_id);
 				return $result;
 			} else {
 				return FALSE;
@@ -81,8 +82,9 @@ class Trainee_module_model extends CI_Model {
 				);
 			$query = $this->db->get_where('enrolled_module', $data);
 			$result = array();
-			foreach ($query->result() as $module) {
-				array_push($result,$this->module_model->fetch_module($module->module_id));
+			foreach ($query->result() as $index => $module) {
+				array_push($result,$module);
+				$result[$index]->module_content = $this->module_model->fetch_module($module->module_id);
 			}
 			return $result;
 		} else if ($module_id !== FALSE && $trainee_id === FALSE) {
@@ -92,16 +94,18 @@ class Trainee_module_model extends CI_Model {
 				);
 			$query = $this->db->get_where('enrolled_module', $data);
 			$result = array();
-			foreach ($query->result() as $module) {
-				array_push($result,$this->module_model->fetch_module($module->module_id));
+			foreach ($query->result() as $index => $module) {
+				array_push($result,$module);
+				$result[$index]->module_content = $this->module_model->fetch_module($module->module_id);
 			}
 			return $result();
 		} else {
 			//no parameters
 			$query = $this->db->get('enrolled_module');
 			$result = array();
-			foreach ($query->result() as $module) {
-				array_push($result,$this->module_model->fetch_module($module->module_id));
+			foreach ($query->result() as $index => $module) {
+				array_push($result,$module);
+				$result[$index]->module_content = $this->module_model->fetch_module($module->module_id);
 			}
 			return $result();
 		}
@@ -122,7 +126,7 @@ class Trainee_module_model extends CI_Model {
 
 	public function is_enroled($module_id,$trainee_id) {
 		$result =  $this->get_enroled_module($module_id,$trainee_id);
-		if ($result) {
+		if ($result !== FALSE) {
 			return TRUE;
 		} else {
 			return FALSE;
@@ -131,7 +135,7 @@ class Trainee_module_model extends CI_Model {
 
 	public function is_completed($module_id,$trainee_id) {
 		$result =  $this->get_enroled_module($module_id,$trainee_id);
-		if (!empty($result) && $result->is_completed == TRUE) {
+		if ($result && $result->is_completed == TRUE) {
 			return TRUE;
 		} else {
 			return FALSE;

@@ -3,7 +3,7 @@
 class Trainee extends MBL_Controller {
     function __construct() {
       parent::__construct();
-      //refuse access when not logged as admin
+      //refuse access when not logged in as trainee
 			if ($this->session->userdata('role') !== 'trainee') {
 				$message_403 = "You don't have permission to access the url you are trying to reach.";
 				$heading = '403 Forbidden';
@@ -54,14 +54,11 @@ class Trainee extends MBL_Controller {
 
 		$this->sidebar_content['quicklinks']['home']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 
 		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->trainee_id);
 		
-		// $data['available_modules'] = $this->module_model->get_module_entries(3,TRUE);
 		$data['available_modules'] = $this->trainee_module_model->get_available_modules($this->trainee_id,'',TRUE);
-
-		// $data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
 
 		$data['body_content'] = $this->load->view('trainee/home',$data,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
@@ -72,7 +69,7 @@ class Trainee extends MBL_Controller {
 
 		$this->sidebar_content['quicklinks']['profile']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 
 		$data['statistics'] = $this->trainee_model->get_statistics($this->trainee_id);
 		
@@ -83,7 +80,7 @@ class Trainee extends MBL_Controller {
 	public function test() {
 		$this->sidebar_content['quicklinks']['test']['active'] = TRUE;
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 
 		$data['scheduled_tests'] = $this->get_scheduled_tests();
 		$data['scheduled_test_results'] = $this->scheduled_test_result_model->get_results(FALSE,$this->trainee_id);
@@ -98,12 +95,15 @@ class Trainee extends MBL_Controller {
 		$scheduled_tests = $this->question_model->get_scheduled_tests();
 		if (sizeof($scheduled_tests) > 0) {
 			foreach ($scheduled_tests as $index => $test) {
-				//check if already taken test
-				$query = $this->scheduled_test_result_model->get_results($test->id, $this->trainee_id);
-				if (empty($query)) {
-					$result[$index]['test_id'] = $test->id;
-					$result[$index]['module_id'] = $test->module_id;
-					$result[$index]['module_title'] = $this->module_model->get_title($test->module_id);
+				//check if trainee is enroled in tested module
+				if ($this->trainee_module_model->is_enroled($test->module_id,$this->trainee_id)) {
+					//check if already taken test
+					$query = $this->scheduled_test_result_model->get_results($test->id, $this->trainee_id);
+					if (empty($query)) {
+						$result[$index]['test_id'] = $test->id;
+						$result[$index]['module_id'] = $test->module_id;
+						$result[$index]['module_title'] = $this->module_model->get_title($test->module_id);
+					}
 				}
 			}
 		}

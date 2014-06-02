@@ -3,14 +3,13 @@
 class Scheduled_test extends MBL_Controller {
 	function __construct() {
 		parent::__construct();
-		//refuse access when not logged as trainee
+		//refuse access when not logged in as trainee
 		if ($this->session->userdata('role') !== 'trainee') {
 			$message_403 = "You don't have permission to access the url you are trying to reach.";
 			$heading = '403 Forbidden';
 			show_error($message_403,403,$heading);
 		}
 
-		// $this->load->model('trainee/trainee_model');
 		$this->load->model('trainee/trainee_module_model');
 		$this->load->model('module_model');
 		$this->load->model('scheduled_test_result_model','test_result_model');
@@ -22,12 +21,6 @@ class Scheduled_test extends MBL_Controller {
 
 		$this->trainee_id = $this->session->userdata('id');
 	}
-
-	// public function index() {
-	// 	//scheduled tests
-	// 	//module tests not yet taken
-	// 	//scheduled test results
-	// }
 
 	public function take($test_id) {
 		$test = $this->question_model->get_scheduled_tests($test_id);
@@ -117,7 +110,7 @@ class Scheduled_test extends MBL_Controller {
 		}
 		$this->config->set_item('replacer_embed', array('scheduled_test' => array('/trainee/test|scheduled test')));
 
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 		$this->parser->parse('layouts/default', $data);
 	}
 
@@ -143,7 +136,7 @@ class Scheduled_test extends MBL_Controller {
 				$data['results']['answers'][$index] = FALSE;
 			}
 		}
-		//rating is stored as score/total. it will be displayed as round(($data['results']['rating']*100),3)
+		//rating is stored as score/total
 		$data['results']['rating'] = $data['results']['score'] / $data['results']['total'];
 
 		//update test_results
@@ -153,13 +146,13 @@ class Scheduled_test extends MBL_Controller {
 		$data['is_scheduled_test'] = TRUE;
 		return $this->load->view('trainee/test/test_result',$data,TRUE);
 	}
-//TODO transfer to admin
+
+	//view test result
 	public function result($test_result_id) {
 		$this->load->model('admin/user_model');
 		$result = $this->test_result_model->get_result($test_result_id);
 		if ($result) {
 			$result_content = unserialize(base64_decode($result->content));
-			// print_r($result_content);
 			$result_content['details']['test_result_id'] = $result->id;
 			$result_content['details']['trainee_id'] = $result->trainee_id;
 
@@ -174,13 +167,13 @@ class Scheduled_test extends MBL_Controller {
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
 		} else {
-			//result does not exit
+			//result does not exist
 			$data['error_message'] = 'The test result is not found in the database.';
 			$data['error_title'] = 'Not Such Test Result';
 			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		}
 		$this->config->set_item('replacer_embed', array('scheduled_test' => array('/trainee/test|scheduled test')));
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 			$this->parser->parse('layouts/default', $data);
 	}
 }

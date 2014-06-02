@@ -65,7 +65,7 @@
 		$testDB['scheduled_test']  = $this->mQ->get_scheduled_tests();	
 		$testDB['user_stats']  =  $this->user_model->view_trainee();
 		$testDB['modules'] = $this->mModule->get_module_entries();
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/test/test_home',$testDB,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
@@ -89,7 +89,7 @@
 		$this->load->helper('output_text_helper');
 		$this->load->model('module_test_result_model','mod_res');
 		$myData['module_test_result'] = $this->mod_res->get_test_results_with_module_detail_by_module_id($id);
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/test/module_test_result',$myData,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
@@ -116,7 +116,7 @@
 		$myData['mid'] = $id;
 		$myData['scheduled_test'] = $this->mQ->get_scheduled_tests_by_modulet($id);
 		$myData['scheduled_test_result'] = $this->sched_res->get_test_results_with_module_detail_by_module_id($id);
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/test/schedule_test_result_view',$myData,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
@@ -139,7 +139,7 @@
 		$this->load->model('scheduled_test_result_model','test_result_model');
 		$this->load->model('module_model');
 		$result['scheduled_test_result'] = $this->test_result_model->get_test_results_with_module_detail_by_test_id($test_id);
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/test/schedule_test_result',$result,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		//breadcrumb settings
@@ -168,7 +168,7 @@
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Admin - SSCO Module-Based Learning";
 			
 			//breadcrumb settings
 			$this->config->set_item('replacer_embed', array('result'=> array('../module_test_view/'.$result_content['details']['module_id'].'|'.word_limiter($result_content['details']['module_title'],10), $test_result_id), 'test' => array('module test results')));
@@ -205,7 +205,7 @@
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Admin - SSCO Module-Based Learning";
 			//breadcrumb settings
 			$this->config->set_item('replacer_embed', array('answers'=> array('../module_test_view/'.$result_content['details']['module_id'].'|'.word_limiter($result_content['details']['module_title'],10), $test_result_id), 'test' => array('module test answers')));
 
@@ -235,7 +235,7 @@
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Admin - SSCO Module-Based Learning";
 
 			//breadcrumb settings
 			$this->config->set_item('replacer_embed', array('sched_result'=> array('../module_test_view/'.$result_content['details']['module_id'].'|'.word_limiter($result_content['details']['module_title'],10), $test_result_id), 'test' => array('scheduled test results')));
@@ -271,7 +271,7 @@
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Admin - SSCO Module-Based Learning";
 
 			//breadcrumb settings
 			$this->config->set_item('replacer_embed', array('sched_answers'=> array('../module_test_view/'.$result_content['details']['module_id'].'|'.word_limiter($result_content['details']['module_title'],10), $test_result_id), 'test' => array('scheduled test answers')));
