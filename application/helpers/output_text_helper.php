@@ -1,4 +1,16 @@
 <?php
+/**
+*	Display choices array in the form "index : choice"
+*
+*	Convert choices array (from question.choices in question table) 
+*	into a formatted string ready for display.
+*
+* @author 	Kevin Calingacion
+*
+*	@param	array		$array	unserialized choices array (question.choices)
+*
+*	@return	string	$str 		output string
+*/
 function display_choices($array) {
 	$str = '';
 	foreach ($array as $key => $value) {
@@ -6,6 +18,20 @@ function display_choices($array) {
 	}
 	 return$str;
 }
+
+/**
+*	Display answers array
+*
+*	Convert answers array (from question.answer in question table) 
+*	into a formatted string ready for display.
+*
+* @author 	Kevin Calingacion
+*
+*	@param	array 	$arrayc	unserialized choices array (question.choices)
+*	@param	array 	$arraya	unserialized answers array (question.answer)
+*
+*	@return	string	$str 		output string
+*/
 function display_answers($arrayc,$arraya) {
 	$str = '';
 	 foreach ($arraya as $key => $value) {
@@ -13,6 +39,21 @@ function display_answers($arrayc,$arraya) {
 	 }
 	 return$str;	
 }
+
+/**
+*	Display choices and answers array in the form "index : choice" (answers are highlighted in red).
+*
+*	Convert choices (from question.choices in question table) and
+* answers arrays (from question.answer in question table) 
+*	into a formatted string ready for display.
+*
+* @author 	Kevin Calingacion
+*
+*	@param	array 	$array	unserialized choices array (question.choices)
+*	@param	array 	$arraya	unserialized answer array (question.answer)
+*
+*	@return	string	$str 		output string
+*/
 function display_ca($array,$arraya) {
 	$str = '<ul>';
 	 foreach ($array as $key => $value) {
@@ -26,37 +67,113 @@ function display_ca($array,$arraya) {
 	 $str .= '</ul>';
 	 return$str;
 }
+/**
+*	Display choices and answers array as textbox for editing choices
+*
+*	Convert choices (from question.choices in question table) and
+* answers arrays (from question.answer in question table) 
+*	into a formatted string ready for display.
+*
+* @author 	Kevin Calingacion
+*
+*	@param	array 	$array	unserialized choices array (question.choices)
+*	@param	array 	$arraya	unserialized answer array (question.answer)
+*
+*	@return	string	$str 		output string
+*/
 function edit_ca($array,$arraya) {
 	$str = '';
-	 foreach ($array as $key => $value) {
-		if(in_array($key,$arraya)){
-			$str .= '<label class="checkbox">
-					<input type="checkbox" checked value="'.$key.'" name = "question[answers][]">
-					<input type = "text" value = "'.$value.'"class = "choices" name = "question[choices][]">
-					<span class = "text-error text-size-s2" onclick = "question.del(this)">del</span>
-				</label>';	 		
-		}
-		else{
-			$str .= '<label class="checkbox">
-					<input type="checkbox" value="'.$key.'" name = "question[answers][]">
-					<input type = "text" value = "'.$value.'"class = "choices" name = "question[choices][]">
-					<span class = "text-error text-size-s2" onclick = "question.del(this)">del</span>
-				</label>';
-		}
-	 }
-	 return$str;
+	foreach ($array as $key => $value) {
+			if(!empty($arraya) && in_array($key,$arraya)){
+				$str .= '<label class="checkbox">
+						<input type="checkbox" checked value="'.$key.'" name = "question[answers][]">
+						<input type = "text" value = "'.$value.'"class = "choices" name = "question[choices][]">
+						<span class = "text-error text-size-s2" onclick = "question.del(this)">del</span>
+					</label>';	 		
+			}
+			else{
+				$str .= '<label class="checkbox">
+						<input type="checkbox" value="'.$key.'" name = "question[answers][]">
+						<input type = "text" value = "'.$value.'"class = "choices" name = "question[choices][]">
+						<span class = "text-error text-size-s2" onclick = "question.del(this)">del</span>
+					</label>';
+			}
+	}
+	return$str;
 }
 
+/**
+*	Unserialize array
+*
+*	Unserialize a base64-encoded array (not just the choices array).
+*
+* @author 	Paul Obligado
+*
+*	@param	string 	$choices_string	serialized, base64-encoded array 
+*
+*	@return	array		unserialized array
+*/
 function unserialize_choices($choices_string) {
 	return unserialize(base64_decode($choices_string));
 }
+
+/**
+*	Format timestamp string
+*
+*	Format a timestamp string into the form MM D YYY HH:MM AM/PM
+*
+* @author 	Paul Obligado
+*
+*	@param	string 	$str	timestamp
+*
+*	@return	string	formatted timestamp
+*/
 function format_timestamp($str) {
 	return date('M j Y g:i A',strtotime($str));
 }
+
+/**
+*	Format rating
+*
+*	Format module rating (ex. 0.5 (score/total) -> 50.0%)
+*
+* @author 	Paul Obligado
+*
+*	@param	string 	$str	rating
+*
+*	@return	string	formatted rating
+*/
 function format_rating($str) {
 	return round(($str*100),1).'%';
 }
 
+/**
+*	Generate table of contents from HTML
+*
+*	Generate a list-based table of contents from a given HTML code. 
+* Headings (h1, h2, ...,h6) are detected and used to generate a nested table of contents
+* with appropriate links
+* fr:	<h1>Main Section 1</h1>
+* 			<h2>Sub-section 1</h2>
+* 			<h2>Sub-section 2</h2>
+* 		<h1>Main Section 2</h1>
+* 			<h2>Sub-section 1</h2>
+* 			<h2>Sub-section 2</h2>
+* to: 1.	Main Section 1
+* 			1.	Sub-section 1
+* 			2.	Sub-section 2
+* 		2.	Main Section 2
+* 			1.	Sub-section 1
+* 			2.	Sub-section 2
+*
+* @link 	http://stackoverflow.com/a/4912798
+*
+*	@author	Paul Obligado(adapted for use)
+*
+*	@param	string 	$code	HTML code with appropriate headings
+*
+*	@return	string	formatted code with ToC at the beginning
+*/
 function generate_toc($code) {
 	$doc = new DOMDocument();
 	//suppress html erros

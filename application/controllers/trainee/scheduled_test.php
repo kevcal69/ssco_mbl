@@ -3,14 +3,13 @@
 class Scheduled_test extends MBL_Controller {
 	function __construct() {
 		parent::__construct();
-		//refuse access when not logged as trainee
+		//refuse access when not logged in as trainee
 		if ($this->session->userdata('role') !== 'trainee') {
 			$message_403 = "You don't have permission to access the url you are trying to reach.";
 			$heading = '403 Forbidden';
 			show_error($message_403,403,$heading);
 		}
 
-		// $this->load->model('trainee/trainee_model');
 		$this->load->model('trainee/trainee_module_model');
 		$this->load->model('module_model');
 		$this->load->model('scheduled_test_result_model','test_result_model');
@@ -23,89 +22,95 @@ class Scheduled_test extends MBL_Controller {
 		$this->trainee_id = $this->session->userdata('id');
 	}
 
-	// public function index() {
-	// 	//scheduled tests
-	// 	//module tests not yet taken
-	// 	//scheduled test results
-	// }
-
 	public function take($test_id) {
-		$module_id = $this->question_model->get_scheduled_tests($test_id)->module_id;
+		$test = $this->question_model->get_scheduled_tests($test_id);
+		if (!$test) {
+			//test does not exist
+			$data['error_message'] = 'This scheduled test does not exist.';
+			$data['error_title'] = 'No Such Test';
+			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 
-		//check if already taken test
-		$result = $this->test_result_model->get_results($test_id,$this->trainee_id);
-
-		if (!$this->trainee_module_model->is_enroled($module_id,$this->trainee_id)) {
-			//check if already enroled in module
-			$data['error_message'] = 'You are not allowed to take the test for a module you are not enroled in.';
-			$data['error_title'] = 'Not Allowed to Take Test';
-			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
-		} else if (!$this->question_model->isset_test($test_id)) {
-			//check if test is scheduled
-			$data['error_message'] = 'No such test has been scheduled or test period is already over.';
-			$data['error_title'] = 'No Scheduled Test';
-			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
-		} else if (!empty($result) && $this->session->flashdata('test_ongoing') === FALSE) {
-			//check if already taken test
-			$data['error_message'] = 'You have already taken the test. You can only take the scheduled test once.';
-			$data['error_title'] = 'Not Allowed to Retake Test';
-			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		} else {
-			if ($this->input->post('questions-string')) {
-				$data['questions'] = unserialize(base64_decode($this->input->post('questions-string')));
-				//validation rules
-				foreach ($data['questions'] as $index => $question) {
-					$this->form_validation->set_rules('answers['.$index.'][]','Answer','trim|required|xss_clean');
-					$this->form_validation->set_message('required', 'This question must be answered.');
-				}
-			}
-			if ($this->form_validation->run() === TRUE) {
-				$data['body_content'] = $this->correct();
-				$this->session->set_flashdata('test_ongoing',FALSE);
+			$module_id = $test->module_id;
+
+			//check if already taken test
+			$result = $this->test_result_model->get_results($test_id,$this->trainee_id);
+
+			if (!$this->trainee_module_model->is_enroled($module_id,$this->trainee_id)) {
+				//check if already enroled in module
+				$data['error_message'] = 'You are not allowed to take the test for a module you are not enroled in.';
+				$data['error_title'] = 'Not Allowed to Take Test';
+				$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
+			} else if (!$this->question_model->isset_test($test_id)) {
+				//check if test is scheduled
+				$data['error_message'] = 'No such test has been scheduled or test period is already over.';
+				$data['error_title'] = 'No Scheduled Test';
+				$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
+			} else if (!empty($result) && $this->session->flashdata('test_ongoing') === FALSE) {
+				//check if already taken test
+				$data['error_message'] = 'You have already taken the test. You can only take the scheduled test once.';
+				$data['error_title'] = 'Not Allowed to Retake Test';
+				$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 			} else {
-				//fetch questions
-				if (!$this->input->post('questions-string') OR $this->session->flashdata('test_ongoing') === FALSE) {
-					$data['questions'] = $this->question_model->fetch_test_questions($module_id,TRUE);
-					$data['questions_string'] = base64_encode(serialize($data['questions']));
-					$this->session->set_flashdata('test_ongoing',TRUE);
-					if (sizeof($data['questions']) > 0) {
-						//insert zero-score result
-						$result = $this->test_result_model->get_results($test_id,$this->trainee_id);
-						if (!$result) {
-							//basic content in case trainee aborts
-							$content_data = array();
-							$content_data['module_id'] = $module_id;
-							$content_data['module_title'] = $this->module_model->get_title($module_id);
-							$content_data['questions_string'] = $data['questions_string'];
-							$content_data['questions'] = $data['questions'];
-
-							$data['test_result_id'] = $this->test_result_model->insert_result($test_id,$module_id,$this->trainee_id,0, base64_encode(serialize($content_data)));
-						}
-					}
-				} else {
+				if ($this->input->post('questions-string')) {
 					$data['questions'] = unserialize(base64_decode($this->input->post('questions-string')));
-					$data['questions_string'] = $this->input->post('questions-string');
-					$data['test_result_id'] = $this->input->post('test-result-id');
-					$this->session->keep_flashdata('test_ongoing');
+					//validation rules
+					foreach ($data['questions'] as $index => $question) {
+						$this->form_validation->set_rules('answers['.$index.'][]','Answer','trim|required|xss_clean');
+						$this->form_validation->set_message('required', 'This question must be answered.');
+					}
 				}
-
-				//check if there are questions
-				if (sizeof($data['questions']) <= 0) {
-					//error
-					$data['error_message'] = 'There are no questions for this test. Please notify the test administrator about this issue.';
-					$data['error_title'] = 'No Test Questions';
-					$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
+				if ($this->form_validation->run() === TRUE) {
+					$data['body_content'] = $this->correct();
+					$this->session->set_flashdata('test_ongoing',FALSE);
 				} else {
-					//display
-					$data['test_id'] = $test_id;
-					$data['is_scheduled_test'] = TRUE;
-					$data['module_title'] = $this->module_model->get_title($module_id);
-					$data['body_content'] = $this->load->view('trainee/test/test_form',$data,TRUE);
+					//fetch questions
+					if (!$this->input->post('questions-string') OR $this->session->flashdata('test_ongoing') === FALSE) {
+						$data['questions'] = $this->question_model->fetch_test_questions($module_id,TRUE);
+						$data['questions_string'] = base64_encode(serialize($data['questions']));
+						$this->session->set_flashdata('test_ongoing',TRUE);
+						if (sizeof($data['questions']) > 0) {
+							//insert zero-score result
+							$result = $this->test_result_model->get_results($test_id,$this->trainee_id);
+							if (!$result) {
+								//basic content in case trainee aborts
+								$content_data = array();
+								$content_data['module_id'] = $module_id;
+								$content_data['module_title'] = $this->module_model->get_title($module_id);
+								$content_data['questions_string'] = $data['questions_string'];
+								$content_data['questions'] = $data['questions'];
+
+								$data['test_result_id'] = $this->test_result_model->insert_result($test_id,$module_id,$this->trainee_id,0, base64_encode(serialize($content_data)));
+							}
+						}
+					} else {
+						$data['questions'] = unserialize(base64_decode($this->input->post('questions-string')));
+						$data['questions_string'] = $this->input->post('questions-string');
+						$data['test_result_id'] = $this->input->post('test-result-id');
+						$this->session->keep_flashdata('test_ongoing');
+					}
+
+					//check if there are questions
+					if (sizeof($data['questions']) <= 0) {
+						//error
+						$data['error_message'] = 'There are no questions for this test. Please notify the test administrator about this issue.';
+						$data['error_title'] = 'No Test Questions';
+						$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
+					} else {
+						//display
+						$data['test_id'] = $test_id;
+						$data['is_scheduled_test'] = TRUE;
+						$data['module_title'] = $this->module_model->get_title($module_id);
+						$data['body_content'] = $this->load->view('trainee/test/test_form',$data,TRUE);
+					}
 				}
 			}
+			//breadcrumb settings
+			$this->config->set_item('replacer_embed', array('take' => array('../../test|take','../../module/view/'.$module_id.'|'.word_limiter($this->module_model->get_title($module_id),10),$test_id)));
 		}
+		$this->config->set_item('replacer_embed', array('scheduled_test' => array('/trainee/test|scheduled test')));
 
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 		$this->parser->parse('layouts/default', $data);
 	}
 
@@ -131,7 +136,7 @@ class Scheduled_test extends MBL_Controller {
 				$data['results']['answers'][$index] = FALSE;
 			}
 		}
-		//rating is stored as score/total. it will be displayed as round(($data['results']['rating']*100),3)
+		//rating is stored as score/total
 		$data['results']['rating'] = $data['results']['score'] / $data['results']['total'];
 
 		//update test_results
@@ -141,13 +146,13 @@ class Scheduled_test extends MBL_Controller {
 		$data['is_scheduled_test'] = TRUE;
 		return $this->load->view('trainee/test/test_result',$data,TRUE);
 	}
-//TODO transfer to admin
+
+	//view test result
 	public function result($test_result_id) {
 		$this->load->model('admin/user_model');
 		$result = $this->test_result_model->get_result($test_result_id);
 		if ($result) {
 			$result_content = unserialize(base64_decode($result->content));
-			// print_r($result_content);
 			$result_content['details']['test_result_id'] = $result->id;
 			$result_content['details']['trainee_id'] = $result->trainee_id;
 
@@ -161,9 +166,15 @@ class Scheduled_test extends MBL_Controller {
 			$result_content['details']['rating'] = $result->rating;
 			$result_content['details']['date'] = $result->date;
 			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
-			$this->parser->parse('layouts/default', $data);
+		} else {
+			//result does not exist
+			$data['error_message'] = 'The test result is not found in the database.';
+			$data['error_title'] = 'Not Such Test Result';
+			$data['body_content'] = $this->load->view('trainee/test/test_error',$data,TRUE);
 		}
+		$this->config->set_item('replacer_embed', array('scheduled_test' => array('/trainee/test|scheduled test')));
+			$data['page_title'] = "Trainee - SSCO Module-Based Learning";
+			$this->parser->parse('layouts/default', $data);
 	}
 }
 

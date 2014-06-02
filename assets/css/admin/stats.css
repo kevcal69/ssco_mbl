@@ -48,7 +48,7 @@
 	margin: 0 auto;;
 	background-color: white;
 	background-repeat: no-repeat;
-	background-size: auto auto;
+	background-size: 100% auto;
 	background-position: center;	
 }
 #mod-box #title {
@@ -114,7 +114,8 @@
  }
 a.actions {
 	font-size: .8rem;
-	border-bottom: 1px solid black;
+	/*border-bottom: 1px solid black;*/
+	text-decoration: underline;
 	margin: 5px;
 }
 #piechart, #module-info {

@@ -3,14 +3,13 @@
 class Module extends MBL_Controller {
 		function __construct() {
 			parent::__construct();
-			//refuse access when not logged as admin
+			//refuse access when not logged in as trainee
 			if ($this->session->userdata('role') !== 'trainee') {
 				$message_403 = "You don't have permission to access the url you are trying to reach.";
 				$heading = '403 Forbidden';
 				show_error($message_403,403,$heading);
 			}
 
-			// $this->load->model('trainee/trainee_model');
 			$this->load->model('module_model');
 			$this->load->model('trainee/trainee_module_model');
 			$this->load->helper('application_helper');
@@ -86,13 +85,15 @@ class Module extends MBL_Controller {
 		$data['view_more'] = TRUE;
 		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id,3);
 		$data['body_content'] = $this->load->view('trainee/module/module',$data,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
 	public function view($id = FALSE) {
 		if ($id !== FALSE && is_numeric($id)) {
+			//view specific module
 			if ($this->trainee_module_model->is_enroled($id,$this->trainee_id)) {
+				//enroled in module
 				if ($this->trainee_module_model->is_completed($id,$this->trainee_id)) {
 					//already completed the module
 					$this->sidebar_content['actions']['retake_test'] = array(
@@ -114,8 +115,10 @@ class Module extends MBL_Controller {
 						);
 					$module['enroled'] = TRUE;
 				}
+
 				$this->sidebar_content['module_statistics'] = $this->trainee_module_model->get_statistics($this->trainee_id,$id);
 			} else {
+				//not yet enroled
 				$this->sidebar_content['actions']['enrol'] = array(
 					'content' => to_sidebar_element('fa-plus','Enrol in Module'),
 					'href' => base_url('trainee/module/enrol/'.$id),
@@ -127,7 +130,10 @@ class Module extends MBL_Controller {
 			$module['module'] = $this->module_model->fetch_module($id);
 
 			$data['body_content'] = $this->load->view('trainee/module/view',$module,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Trainee - SSCO Module-Based Learning";
+			//breadcrumb settings
+			$this->config->set_item('replacer_embed', array('view' => array('view', word_limiter($module['module']->title,10))));
+
 			$this->parser->parse('layouts/logged_in', $data);
 		} else {
 			//view all available modules
@@ -161,7 +167,10 @@ class Module extends MBL_Controller {
 			$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 			$data['modules'] = $this->module_model->get_module_entries();
 			$data['body_content'] = $this->load->view('trainee/module/view_all',$data,TRUE);
-			$data['page_title'] = "SSCO Module-Based Learning";
+			$data['page_title'] = "Trainee - SSCO Module-Based Learning";
+			//breadcrumb settings
+			$this->config->set_item('replacer_embed', array('view' => 'view all'));
+
 			$this->parser->parse('layouts/logged_in', $data);
 		}
 	}
@@ -197,7 +206,10 @@ class Module extends MBL_Controller {
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$data['current_modules'] = $this->trainee_module_model->get_current_modules($this->trainee_id);
 		$data['body_content'] = $this->load->view('trainee/module/current_modules',$data,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('view_current_modules' => 'current modules'));
+		
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
@@ -234,7 +246,10 @@ class Module extends MBL_Controller {
 		$data['view_more'] = FALSE;
 		$data['completed_modules'] = $this->trainee_module_model->get_completed_modules($this->trainee_id);
 		$data['body_content'] = $this->load->view('trainee/module/completed_modules',$data,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('view_completed_modules' => 'completed modules'));
+		
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
@@ -270,7 +285,10 @@ class Module extends MBL_Controller {
 		$data['module_table'] = TRUE;
 		$data['available_modules'] = $this->trainee_module_model->get_available_modules($this->trainee_id,FALSE,FALSE);
 		$data['body_content'] = $this->load->view('trainee/module/available_modules',$data,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
+		//breadcrumb settings
+		$this->config->set_item('replacer_embed', array('view_available_modules' => 'available modules'));
+		
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
@@ -280,8 +298,8 @@ class Module extends MBL_Controller {
 			$confirm = $this->input->post('confirm');
 			$module_title = $this->module_model->get_title($module_id);
 			//check if already enroled
-			$result = $this->trainee_module_model->get_enroled_module($module_id, $this->trainee_id);
-			if (!empty($result)) {
+			$result = $this->trainee_module_model->is_enroled($module_id, $this->trainee_id);
+			if ($result) {
 				//reenrol warning
 				$reenrol_confirm = $this->input->post('reenrol-confirm');
 
@@ -305,7 +323,7 @@ class Module extends MBL_Controller {
 					$data['body_content'] = $this->load->view('trainee/module/function_result',$enrol_data,TRUE);
 				}
 			} else {
-
+				//enrol
 				if ($confirm !== 'TRUE') {
 					//confirmation dialog
 					$confirm_data = array(
@@ -327,6 +345,9 @@ class Module extends MBL_Controller {
 					$data['body_content'] = $this->load->view('trainee/module/function_result',$enrol_data,TRUE);
 				}
 			}
+
+			//breadcrumb settings
+			$this->config->set_item('replacer_embed', array('enrol' => array('enrol',word_limiter($module_title,10))));
 		} else {
 			//choose enrol module
 			$modules = $this->module_model->get_module_entries();
@@ -375,10 +396,11 @@ class Module extends MBL_Controller {
 				)
 			);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Trainee - SSCO Module-Based Learning";
 		$this->parser->parse('layouts/logged_in', $data);
 	}
 
+	//validation rule: module must exist.
 	public function module_exists($module_title) {
 		$result =  $this->module_model->get_id($module_title);
 		if ($result) {

@@ -41,8 +41,8 @@
 								<tr>
 									<th class="collapse nowrap center">ID</th>
 									<th>Module Title</th>
-									<th>Date Enroled</th>
-									<th></th>
+									<th class="collapse nowrap center">Date Enroled</th>
+									<th class="collapse nowrap center">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -50,7 +50,7 @@
 									<tr>
 										<td class="collapse nowrap center"><?php echo $module['id']?></td>
 										<td><a href="<?php echo base_url('trainee/module/view/'.$module['id'])?>"><?=stripslashes($module['title'])?></a></td>
-										<td><?php echo $module['date_enroled']?></td>
+										<td class="collapse nowrap center"><?php echo format_timestamp($module['date_enroled'])?></td>
 										<td class="collapse nowrap center">
 											<a class="button button-primary table-button" href="<?php echo base_url('trainee/module/view/'.$module['id'])?>">View</a>
 											<a class="button table-button" href="<?php echo base_url('trainee/test/take/'.$module['id'])?>">Take Test</a>
@@ -75,11 +75,11 @@
 								<tr>
 									<th class="collapse nowrap center">ID</th>
 									<th>Module Title</th>
-									<th>Date Enroled</th>
-									<th>Date Completed</th>
+									<th class="collapse nowrap center">Date Enroled</th>
+									<th class="collapse nowrap center">Date Completed</th>
 									<th class="collapse nowrap center">Rating</th>
 									<th class="collapse nowrap center">Times Test Taken</th>
-									<th></th>
+									<th class="collapse nowrap center">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -87,8 +87,8 @@
 									<tr>
 										<td class="collapse nowrap center"><?php echo $module['id']?></td>
 										<td><a href="<?php echo base_url('trainee/module/view/'.$module['id'])?>"><?=stripslashes($module['title'])?></a></td>
-										<td><?php echo $module['date_enroled']?></td>
-										<td><?php echo $module['date_completed']?></td>
+										<td class="collapse nowrap center"><?php echo format_timestamp($module['date_enroled'])?></td>
+										<td class="collapse nowrap center"><?php echo format_timestamp($module['date_completed'])?></td>
 										<td class="collapse nowrap center"><?php echo format_rating($module['rating'])?></td>
 										<td class="collapse nowrap center"><?php echo $module['tests_taken']?></td>
 										<td class="collapse nowrap center"><a class="button button-primary table-button" href="<?php echo base_url('trainee/module/view/'.$module['id'])?>">View</a></td>
@@ -114,9 +114,9 @@
 						<tr>
 							<th class="collapse nowrap center">Test ID</th>
 							<th>Module</th>
-							<th>Date Taken</th>
+							<th class="collapse nowrap center">Date Taken</th>
 							<th class="collapse nowrap center">Rating</th>
-							<th></th>
+							<th class="collapse nowrap center">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -124,7 +124,7 @@
 							<tr>
 								<td class="collapse nowrap center"><?php echo $test['test_id']?></td>
 								<td><?=stripslashes($test['module_title'])?></td>
-								<td><?php echo $test['date']?></td>
+								<td class="collapse nowrap center"><?php echo format_timestamp($test['date'])?></td>
 								<td class="collapse nowrap center"><?php echo format_rating($test['rating'])?></td>
 								<td class="collapse nowrap center"><a class="button button-primary table-button" href="<?php echo base_url('trainee/scheduled_test/result/'.$test['id'])?>">View Result</a></td>
 							</tr>

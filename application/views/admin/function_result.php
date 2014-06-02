@@ -1,4 +1,4 @@
-<div id="function-result-container" class="panel panel-info user-container">
+<div id="function-result-container" class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">Function Result</h3>
 	</div>
@@ -10,6 +10,5 @@
 	</div>
 	<div class="panel-footer">
 		<a class="button" onClick="window.name='autoreload';history.go(-2);">Back</a>
-		<a class="button button-primary" href="<?=base_url('admin/user/view');?>">View All Users</a>
 	</div>
 </div>

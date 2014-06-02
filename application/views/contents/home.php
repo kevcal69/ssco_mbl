@@ -1,6 +1,6 @@
 <div id="module-intro">
 	<div id="about">
-		<h1>Module-Based Learning</h1>
+		<h1>SSCO Module-Based Learning</h1>
 		<p>SSCO Module-Based Learning is an e-learning tool primarily designed for the new hires of the SSCO department. </p>
 		<p>Its goal is to enable the new employees to more effectively learn and understand SSCO’s voluminous training documents by presenting information in easy-to-understand modules which they can take at their own pace.</p>
 	</div>
@@ -26,7 +26,7 @@
 						</div>
 					</div>
 
-					<div class="control-group">
+					<div class="control-group" id="login-button-container">
 						<div class="controls">
 							<input type="submit" value="Log in" class = "button-primary">
 						</div>

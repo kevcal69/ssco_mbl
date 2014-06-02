@@ -31,8 +31,13 @@ class Admin extends MBL_Controller {
 						'active' => FALSE
 						),
 					array(
-						'content' => to_sidebar_element('fa-question','Test Results'),
+						'content' => to_sidebar_element('fa-question','Tests'),
 						'href' => base_url('admin/test'),
+						'active' => FALSE
+						),
+					array(
+						'content' => to_sidebar_element('fa-group','Trainees'),
+						'href' => base_url('admin/trainee'),
 						'active' => FALSE
 						)
 					)
@@ -45,7 +50,7 @@ class Admin extends MBL_Controller {
 	public function index() {
 		$data['scheduled_tests'] = $this->get_scheduled_tests();
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
-		$data['page_title'] = "SSCO Module-Based Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/home',$data,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 	}

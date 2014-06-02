@@ -85,3 +85,21 @@ body.admin.index {
 #result-back {
 	float: right;
 }
+
+/*trainee*/
+
+#function-result-container, #error-container {
+	min-width: 450px;
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	margin: 20px 0px;
+}
+
+.trainee .form-container {
+	min-width: 450px;
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	margin: 20px 0px;
+}

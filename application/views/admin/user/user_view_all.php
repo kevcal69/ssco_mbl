@@ -1,10 +1,6 @@
 <div id="users-container" class="user-container panel">
-	<div class="view-title-bar panel-heading">
-		<legend id="view-legend">View All Users</legend>
-		<div id="button-group">
-			<a class="button" onClick="history.go(-1);window.close();">Back</a>
-			<a class="button button-primary" href="<?=base_url('admin/user');?>">Home</a>
-		</div>
+	<div class="panel-heading">
+		<h3 class="panel-title">View All Users</h3>
 	</div>
 	<div class="panel-body">
 		<table id="users-table">

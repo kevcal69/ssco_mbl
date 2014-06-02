@@ -10,7 +10,6 @@ class Home extends MBL_Controller {
 		} else if ($this->session->userdata('role') == 'content_manager') {
 			redirect('content_manager');
 		}
-		$this->load->model('Module_model','mModel');
 
 
 		$this->load->helper('application_helper');
@@ -19,7 +18,7 @@ class Home extends MBL_Controller {
 
 	public function index() {
 		$data['page_title'] = "SSCO Module-Based Learning";
-		$data['body_content'] = $this->load->view('contents/home',array('modules' => $this->mModel->get_module_entries()),TRUE); // kevcal
+		$data['body_content'] = $this->load->view('contents/home','',TRUE); // kevcal
 		$this->parser->parse('layouts/default', $data);
 	}
 }

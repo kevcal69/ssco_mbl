@@ -75,7 +75,7 @@
 					<td class = "table-id"><?=$row->id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
 			    <td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
-					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>">Summary Details</a></td>		
+					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>" class="actions">Details</a></td>		
 				</tr>
 			<?php endforeach ?>
 			</tbody>
@@ -119,7 +119,7 @@
 					<td class = "table-id collapse nowrap center"><?=$row->id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
 			    <td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
-					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>">Summary Details</a></td>		
+					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>"><a href="<?=base_url() . 'admin/test/result/'.$row->id?>" class="actions">Details</a></td>		
 				</tr>
 			<?php endforeach ?>
 			</tbody>

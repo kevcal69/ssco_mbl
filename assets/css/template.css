@@ -273,7 +273,7 @@ input[type='text'],
 input[type='password'],
 select {
 	font-family: "FontAwesome","OpenSansLight";
-	width: 300px;
+	width: 200px;
 	color: black;
 	/*height: 28px;*/
 	border: 1px solid #cccccc;
@@ -724,6 +724,7 @@ ul.nav, ol.nav {
 .notif-body {
 	padding: 10px;
 	display: table-cell;
+	vertical-align: middle;
 }
 
 .notif-icon {

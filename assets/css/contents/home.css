@@ -32,11 +32,16 @@
 
 .home.index #module-intro .login-container {
 	float: right;
-	height: 240px;
+	min-height: 240px;
 	width: 250px;
 	text-align: center;
 	border-color: rgba(193, 195, 199, 1);
 }
+
+.home.index #module-intro .login-container #login-button-container {
+	margin-top: 20px;
+}
+
 
 .home.index #module-intro .login-container .text-error {
 	font-size: .7rem;

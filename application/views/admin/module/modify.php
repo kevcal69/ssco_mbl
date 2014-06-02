@@ -5,7 +5,7 @@
 <?php endif; ?>
 <div class="panel">
 	<div class="panel-heading">
-		<h3 class="panel-title">Modify Module No : <?=$module->id?></h3>
+		<h3 class="panel-title">Modify Module: <?=$module->title?></h3>
 	</div>
 	<form enctype='multipart/form-data' action = "<?=site_url('admin/module/modify_module')?>" method = "POST" name = "question">
 	<div class="panel-body" id = "create-mod">

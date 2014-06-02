@@ -1,22 +1,14 @@
 <?php if (!empty($scheduled_test)): ?>
-<div class="panel">
-	<div class="panel-heading">
-	<span class="close-panel"><i class = "fa fa-times fa-fw"></i></span>
-		<h3 class="panel-title">Scheduled Test</h3>
-	</div>
-	<div class="panel-body">
-		<?php foreach ($scheduled_test as $test): ?>
-			<div class="notif notif-warning">
-				<div class="notif-icon">
-					<button type = "button" class = "button-danger table-button" id = "stop"  data-tid = "<?=$test->id?>" data-mid = "<?=$test ->module_id?>"><i class="fa fa-fw fa-thumb-tack"></i>Stop the Test</button>
-				</div>
-				<div class="notif-body">
-					Module No: <?=$test ->module_id?> : 
-				</div>
+	<?php foreach ($scheduled_test as $test): ?>
+		<div class="notif notif-warning">
+			<div class="notif-icon">
+				<button type = "button" class = "button-danger table-button float-r" id = "stop"  data-tid = "<?=$test->id?>" data-mid = "<?=$test ->module_id?>"><i class="fa fa-fw fa-thumb-tack"></i>Stop the Test</button>
 			</div>
-		<?php endforeach ?>
-	</div>
-</div>
+			<div class="notif-body">
+				Scheduled Test for <?=word_limiter($this->mModule->get_title($test ->module_id,10))?> is ongoing. 
+			</div>
+		</div>
+	<?php endforeach ?>
 <?php endif; ?>
 
 <div class="panel">
