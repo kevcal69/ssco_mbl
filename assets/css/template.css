@@ -518,6 +518,7 @@ ul.nav, ol.nav {
 .sidebar {
 	width: 200px;
 	border: 1px solid #dddddd;
+	margin-bottom: 20px;
 }
 
 .sidebar ul {

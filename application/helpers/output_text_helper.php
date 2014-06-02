@@ -1,11 +1,7 @@
 <?php
 /**
-*	Display choices array in the form "index : choice"
-*
-*	Convert choices array (from question.choices in question table) 
-*	into a formatted string ready for display.
-*
-* @author 	Kevin Calingacion
+*	Display choices array (from question.choices in question table) into
+* the form "index : choice"
 *
 *	@param	array		$array	unserialized choices array (question.choices)
 *
@@ -20,12 +16,7 @@ function display_choices($array) {
 }
 
 /**
-*	Display answers array
-*
-*	Convert answers array (from question.answer in question table) 
-*	into a formatted string ready for display.
-*
-* @author 	Kevin Calingacion
+*	Display answers array (from question.answer in question table)
 *
 *	@param	array 	$arrayc	unserialized choices array (question.choices)
 *	@param	array 	$arraya	unserialized answers array (question.answer)
@@ -43,12 +34,6 @@ function display_answers($arrayc,$arraya) {
 /**
 *	Display choices and answers array in the form "index : choice" (answers are highlighted in red).
 *
-*	Convert choices (from question.choices in question table) and
-* answers arrays (from question.answer in question table) 
-*	into a formatted string ready for display.
-*
-* @author 	Kevin Calingacion
-*
 *	@param	array 	$array	unserialized choices array (question.choices)
 *	@param	array 	$arraya	unserialized answer array (question.answer)
 *
@@ -57,10 +42,9 @@ function display_answers($arrayc,$arraya) {
 function display_ca($array,$arraya) {
 	$str = '<ul>';
 	 foreach ($array as $key => $value) {
-		if(in_array($key,$arraya)){
+		if($arraya !== NULL && in_array($key,$arraya)){
 			$str .= '<li class = "text-error">'.$key.' : '. $value.'</li>';
-		}
-		else{
+		} else {
 			$str .= '<li>'.$key.' : '. $value.'</li>';
 		}
 	 }
@@ -69,12 +53,6 @@ function display_ca($array,$arraya) {
 }
 /**
 *	Display choices and answers array as textbox for editing choices
-*
-*	Convert choices (from question.choices in question table) and
-* answers arrays (from question.answer in question table) 
-*	into a formatted string ready for display.
-*
-* @author 	Kevin Calingacion
 *
 *	@param	array 	$array	unserialized choices array (question.choices)
 *	@param	array 	$arraya	unserialized answer array (question.answer)
@@ -88,14 +66,13 @@ function edit_ca($array,$arraya) {
 				$str .= '<label class="checkbox">
 						<input type="checkbox" checked value="'.$key.'" name = "question[answers][]">
 						<input type = "text" value = "'.$value.'"class = "choices" name = "question[choices][]">
-						<span class = "text-error text-size-s2" onclick = "question.del(this)">del</span>
+						<span class = "text-error text-size-s2" onclick = "question.del(this)"> delete</span>
 					</label>';	 		
-			}
-			else{
+			}	else {
 				$str .= '<label class="checkbox">
 						<input type="checkbox" value="'.$key.'" name = "question[answers][]">
 						<input type = "text" value = "'.$value.'"class = "choices" name = "question[choices][]">
-						<span class = "text-error text-size-s2" onclick = "question.del(this)">del</span>
+						<span class = "text-error text-size-s2" onclick = "question.del(this)"> delete</span>
 					</label>';
 			}
 	}
@@ -103,11 +80,7 @@ function edit_ca($array,$arraya) {
 }
 
 /**
-*	Unserialize array
-*
 *	Unserialize a base64-encoded array (not just the choices array).
-*
-* @author 	Paul Obligado
 *
 *	@param	string 	$choices_string	serialized, base64-encoded array 
 *
@@ -118,11 +91,7 @@ function unserialize_choices($choices_string) {
 }
 
 /**
-*	Format timestamp string
-*
 *	Format a timestamp string into the form MM D YYY HH:MM AM/PM
-*
-* @author 	Paul Obligado
 *
 *	@param	string 	$str	timestamp
 *
@@ -133,11 +102,7 @@ function format_timestamp($str) {
 }
 
 /**
-*	Format rating
-*
 *	Format module rating (ex. 0.5 (score/total) -> 50.0%)
-*
-* @author 	Paul Obligado
 *
 *	@param	string 	$str	rating
 *
@@ -148,8 +113,6 @@ function format_rating($str) {
 }
 
 /**
-*	Generate table of contents from HTML
-*
 *	Generate a list-based table of contents from a given HTML code. 
 * Headings (h1, h2, ...,h6) are detected and used to generate a nested table of contents
 * with appropriate links
@@ -167,8 +130,6 @@ function format_rating($str) {
 * 			2.	Sub-section 2
 *
 * @link 	http://stackoverflow.com/a/4912798
-*
-*	@author	Paul Obligado(adapted for use)
 *
 *	@param	string 	$code	HTML code with appropriate headings
 *

@@ -39,8 +39,8 @@
 					</div>
 					<div class="summary">
 						<ul>
-							<li>Number of Takers :<?=$var['takers']?></li>
-							<li>Overall Percentage Rating :<?=$var['rating_summary']?></li>
+							<li>Number of Takers: <?=$var['takers']?></li>
+							<li>Overall Percentage Rating: <?=$var['rating_summary']?></li>
 						</ul>
 					</div>
 
@@ -65,7 +65,7 @@
 				<tr>
 					<th>Module Test ID</th>
 					<th>Date</th>
-					<th># : Name</th>
+					<th>User ID : Name</th>
 					<th class="collapse nowrap center">Actions</th>
 				</tr>
 			</thead>
@@ -74,7 +74,7 @@
 				<tr>
 					<td class = "table-id collapse nowrap center"><?=$row->test_id?></td>
 					<td class = "table-sw"><?=$row->date?></td>
-			    <td><?=$row->trainee_id?> : <?=$row->first_name?>,<?=$row->last_name?></td>
+			    <td><?=$row->trainee_id?> : <?=$row->last_name?>,<?=$row->first_name?></td>
 					<td class="collapse nowrap center" id = "more-details" data-id = "<?=$row->test_result_id?>"><a href="<?=base_url() . 'admin/test/sched_result/'.$row->test_result_id?>" class="actions">Details</a></td>		
 				</tr>
 			<?php endforeach ?>

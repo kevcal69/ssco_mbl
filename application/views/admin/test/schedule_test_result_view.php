@@ -26,7 +26,7 @@
 						<a href="<?=base_url() . 'admin/test/sched_results_view/'.$row->id?>" class="actions">Details</a>
 					</td>
 					<?php else:?>
-					<td  id = "more-details" data-id = "<?=$row->id?>">
+					<td  class="collapse nowrap center" id = "more-details" data-id = "<?=$row->id?>">
 					<button type = "button" class = "button-danger table-button" id = "stop"  data-tid = "<?=$row->id?>" data-mid = "<?=$row ->module_id?>">
 					<i class="fa fa-fw fa-thumb-tack"></i>Stop the Test
 					</button>

@@ -149,7 +149,7 @@ a.actions {
 	margin: 0 auto;
 	background-color: white;
 	background-repeat: no-repeat;
-	background-size: auto auto;
+	background-size: contain;
 	background-position: center;		
 }
 .inner-panel-body .info {

@@ -9,18 +9,18 @@
 			<h3 class="panel-title">Personal Information</h3>
 		</div>
 		<div class="panel-body">
-			<div class="form-horizontal">
-				<div class="control-group">
-					<label class="label">First Name</label>
-					<label class="value"><?php echo $statistics['name']['first_name']?></label>
+			<div class="table vertical-headings test-result-table">
+				<div class="tr">
+					<div class="th">First Name</div>
+					<div class="td"><?php echo $statistics['name']['first_name']?></div>
 				</div>
-				<div class="control-group">
-					<label class="label">Last Name</label>
-					<label class="value"><?php echo $statistics['name']['last_name']?></label>
+				<div class="tr">
+					<div class="th">Last Name</div>
+					<div class="td"><?php echo $statistics['name']['last_name']?></div>
 				</div>
-				<div class="control-group">
-					<label class="label">Username</label>
-					<label class="value"><?php echo $statistics['name']['username']?></label>
+				<div class="tr">
+					<div class="th">Username</div>
+					<div class="td"><?php echo $statistics['name']['username']?></div>
 				</div>
 			</div>
 		</div>

@@ -4,7 +4,15 @@ class Trainee_module_model extends CI_Model {
 	function __construct() {
 		parent::__construct();
 	}
-	
+
+/**
+*	Insert/Update enroled module
+*
+*	@param	int 		$trainee_id	(user_id) must exist
+*	@param	int 		$module_id	must exist
+*
+*	@return	boolean	update result
+*/
 	public function enrol_module($module_id, $trainee_id) {
 		$data = array (
 			'module_id' => $module_id,
@@ -26,16 +34,14 @@ class Trainee_module_model extends CI_Model {
 		}
 	}
 
-	function delete($username) {
-		$this->db->trans_start();
-
-		$user = $this->view($username);
-		$result = $this->db->delete('user',array('username' => $username));
-
-		$this->db->trans_complete();
-		return $this->db->trans_status();
-	}
-	
+/**
+*	Delete enroled module
+*
+*	@param	int 		$trainee_id	(user_id) must exist
+*	@param	int 		$module_id	must exist
+*
+*	@return	boolean	delete result
+*/
 	public function unenrol_module($module_id, $trainee_id) {
 		$this->db->trans_start();
 
@@ -45,6 +51,16 @@ class Trainee_module_model extends CI_Model {
 		return $this->db->trans_status();
 	}
 
+/**
+*	Update enroled module
+*
+*	@param	int			$module_id	must exist
+*	@param	int			$trainee_id	(user_id) must exist
+*	@param	float		$rating
+*	@param	boolean $is_completed
+*
+*	@return	boolean	update result
+*/
 	public function update_module($module_id,$trainee_id,$rating,$is_completed) {
 		$data = array(
 			'rating' => $rating,
@@ -58,11 +74,20 @@ class Trainee_module_model extends CI_Model {
 		return $this->db->update('enrolled_module',$data);
 	}
 
+/**
+*	Get enroled module
+*
+*	@param	int			$module_id (optional)
+*	@param	int			$trainee_id (optional)
+*
+*	@return	object	on specific module (module_id and trainee_id given)
+*					array 	array of objects on multiple results
+*/
 	public function get_enroled_module($module_id = FALSE, $trainee_id = FALSE) {
 		$this->load->model('module_model');
 		//allows for different filters
 		if ($module_id !== FALSE && $trainee_id !== FALSE) {
-			//module_id and trainee_id given
+			//module_id and trainee_id given. specific enroled modules
 			$data = array(
 				'module_id' => $module_id, 
 				'trainee_id' => $trainee_id
@@ -100,7 +125,7 @@ class Trainee_module_model extends CI_Model {
 			}
 			return $result();
 		} else {
-			//no parameters
+			//no parameters. gets all entries
 			$query = $this->db->get('enrolled_module');
 			$result = array();
 			foreach ($query->result() as $index => $module) {
@@ -111,6 +136,14 @@ class Trainee_module_model extends CI_Model {
 		}
 	}
 
+/**
+*	Get enroled module's rating
+*
+*	@param	int			$module_id must exist
+*	@param	int			$trainee_id must exist
+*
+*	@return	float		rating
+*/
 	public function get_rating ($module_id, $trainee_id) {
 		$data = array(
 			'module_id' => $module_id,
@@ -124,6 +157,14 @@ class Trainee_module_model extends CI_Model {
 		}
 	}
 
+/**
+*	Check if enroled module exists
+*
+*	@param	int			$module_id must exist
+*	@param	int			$trainee_id must exist
+*
+*	@return	boolean	result
+*/
 	public function is_enroled($module_id,$trainee_id) {
 		$result =  $this->get_enroled_module($module_id,$trainee_id);
 		if ($result !== FALSE) {
@@ -133,6 +174,14 @@ class Trainee_module_model extends CI_Model {
 		}
 	}
 
+/**
+*	Check if enrolled_module.is_completed is true
+*
+*	@param	int			$module_id must exist
+*	@param	int			$trainee_id must exist
+*
+*	@return	boolean	result
+*/
 	public function is_completed($module_id,$trainee_id) {
 		$result =  $this->get_enroled_module($module_id,$trainee_id);
 		if ($result && $result->is_completed == TRUE) {
@@ -142,6 +191,16 @@ class Trainee_module_model extends CI_Model {
 		}
 	}
 
+/**
+*	Gets all available modules of trainee (modules not enroled).
+* limit and random are optional variables.
+*
+*	@param	int			$trainee_id must exist
+*	@param	int			$limit			resulting rows limit
+*	@param	boolean	$random 		randomize results
+*
+*	@return	array		query result
+*/
 	public function get_available_modules($trainee_id, $limit = FALSE, $random = FALSE) {
 		$sql_query = '
 			SELECT	*
@@ -162,6 +221,13 @@ class Trainee_module_model extends CI_Model {
 		return $query->result();
 	}
 
+/**
+*	Gets all current modules of trainee (enroled modules with is_completed = FALSE).
+*
+*	@param	int			$trainee_id must exist
+*
+*	@return	array		query result
+*/
 	public function get_current_modules($trainee_id) {
 		$this->load->model('module_model');
 		$data = array(
@@ -177,6 +243,13 @@ class Trainee_module_model extends CI_Model {
 		return $result;
 	}
 
+/**
+*	Gets all current modules of trainee (enroled modules with is_completed = TRUE).
+*
+*	@param	int			$trainee_id must exist
+*
+*	@return	array		query result
+*/
 	public function get_completed_modules($trainee_id, $limit = FALSE) {
 		$this->load->model('module_model');
 		$data = array(
@@ -196,6 +269,14 @@ class Trainee_module_model extends CI_Model {
 		return $result;
 	}
 
+/**
+*	Gets module statistics
+*
+*	@param	int			$trainee_id must exist
+*	@param	int			$module_id 	must exist
+*
+*	@return	array		$module 		result
+*/
 	public function get_statistics($trainee_id,$module_id) {
 		$this->load->model('module_model');
 		$this->load->model('module_test_result_model');

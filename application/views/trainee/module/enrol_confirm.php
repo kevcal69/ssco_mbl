@@ -4,10 +4,8 @@
 	</div>
 	<div class="panel-body">
 		<div id="message-content">
-			<p>Are you sure you want to enrol in the "
-				<a href="<?=base_url('trainee/module/view/'. $module_id);?>">
-					<?php echo $module_title;?>
-				</a>" module?
+			<p>Are you sure you want to enrol in the "<a href="<?=base_url('trainee/module/view/'. $module_id);?>"><?php echo $module_title;?></a>
+				" module?
 			</p>
 		</div>
 	</div>

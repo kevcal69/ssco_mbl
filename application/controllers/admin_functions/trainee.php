@@ -263,7 +263,7 @@
 		$this->load->model('trainee/trainee_model','trainee_model');
 		$myData['tid'] = $id;
 		$myData['user_info'] = $this->trainee_model->get_name($id); 
-		$myData['scheduled_test'] = $this->mQ->get_scheduled_tests_by_modulet($id);
+		$myData['scheduled_test'] = $this->mQ->get_scheduled_tests_by_module($id);
 		$myData['scheduled_test_result'] = $this->sched_res->get_test_results_with_module_detail_by_module_id(false,$id);
 		$data['page_title'] = "SSCO Module Base Learning";
 		$data['body_content'] = $this->load->view('admin/trainee/schedule_test_result',$myData,TRUE); 

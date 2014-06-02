@@ -5,6 +5,16 @@ class User_model extends CI_Model {
 		parent::__construct();
 	}
 
+/**
+*	Insert new user to database
+*
+*	@param	string 	$username must be unique
+*	@param	string 	$password	will be md5 hashed
+*	@param	string 	$role			'admin','trainee', or 'content_manager'
+*	@param	array 	$name			contains first_name and last_name strings
+*
+*	@return	boolean	$result 	mysql insert result
+*/
 	function create($username, $password, $role, $name = FALSE) {
 		$data = array(
 			'username' => $username,
@@ -23,6 +33,17 @@ class User_model extends CI_Model {
 		return $result;
 	}
 
+/**
+*	Edit user
+*
+*	@param	int 		$user_id	must exist
+*	@param	string 	$username must be unique
+*	@param	string 	$password	will be md5 hashed
+*	@param	string 	$role			'admin','trainee', or 'content_manager'
+*	@param	array 	$name			contains first_name and last_name strings
+*
+*	@return	boolean	$result 	mysql update result
+*/
 	function edit($user_id, $username, $password, $role, $name = FALSE) {
 		//$data contains username, password, user_id, and role
 		//if role is trainee, $data also contains first_name and last_name
@@ -33,12 +54,11 @@ class User_model extends CI_Model {
 		if ($user['password'] !== $password) {
 			$new_password = MD5($password);
 		}
-		
 		$this->db->where('id',$user_id);
 
 		$user_data = array(
 			'username' => $username,
-			'password' => MD5($password),
+			'password' => $new_password,
 			'role' => $role
 			);
 		$result = $this->db->update('user',$user_data);
@@ -53,6 +73,15 @@ class User_model extends CI_Model {
 		return $result;
 	}
 
+/**
+*	Update Trainee's name
+*
+*	@param	int 		$user_id		must exist
+*	@param	string 	$first_name
+*	@param	string 	$last_name
+*
+*	@return	boolean	$result 	mysql update result
+*/
 	function update_trainee($user_id, $first_name, $last_name) {
 		$data = array(
 			'user_id' => $user_id,
@@ -71,6 +100,13 @@ class User_model extends CI_Model {
 		}
 	}
 
+/**
+*	Delete user based on username
+*
+*	@param	string 	$username must exist
+*
+*	@return	boolean	$result 	mysql delete result
+*/
 	function delete($username) {
 		$this->db->trans_start();
 
@@ -81,12 +117,27 @@ class User_model extends CI_Model {
 		return $this->db->trans_status();
 	}
 
+/**
+*	Delete trainee
+*
+*	@param	string 	$user_id	must exist
+*
+*	@return	boolean	$result 	mysql delete result
+*/
 	function delete_trainee($user_id) {
 		return $this->db->delete('trainee',array('user_id' => $user_id));
 	}
 
+/**
+*	Fetch user using username or user_id
+*
+*	@param	string 	$username must exist (optional)
+*	@param	int 		$user_id 	must exist (optional)
+*
+*	@return	array		query result
+*/
 	public function view($username = FALSE, $user_id = FALSE) {
-		//no parameters
+		//no parameters. get all users.
 		if ($username === FALSE && $user_id === FALSE) {
 			$query = $this->db->get('user');
 			return $query->result_array();
@@ -101,6 +152,14 @@ class User_model extends CI_Model {
 		}
 	}
 
+/**
+*	Fetch trainee using username or user_id
+*
+*	@param	int 		$user_id 	must exist (optional)
+*	@param	int 		$trainee_id 	must exist (optional)
+*
+*	@return	array		query result
+*/
 	public function view_trainee($user_id = FALSE,$trainee_id = FALSE) {
 		if (empty($user_id) && empty($trainee_id)) {
 			$query = $this->db->get('trainee');
@@ -114,6 +173,13 @@ class User_model extends CI_Model {
 		}
 	}
 
+/**
+*	Check if username already exists
+*
+*	@param	string 		$username
+*
+*	@return	boolean		result
+*/
 	function username_exists($username) {
 		//check for existing username
 		$this->db->select('username')->from('user')->where('username',$username)->limit(1);
@@ -125,8 +191,15 @@ class User_model extends CI_Model {
 		}
 	}
 
+/**
+*	Check if trainee already exists
+*
+*	@param	int 			$user_id
+*
+*	@return	boolean		result
+*/
 	function trainee_exists($user_id) {
-		//check for existing username
+		//check for existing user_id
 		$this->db->select('user_id')->from('trainee')->where('user_id',$user_id)->limit(1);
 		$check_trainee = $this->db->get();
 		if($check_trainee->num_rows() == 1) {

@@ -77,14 +77,21 @@
 	vertical-align: top;
 	display: inline-block;
 }
-.item .panel-body .panel  * {
+.item .panel-body .panel *,
+#instruction .panel * {
 	font-size: .9rem;
 }
-.item .panel-body .panel-heading {
+.item .panel-body .panel-heading,
+#instruction .panel-heading {
 	padding: 3px 5px;
 }
-.item .panel-body .panel-body {
+.item .panel-body .panel-body,
+#instruction .panel-body {
 	padding: 5px;
+}
+
+#choices-li input[type="checkbox"]{
+	margin-top: 8px;
 }
 
 #q-area {
@@ -116,13 +123,13 @@
 #instruction {
 	display: inline-block;
 	height: 300px;
-	width: 300px;
+	width: calc(100% - 605px);
 	vertical-align: top;
 }
 
 .choices {
 	width:50% !important;
-	border: none !important;
+	/*border: none !important;*/
 	border-bottom: 1px solid #e6e6e6 !important; 
 	display: inline-block !important;
 }

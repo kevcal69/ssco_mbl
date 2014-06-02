@@ -1,6 +1,6 @@
 <div id="users-container" class="user-container panel">
 	<div class="panel-heading">
-		<h3 class="panel-title">View All Users</h3>
+		<h3 class="panel-title">All Users</h3>
 	</div>
 	<div class="panel-body">
 		<table id="users-table">
@@ -23,6 +23,9 @@
 					</td>
 			    <td class="collapse nowrap center"><?php echo $user['role'];?></td>
 					<td class="collapse nowrap center">
+						<a href="view/<?php echo $user['username'];?>">
+							<i class="fa fa-info-circle" title="View User"></i>
+						</a>
 						<a class="text-muted" href="edit/<?php echo $user['username'];?>">
 							<i class="fa fa-edit fa-lg" title="Edit"></i>
 						</a>

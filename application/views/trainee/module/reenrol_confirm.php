@@ -4,10 +4,9 @@
 	</div>
 	<div class="panel-body">
 		<div id="message-content">
-			<p>You have already enroled in the "
-				<a href="<?=base_url('trainee/module/view/'. $module_id);?>">
-					<?php echo $module_title;?>
-				</a>" module in the past.<br>
+			<p>You have already enroled in the 
+				"<a href="<?=base_url('trainee/module/view/'. $module_id);?>"><?php echo $module_title;?></a>"
+				 module in the past.<br>
 				Do you want to reenrol in the module? Doing so will reset your progress.
 			</p>
 		</div>

@@ -15,22 +15,20 @@
 				<i class="fa fa-fw fa-exclamation-triangle"></i>
 			</div>
 			<div class="notif-body">
-				Notes & Tips
+				Notes &amp; Tips
 				<ul>
-					<li>It is highly encourage to use proper tag for better output. Computer code for code snippets, h's for heading, and formatted for text format.</li>
-					<li>The editor can directly parse copy pasted items.</li>
-					<li>Different text style are found on drop down menus. Full screen mode is in toolbar.</li>
-					<li>Always check for the content source found on upper left of the toolbar. Next to source toolbar is the save button</li>				
-					<li>Always check for the source</li>
-					<li>Be sure to delete the initial content</li>
-					<li>Choices are found below check the checkbox if the choice is an answer</li>
-					<li>Tags can be found at the bottom.</li>
-					<li>Include your title in your tags. Preferable separate per space</li>
-				</ul>				
+					<li>Be sure to delete the initial contents of the description and the module content.</li>
+					<li>The editor can directly parse copy-pasted items.</li>
+					<li>Different text styles are found under the drop down menus. Full screen mode is <i class="fa fa-arrows-alt"></i> in the toolbar.</li>
+					<li>Use appropriate styles for better output. "Computer Code" for code snippets, "Heading #" for section titles, and "Formatted" for fixed-width text, etc.</li>
+					<li>Always check the content source code for proper closing of tags (Source button on the upper-left corner).</li>
+					<li>Tags can be created using the textbox at the bottom. Type the tag name and press Enter to add the tag.</li>
+					<li>Include the module title in the tags.</li>
+				</ul>
 			</div>
 		</div>
 			<div id="field-container">
-				<input type = "text" name = "title" placeholder = "Module Title?" class = "qfield" />
+				<input type = "text" name = "title" placeholder = "Module Title" class = "qfield" />
 						<div class="controls">
 							<textarea name = "description" id = "description" placholder = "Description">
 								<span style="color: rgb(128, 128, 128);">Description only (not the entire module content)</span>
