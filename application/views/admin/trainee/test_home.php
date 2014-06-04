@@ -12,7 +12,7 @@
 <?php endif; ?>
 <div class="panel">
 	<div class="panel-heading">
-		<h3 class="panel-title">User Statistics</h3>
+		<h3 class="panel-title">Trainees List</h3>
 	</div>
 	<div class="panel-body">
 		<table id = "users-stat-table">

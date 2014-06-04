@@ -5,6 +5,14 @@ class Question_model extends CI_Model {
 		parent::__construct();
 	}
 
+/**
+*	Add question to database
+*
+*	@param	array 	$data	contains qtitle(string), question(string), answer(serialized array), 
+*												module_id(int), choices(serialized array)
+*
+*	@return	boolean	mysql query result
+*/
 	function add($data) {
 		if ($this->db->insert('question', $data)) {
 			return true;
@@ -12,14 +20,14 @@ class Question_model extends CI_Model {
 		return false;
 	}
 
-
-	function add_test($data) {
-		if ($this->db->insert('scheduled_test_question', $data)) {
-			return true;
-		} 
-		return false;
-	}	
-
+/**
+*	Update question in database
+*
+*	@param	array 	$data	contains id(int),qtitle(string), question(string),
+*												answer(serialized array), module_id(int), choices(serialized array)
+*
+*	@return	boolean	mysql query result
+*/
 	function edit($data) {
 		$this->db->where('id', $data['id']);
 		$this->db->update('question', $data); 
@@ -29,8 +37,29 @@ class Question_model extends CI_Model {
 		} else {
 			return TRUE;
 		}
-	}	
+	}
 
+/**
+*	Add scheduled test to database
+*
+*	@param	array 	$data	contains isset_test(boolean), module_id(int), content(serialized array)
+*
+*	@return	boolean	mysql query result
+*/
+	function add_test($data) {
+		if ($this->db->insert('scheduled_test_question', $data)) {
+			return true;
+		} 
+		return false;
+	}
+
+/**
+*	Edit scheduled test in database
+*
+*	@param	array 	$data	contains  id(int), isset_test(boolean), module_id(int), content(serialized array)
+*
+*	@return	boolean	mysql query result
+*/
 	function edit_test($data) {
 		$this->db->where('id', $data['id']);
 		$this->db->update('scheduled_test_question', $data);
@@ -40,8 +69,15 @@ class Question_model extends CI_Model {
 		} else {
 			return TRUE;
 		}
-	}	
+	}
 
+/**
+*	Get questions from database
+*
+*	@param	int 	$id must exist
+*
+*	@return	array	mysql query result on success, else FALSE
+*/
 	function fetch_questions($id) {
 		$query = $this->db->get_where('question', array('module_id' => $id));
 		if ($query) {
@@ -50,6 +86,14 @@ class Question_model extends CI_Model {
 			return false;
 		}
 	}
+
+/**
+*	Get scheduled test questions from database
+*
+*	@param	int 	$id must exist
+*
+*	@return	array	mysql query result on success, else FALSE
+*/
 	function fetch_test_questions($id) {
 		$this->db->order_by("is_used", "desc"); 
 		 $query = $this->db->get_where('scheduled_test_question', array('module_id' => $id));
@@ -60,11 +104,27 @@ class Question_model extends CI_Model {
 		 }
 	}
 
+/**
+*	Set isset_test of scheduled test
+*
+*	@param	int 		$id must exist
+*	@param	boolean	$val
+*
+*	@return	void
+*/
 	function set_test($id,$val) {
 		$this->db->where('id', $id);
 		$this->db->update('scheduled_test_question', array('is_used'=>$val));
 	}
 
+/**
+*	Get scheduled test questions based on is_used and module_id
+*
+*	@param	boolean	$filter is_used value
+*	@param	int 		$mid module id must exist
+*
+*	@return	array	mysql query result on success, else FALSE
+*/
 	function fetch_filtered_test($filter,$mid) {
 		$query = $this->db->get_where('scheduled_test_question', array('module_id' => $mid, 'is_used' => $filter));
 		if ($query) {
@@ -73,6 +133,14 @@ class Question_model extends CI_Model {
 			return false;
 		}
 	}
+
+/**
+*	Get latest scheduled test for module
+*
+*	@param	int 		$id module id must exist
+*
+*	@return	array	mysql query result on success, else FALSE
+*/
 	function fetch_test_sched($id) {
 		$this->db->order_by("id", "desc"); 
 		$this->db->limit(1);
@@ -82,15 +150,41 @@ class Question_model extends CI_Model {
 		 } else {
 		 	return false;
 		 }
-	}	
+	}
+
+/**
+*	Insert scheduled test entry
+*
+*	@param	int 		$id		module id must exist
+*	@param	string	$str	serialized content array
+*
+*	@return	void
+*/
 	function conduct_test($id,$str) {
 		$this->db->insert('scheduled_test', array('isset_test'=>1,'module_id'=>$id,'content'=>$str)); 
-	}	
-	function stop_test($tid,$id,$val) {
+	}
+
+/**
+*	Set scheduled test isset_test to FALSE
+*
+*	@param	int 		$tid	test id must exist
+*	@param	int 		$id		module id must exist
+*
+*	@return	void
+*/
+	function stop_test($tid,$id) {
 		$this->db->where('id', $tid);
 		$this->db->update('scheduled_test', array('isset_test'=>0,'module_id'=>$id)); 
-	}	
+	}
 
+/**
+*	Get module test questions
+*
+*	@param	int 		$id		module id must exist
+*	@param	int 		$limit
+*
+*	@return	array		$data	questions array
+*/
 	function fetch_evaluation_test($id, $limit = FALSE) {
 		if ($limit === FALSE) {
 			$limit = 10;
@@ -101,6 +195,7 @@ class Question_model extends CI_Model {
 
 		$haystack = array();
 		if (sizeof($array) < $limit) {
+			shuffle($array);
 			return $array;
 		} else {
 			for ($i=0; $i < $limit; $i++) { 
@@ -116,6 +211,13 @@ class Question_model extends CI_Model {
 		return $data;
 	}
 
+/**
+*	Get scheduled tests
+*
+*	@param	int 		$test_id	(optional) must exist
+*
+*	@return	array		query result
+*/
 	function get_scheduled_tests($test_id = FALSE) {
 		if ($test_id === FALSE) {
 			//get all scheduled tests
@@ -135,7 +237,14 @@ class Question_model extends CI_Model {
 		}
 	}
 
-	function get_scheduled_tests_by_modulet($id, $set = FALSE){
+/**
+*	Get scheduled tests
+*
+*	@param	int 		$id	module_id must exist
+*
+*	@return	array		query result
+*/
+	function get_scheduled_tests_by_module($id, $set = FALSE){
 		if ($set === FALSE) {
 			//get all scheduled tests
 			$query = $this->db->get_where('scheduled_test', array('module_id' => $id));
@@ -151,10 +260,17 @@ class Question_model extends CI_Model {
 			} else {
 				return FALSE;
 			}
-		}		
+		}
 	
 	}
 
+/**
+*	Check if scheduled test isset
+*
+*	@param	int 		$test_id	must exist
+*
+*	@return	boolean	query result
+*/
 	function isset_test($test_id) {
 		$query = $this->db->get_where('scheduled_test', array('id' => $test_id));
 		if ($query) {
@@ -164,6 +280,13 @@ class Question_model extends CI_Model {
 		}
 	}
 
+/**
+*	Get test results for module tests and scheduled tests
+*
+*	@param	none
+*
+*	@return	array	query result
+*/
 	function fetch_both_user_stats_by_id() {
 		$query =  $this->db->query("Select trainee1.*, module_test_result.content,module_test_result.date,module_test_result.id,module_test_result.module_id,module_test_result.rating  from trainee as trainee1 inner join module_test_result on trainee1.user_id = module_test_result.trainee_id");
 		$results['mod_test_res'] = $query->result();

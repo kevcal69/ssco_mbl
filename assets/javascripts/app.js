@@ -163,7 +163,11 @@ var question = {
 					$temp = $('#results-filter');
 					$("#qbody").empty();
 					$("#qbody").append($temp);
-					$("#qbody").append(data);
+					if (data.length > 0) {
+						$("#qbody").append(data);
+					} else {
+						$("#qbody").append('<div class="item panel"><div class="panel-body">No questions.</div></div>');
+					}					
 				}
 			});
 		}).on("click",".sh_mr", function () {
@@ -270,7 +274,7 @@ var question = {
 		});
 	},
 	add: function(e) {
-		$(e).parent().children('#choices-li').append('<label class="checkbox"><input type="checkbox" name = "question[answers][]" value = "'+$('.checkbox').length+'"><input type = "text" class = "choices" name = "question[choices][]"><span class = "text-error text-size-s2" onclick = "question.del(this)">del</span></label>');	
+		$(e).parent().children('#choices-li').append('<label class="checkbox"><input type="checkbox" name = "question[answers][]" value = "'+$('.checkbox').length+'"><input type = "text" class = "choices" name = "question[choices][]"><span class = "text-error text-size-s2" onclick = "question.del(this)"> delete</span></label>');	
 		console.log($('.choices').length);		
 	},
 	del: function($d) {

@@ -63,7 +63,7 @@
 		$testDB['scheduled_test']  = $this->mQ->get_scheduled_tests();	
 		$testDB['user_stats']  =  $this->user_model->view_trainee();
 		$testDB['modules'] = $this->mModule->get_module_entries();
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/trainee/test_home',$testDB,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		//breadcrumb settings
@@ -86,7 +86,7 @@
 		$myData['available_modules'] = $this->trainee_module_model->get_available_modules($id,FALSE,FALSE);
 		$myData['module_table'] = TRUE;
 
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/trainee/trainee_enrolment',$myData,TRUE);
 			$this->sidebar_content['actions'] = array(
 				'current_module' => array(
@@ -234,7 +234,7 @@
 		$myData['user_info'] = $this->trainee_model->get_name($id); 
 		$myData['modules'] = $this->mModule->get_module_entries();
 		$myData['module_test_result'] = $this->mod_res->get_test_results_with_module_detail_by_trainee_id($id);
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/trainee/module_test_result',$myData,TRUE);
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 
@@ -263,9 +263,9 @@
 		$this->load->model('trainee/trainee_model','trainee_model');
 		$myData['tid'] = $id;
 		$myData['user_info'] = $this->trainee_model->get_name($id); 
-		$myData['scheduled_test'] = $this->mQ->get_scheduled_tests_by_modulet($id);
+		$myData['scheduled_test'] = $this->mQ->get_scheduled_tests_by_module($id);
 		$myData['scheduled_test_result'] = $this->sched_res->get_test_results_with_module_detail_by_module_id(false,$id);
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/trainee/schedule_test_result',$myData,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 
@@ -280,7 +280,7 @@
 		$this->load->model('scheduled_test_result_model','test_result_model');
 		$this->load->model('module_model');
 		$result['scheduled_test_result'] = $this->test_result_model->get_test_results_with_module_detail_by_test_id($test_result_id);
-		$data['page_title'] = "SSCO Module Base Learning";
+		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/test/schedule_test_result',$result,TRUE); 
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);

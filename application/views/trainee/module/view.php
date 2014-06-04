@@ -15,7 +15,7 @@
 			<h3 class="panel-title">Enroled in Module</h3>
 		</div>
 		<div class="panel-body">
-			You are enroled in this module. You can take the test for this module by clicking on the link in the sidebar.
+			You are currently enroled in this module. You can take the test for this module by clicking on the link in the sidebar.
 		</div>
 	</div>
 <?php else:?>

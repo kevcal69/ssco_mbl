@@ -5,7 +5,7 @@
 	<div class="panel-body">
 		<div id="message-content">
 			<p>Are you sure you want to delete <a href="<?=base_url('admin/user/view/'. $username);?>"><?php echo $username;?></a>?</p>
-			<p>Deleting users will also  from the database.</p>
+			<p>If this user is a trainee, all module and test result records will also be deleted from the database.</p>
 		</div>
 	</div>
 	<div class="panel-footer">

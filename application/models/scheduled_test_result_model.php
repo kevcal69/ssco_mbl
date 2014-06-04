@@ -5,6 +5,17 @@ class Scheduled_test_result_model extends CI_Model {
 		parent::__construct();
 	}
 
+/**
+*	Add test result to database
+*
+*	@param	int			$test_id		must exist
+*	@param	int			$module_id	must exist
+*	@param	int			$trainee_id	must exist
+*	@param	float		$rating			(optional)
+*	@param	string	$content		(optional) serialized content array
+*
+*	@return	int 		id of inserted entry on success, else NULL
+*/
 	public function insert_result($test_id,$module_id,$trainee_id,$rating = 0,$content = NULL) {
 		$data = array (
 			'test_id' => $test_id,
@@ -20,11 +31,28 @@ class Scheduled_test_result_model extends CI_Model {
 		}
 	}
 
+/**
+*	Update test result in database
+*
+*	@param	int			$id		must exist
+*	@param	array		$data	contains test_id(int), trainee_id(int), module_id(int), 
+*												rating(float), content(string)
+*
+*	@return	boolean	query result
+*/
 	public function update_result($id,$data) {
 		$this->db->where('id',$id);
 		return $this->db->update('test_result',$data);
 	}
 
+/**
+*	Get test result from database
+*
+*	@param	int			$test_id		(optional) must exist
+*	@param	int			$trainee_id	(optional) must exist
+*
+*	@return	array 	query result
+*/
 	public function get_results($test_id = FALSE,$trainee_id = FALSE) {
 		//allows for different filters
 		if ($test_id !== FALSE && $trainee_id !== FALSE) {
@@ -95,6 +123,14 @@ class Scheduled_test_result_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+/**
+*	Get test result from database
+*
+*	@param	int			$test_result_id must exist
+*
+*	@return	object 	query result
+*/
 	public function get_result($test_result_id) {
 		$data = array(
 			'id' => $test_result_id

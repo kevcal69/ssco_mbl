@@ -39,6 +39,7 @@
 					 answers will be marked as wrong.</li>
 					<li>All questions must be answered. You cannot submit your answers for the test unless you answer every question.</li>
 					<li>Submit your answers by clicking on either of the submit buttons at the top and bottom of the page.</li>
+					<li>You may not leave or abort the test. Doing so will mark this test as zero.</li>
 					<li>Consult with the test administrator if you have any questions, concerns, or problems.</li>
 					<li>Good luck with the test! May you answer the questions as best and as honestly as you can.</li>
 				</ul>

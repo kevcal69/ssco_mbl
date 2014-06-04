@@ -15,47 +15,51 @@
 			</div>
 		</div>
 		<div id="grid-container">
-			<?php foreach ($modules as $module): ?>
-				<div class = "module-box">
-					<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);"></div>
-					<div class = "mb-title">
-						<?=character_limiter($module->title,25);?>
-					</div>
-					<div class="description">
-						<?=stripslashes(strip_tags(word_limiter($module->description, 20)))?>
-					</div>
-					<?php if ($this->session->userdata('role')): ?>
-						<?php if ($this->session->userdata('role') === "admin"): ?>
-							<div class="actions grid ">
-								<ul>
-									<li><a href="<?=base_url() . 'admin/module/view/'.$module->id?>"><button type="button" class = "button-primary">View</button></a></li>
-									<li><a href="<?=base_url() . 'admin/question/create/'.$module->id?>"><button type="button" class = "button-info">Test Q</button></a></li>
-									<li><a href="<?=base_url() . 'admin/module/modify/'.$module->id?>"><button type="button" class = "button-warning">Modify</button></a></li>
-									<li><a href="<?=base_url() . 'admin/module/delete/'.$module->id?>" onClick="if(confirm('Do you really want to delete this module?'))return true; else return false;"><button type="button" class = "button-danger">Delete</button></a></li>
+			<?php if (sizeof($modules) > 0):?>
+				<?php foreach ($modules as $module): ?>
+					<div class = "module-box">
+						<div class="thumb" style = "background-image: url(<?=base_url() . $module->cover_picture;?>);"></div>
+						<div class = "mb-title">
+							<?=character_limiter($module->title,25);?>
+						</div>
+						<div class="description">
+							<?=stripslashes(strip_tags(word_limiter($module->description, 20)))?>
+						</div>
+						<?php if ($this->session->userdata('role')): ?>
+							<?php if ($this->session->userdata('role') === "admin"): ?>
+								<div class="actions grid ">
+									<ul>
+										<li><a href="<?=base_url() . 'admin/module/view/'.$module->id?>"><button type="button" class = "button-primary">View</button></a></li>
+										<li><a href="<?=base_url() . 'admin/question/create/'.$module->id?>"><button type="button" class = "button-info">Test Q</button></a></li>
+										<li><a href="<?=base_url() . 'admin/module/modify/'.$module->id?>"><button type="button" class = "button-warning">Modify</button></a></li>
+										<li><a href="<?=base_url() . 'admin/module/delete/'.$module->id?>" onClick="if(confirm('Do you really want to delete this module?'))return true; else return false;"><button type="button" class = "button-danger">Delete</button></a></li>
 
-								</ul>
-							</div>	
-							<?php elseif ($this->session->userdata('role') === "trainee"): ?>
-							<div class="actions grid ">
-								<ul>
-									<li><a class="button" href="<?=base_url('trainee/module/view/'.$module->id)?>">View</a></li>
-									<li><a class="button button-primary" href="<?=base_url('trainee/module/enrol/'.$module->id)?>">Enrol</a></li>
-								</ul>
-							</div>	
-							<?php elseif ($this->session->userdata('role') === "content_manager"): ?>
-							<div class="actions grid ">
-								<ul>
-									<li>View</li>
-									<li>Modify</li>
-									<li>Delete</li>
-								</ul>
-							</div>
+									</ul>
+								</div>	
+								<?php elseif ($this->session->userdata('role') === "trainee"): ?>
+								<div class="actions grid ">
+									<ul>
+										<li><a class="button" href="<?=base_url('trainee/module/view/'.$module->id)?>">View</a></li>
+										<li><a class="button button-primary" href="<?=base_url('trainee/module/enrol/'.$module->id)?>">Enrol</a></li>
+									</ul>
+								</div>	
+								<?php elseif ($this->session->userdata('role') === "content_manager"): ?>
+								<div class="actions grid ">
+									<ul>
+										<li>View</li>
+										<li>Modify</li>
+										<li>Delete</li>
+									</ul>
+								</div>
+							<?php endif; ?>
 						<?php endif; ?>
-					<?php endif; ?>
 
-				</div>
+					</div>
 
-			<?php endforeach; ?>
+				<?php endforeach; ?>
+			<?php else:?>
+				No data available.
+			<?php endif;?>
 		</div>
 		<div id="list-container">
 			<table class="module-table-admin">
@@ -90,7 +94,11 @@
 							<?php elseif ($this->session->userdata('role') === "trainee"): ?>
 								<td class="collapse nowrap center">
 									<a class="button table-button" href="<?=base_url('trainee/module/view/'.$module->id)?>" class = "text-info text-size-s3">View</a>
-									<a class="button button-primary table-button" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
+									<?php if ($this->trainee_module_model->is_enroled($module->id,$this->trainee_id)):?>
+										<a class="button button-warning table-button" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Reenrol</a>
+									<?php else:?>
+										<a class="button button-primary table-button" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
+									<?php endif;?>
 								</td>
 							<?php endif; ?>
 						<?php endif; ?>

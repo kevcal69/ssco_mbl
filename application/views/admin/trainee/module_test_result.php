@@ -8,8 +8,12 @@
 
 		<div class="table vertical-headings test-result-table">
 			<div class="tr">
-				<div class="th">Id</div>
+				<div class="th">User ID</div>
 				<div class="td"><?=$tid?></div>
+			</div>
+			<div class="tr">
+				<div class="th">Username</div>
+				<div class="td"><?=$user_info['username']?></div>
 			</div>
 			<div class="tr">
 				<div class="th">First Name</div>
@@ -37,10 +41,7 @@
 			</datalist>
 			<hr/>
 		</div>	
-		<div class="results-field">
-			
-
-		</div>	
+		<div class="results-field"></div>	
 	</div>
 </div>
 
@@ -54,7 +55,7 @@
 				<tr>
 					<th>Module Test ID</th>
 					<th>Date</th>
-					<th># : Module Title</th>
+					<th>Module ID : Module Title</th>
 					<th class="collapse nowrap center">Actions</th>
 				</tr>
 			</thead>

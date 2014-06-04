@@ -4,10 +4,7 @@
 	</div>
 	<div class="panel-body">
 		<div id="message-content">
-			<p>You have already taken the test for the "
-				<a href="<?=base_url('trainee/module/view/'. $module_id);?>">
-					<?php echo $module_title;?>
-				</a>" module in the past.<br><br>
+			<p>You have already taken the test for the "<a href="<?=base_url('trainee/module/view/'. $module_id);?>"><?php echo $module_title;?></a>" module in the past.<br><br>
 				Do you want to retake the test? The test results will be recorded.
 			</p>
 		</div>

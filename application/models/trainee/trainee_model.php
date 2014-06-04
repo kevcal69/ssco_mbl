@@ -5,6 +5,14 @@ class Trainee_model extends CI_Model {
 		parent::__construct();
 	}
 
+/**
+*	Fetch trainee name using user_id
+*
+*	@param	int 		$trainee_id	user_id
+*
+*	@return	array		array of first_name, last_name and username on success.
+*					FALSE		FALSE on failure
+*/
 	public function get_name($trainee_id) {
 		$this->db->select('first_name,last_name');
 		$name = $this->db->get_where('trainee',array('user_id' => $trainee_id));
@@ -24,6 +32,14 @@ class Trainee_model extends CI_Model {
 		}
 	}
 
+/**
+*	Get trainee statistics (name, modules, test results)
+*
+*	@param	int 		$trainee_id	user_id
+*
+*	@return	array		array of name(first_name, last_name, username), 
+*									modules(completed, current), and scheduled test results
+*/
 	public function get_statistics($trainee_id) {
 		$this->load->model('module_model');
 		$this->load->model('module_test_result_model');

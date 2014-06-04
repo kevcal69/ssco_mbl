@@ -114,7 +114,7 @@
 		$this->load->model('scheduled_test_result_model','sched_res');
 		$this->load->model('question_model','mQ');
 		$myData['mid'] = $id;
-		$myData['scheduled_test'] = $this->mQ->get_scheduled_tests_by_modulet($id);
+		$myData['scheduled_test'] = $this->mQ->get_scheduled_tests_by_module($id);
 		$myData['scheduled_test_result'] = $this->sched_res->get_test_results_with_module_detail_by_module_id($id);
 		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/test/schedule_test_result_view',$myData,TRUE); 

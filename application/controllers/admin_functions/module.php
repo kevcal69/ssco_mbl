@@ -72,7 +72,12 @@
 						'content' => to_sidebar_element('fa-bars','List Modules'),
 						'href' => base_url('admin/module/'),
 						'active' => FALSE
-						)	
+						),
+					'create' => array(
+						'content' => to_sidebar_element('fa-plus-square','Create Module'),
+						'href' => base_url('admin/module/create'),
+						'active' => TRUE
+						)
 					);
 		$data['page_title'] = "Admin - SSCO Module-Based Learning";
 		$data['body_content'] = $this->load->view('admin/module/create',array('taglist' => $this->mModule->get_tags()),TRUE); // kevcal

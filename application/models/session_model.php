@@ -5,6 +5,14 @@ class Session_model extends CI_Model {
 		parent::__construct();
 	}
 
+/**
+*	Get user details from database
+*
+*	@param	string 	$username must exist
+*	@param	string 	$password
+*
+*	@return	array		query result on success, else FALSE
+*/
 	function login($username, $password) {
 		$this->db->select('id, username, password, role');
 		$this->db->from('user');

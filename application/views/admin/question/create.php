@@ -62,13 +62,15 @@
 					<div id="instruction">
 						<div class="panel">
 							<div class="panel-heading">
-								<h3 class="panel-title">How to format</h3>
+								<h3 class="panel-title">Guideline</h3>
 							</div>
 							<div class="panel-body">
 								<ul>
-									<li>Always check for the source</li>
-									<li>Always check for source</li>
-									<li>Choices are found below check the checkbox if the choice is an answer</li>
+									<li>Always check the content source code for proper closing of tags (Source button on the upper-left corner).</li>
+									<li>Add more choices using the Add Choice button.</li>
+									<li>Mark a choice as an answer by clicking the checkbox near the choice.</li>
+									<li>Delete a choice by clicking "delete" next to the choice.</li>
+									<li>Don't forget to save.</li>
 								</ul>
 							</div>
 						</div>					
@@ -81,7 +83,7 @@
 							<div class="controls" id = "choices-li">
 								<?=edit_ca(unserialize(base64_decode($question->choices)),unserialize(base64_decode($question->answer)))?>
 							</div>
-							<button type = "button" class = "" onclick="question.add(this)">Add</button>
+							<button type = "button" class = "" onclick="question.add(this)">Add Choice</button>
 						</div>		
 						<button  class = "button-success">Save</button>				
 				</div>
@@ -123,13 +125,15 @@
 				<div id="instruction">
 					<div class="panel">
 						<div class="panel-heading">
-							<h3 class="panel-title">How to format</h3>
+							<h3 class="panel-title">Guidelines</h3>
 						</div>
 						<div class="panel-body">
 							<ul>
-								<li>Always check for the source</li>
-								<li>Always check for source</li>
-								<li>Choices are found below check the checkbox if the choice is an answer</li>
+								<li>Always check the content source code for proper closing of tags (Source button on the upper-left corner).</li>
+								<li>Add more choices using the Add Choice button.</li>
+								<li>Mark a choice as an answer by clicking the checkbox near the choice.</li>
+								<li>Delete a choice by clicking "delete" next to the choice.</li>
+								<li>Don't forget to save.</li>
 							</ul>
 						</div>
 					</div>					
@@ -142,7 +146,7 @@
 						<label class="checkbox">
 							<input type="checkbox" checked value="0" name = "question[answers][]">
 							<input type = "text" placeholder = "Choices" class = "choices" name = "question[choices][]">
-							<span class = "text-error text-size-s2" onclick = "question.del(this)">del</span>
+							<span class = "text-error text-size-s2" onclick = "question.del(this)"> delete</span>
 						</label>
 					</div>
 						<button type = "button" class = "" onclick="question.add(this)">Add</button>
