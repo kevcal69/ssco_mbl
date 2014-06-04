@@ -195,6 +195,7 @@ class Question_model extends CI_Model {
 
 		$haystack = array();
 		if (sizeof($array) < $limit) {
+			shuffle($array);
 			return $array;
 		} else {
 			for ($i=0; $i < $limit; $i++) { 

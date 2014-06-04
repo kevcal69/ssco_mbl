@@ -94,7 +94,11 @@
 							<?php elseif ($this->session->userdata('role') === "trainee"): ?>
 								<td class="collapse nowrap center">
 									<a class="button table-button" href="<?=base_url('trainee/module/view/'.$module->id)?>" class = "text-info text-size-s3">View</a>
-									<a class="button button-primary table-button" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
+									<?php if ($this->trainee_module_model->is_enroled($module->id,$this->trainee_id)):?>
+										<a class="button button-warning table-button" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Reenrol</a>
+									<?php else:?>
+										<a class="button button-primary table-button" href="<?=base_url('trainee/module/enrol/'.$module->id)?>" class = "text-primary text-size-s3">Enrol</a>
+									<?php endif;?>
 								</td>
 							<?php endif; ?>
 						<?php endif; ?>
