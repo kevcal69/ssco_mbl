@@ -285,121 +285,6 @@
 		$data['sidebar'] = $this->load->view('partials/sidebar',$this->sidebar_content,TRUE);
 		$this->parser->parse('layouts/logged_in', $data);
 		
-	}
-	function result($test_result_id) {
-		$this->load->model('admin/user_model');
-		$this->load->helper('output_text_helper');
-		$this->load->model('module_test_result_model','test_result_model');
-		$this->load->model('module_model');
-		$result = $this->test_result_model->get_result($test_result_id);
-		if ($result) {
-			$result_content = unserialize(base64_decode($result->content));
-			$result_content['details']['test_result_id'] = $result->id;
-			$result_content['details']['trainee_id'] = $result->trainee_id;
-
-			$trainee = $this->user_model->view_trainee($result->trainee_id);
-
-			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
-			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
-
-			$result_content['details']['module_title'] = $this->module_model->get_title($result->module_id);
-			$result_content['details']['module_id'] = $result->module_id;
-			$result_content['details']['rating'] = $result->rating;
-			$result_content['details']['date'] = $result->date;
-			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
-			$data['page_title'] = "Admin - SSCO Module-Based Learning";
-			$this->parser->parse('layouts/default', $data);
-		}
-	}		
-	function answers($test_result_id) {
-		$this->load->model('admin/user_model');
-		$this->load->helper('output_text_helper');
-		$this->load->model('module_test_result_model','test_result_model');
-		$this->load->model('module_model');
-		$result = $this->test_result_model->get_result($test_result_id);	
-		$result = $this->test_result_model->get_result($test_result_id);
-		if ($result) {
-			$result_content = unserialize(base64_decode($result->content));
-		
-			//change retrieved answers to correct answers			
-			foreach ($result_content['questions'] as $index => $question) {
-				$answer = unserialize_choices($question->answer);
-				$result_content['answers'][$index] = $answer;
-			}
-
-			$result_content['details']['test_result_id'] = $result->id;
-			$result_content['details']['trainee_id'] = $result->trainee_id;
-
-			$trainee = $this->user_model->view_trainee($result->trainee_id);
-
-			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
-			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
-
-			$result_content['details']['module_title'] = $this->module_model->get_title($result->module_id);
-			$result_content['details']['module_id'] = $result->module_id;
-			$result_content['details']['rating'] = $result->rating;
-			$result_content['details']['date'] = $result->date;
-			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
-			$data['page_title'] = "Admin - SSCO Module-Based Learning";
-			$this->parser->parse('layouts/default', $data);
-		}
-	}
-	function sched_result($test_result_id) {
-		$this->load->model('module_model');
-		$this->load->helper('output_text_helper');
-		$this->load->model('scheduled_test_result_model','test_result_model');
-		$this->load->model('admin/user_model');
-		$result = $this->test_result_model->get_result($test_result_id);
-		if ($result) {
-			$result_content = unserialize(base64_decode($result->content));
-			// print_r($result_content);
-			$result_content['details']['test_result_id'] = $result->id;
-			$result_content['details']['trainee_id'] = $result->trainee_id;
-
-			$trainee = $this->user_model->view_trainee($result->trainee_id);
-
-			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
-			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
-
-			$result_content['details']['module_title'] = $this->module_model->get_title($result->module_id);
-			$result_content['details']['module_id'] = $result->module_id;
-			$result_content['details']['rating'] = $result->rating;
-			$result_content['details']['date'] = $result->date;
-			$data['body_content'] = $this->load->view('admin/test_result',$result_content,TRUE);
-			$data['page_title'] = "Admin - SSCO Module-Based Learning";
-			$this->parser->parse('layouts/default', $data);
-		}
-	}
-	function sched_answers($test_result_id) {
-		$this->load->model('module_model');
-		$this->load->helper('output_text_helper');
-		$this->load->model('scheduled_test_result_model','test_result_model');
-		$this->load->model('admin/user_model');
-		$result = $this->test_result_model->get_result($test_result_id);
-		if ($result) {
-			$result_content = unserialize(base64_decode($result->content));
-		
-			//change retrieved answers to correct answers			
-			foreach ($result_content['questions'] as $index => $question) {
-				$answer = unserialize_choices($question->answer);
-				$result_content['answers'][$index] = $answer;
-			}
-
-			$result_content['details']['test_result_id'] = $result->id;
-			$result_content['details']['trainee_id'] = $result->trainee_id;
-
-			$trainee = $this->user_model->view_trainee($result->trainee_id);
-
-			$result_content['details']['trainee']['last_name'] = $trainee['last_name'];
-			$result_content['details']['trainee']['first_name'] = $trainee['first_name'];
-
-			$result_content['details']['module_id'] = $result->module_id;
-			$result_content['details']['rating'] = $result->rating;
-			$result_content['details']['date'] = $result->date;
-			$data['body_content'] = $this->load->view('admin/test_answers',$result_content,TRUE);
-			$data['page_title'] = "Admin - SSCO Module-Based Learning";
-			$this->parser->parse('layouts/default', $data);
-		}
 	}	
 	function module_quick_access() {
 		$this->load->model('module_model');
@@ -409,87 +294,87 @@
 		$this->load->helper('output_text_helper');
 		$this->load->model('module_test_result_model','mod_res');
 		$this->load->model('scheduled_test_result_model','sched_res');
-	 foreach ($results as $module): 
-		$mod_ratings= $this->mod_res->get_test_results_with_module_detail_by_trainee_id($tid,$module->id);
-		$sched_ratings = $this->sched_res->get_test_results_with_module_detail_by_module_id($module->id,$tid);
-	if(!empty($mod_ratings)) {
-		$var = stat_format_per_tid($mod_ratings);
-	} else {
-		$var['taken'] = 0;
-		$var['rating_summary'] = 'N/A';
-		$var['status'] ='<span class = "text-error">Not</span>';
-	}
-	if(!empty($sched_ratings)) {
-		$foo = stat_format_per_tid($sched_ratings);
-	} else {
-		$foo['taken'] = 0;
-		$foo['rating_summary'] = 'N/A';
-	}		
-	echo '<div class="inner-panel">
-				<div class="inner-panel-heading">
-					<h3 class="inner-panel-title">Module ID: '.$module->id.'</h3>
-				</div>
-				<div class="inner-panel-body">
-					<div id="mod-box">
-						<div id="thumb" style = "background-image: url('.base_url($module->cover_picture).');">
-							
-						</div>
-						<div id="info-box">
-							<div id="title">
-								'.$module->title.'
+		 foreach ($results as $module): 
+			$mod_ratings= $this->mod_res->get_test_results_with_module_detail_by_trainee_id($tid,$module->id);
+			$sched_ratings = $this->sched_res->get_test_results_with_module_detail_by_module_id($module->id,$tid);
+		if(!empty($mod_ratings)) {
+			$var = stat_format_per_tid($mod_ratings);
+		} else {
+			$var['taken'] = 0;
+			$var['rating_summary'] = 'N/A';
+			$var['status'] ='<span class = "text-error">Not</span>';
+		}
+		if(!empty($sched_ratings)) {
+			$foo = stat_format_per_tid($sched_ratings);
+		} else {
+			$foo['taken'] = 0;
+			$foo['rating_summary'] = 'N/A';
+		}		
+		echo '<div class="inner-panel">
+					<div class="inner-panel-heading">
+						<h3 class="inner-panel-title">Module ID: '.$module->id.'</h3>
+					</div>
+					<div class="inner-panel-body">
+						<div id="mod-box">
+							<div id="thumb" style = "background-image: url('.base_url($module->cover_picture).');">
+								
 							</div>
-							<div id="stat">
-								<div class="mod-stat">
-									<span class = "text-size-o" >Module Test Stat</span>
-									<ul>
-										<li>
-										<span class = "stat-item">Status</span>
-										<span class = "stat-val">'.$var['status'].'</span>
-										</li>
-										<li>
-										<span class = "stat-item">Times taken</span>
-										<span class = "stat-val">'.$var['taken'].'</span>
-										</li>
-										<li>
-										<span class = "stat-item">Percentage Rating</span>
-										<span class = "stat-val">'.$var['rating_summary'].'</span>
-										</li>
-									</ul>
-									<span id = "sm-r" class = "text-size-o fa fa-arrow-circle-o-right float-r" ></span>
+							<div id="info-box">
+								<div id="title">
+									'.$module->title.'
 								</div>
-								<div class="sched-stat">
-									<span  class = "text-size-o " >Scheduled Test Stat</span>
-									<ul>
-										<li>
-										<span class = "stat-item">Times takers</span>
-										<span class = "stat-val">'.$foo['taken'].'</span>
-										</li>
-										<li>
-										<span class = "stat-item">Percentage Rating</span>
-										<span class = "stat-val">'.$foo['rating_summary'].'</span>
-										</li>
-									</ul>
-									<span id ="ss-l" class = "text-size-o fa fa-arrow-circle-o-left" ></span>
-								</div>
-							</div>														
+								<div id="stat">
+									<div class="mod-stat">
+										<span class = "text-size-o" >Module Test Stat</span>
+										<ul>
+											<li>
+											<span class = "stat-item">Status</span>
+											<span class = "stat-val">'.$var['status'].'</span>
+											</li>
+											<li>
+											<span class = "stat-item">Times taken</span>
+											<span class = "stat-val">'.$var['taken'].'</span>
+											</li>
+											<li>
+											<span class = "stat-item">Percentage Rating</span>
+											<span class = "stat-val">'.$var['rating_summary'].'</span>
+											</li>
+										</ul>
+										<span id = "sm-r" class = "text-size-o fa fa-arrow-circle-o-right float-r" ></span>
+									</div>
+									<div class="sched-stat">
+										<span  class = "text-size-o " >Scheduled Test Stat</span>
+										<ul>
+											<li>
+											<span class = "stat-item">Times takers</span>
+											<span class = "stat-val">'.$foo['taken'].'</span>
+											</li>
+											<li>
+											<span class = "stat-item">Percentage Rating</span>
+											<span class = "stat-val">'.$foo['rating_summary'].'</span>
+											</li>
+										</ul>
+										<span id ="ss-l" class = "text-size-o fa fa-arrow-circle-o-left" ></span>
+									</div>
+								</div>														
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>	
-			<div class="inner-panel">
-				<div class="inner-panel-heading">
-					<h3 class="inner-panel-title">Actions</h3>
-				</div>
-				<div class="inner-panel-body">
-					<ul>
+				</div>	
+				<div class="inner-panel">
+					<div class="inner-panel-heading">
+						<h3 class="inner-panel-title">Actions</h3>
+					</div>
+					<div class="inner-panel-body">
+						<ul>
 
-						<li><a href = "'.base_url('admin/test/module_test_view/'.$module->id).'" class = "actions"><span>Module Test Results</span></a></li>
-						<li><a href = "'.base_url('admin/test/schedule_test_view/'.$module->id).'" class = "actions"><span>Schedule Test Results</span></a></li>
-						<li><a href = "'.base_url('admin/question/test_set_up/'.$module->id).'" class = "actions"><span>Set up a Scheduled Test</span></a></li>
-					</ul>
-				</div>
-			</div>';
-	endforeach;
+							<li><a href = "'.base_url('admin/test/module_test_view/'.$module->id).'" class = "actions"><span>Module Test Results</span></a></li>
+							<li><a href = "'.base_url('admin/test/schedule_test_view/'.$module->id).'" class = "actions"><span>Schedule Test Results</span></a></li>
+							<li><a href = "'.base_url('admin/question/test_set_up/'.$module->id).'" class = "actions"><span>Set up a Scheduled Test</span></a></li>
+						</ul>
+					</div>
+				</div>';
+		endforeach;
 	}
 }
 
