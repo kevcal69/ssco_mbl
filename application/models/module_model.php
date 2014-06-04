@@ -178,7 +178,7 @@ class Module_model extends CI_Model {
 		sort($table_tags, SORT_NUMERIC);
 		foreach ($table_tags as $key ){
 			$data['tags'] = $key;
-			echo $key;
+			// echo $key;
 			$this->db->insert('tags', $data);
 		}	
 
