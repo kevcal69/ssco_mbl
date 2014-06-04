@@ -68,6 +68,8 @@ class Search extends MBL_Controller {
 							)
 						)
 					);
+					$this->load->model('trainee/trainee_module_model');
+					$this->trainee_id = $this->session->userdata('id');
 			}
 			//show sidebar search
 			$this->sidebar_content['actions'] = array();
