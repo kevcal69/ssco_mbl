@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>SCCO Documentation</title>
+		<link rel="stylesheet" type="text/css" href="normalize.css">
+		<link rel="stylesheet" type="text/css" href="css.css">
+		<link href="bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript" src = "jquery.js"></script>
+		<script type="text/javascript" src = "scripts.js"></script>
+
+	</head>
+	<body>
+		<header class = "nav-top">
+			<div class="nav-wrapper">
+				<div class="nav brand">
+					<a href="index.html">Documentation</a>
+				</div>
+				<ul class="nav buttons">
+					<li><a href = "configuration.html">Configurations</a></li>
+					<li><a href = "models.html">Models</a></li>
+					<li><a href = "controllers.html">Controllers</a></li>
+					<li><a href = "jscripts.html">JS</a></li>
+					<li><a href = "plugins.html">Plugins</a></li>
+				</ul>
+			</div>
+		</header>
+		<div class="title-space">
+			<div class="row-wrapper">
+				<div class="title">
+					<h1>SSCO - NCR</h1>
+					<div class="lead">Module Base Learning</div>
+				</div>
+				<div class="row-box">
+					<h2>How To Set Up</h2>
+					<p>This is a complete guide to deploying the web application. This is the web counterpart for of the document</p>
+				</div>
+			</div>
+		</div>
+		<div class="content-wrapper">
+			<div class="sidebar">
+				<p Style = "margin-left: -20px;">Table of Contents</p>
+				<ul>
+
+					<li>Getting the Web Application</li>
+					<li>Installing Web Server </li>
+					<li>Setting up the database</li>
+					<li>Connecting the Web App to its Database</li>
+				</ul>
+			</div>
+			<div class="body-content">
+				<div class="item" >
+					<p class = "title-1"><strong>1.)</strong><strong>Getting the Web Application</strong></p>
+
+					<p >The web application can be clone or download as zip in Github.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+					<p ><strong>Without Git application </strong></p>
+
+					<ul>
+						<li>Go to this link&nbsp; : <a href="https://github.com/kevcal69/ssco_mbl.git">https://github.com/kevcal69/ssco_mbl.git</a></li>
+						<li>Change the branch to sidebar\</li>
+						<li>Download the web application by clicking&nbsp; &ldquo;Download ZIP&rdquo;</li>
+						<li>Go to the web server root directory of your web server and extract the downloaded ZIP. <em>(Look for documentation of your preferred web server about the root directory)</em></li>
+					</ul>
+
+					<p><strong>With Git <em>(Terminal version only. Refer to git documentation for&nbsp; using&nbsp; the Git GUI)</em></strong></p>
+
+					<ul>
+						<li>Make sure to set up git first perfectly. Refer to the Git documentation for set up</li>
+						<li>Open Git bash, cd to web server document root directory and type the command<br />
+						<code><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cd C:\web_server\doc_root_dir (not exact command)<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; git clone <a href="mailto:git@github.com:kevcal69/ssco_mbl.git">git@github.com:kevcal69/ssco_mbl.git</a></em></code></li>
+					</ul>
+
+					<ul>
+						<li>Now switch branch to sidebar and pull request from the repository<br />
+						<code><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; git checkout sidebar<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; git pull origin sidebar</em></code></li>
+					</ul>
+				</div>
+				<div class = "item">
+					<p class = "title-1"><strong>2.)</strong><strong>Installing Web Server </strong></p>
+
+					<p>Basically, web application need web server for it to run. In this case, the web application needs a web server that supports APACHE, MySql, and PHP.</p>
+
+					<p>It is advisable to use XAMPP for it is cross platform and it&rsquo;s a free web server but any web server is basically fine. However, be sure to check if the <strong>PHP version is &gt;= 5.0.0 </strong>and<strong> 5.5.36 =&gt; MySQL Community Server (GPL). </strong>&nbsp;</p>
+
+					<p>Refer to installation guide of the web server to its documentation.</p>
+
+					<p>(List of recommended web server below)</p>
+						<ul>
+							<li style="margin-left: 0.2in;">XAMPP (cross platform) *all further examples on will be based on this web server</li>
+							<li style="margin-left: 0.2in;">LAMPP (Linux)</li>
+							<li style="margin-left: 0.2in;">WAMP (windows)</li>
+							<li style="margin-left: 0.2in;">MAMP (Mac and Windows)</li>
+						</ul>
+				</div>
+				<div class = "item">
+					<p class = "title-1"><strong>3.)</strong><strong>Setting up the database</strong></p>
+
+					<p>Web servers have almost the same and familiar options and contents. Usually, XAMPP control panel can be access through <a href="http://localhost/">http://localhost</a> or <a href="http://127.0.0.1/">http://127.0.0.1</a></p>
+
+					<p><strong>XAMPP control panel </strong></p>
+
+					<ul>
+						<li>Go to XAMPP control panel. Settings can be change according to user&rsquo;s preference. Irrelevant functions of the control panel will not be discussed. If found important, just refer to the web server&rsquo;s documentation for further details.</li>
+						<li>Click phpMyAdmin to go to the phpMyAdmin control panel. The phpMyAdmin is the GUI and easier manipulation of the web application database and mysql queries.</li>
+						<li>Create the database &ldquo;ssco_mbl&rdquo;</li>
+						<li>Click the database and then click the import. The import will upload an sql dump of the premade database.</li>
+						<li>After goind to the import tab click upload file and browse the sql dump file. The sql dump file can be found at the root directory of the project folder which inside the web server document root directory named ssco_mbl.<br />
+						<em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C:\web_server\doc_root_dir\project_name\ssco_mbl.</em></li>
+						<li>After importing the tables are created automatically. There is an initial data that is for the admin. This is to log in to the CMS of the website.<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Username : admin<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Password&nbsp; : admin<br />
+						Never forget to change the password after first time login.</li>
+					</ul>
+
+					<p><strong>Web Server Running on VM</strong></p>
+
+					<ul>
+						<li>Sometimes it is inevitable that web server needs to be on VM in order to run. This might because the host computer holds user account security authentication and set the account to standard with no administration privileges.</li>
+						<li>First webserver needs to be installed in the VM.</li>
+						<li>After the setup, change the setting of the VM&rsquo;s network adapter to share with the host IP address. This is necessary in order for the web server&rsquo;s (XAMPP) control panel to be access.</li>
+						<li>The control panel can be access by replacing the http://localhost by <a href="http://ip_adress_of_the_vm/">http://IP_Adress_of_the_VM</a> (example <a href="http://192.168.45.51/">http://192.168.45.51</a>)</li>
+					</ul>
+				</div>
+				<div class= "item">
+					<p class = "title-1"><strong>4.)</strong><strong>Connecting the Web App to its Database</strong></p>
+
+					<p>The web app is based on the CodeIgniter PHP framework by Ellislab so configuration is very organized to control the smooth flow of the server-client processes.</p>
+
+					<p><strong>Changing the config.php </strong></p>
+
+					<ul>
+						<li>Browse through the folder of the web app<br />
+						Location : <em>ssco_mbl/application/config</em></li>
+						<li>Find the Datasebase.php and config.php files</li>
+						<li>Database.php consist of information about the mySql database you want to connect</li>
+						<li>Config.php contains the main configuration of the web app</li>
+						<li>It is necessary to change the base_url according to your IP Address</li>
+					</ul>
+
+					<p><br />
+					&nbsp;Now the web_app can be access through http://some_ip_adress/ssco_mbl<br />
+					&nbsp;</p>				
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

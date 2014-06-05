@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>SCCO Documentation</title>
+		<link rel="stylesheet" type="text/css" href="normalize.css">
+		<link rel="stylesheet" type="text/css" href="css.css">
+		<link href="bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript" src = "jquery.js"></script>
+		<script type="text/javascript" src = "scripts.js"></script>
+
+	</head>
+	<body>
+		<header class = "nav-top">
+			<div class="nav-wrapper">
+				<div class="nav brand">
+					<a href="index.html">Documentation</a>
+				</div>
+				<ul class="nav buttons">
+					<li><a href = "configuration.html">Configurations</a></li>
+					<li><a href = "models.html">Models</a></li>
+					<li><a href = "controllers.html">Controllers</a></li>
+					<li><a href = "jscripts.html">JS</a></li>
+					<li><a href = "plugins.html">Plugins</a></li>
+				</ul>
+			</div>
+		</header>
+		<div class="title-space">
+			<div class="row-wrapper">
+				<div class="title">
+					<h1>SSCO - NCR</h1>
+					<div class="lead">Module Base Learning</div>
+				</div>
+				<div class="row-box">
+					<h2>Controllers</h2>
+					<p>Controllers are the heart of your application, as they determine how HTTP requests should be handled.A Controller is simply a class file that is named in a way that can be associated with a URI.</p>
+				</div>
+			</div>
+		</div>
+		<div class="content-wrapper">
+			<div class="sidebar">
+				<p Style = "margin-left: -20px;">Controller List</p>
+				<ul>
+					<li>Home</li>
+					<li>Search</li>
+					<li>Session</li>
+					<li>Admin (Admin Functions)</li>
+					<li>Module (Admin Functions)</li>
+					<li>Question(Admin Functions)</li>
+					<li>Test (Admin Functions)</li>
+					<li>Trainee (Admin Functions)</li>
+					<li>User (Admin Functions)</li>
+					<li>Module (Traninee)</li>
+					<li>Scheduled Test(Traninee)</li>
+					<li>Test (Traninee)</li>
+					<li>Trainee (Traninee)</li>
+				</ul>
+			</div>
+			<div class="body-content">
+				<div class="item">
+					<p class = "title-1">Home Controller </p>
+					<p>File name: home.php</p>
+					<p>Location:ssco_mbl/application/controllers/home.php</p>				
+					<p><i>The page outlet. This controllers the landing page and login page</i></p>
+				</div>
+				<div class="item">
+					<p class = "title-1">Search Controller </p>
+					<p>File name: search.php</p>
+					<p>Location:ssco_mbl/application/controllers/search.php</p>				
+					<p><i>This controller manages module searches from the user. The search is tag based for modules.</i></p>
+				</div>		
+				<div class="item">
+					<p class = "title-1">Session Controller </p>
+					<p>File name: session.php</p>
+					<p>Location:ssco_mbl/application/controllers/session.php</p>				
+					<p><i>The session controller, manages the log in log out of accounts.</i></p>
+				</div>		
+				<div class="item">
+					<p class = "title-1">Admin Controller </p>
+					<p>File name: admin.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/admin.php</p>				
+					<p><i>The admin controller redirect the user upon log in to landing page</i></p>
+				</div>									
+				<div class="item">
+					<p class = "title-1">Module Controller </p>
+					<p>File name: module.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/module.php</p>
+					<p><i>This controller controls all admin functions concerning the modules.</i></p>
+				</div>		
+				<div class="item">
+					<p class = "title-1">Question Controller </p>
+					<p>File name: question.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/question.php</p>
+					<p><i>This controller controls all admin functions concerning about module test questions and schedule test question</i></p>
+				</div>				
+				<div class="item">
+					<p class = "title-1">Test Controller </p>
+					<p>File name: test.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/test.php</p>
+					<p><i>This controller manages the admin functions concerning test results statistics.</i></p>
+				</div>						
+				<div class="item">
+					<p class = "title-1">Trainee Controller </p>
+					<p>File name: trainee.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/trainee.php</p>
+					<p><i>This controller manages admin's operation of the trainees. Admin can view trainees, enrol or unenrol to modules and view trainee's test results.</i></p>
+				</div>	
+				<div class="item">
+					<p class = "title-1">User Controller </p>
+					<p>File name: module.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/user.php</p>
+					<p><i>This controller manages users as general.</i></p>
+				</div>	
+				<div class="item">
+					<p class = "title-1">Module Controller </p>
+					<p>File name: module.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/trainee.php</p>
+					<p><i>This controller manages all actions the trainee can do about modules. It also manages all views of modules requested by the trainee</i></p>
+				</div>							
+				<div class="item">
+					<p class = "title-1">Scheduled Test Controller </p>
+					<p>File name: scheduled_test.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/scheduled_test.php</p>
+					<p><i>This controller manages the examination of the trainee</i></p>
+				</div>							
+				<div class="item">
+					<p class = "title-1">Test Controller</p>
+					<p>File name: test.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/test.php</p>
+					<p><i>This controller manages the evaluation of the trainee</i></p>
+				</div>					
+				<div class="item">
+					<p class = "title-1">Trainee Controller </p>
+					<p>File name: trainee.php</p>
+					<p>Location:ssco_mbl/application/controllers/admin/trainee.php</p>
+					<p><i>This controller manages the trainee's profile and statistics. It displays all view request about trainee statistics.</i></p>
+				</div>					
+			</div>
+		</div>
+	</body>
+</html>
