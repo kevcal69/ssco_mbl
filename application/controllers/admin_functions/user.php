@@ -98,7 +98,7 @@ class User extends MBL_Controller {
 			array(
 				'field' => 'last_name',
 				'label' => 'Last Name',
-				'rules' => 'trim|xss_clean'
+				'rules' => 'trim|xss_clean|callback_required_if_trainee'
 				)
 			);
 		$this->form_validation->set_rules($validation_rules);

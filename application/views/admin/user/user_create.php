@@ -44,7 +44,8 @@
 				<label for="role">Last Name</label>
 				<div class="controls">
 					<input id="last_name" name = "last_name" value="<?php echo set_value('last_name'); ?>" type = "text" placeholder = "Last Name" class="field">
-				</div>
+					<?php echo form_error('last_name','<p class="text-error">','</p>');?>
+				</div>				
 			</div>
 
 			<div class="control-group">
